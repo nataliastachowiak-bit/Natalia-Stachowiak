@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-handwriting: "Caveat", "Marck Script", cursive;
+  
+  --color-bg-black: #080B09;
+  --color-emerald-deep: #063F35;
+  --color-emerald-base: #0B5A4D;
+  --color-emerald-glow: #148b78;
+  --color-gold-warm: #C9A66B;
+  --color-gold-light: #E0C797;
+  --color-ivory: #F5F1E8;
+  --color-muted-text: #B9C4BD;
+}
+
+body {
+  background-color: #080B09;
+  color: #F5F1E8;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Luxury atmospheric glows */
+.emerald-radial-glow {
+  background: radial-gradient(circle at 50% 30%, rgba(11, 90, 77, 0.35) 0%, rgba(6, 63, 53, 0.15) 50%, rgba(8, 11, 9, 0) 80%);
+}
+
+.emerald-spotlight {
+  background: radial-gradient(circle at 80% 20%, rgba(18, 130, 111, 0.28) 0%, rgba(6, 63, 53, 0.12) 45%, transparent 75%);
+}
+
+.gold-glow {
+  box-shadow: 0 0 25px -5px rgba(201, 166, 107, 0.25);
+}
+
+.emerald-card-glow {
+  box-shadow: 0 10px 30px -10px rgba(11, 90, 77, 0.4), inset 0 1px 0 0 rgba(201, 166, 107, 0.15);
+}
+
+.gold-border-gradient {
+  border-image: linear-gradient(to right, rgba(201, 166, 107, 0.4), rgba(11, 90, 77, 0.5), rgba(201, 166, 107, 0.2)) 1;
+}
+
+/* Custom smooth scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #080B09;
+}
+::-webkit-scrollbar-thumb {
+  background: #0B5A4D;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #148b78;
+}
