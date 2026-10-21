@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080A09" />
+      <stop offset="60%" stop-color="#0A110D" />
+      <stop offset="100%" stop-color="#061812" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5C77A" />
+      <stop offset="100%" stop-color="#C7A35A" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#0F5C46" />
+    </linearGradient>
+    <radialGradient id="ambientGlow" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#0F5C46" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#C7A35A" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#080A09" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1200" height="750" fill="url(#bgGrad)" />
+  <circle cx="600" cy="350" r="450" fill="url(#ambientGlow)" />
+
+  <!-- Subtle Editorial Grid & Frame -->
+  <rect x="50" y="50" width="1100" height="650" rx="16" fill="none" stroke="#C7A35A" stroke-opacity="0.2" stroke-width="1.5" />
+  <line x1="50" y1="130" x2="1150" y2="130" stroke="#C7A35A" stroke-opacity="0.15" stroke-width="1" />
+  <line x1="50" y1="620" x2="1150" y2="620" stroke="#C7A35A" stroke-opacity="0.15" stroke-width="1" />
+
+  <!-- Top Metadata Bar -->
+  <text x="90" y="98" font-family="monospace" font-size="13" font-weight="700" fill="#C7A35A" letter-spacing="3">CASE STUDY 09 · RESTAURANT DECISION INTELLIGENCE</text>
+  <text x="1110" y="98" text-anchor="end" font-family="monospace" font-size="13" font-weight="600" fill="#10B981" letter-spacing="2">AI · DATA · PRODUCT</text>
+
+  <!-- Center Graphic: Decision Intelligence Loop Symbolism -->
+  <g transform="translate(600, 360)">
+    <!-- Outer Orbit Ring -->
+    <circle cx="0" cy="0" r="170" fill="none" stroke="#0F5C46" stroke-width="1.5" stroke-dasharray="6 6" opacity="0.6" />
+    <circle cx="0" cy="0" r="130" fill="none" stroke="#C7A35A" stroke-width="1.5" opacity="0.4" />
+    <circle cx="0" cy="0" r="90" fill="#101412" stroke="url(#emeraldGrad)" stroke-width="2" />
+
+    <!-- 6 Decision Flow Nodes -->
+    <!-- Detect -->
+    <circle cx="0" cy="-170" r="14" fill="#080A09" stroke="#10B981" stroke-width="2" />
+    <text x="0" y="-195" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#10B981" letter-spacing="1">DETECT</text>
+    
+    <!-- Understand -->
+    <circle cx="147" cy="-85" r="14" fill="#080A09" stroke="#C7A35A" stroke-width="2" />
+    <text x="175" y="-81" font-family="monospace" font-size="11" font-weight="700" fill="#C7A35A" letter-spacing="1">UNDERSTAND</text>
+
+    <!-- Simulate -->
+    <circle cx="147" cy="85" r="14" fill="#080A09" stroke="#10B981" stroke-width="2" />
+    <text x="175" y="89" font-family="monospace" font-size="11" font-weight="700" fill="#10B981" letter-spacing="1">SIMULATE</text>
+
+    <!-- Experiment -->
+    <circle cx="0" cy="170" r="14" fill="#080A09" stroke="#C7A35A" stroke-width="2" />
+    <text x="0" y="205" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#C7A35A" letter-spacing="1">EXPERIMENT</text>
+
+    <!-- Measure -->
+    <circle cx="-147" cy="85" r="14" fill="#080A09" stroke="#10B981" stroke-width="2" />
+    <text x="-175" y="89" text-anchor="end" font-family="monospace" font-size="11" font-weight="700" fill="#10B981" letter-spacing="1">MEASURE</text>
+
+    <!-- Learn -->
+    <circle cx="-147" cy="-85" r="14" fill="#080A09" stroke="#C7A35A" stroke-width="2" />
+    <text x="-175" y="-81" text-anchor="end" font-family="monospace" font-size="11" font-weight="700" fill="#C7A35A" letter-spacing="1">LEARN</text>
+
+    <!-- Central Symbol: Leaf + Analytics Pulse -->
+    <path d="M-20,10 C-30,-20 0,-40 25,-35 C25,-10 10,25 -20,10 Z" fill="none" stroke="#10B981" stroke-width="2.5" />
+    <path d="M-15,8 L15,-20" stroke="#C7A35A" stroke-width="1.5" stroke-linecap="round" />
+  </g>
+
+  <!-- Title & Subline Presentation -->
+  <text x="90" y="220" font-family="serif" font-size="44" font-weight="500" fill="#F4F1EA" letter-spacing="0.5">EcoMargin AI</text>
+  <text x="90" y="260" font-family="serif" font-size="20" font-style="italic" fill="#C7A35A">Restaurant Decision Intelligence</text>
+  <text x="90" y="300" font-family="sans-serif" font-size="14" fill="#A9AEA9">From operational data to better decisions.</text>
+
+  <!-- Bottom Badges -->
+  <g transform="translate(90, 650)">
+    <text x="0" y="15" font-family="monospace" font-size="12" fill="#A9AEA9">PROFIT LEAK DETECTION · AI HYPOTHESES · WHAT-IF DECISION LAB · RESOURCE EFFICIENCY</text>
+  </g>
+</svg>

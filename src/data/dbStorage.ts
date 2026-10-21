@@ -1,5 +1,6 @@
 import { MediaAssets } from '../types';
 import { DEFAULT_MEDIA } from './mediaConfig';
+import { LOCKED_ASSETS } from './assetRegistry';
 
 const DB_NAME = 'natalia_portfolio_db';
 const STORE_NAME = 'media_assets';
@@ -27,45 +28,77 @@ function openDB(): Promise<IDBDatabase> {
 }
 
 /**
- * Load all stored media assets from IndexedDB.
+ * Load all stored media assets from Server Sync + IndexedDB.
  */
 export async function loadMediaFromDB(): Promise<MediaAssets> {
+  // Start with default canonical assets
+  const finalAssets: MediaAssets = { ...DEFAULT_MEDIA, ...LOCKED_ASSETS };
+
+  // 1. Fetch persistent assets from backend server first
+  try {
+    const res = await fetch('/api/media');
+    if (res.ok) {
+      const data = await res.json();
+      if (data?.media && typeof data.media === 'object') {
+        for (const [k, v] of Object.entries(data.media)) {
+          if (typeof v === 'string' && v.trim() !== '' && !v.startsWith('blob:')) {
+            (finalAssets as any)[k] = v;
+          }
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('Could not sync media from backend API, continuing with local storage:', err);
+  }
+
+  // 2. Overlay with local IndexedDB if available (user's saved images)
   try {
     const db = await openDB();
-    return new Promise((resolve) => {
+    await new Promise<void>((resolve) => {
       const tx = db.transaction(STORE_NAME, 'readonly');
       const store = tx.objectStore(STORE_NAME);
       const request = store.openCursor();
-      const assets: Partial<MediaAssets> = {};
 
       request.onsuccess = (event) => {
         const cursor = (event.target as IDBRequest<IDBCursorWithValue>).result;
         if (cursor) {
           const key = cursor.key as string;
           const val = cursor.value;
-          if (typeof val === 'string') {
-            assets[key as keyof MediaAssets] = val;
+          if (typeof val === 'string' && val.trim() !== '' && !val.startsWith('blob:')) {
+            (finalAssets as any)[key] = val;
           }
           cursor.continue();
         } else {
-          resolve({ ...DEFAULT_MEDIA, ...assets } as MediaAssets);
+          resolve();
         }
       };
 
       request.onerror = () => {
-        resolve(DEFAULT_MEDIA);
+        resolve();
       };
     });
   } catch (err) {
-    console.warn('IndexedDB not available, falling back to default media:', err);
-    return DEFAULT_MEDIA;
+    console.warn('IndexedDB not available, using merged server and default media:', err);
   }
+
+  return finalAssets;
 }
 
 /**
- * Save a specific asset to IndexedDB.
+ * Save a specific asset to IndexedDB and sync to the server backend.
  */
 export async function saveMediaItemToDB(key: string, value: string): Promise<void> {
+  // Sync to backend server so all devices (desktop and mobile) receive the update
+  try {
+    fetch('/api/media/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ key, value }),
+    }).catch((err) => {
+      console.warn('Server sync warning (offline or non-critical):', err);
+    });
+  } catch {}
+
   try {
     const db = await openDB();
     return new Promise((resolve, reject) => {

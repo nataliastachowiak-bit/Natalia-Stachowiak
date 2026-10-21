@@ -1,8 +1,9 @@
 import React from 'react';
-import { X, ExternalLink, Play, ArrowLeft, CheckCircle2, Sparkles, AlertCircle, Link as LinkIcon, Edit3 } from 'lucide-react';
+import { X, ExternalLink, Play, ArrowLeft, CheckCircle2, Sparkles, AlertCircle, Link as LinkIcon, Edit3, FileText, Download } from 'lucide-react';
 import { Language, MediaAssets, ProjectData } from '../types';
 import { translations } from '../data/translations';
 import { getProjectActionLabel, getProjectUrl, getProjectLinkKey } from '../data/mediaConfig';
+import { getLockedAsset } from '../data/assetRegistry';
 import { MediaPlaceholder } from './MediaPlaceholder';
 
 interface ProjectDetailModalProps {
@@ -13,6 +14,7 @@ interface ProjectDetailModalProps {
   onUploadMedia: (key: string) => void;
   onEditProjectLink?: (project: ProjectData) => void;
   onOpenVideoModal?: () => void;
+  isReadOnly?: boolean;
 }
 
 export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
@@ -23,56 +25,62 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
   onUploadMedia,
   onEditProjectLink,
   onOpenVideoModal,
+  isReadOnly = false,
 }) => {
   if (!project) return null;
 
   const tModal = translations[currentLang].modal;
-  const currentImg = mediaAssets[project.mediaKey];
-  const projectUrl = getProjectUrl(project.id, mediaAssets);
+  const fallbackImg = getLockedAsset(project.mediaKey);
+  const currentImg = mediaAssets[project.mediaKey as keyof MediaAssets] || fallbackImg;
+  const projectUrl = getProjectUrl(project.id, mediaAssets, project);
   const actionLabel = getProjectActionLabel(project.id, currentLang);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/85 p-4 backdrop-blur-xl animate-fadeIn">
-      <div className="relative my-8 w-full max-w-4xl overflow-hidden rounded-2xl border border-[#C9A66B]/40 bg-[#080B09] shadow-[0_20px_60px_rgba(0,0,0,0.9)]">
+    <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center overflow-y-auto bg-black/90 p-0 sm:p-4 backdrop-blur-xl animate-fadeIn">
+      <div className="relative my-0 sm:my-8 w-full max-w-4xl min-h-screen sm:min-h-0 overflow-hidden rounded-none sm:rounded-2xl border-0 sm:border border-[#C9A66B]/40 bg-[#080B09] shadow-[0_20px_60px_rgba(0,0,0,0.9)] flex flex-col">
         
         {/* Sticky Modal Top Bar */}
-        <div className="sticky top-0 z-20 flex items-center justify-between border-b border-[#C9A66B]/20 bg-[#080B09]/95 px-6 py-4 backdrop-blur-md">
+        <div className="sticky top-0 z-30 flex items-center justify-between border-b border-[#C9A66B]/20 bg-[#080B09]/95 px-3.5 py-3 sm:px-6 sm:py-4 backdrop-blur-md">
           <button
             type="button"
             onClick={onClose}
-            className="group flex items-center gap-2 font-sans text-xs font-semibold tracking-wider text-[#C9A66B] transition-colors hover:text-[#F5F1E8] uppercase"
+            className="group flex min-h-[44px] items-center gap-2 sm:gap-2.5 font-sans text-xs font-semibold tracking-wider text-[#C7A35A] transition-colors hover:text-[#F4F1EA] uppercase py-1 px-2"
           >
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-            <span>{tModal.back}</span>
+            <span className="hidden sm:inline">{(tModal as any).backToPortfolioDesktop?.replace('← ── ', '') || tModal.back}</span>
+            <span className="inline sm:hidden">{tModal.back}</span>
           </button>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             {projectUrl && (
               <a
                 href={projectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 rounded-full border border-[#C9A66B]/60 bg-[#063F35]/40 px-3.5 py-1.5 text-xs font-semibold text-[#C9A66B] hover:bg-[#063F35] hover:text-[#F5F1E8]"
+                className="flex min-h-[44px] items-center gap-1.5 rounded-full border border-[#C9A66B] bg-gradient-to-r from-[#0B5A4D] to-[#148B78] px-3.5 sm:px-4 py-2 text-[11px] sm:text-xs font-semibold text-white shadow-md hover:scale-105 hover:shadow-[0_0_15px_rgba(201,166,107,0.4)]"
               >
-                <span>{actionLabel}</span>
-                <ExternalLink className="h-3 w-3" />
+                <span className="max-w-[140px] sm:max-w-none truncate">{actionLabel}</span>
+                <ExternalLink className="h-3 w-3 text-[#C9A66B] shrink-0" />
               </a>
+            )}
+
+            {!isReadOnly && (
+              <button
+                type="button"
+                onClick={() => (onEditProjectLink ? onEditProjectLink(project) : onUploadMedia(getProjectLinkKey(project.id)))}
+                className="hidden md:flex min-h-[44px] items-center gap-1.5 rounded-full border border-[#C9A66B]/40 px-3.5 py-2 text-xs text-[#B9C4BD] hover:border-[#C9A66B] hover:text-[#C9A66B]"
+                title="Projektlink anpassen"
+              >
+                <LinkIcon className="h-3 w-3 text-[#C9A66B]" />
+                <span>Link anpassen</span>
+              </button>
             )}
 
             <button
               type="button"
-              onClick={() => (onEditProjectLink ? onEditProjectLink(project) : onUploadMedia(getProjectLinkKey(project.id)))}
-              className="flex items-center gap-1.5 rounded-full border border-[#C9A66B]/40 px-3 py-1.5 text-xs text-[#B9C4BD] hover:border-[#C9A66B] hover:text-[#C9A66B]"
-              title="Projektlink anpassen"
-            >
-              <LinkIcon className="h-3 w-3 text-[#C9A66B]" />
-              <span>Link anpassen</span>
-            </button>
-
-            <button
-              type="button"
               onClick={onClose}
-              className="rounded-full border border-[#C9A66B]/30 p-1.5 text-[#B9C4BD] transition-colors hover:border-[#C9A66B] hover:bg-[#063F35] hover:text-white"
+              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-[#C9A66B]/30 text-[#B9C4BD] transition-colors hover:border-[#C9A66B] hover:bg-[#063F35] hover:text-white"
+              aria-label="Schließen"
             >
               <X className="h-5 w-5" />
             </button>
@@ -80,7 +88,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
         </div>
 
         {/* Modal Scrollable Body */}
-        <div className="max-h-[80vh] overflow-y-auto px-6 py-8 sm:px-10">
+        <div className="max-h-[calc(100vh-56px)] sm:max-h-[82vh] overflow-y-auto px-4 py-6 sm:px-10 sm:py-8">
           
           {/* Header */}
           <div className="mb-6">
@@ -129,9 +137,10 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               label={`${project.name} Medien Vorschau`}
               mediaKey={project.mediaKey}
               currentSrc={currentImg}
-              aspectRatio="aspect-16/9"
-              type={project.id === 'vinyl' ? 'vinyl' : project.id === 'du-bist-nicht-zu-viel' ? 'bookCover' : 'generic'}
+              aspectRatio="aspect-[16/9]"
+              type={project.id === 'vinyl' ? 'vinyl' : project.id === 'du-bist-nicht-zu-viel' ? 'bookCover' : project.id === 'environix' ? 'environix' : 'generic'}
               onUploadClick={onUploadMedia}
+              isReadOnly={isReadOnly}
             />
 
             {/* Special asset placeholders for Du bist nicht zu viel: Book cover & QR */}
@@ -140,37 +149,44 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                 <div>
                   <div className="mb-1 text-xs font-semibold text-[#C9A66B]">ORIGINAL BUCHCOVER:</div>
                   <MediaPlaceholder
-                    label="ORIGINAL BUCHCOVER HOCHLADEN"
+                    label="ORIGINAL BUCHCOVER"
                     mediaKey="bookCover"
                     currentSrc={mediaAssets.bookCover}
                     aspectRatio="aspect-[3/4]"
                     type="bookCover"
                     onUploadClick={onUploadMedia}
+                    isReadOnly={isReadOnly}
                   />
                 </div>
                 <div>
                   <div className="mb-1 text-xs font-semibold text-[#C9A66B]">INSTAGRAM QR-CODE:</div>
                   <MediaPlaceholder
-                    label="ORIGINAL INSTAGRAM QR-CODE HOCHLADEN"
+                    label="ORIGINAL INSTAGRAM QR-CODE"
                     mediaKey="instagramQr"
                     currentSrc={mediaAssets.instagramQr}
                     aspectRatio="aspect-square"
                     type="generic"
                     onUploadClick={onUploadMedia}
+                    isReadOnly={isReadOnly}
                   />
                 </div>
               </div>
             )}
           </div>
 
-          {/* Interactive Access Banner with Dynamic Link Support for ALL projects */}
+          {/* Interactive Access Banner with Dynamic Link & PDF Download Support */}
           <div className="mb-10 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-[#C9A66B]/30 bg-gradient-to-r from-[#063F35]/40 to-[#080B09] p-4">
             <div>
               <span className="text-xs font-bold tracking-wider text-[#C9A66B] uppercase">
-                Interaktiver Zugang & Live-App:
+                {project.pdfUrl ? 'Offizieller Projektbericht & Dokumentation:' : 'Interaktiver Zugang & Live-App:'}
               </span>
               <p className="text-xs text-[#B9C4BD]">
-                {projectUrl ? (
+                {project.pdfUrl ? (
+                  <>
+                    Vollständiger IHK-Projektbericht hinterlegt:{' '}
+                    <span className="font-mono text-[#F5F1E8]">{project.pdfFileName || 'IHK_Projektbericht.pdf'}</span> (67 Seiten, Methodik & B2B-Architektur)
+                  </>
+                ) : projectUrl ? (
                   <>
                     Aktiv verknüpft:{' '}
                     <span className="font-mono text-[#F5F1E8]">{projectUrl}</span>
@@ -182,6 +198,20 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
+              {/* Dedicated PDF Download Button */}
+              {project.pdfUrl && (
+                <a
+                  href={project.pdfUrl}
+                  download={project.pdfFileName || 'eNvironix_AI_IHK_Projektbericht_Natalia_Stachowiak.pdf'}
+                  className="flex items-center gap-2 rounded-full border border-[#C9A66B] bg-gradient-to-r from-[#0B5A4D] to-[#148B78] px-5 py-2.5 text-xs font-semibold tracking-wider text-white shadow-lg transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(201,166,107,0.4)] uppercase"
+                >
+                  <Download className="h-3.5 w-3.5 text-[#C9A66B]" />
+                  <span>
+                    {currentLang === 'de' ? 'IHK-Projektbericht herunterladen (PDF)' : currentLang === 'pl' ? 'Pobierz raport IHK (PDF)' : 'Download IHK Report (PDF)'}
+                  </span>
+                </a>
+              )}
+
               {projectUrl ? (
                 <>
                   <a
@@ -194,24 +224,28 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     <ExternalLink className="h-3.5 w-3.5" />
                   </a>
 
+                  {!isReadOnly && (
+                    <button
+                      type="button"
+                      onClick={() => (onEditProjectLink ? onEditProjectLink(project) : onUploadMedia(getProjectLinkKey(project.id)))}
+                      className="flex items-center gap-1.5 rounded-full border border-[#C9A66B]/40 bg-[#080B09] px-4 py-2 text-xs font-medium text-[#C9A66B] hover:border-[#C9A66B] hover:text-white"
+                    >
+                      <Edit3 className="h-3 w-3" />
+                      <span>Link ändern</span>
+                    </button>
+                  )}
+                </>
+              ) : (
+                !isReadOnly && (
                   <button
                     type="button"
                     onClick={() => (onEditProjectLink ? onEditProjectLink(project) : onUploadMedia(getProjectLinkKey(project.id)))}
-                    className="flex items-center gap-1.5 rounded-full border border-[#C9A66B]/40 bg-[#080B09] px-4 py-2 text-xs font-medium text-[#C9A66B] hover:border-[#C9A66B] hover:text-white"
+                    className="flex items-center gap-2 rounded-full border border-dashed border-[#C9A66B] bg-[#063F35]/40 px-5 py-2.5 text-xs font-semibold tracking-wider text-[#C9A66B] hover:bg-[#063F35] hover:text-white uppercase"
                   >
-                    <Edit3 className="h-3 w-3" />
-                    <span>Link ändern</span>
+                    <LinkIcon className="h-3.5 w-3.5" />
+                    <span>+ Projekt-Link / Live-URL hinzufügen</span>
                   </button>
-                </>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => (onEditProjectLink ? onEditProjectLink(project) : onUploadMedia(getProjectLinkKey(project.id)))}
-                  className="flex items-center gap-2 rounded-full border border-dashed border-[#C9A66B] bg-[#063F35]/40 px-5 py-2.5 text-xs font-semibold tracking-wider text-[#C9A66B] hover:bg-[#063F35] hover:text-white uppercase"
-                >
-                  <LinkIcon className="h-3.5 w-3.5" />
-                  <span>+ Projekt-Link / Live-URL hinzufügen</span>
-                </button>
+                )
               )}
 
               {project.id === 'street-life' && onOpenVideoModal && (
@@ -414,7 +448,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-full border border-[#C9A66B] bg-gradient-to-r from-[#063F35] to-[#0B5A4D] px-7 py-2.5 font-sans text-xs font-semibold tracking-wider text-white shadow-lg transition-all hover:border-[#F5F1E8] uppercase"
+              className="flex min-h-[44px] items-center justify-center rounded-full border border-[#C9A66B] bg-gradient-to-r from-[#063F35] to-[#0B5A4D] px-7 py-3 font-sans text-xs font-semibold tracking-wider text-white shadow-lg transition-all hover:border-[#F5F1E8] uppercase"
             >
               {tModal.close}
             </button>

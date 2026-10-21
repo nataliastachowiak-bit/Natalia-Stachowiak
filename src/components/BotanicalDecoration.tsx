@@ -8,16 +8,14 @@ export function BotanicalDecoration({
   if (position === 'top-left') {
     return (
       <div
-        className={`pointer-events-none absolute -top-10 -left-10 z-0 opacity-40 mix-blend-screen select-none ${className}`}
+        className={`pointer-events-none absolute -top-8 -left-8 sm:-top-10 sm:-left-10 z-0 opacity-30 sm:opacity-40 mix-blend-screen select-none overflow-hidden max-w-[60vw] sm:max-w-none ${className}`}
         aria-hidden="true"
       >
         <svg
-          width="420"
-          height="420"
           viewBox="0 0 420 420"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="filter drop-shadow-[0_0_30px_rgba(11,90,77,0.5)]"
+          className="w-44 h-44 sm:w-72 sm:h-72 lg:w-[420px] lg:h-[420px] filter drop-shadow-[0_0_30px_rgba(11,90,77,0.5)]"
         >
           <g opacity="0.85">
             <path
@@ -65,16 +63,14 @@ export function BotanicalDecoration({
   if (position === 'bottom-right') {
     return (
       <div
-        className={`pointer-events-none absolute -bottom-10 -right-10 z-0 opacity-40 mix-blend-screen select-none ${className}`}
+        className={`pointer-events-none absolute -bottom-8 -right-8 sm:-bottom-10 sm:-right-10 z-0 opacity-30 sm:opacity-40 mix-blend-screen select-none overflow-hidden max-w-[60vw] sm:max-w-none ${className}`}
         aria-hidden="true"
       >
         <svg
-          width="440"
-          height="440"
           viewBox="0 0 440 440"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="filter drop-shadow-[0_0_35px_rgba(11,90,77,0.4)]"
+          className="w-44 h-44 sm:w-72 sm:h-72 lg:w-[440px] lg:h-[440px] filter drop-shadow-[0_0_35px_rgba(11,90,77,0.4)]"
         >
           <g opacity="0.8">
             <path

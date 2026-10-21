@@ -6,6 +6,7 @@ export interface ProjectData {
   name: string;
   title: string;
   subtitle: string;
+  category?: string;
   description: {
     de: string;
     en: string;
@@ -18,6 +19,8 @@ export interface ProjectData {
   prototypeUrl?: string;
   videoUrl?: string;
   instagramUrl?: string;
+  pdfUrl?: string;
+  pdfFileName?: string;
   isExternalOnly?: boolean;
   projectTypeBadge?: { de: string; en: string; pl: string };
   caseStudy: {
@@ -62,18 +65,27 @@ export interface SkillCategory {
   skills: string[];
 }
 
-export type CertificateCategory = 'PRODUCT_MANAGEMENT' | 'AGILE_SCRUM' | 'DESIGN_THINKING' | 'AI';
+export type CertificateCategory = 'PRODUCT_MANAGEMENT' | 'AGILE_SCRUM' | 'DESIGN_THINKING' | 'AI' | 'ACADEMIC_ENVIRONMENT';
 
 export interface CertificateItem {
   id: string;
   title: string;
   issuer: string;
   year: string;
+  issueDate?: string;
   category: CertificateCategory;
   status: 'COMPLETED' | 'IN_PROGRESS';
   credentialId?: string;
+  verificationUrl?: string;
+  signatory?: string;
+  courseCode?: string;
   focus?: string;
+  skillsAcquired?: string[];
   mediaKey?: string;
+  pdfUrl?: string;
+  titleI18n?: { de: string; en: string; pl: string };
+  issuerI18n?: { de: string; en: string; pl: string };
+  focusI18n?: { de: string; en: string; pl: string };
 }
 
 export interface MediaAssets {
@@ -94,8 +106,9 @@ export interface MediaAssets {
   duBistNichtZuVielUrl?: string;
   bookCover: string;
   instagramQr: string;
-  cvFile: string;
   cvPdfUrl?: string;
+  cvPage1?: string;
+  cvPage2?: string;
   linkedinUrl: string;
   [key: string]: string | undefined;
 }

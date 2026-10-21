@@ -116,24 +116,24 @@ export const ProjectLinkModal: React.FC<ProjectLinkModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/85 p-4 backdrop-blur-md animate-fadeIn">
-      <div className="relative my-8 w-full max-w-lg overflow-hidden rounded-2xl border border-[#C9A66B]/60 bg-[#080B09] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.95)] sm:p-8">
+      <div className="relative my-8 w-full max-w-lg overflow-hidden rounded-2xl border border-[#C7A35A]/60 bg-[#080A09] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.95)] sm:p-8">
         
         {/* Header */}
-        <div className="flex items-start justify-between border-b border-[#C9A66B]/20 pb-4">
+        <div className="flex items-start justify-between border-b border-[#C7A35A]/20 pb-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#C9A66B] bg-[#063F35]/50 text-[#C9A66B] shadow-[0_0_15px_rgba(201,166,107,0.25)]">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#C7A35A] bg-[#101412]/50 text-[#C7A35A] shadow-[0_0_15px_rgba(201,166,107,0.25)]">
               <LinkIcon className="h-5 w-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-sans text-[11px] font-bold tracking-widest text-[#C9A66B] uppercase">
+                <span className="font-sans text-[11px] font-bold tracking-widest text-[#C7A35A] uppercase">
                   {t.tag}
                 </span>
-                <span className="rounded bg-[#0B5A4D] px-1.5 py-0.2 text-[10px] font-bold text-white">
+                <span className="rounded bg-[#0F5C46] px-1.5 py-0.2 text-[10px] font-bold text-white">
                   #{project.number}
                 </span>
               </div>
-              <h3 className="font-serif text-xl font-semibold text-[#F5F1E8]">
+              <h3 className="font-serif text-xl font-semibold text-[#F4F1EA]">
                 {project.name}
               </h3>
             </div>
@@ -142,7 +142,7 @@ export const ProjectLinkModal: React.FC<ProjectLinkModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full border border-[#C9A66B]/30 p-1.5 text-[#B9C4BD] transition-colors hover:border-[#C9A66B] hover:bg-[#063F35] hover:text-white"
+            className="rounded-full border border-[#C7A35A]/30 p-1.5 text-[#A9AEA9] transition-colors hover:border-[#C7A35A] hover:bg-[#101412] hover:text-white"
           >
             <X className="h-5 w-5" />
           </button>
@@ -150,7 +150,7 @@ export const ProjectLinkModal: React.FC<ProjectLinkModalProps> = ({
 
         {/* Success Banner */}
         {successMsg && (
-          <div className="mt-4 flex items-center gap-2 rounded-xl border border-[#148B78] bg-[#063F35]/50 p-3 text-xs text-[#F5F1E8]">
+          <div className="mt-4 flex items-center gap-2 rounded-xl border border-[#148B78] bg-[#101412]/50 p-3 text-xs text-[#F4F1EA]">
             <CheckCircle2 className="h-4 w-4 text-[#148B78] shrink-0" />
             <span>{successMsg}</span>
           </div>
@@ -158,18 +158,18 @@ export const ProjectLinkModal: React.FC<ProjectLinkModalProps> = ({
 
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="mt-5 space-y-4">
-          <p className="text-xs text-[#B9C4BD] leading-relaxed">
+          <p className="text-xs text-[#A9AEA9] leading-relaxed">
             {t.subtitle}
           </p>
 
           {/* Current URL preview badge */}
-          <div className="rounded-xl border border-[#0B5A4D]/40 bg-[#063F35]/20 p-3.5 flex items-center justify-between text-xs">
+          <div className="rounded-xl border border-[#0F5C46]/40 bg-[#101412]/20 p-3.5 flex items-center justify-between text-xs">
             <div className="flex items-center gap-2 overflow-hidden pr-2">
-              <Globe className="h-4 w-4 text-[#C9A66B] shrink-0" />
+              <Globe className="h-4 w-4 text-[#C7A35A] shrink-0" />
               <div className="truncate">
-                <span className="text-[#B9C4BD] text-[11px] block">{t.currentActive}</span>
-                <span className="font-mono text-xs text-[#F5F1E8] truncate">
-                  {activeUrl ? activeUrl : <span className="italic text-[#B9C4BD]/60">{t.noLinkYet}</span>}
+                <span className="text-[#A9AEA9] text-[11px] block">{t.currentActive}</span>
+                <span className="font-mono text-xs text-[#F4F1EA] truncate">
+                  {activeUrl ? activeUrl : <span className="italic text-[#A9AEA9]/60">{t.noLinkYet}</span>}
                 </span>
               </div>
             </div>
@@ -179,7 +179,7 @@ export const ProjectLinkModal: React.FC<ProjectLinkModalProps> = ({
                 href={activeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shrink-0 flex items-center gap-1 rounded-lg border border-[#C9A66B]/40 bg-[#080B09] px-2.5 py-1 text-[11px] text-[#C9A66B] hover:bg-[#063F35] hover:text-white"
+                className="shrink-0 flex items-center gap-1 rounded-lg border border-[#C7A35A]/40 bg-[#080A09] px-2.5 py-1 text-[11px] text-[#C7A35A] hover:bg-[#101412] hover:text-white"
               >
                 <span>{t.testLink}</span>
                 <ExternalLink className="h-3 w-3" />
@@ -189,7 +189,7 @@ export const ProjectLinkModal: React.FC<ProjectLinkModalProps> = ({
 
           {/* Input field */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-[#C9A66B] mb-1.5">
+            <label className="block text-xs font-bold uppercase tracking-wider text-[#C7A35A] mb-1.5">
               {t.inputLabel}
             </label>
             <div className="relative">
@@ -198,17 +198,17 @@ export const ProjectLinkModal: React.FC<ProjectLinkModalProps> = ({
                 value={inputUrl}
                 onChange={(e) => setInputUrl(e.target.value)}
                 placeholder={t.placeholder}
-                className="w-full rounded-xl border border-[#C9A66B]/40 bg-[#080B09] px-4 py-2.5 text-xs text-[#F5F1E8] placeholder-[#B9C4BD]/40 focus:border-[#C9A66B] focus:outline-none focus:ring-1 focus:ring-[#C9A66B]"
+                className="w-full rounded-xl border border-[#C7A35A]/40 bg-[#080A09] px-4 py-2.5 text-xs text-[#F4F1EA] placeholder-[#A9AEA9]/40 focus:border-[#C7A35A] focus:outline-none focus:ring-1 focus:ring-[#C7A35A]"
                 autoFocus
               />
             </div>
-            <p className="mt-1 text-[11px] text-[#B9C4BD]/70">
+            <p className="mt-1 text-[11px] text-[#A9AEA9]/70">
               Beispiele: Figma-Prototyp-Link, Vercel/Base44 Web-App, GitHub Repository oder Notion Case Study.
             </p>
           </div>
 
           {/* Action buttons */}
-          <div className="border-t border-[#C9A66B]/20 pt-4 flex items-center justify-between">
+          <div className="border-t border-[#C7A35A]/20 pt-4 flex items-center justify-between">
             {activeUrl ? (
               <button
                 type="button"
@@ -226,14 +226,14 @@ export const ProjectLinkModal: React.FC<ProjectLinkModalProps> = ({
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-full border border-[#C9A66B]/30 px-4 py-2 text-xs font-semibold text-[#B9C4BD] hover:bg-[#063F35]/40 hover:text-white"
+                className="rounded-full border border-[#C7A35A]/30 px-4 py-2 text-xs font-semibold text-[#A9AEA9] hover:bg-[#101412]/40 hover:text-white"
               >
                 {t.cancel}
               </button>
 
               <button
                 type="submit"
-                className="flex items-center gap-1.5 rounded-full border border-[#C9A66B] bg-[#0B5A4D] px-6 py-2 text-xs font-semibold tracking-wider text-white shadow-lg hover:bg-[#148B78] uppercase"
+                className="flex items-center gap-1.5 rounded-full border border-[#C7A35A] bg-[#0F5C46] px-6 py-2 text-xs font-semibold tracking-wider text-white shadow-lg hover:bg-[#148B78] uppercase"
               >
                 <LinkIcon className="h-3.5 w-3.5" />
                 <span>{t.save}</span>

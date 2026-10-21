@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="protoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080A09" />
+      <stop offset="100%" stop-color="#0C1410" />
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="600" fill="url(#protoBg)" />
+  
+  <!-- Outer Window Chrome -->
+  <rect x="30" y="30" width="940" height="540" rx="14" fill="#0D110F" stroke="#C7A35A" stroke-opacity="0.3" stroke-width="1.5" />
+  <rect x="30" y="30" width="940" height="42" rx="14" fill="#141A16" />
+  <circle cx="55" cy="51" r="5" fill="#EF4444" opacity="0.6" />
+  <circle cx="72" cy="51" r="5" fill="#F59E0B" opacity="0.6" />
+  <circle cx="89" cy="51" r="5" fill="#10B981" opacity="0.6" />
+  <text x="500" y="55" text-anchor="middle" font-family="monospace" font-size="11" fill="#A9AEA9">ecomargin-ai.app · Decision Intelligence Console</text>
+
+  <!-- Left Sidebar Mock -->
+  <rect x="30" y="72" width="180" height="498" fill="#101412" />
+  <text x="50" y="110" font-family="serif" font-size="14" font-weight="700" fill="#C7A35A">EcoMargin AI</text>
+  <rect x="45" y="130" width="150" height="28" rx="6" fill="#0F5C46" opacity="0.3" />
+  <text x="60" y="148" font-family="sans-serif" font-size="11" font-weight="600" fill="#10B981">● Leak Detection</text>
+  <text x="60" y="188" font-family="sans-serif" font-size="11" fill="#9CA3AF">What-If Lab</text>
+  <text x="60" y="224" font-family="sans-serif" font-size="11" fill="#9CA3AF">Active Experiments</text>
+  <text x="60" y="260" font-family="sans-serif" font-size="11" fill="#9CA3AF">Decision Memory</text>
+  <text x="60" y="296" font-family="sans-serif" font-size="11" fill="#9CA3AF">Resource Audit</text>
+
+  <!-- Main Workspace -->
+  <!-- Top Alert Card: Detected Leak -->
+  <g transform="translate(230, 95)">
+    <rect width="720" height="100" rx="10" fill="#121815" stroke="#C7A35A" stroke-opacity="0.3" stroke-width="1" />
+    <circle cx="30" cy="35" r="8" fill="#F59E0B" />
+    <text x="48" y="38" font-family="monospace" font-size="12" font-weight="700" fill="#F59E0B">DETECTED ANOMALY · CATEGORY B (BAKERY &amp; PREP)</text>
+    <text x="48" y="60" font-family="serif" font-size="14" fill="#F4F1EA">Mid-week food cost +8.4% above historical trend · Excess scrap ~18 kg/week</text>
+    <rect x="580" y="26" width="120" height="28" rx="6" fill="#0F5C46" />
+    <text x="640" y="44" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#F4F1EA">View Root-Cause</text>
+  </g>
+
+  <!-- Middle Grid: Root-Cause & What-if -->
+  <g transform="translate(230, 215)">
+    <!-- Root-Cause Card -->
+    <rect width="350" height="180" rx="10" fill="#121815" stroke="#0F5C46" stroke-opacity="0.4" stroke-width="1" />
+    <text x="20" y="32" font-family="monospace" font-size="11" font-weight="700" fill="#10B981">AI ROOT-CAUSE HYPOTHESIS</text>
+    <text x="20" y="58" font-family="sans-serif" font-size="12" fill="#D1D5DB">Rainy-day foot traffic variance</text>
+    <text x="20" y="78" font-family="sans-serif" font-size="11" fill="#9CA3AF">Kitchen batch sizes are fixed regardless</text>
+    <text x="20" y="94" font-family="sans-serif" font-size="11" fill="#9CA3AF">of wet weather forecast probability.</text>
+    <rect x="20" y="115" width="310" height="45" rx="6" fill="#080A09" />
+    <text x="35" y="135" font-family="sans-serif" font-size="11" fill="#C7A35A">Confidence: Moderate (Hypothesis)</text>
+    <text x="35" y="150" font-family="sans-serif" font-size="10" fill="#9CA3AF">Based on POS vs Local Weather Correlation</text>
+
+    <!-- What-If Lab Card -->
+    <g transform="translate(370, 0)">
+      <rect width="350" height="180" rx="10" fill="#121815" stroke="#C7A35A" stroke-opacity="0.4" stroke-width="1" />
+      <text x="20" y="32" font-family="monospace" font-size="11" font-weight="700" fill="#C7A35A">WHAT-IF SIMULATION</text>
+      <text x="20" y="58" font-family="sans-serif" font-size="12" fill="#D1D5DB">Action: Reduce morning prep batch -15%</text>
+      <text x="20" y="78" font-family="sans-serif" font-size="11" fill="#9CA3AF">Add 12:30 PM on-demand top-up prep</text>
+      <line x1="20" y1="100" x2="330" y2="100" stroke="#C7A35A" stroke-opacity="0.15" />
+      <text x="20" y="125" font-family="sans-serif" font-size="11" fill="#10B981">Est. Savings: €240–320 / month</text>
+      <text x="20" y="145" font-family="sans-serif" font-size="11" fill="#10B981">Est. Waste Avoided: ~14 kg organic scrap</text>
+      <rect x="210" y="120" width="120" height="30" rx="6" fill="#C7A35A" />
+      <text x="270" y="139" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#080A09">Run 10-Day Test</text>
+    </g>
+  </g>
+
+  <!-- Bottom Strip: Decision Memory Record -->
+  <g transform="translate(230, 415)">
+    <rect width="720" height="135" rx="10" fill="#121815" stroke="#C7A35A" stroke-opacity="0.2" stroke-width="1" />
+    <text x="25" y="30" font-family="monospace" font-size="11" font-weight="700" fill="#C7A35A">DECISION MEMORY &amp; BEFORE/AFTER LOG</text>
+    <text x="25" y="55" font-family="sans-serif" font-size="12" fill="#D1D5DB">Last Experiment: Tuesday Prep Top-up Protocol (Completed Oct 02)</text>
+    <text x="25" y="75" font-family="sans-serif" font-size="11" fill="#9CA3AF">Evidence: 18.2% less food waste, €72 weekly savings, 0 stock-out customer complaints.</text>
+    <text x="25" y="105" font-family="monospace" font-size="10" fill="#10B981">STATUS: ADOPTED INTO STANDARD OPERATING PROCEDURE (SOP)</text>
+  </g>
+</svg>

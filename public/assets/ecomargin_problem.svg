@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080A09" />
+      <stop offset="100%" stop-color="#0E1612" />
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="500" fill="url(#pBg)" />
+  <rect x="30" y="30" width="940" height="440" rx="14" fill="none" stroke="#C7A35A" stroke-opacity="0.2" stroke-width="1.5" />
+  
+  <!-- Left Side: Fragmented Data Silos -->
+  <g transform="translate(180, 240)">
+    <circle cx="0" cy="0" r="110" fill="#101412" stroke="#EF4444" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="4 4" />
+    <text x="0" y="-130" text-anchor="middle" font-family="monospace" font-size="12" font-weight="700" fill="#EF4444" letter-spacing="2">FRAGMENTED SILOS</text>
+    <text x="0" y="-50" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#D1D5DB">POS Sales · Receipts</text>
+    <text x="0" y="-15" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#D1D5DB">Food Cost Invoices</text>
+    <text x="0" y="20" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#D1D5DB">Daily Prep &amp; Waste Bins</text>
+    <text x="0" y="55" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#D1D5DB">Energy &amp; Water Utilities</text>
+    <text x="0" y="85" text-anchor="middle" font-family="monospace" font-size="11" fill="#9CA3AF">Unconnected static data</text>
+  </g>
+
+  <!-- Center Arrow with "DATA ≠ DECISION" -->
+  <g transform="translate(500, 240)">
+    <line x1="-80" y1="0" x2="80" y2="0" stroke="#C7A35A" stroke-width="2" stroke-dasharray="6 4" />
+    <circle cx="0" cy="0" r="32" fill="#080A09" stroke="#C7A35A" stroke-width="2" />
+    <text x="0" y="-5" text-anchor="middle" font-family="monospace" font-size="12" font-weight="700" fill="#C7A35A">DATA</text>
+    <text x="0" y="10" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#EF4444">≠</text>
+    <text x="0" y="23" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#C7A35A">ACTION</text>
+    <text x="0" y="60" text-anchor="middle" font-family="sans-serif" font-size="12" font-style="italic" fill="#A9AEA9">The product opportunity</text>
+  </g>
+
+  <!-- Right Side: Coordinated Decision System -->
+  <g transform="translate(820, 240)">
+    <circle cx="0" cy="0" r="110" fill="#101412" stroke="#10B981" stroke-width="2" />
+    <text x="0" y="-130" text-anchor="middle" font-family="monospace" font-size="12" font-weight="700" fill="#10B981" letter-spacing="2">ECOMARGIN AI</text>
+    <text x="0" y="-45" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="600" fill="#F4F1EA">1. Detect Leak</text>
+    <text x="0" y="-15" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="600" fill="#F4F1EA">2. Understand Cause</text>
+    <text x="0" y="15" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="600" fill="#F4F1EA">3. Test Decision</text>
+    <text x="0" y="45" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="600" fill="#F4F1EA">4. Measure Impact</text>
+    <text x="0" y="80" text-anchor="middle" font-family="monospace" font-size="11" fill="#10B981">Active Decision Loop</text>
+  </g>
+</svg>

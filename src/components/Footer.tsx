@@ -1,5 +1,6 @@
 import React from 'react';
 import { Language } from '../types';
+import { CV_FILE } from '../data/assetRegistry';
 
 interface FooterProps {
   currentLang: Language;
@@ -7,43 +8,40 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ currentLang }) => {
   return (
-    <footer className="w-full border-t border-[#C9A66B]/15 bg-[#080B09] py-10 text-[#B9C4BD]">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 sm:flex-row sm:px-6 lg:px-8">
-        <div>
-          <span className="font-serif text-base font-medium tracking-[0.2em] text-[#F5F1E8]">
-            NATALIA STACHOWIAK
+    <footer className="w-full border-t border-[#C7A35A]/15 bg-[#080A09] py-2.5 px-4 sm:px-6 lg:px-8 text-xs text-[#A9AEA9] shrink-0">
+      <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="flex items-center gap-2 text-[11px]">
+          <span className="font-serif font-medium text-[#F4F1EA] tracking-wider">NATALIA STACHOWIAK</span>
+          <span className="text-[#C7A35A]/50">·</span>
+          <span className="text-[#0F5C46] font-medium">
+            {currentLang === 'de' ? 'Angehende IT-Produktmanagerin' : currentLang === 'pl' ? 'IT & AI Product Manager' : 'Aspiring IT Product Manager'}
           </span>
-          <p className="mt-1 text-xs text-[#148B78]">
-            Aspiring Product Manager · Digital Transformation Manager
-          </p>
+          <span className="text-[#C7A35A]/50 hidden md:inline">·</span>
+          <span className="hidden md:inline text-[10px] text-[#A9AEA9]">Turning problems into products</span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-6 text-xs">
-          <a href="#home" className="hover:text-[#C9A66B] transition-colors">
-            Home
+        <div className="flex items-center gap-4 text-[10px] text-[#A9AEA9]">
+          <span className="hidden sm:inline">
+            {currentLang === 'de' ? 'VINYL AI · Eigenständiges Konzept' : currentLang === 'pl' ? 'VINYL AI · Niezależna koncepcja' : 'VINYL AI · Standalone Concept'}
+          </span>
+          <a
+            href="https://www.linkedin.com/in/natalia-stachowiak-0a8449306"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#C7A35A] transition-colors font-medium text-[#C7A35A]/80 hover:text-[#C7A35A]"
+          >
+            LINKEDIN ↗
           </a>
-          <a href="#about" className="hover:text-[#C9A66B] transition-colors">
-            Über mich
+          <a
+            href={CV_FILE}
+            target="_blank"
+            rel="noopener noreferrer"
+            download="Natalia_Stachowiak_CV_grafisch_FINAL_2026.pdf"
+            className="hover:text-[#C7A35A] transition-colors"
+          >
+            CV HERUNTERLADEN ↓
           </a>
-          <a href="#projects" className="hover:text-[#C9A66B] transition-colors">
-            Projekte
-          </a>
-          <a href="#product-thinking" className="hover:text-[#C9A66B] transition-colors">
-            Product Thinking
-          </a>
-          <a href="#skills" className="hover:text-[#C9A66B] transition-colors">
-            Skills
-          </a>
-          <a href="#certificates" className="hover:text-[#C9A66B] transition-colors">
-            Zertifikate
-          </a>
-          <a href="#contact" className="hover:text-[#C9A66B] transition-colors">
-            Kontakt
-          </a>
-        </div>
-
-        <div className="text-xs text-[#B9C4BD]/60">
-          © {new Date().getFullYear()} Natalia Stachowiak. All rights reserved.
+          <span>© {new Date().getFullYear()} {currentLang === 'de' ? 'Alle Rechte vorbehalten.' : currentLang === 'pl' ? 'Wszelkie prawa zastrzeżone.' : 'All rights reserved.'}</span>
         </div>
       </div>
     </footer>

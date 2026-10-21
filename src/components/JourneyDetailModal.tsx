@@ -22,8 +22,8 @@ export const JourneyDetailModal: React.FC<JourneyDetailModalProps> = ({
   if (!station) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-md animate-fadeIn">
-      <div className="relative my-8 w-full max-w-2xl overflow-hidden rounded-2xl border border-[#C9A66B]/50 bg-[#080B09] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.9)] sm:p-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/85 p-3 sm:p-4 backdrop-blur-md animate-fadeIn">
+      <div className="relative my-4 sm:my-8 w-full max-w-2xl overflow-hidden rounded-xl sm:rounded-2xl border border-[#C9A66B]/50 bg-[#080B09] p-4 sm:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.9)]">
         
         {/* Header */}
         <div className="flex items-start justify-between border-b border-[#C9A66B]/20 pb-5">

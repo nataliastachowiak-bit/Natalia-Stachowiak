@@ -1,26 +1,75 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { CertificateItem, Language, MediaAssets, ProjectData } from './types';
 import { getInitialMediaAssets, resetMediaAssets, saveMediaAssets, getProjectLinkKey } from './data/mediaConfig';
 import { loadMediaFromDB, saveMediaItemToDB, clearMediaDB } from './data/dbStorage';
+import { isEditModeActive } from './data/config';
+import { audioEngine, SectionKey } from './utils/audioEngine';
+
+// Components
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { PersonalMottoBanner } from './components/PersonalMottoBanner';
-import { SelectedWork } from './components/SelectedWork';
-import { AboutSection } from './components/AboutSection';
-import { ProductThinkingSection } from './components/ProductThinkingSection';
-import { WhatIBringSection } from './components/WhatIBringSection';
-import { CertificatesSection } from './components/CertificatesSection';
-import { EducationSection } from './components/EducationSection';
-import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { ProjectDetailModal } from './components/ProjectDetailModal';
-import { JourneyDetailModal } from './components/JourneyDetailModal';
-import { CertificateViewModal } from './components/CertificateViewModal';
-import { CvModal } from './components/CvModal';
+import { ScrollToTop } from './components/ScrollToTop';
+import { AudioPlayerWidget } from './components/AudioPlayerWidget';
+
+// Pages
+import { HomePage } from './pages/HomePage';
+import { AboutPage } from './pages/AboutPage';
+import { ProjectsPage } from './pages/ProjectsPage';
+import { CaseStudyPage } from './pages/CaseStudyPage';
+import { CircularTwinCaseStudyPage } from './pages/CircularTwinCaseStudyPage';
+import { AiBuildingCaseStudyPage } from './pages/AiBuildingCaseStudyPage';
+import { EcoMarginCaseStudyPage } from './pages/EcoMarginCaseStudyPage';
+import { JourneyPage } from './pages/JourneyPage';
+import { CertificatesPage } from './pages/CertificatesPage';
+import { BookPage } from './pages/BookPage';
+import { ContactPage } from './pages/ContactPage';
+
+// Modals
 import { VideoPlayerModal } from './components/VideoPlayerModal';
 import { MediaUploadModal } from './components/MediaUploadModal';
 
+// Route-based Audio Harmonizer
+function AudioRouteSync() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const path = location.pathname;
+    if (path === '/') {
+      audioEngine.onSectionEnter('hero');
+    } else if (path.startsWith('/about')) {
+      audioEngine.onSectionEnter('about');
+    } else if (path.startsWith('/projects')) {
+      audioEngine.onSectionEnter('projects');
+    } else if (path.startsWith('/journey') || path.startsWith('/certificates')) {
+      audioEngine.onSectionEnter('experience');
+    } else if (path.startsWith('/contact')) {
+      audioEngine.onSectionEnter('contact');
+    } else {
+      audioEngine.onSectionEnter('hero');
+    }
+  }, [location.pathname]);
+
+  return null;
+}
+
+// Conditional Footer: on desktop /journey, the section is strictly a 1-screen 100vh viewport without scrollbars
+function ConditionalFooter({ currentLang }: { currentLang: Language }) {
+  const location = useLocation();
+  if (location.pathname === '/journey') {
+    return (
+      <div className="lg:hidden">
+        <Footer currentLang={currentLang} />
+      </div>
+    );
+  }
+  return <Footer currentLang={currentLang} />;
+}
+
 export default function App() {
+  // Published / Read-Only Mode: active when IS_PUBLISHED is true, unless overridden via ?edit=true
+  const isReadOnly = !isEditModeActive();
+
   // Language State with LocalStorage Persistence
   const [currentLang, setCurrentLang] = useState<Language>(() => {
     const saved = localStorage.getItem('natalia_portfolio_lang');
@@ -32,18 +81,61 @@ export default function App() {
     localStorage.setItem('natalia_portfolio_lang', lang);
   };
 
+  // Sync HTML lang attribute and document title with currentLang
+  useEffect(() => {
+    document.documentElement.lang = currentLang;
+    if (currentLang === 'de') {
+      document.title = 'Natalia Stachowiak — Digital Product Management · AI · Digital Transformation';
+    } else if (currentLang === 'pl') {
+      document.title = 'Natalia Stachowiak — Cyfrowe Zarządzanie Produktem · AI · Transformacja Cyfrowa';
+    } else {
+      document.title = 'Natalia Stachowiak — Digital Product Management · AI · Digital Transformation';
+    }
+  }, [currentLang]);
+
   // Media Assets State with IndexedDB + LocalStorage Persistence
   const [mediaAssets, setMediaAssets] = useState<MediaAssets>(getInitialMediaAssets);
 
-  // Hydrate full assets (including photos & documents) from IndexedDB
   useEffect(() => {
     loadMediaFromDB().then((dbAssets) => {
-      setMediaAssets((prev) => ({ ...prev, ...dbAssets }));
+      setMediaAssets((prev) => {
+        const merged = { ...prev };
+        for (const [k, v] of Object.entries(dbAssets)) {
+          if (typeof v === 'string' && v.trim() !== '') {
+            (merged as any)[k] = v;
+          }
+        }
+        return merged;
+      });
     });
   }, []);
 
   const handleSaveAsset = (key: string, value: string) => {
     const updated = { ...mediaAssets, [key]: value };
+    // Synchronize aliases so any reference finds the user's uploaded asset
+    if (key === 'heroPortrait' || key === 'profilePhoto' || key === 'homeMainImage') {
+      updated.heroPortrait = value;
+      updated.profilePhoto = value;
+      updated.homeMainImage = value;
+    }
+    if (key === 'aboutPortrait' || key === 'aboutPhoto' || key === 'aboutImage') {
+      updated.aboutPortrait = value;
+      updated.aboutPhoto = value;
+      updated.aboutImage = value;
+    }
+    if (key === 'environixImage' || key === 'environixCover') {
+      updated.environixImage = value;
+      updated.environixCover = value;
+    }
+    if (key === 'circularTwinCover' || key === 'circularTwinImage' || key === 'circularTwinVision') {
+      updated.circularTwinCover = value;
+      updated.circularTwinImage = value;
+      updated.circularTwinVision = value;
+    }
+    if (key === 'aiBuildingCover' || key === 'aiBuildingVision') {
+      updated.aiBuildingCover = value;
+      updated.aiBuildingVision = value;
+    }
     setMediaAssets(updated);
     saveMediaAssets(updated);
     saveMediaItemToDB(key, value);
@@ -55,170 +147,198 @@ export default function App() {
     setMediaAssets(getInitialMediaAssets());
   };
 
-  // Active Navigation Observer
-  const [activeSection, setActiveSection] = useState<string>('home');
-
-  useEffect(() => {
-    const sectionIds = ['home', 'about', 'projects', 'product-thinking', 'skills', 'certificates', 'contact'];
-    const handleScroll = () => {
-      const scrollY = window.scrollY + 180;
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollY >= top && scrollY < top + height) {
-            setActiveSection(id);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   // Modals State
-  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
-  const [selectedJourneyStation, setSelectedJourneyStation] = useState<string | null>(null);
-  const [selectedCert, setSelectedCert] = useState<CertificateItem | null>(null);
-  const [isCvModalOpen, setIsCvModalOpen] = useState(false);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [mediaUploadModalKey, setMediaUploadModalKey] = useState<string | null>(null);
 
-  // Smooth scroll helpers
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+  // Trigger modal sound focus
+  const isAnyModalOpen = Boolean(isVideoModalOpen || mediaUploadModalKey);
+  useEffect(() => {
+    if (isAnyModalOpen) {
+      audioEngine.onSectionEnter('modal');
     }
-  };
+  }, [isAnyModalOpen]);
 
   return (
-    <div className="min-h-screen bg-[#080B09] text-[#F5F1E8] selection:bg-[#0B5A4D] selection:text-[#C9A66B]">
-      
-      {/* Sticky Top Navigation Bar */}
-      <Navbar
-        currentLang={currentLang}
-        onLanguageChange={handleLanguageChange}
-        onDownloadCvClick={() => setIsCvModalOpen(true)}
-        onManageMediaClick={() => setMediaUploadModalKey('heroPortrait')}
-        activeSection={activeSection}
-      />
+    <BrowserRouter>
+      <ScrollToTop />
+      <AudioRouteSync />
 
-      {/* Main Content Sections */}
-      <main>
-        {/* 01: Hero Section */}
-        <Hero
+      <div className="min-h-screen bg-[#080A09] text-[#F4F1EA] selection:bg-[#0F5C46] selection:text-[#C7A35A] flex flex-col justify-between">
+        
+        {/* Sticky Global Multi-Page Navigation Bar */}
+        <Navbar
           currentLang={currentLang}
+          onLanguageChange={handleLanguageChange}
+          onManageMediaClick={() => setMediaUploadModalKey('heroPortrait')}
+          isReadOnly={isReadOnly}
+        />
+
+        {/* Client-Side Multi-Page Routes */}
+        <main className="flex-grow flex flex-col">
+          <Routes>
+            {/* 1. HOME: Route / */}
+            <Route
+              path="/"
+              element={
+                <HomePage
+                  currentLang={currentLang}
+                  mediaAssets={mediaAssets}
+                  onUploadMedia={(key) => setMediaUploadModalKey(key)}
+                  onEditProjectLink={(proj) => setMediaUploadModalKey(getProjectLinkKey(proj.id))}
+                  isReadOnly={isReadOnly}
+                />
+              }
+            />
+
+            {/* 2. ABOUT: Route /about */}
+            <Route
+              path="/about"
+              element={
+                <AboutPage
+                  currentLang={currentLang}
+                  mediaAssets={mediaAssets}
+                  onUploadMedia={(key) => setMediaUploadModalKey(key)}
+                  isReadOnly={isReadOnly}
+                />
+              }
+            />
+
+            {/* 3. PROJECTS: Route /projects */}
+            <Route
+              path="/projects"
+              element={
+                <ProjectsPage
+                  currentLang={currentLang}
+                  mediaAssets={mediaAssets}
+                  onUploadMedia={(key) => setMediaUploadModalKey(key)}
+                  onEditProjectLink={(proj) => setMediaUploadModalKey(getProjectLinkKey(proj.id))}
+                  isReadOnly={isReadOnly}
+                />
+              }
+            />
+
+            {/* 4. DEDICATED CIRCULARTWIN AI CASE STUDY: Route /projects/circulartwin-ai */}
+            <Route
+              path="/projects/circulartwin-ai"
+              element={
+                <CircularTwinCaseStudyPage
+                  currentLang={currentLang}
+                  mediaAssets={mediaAssets}
+                />
+              }
+            />
+
+            {/* 5. DEDICATED AI BUILDING CONCEPT CASE STUDY: Route /projects/ai-building-concept */}
+            <Route
+              path="/projects/ai-building-concept"
+              element={
+                <AiBuildingCaseStudyPage
+                  currentLang={currentLang}
+                  mediaAssets={mediaAssets}
+                />
+              }
+            />
+            <Route
+              path="/projects/ai-building"
+              element={<Navigate to="/projects/ai-building-concept" replace />}
+            />
+
+            {/* 6. DEDICATED ECOMARGIN AI CASE STUDY: Route /projects/ecomargin-ai */}
+            <Route
+              path="/projects/ecomargin-ai"
+              element={
+                <EcoMarginCaseStudyPage
+                  currentLang={currentLang}
+                  mediaAssets={mediaAssets}
+                />
+              }
+            />
+            <Route
+              path="/projects/ecomargin"
+              element={<Navigate to="/projects/ecomargin-ai" replace />}
+            />
+
+            {/* 7. INDIVIDUAL CASE STUDY PAGES: Route /projects/:slug */}
+            <Route
+              path="/projects/:slug"
+              element={
+                <CaseStudyPage
+                  currentLang={currentLang}
+                  mediaAssets={mediaAssets}
+                  onUploadMedia={(key) => setMediaUploadModalKey(key)}
+                  onEditProjectLink={(proj) => setMediaUploadModalKey(getProjectLinkKey(proj.id))}
+                  onOpenVideoModal={() => setIsVideoModalOpen(true)}
+                  isReadOnly={isReadOnly}
+                />
+              }
+            />
+
+            {/* 5. JOURNEY: Route /journey */}
+            <Route
+              path="/journey"
+              element={
+                <JourneyPage
+                  currentLang={currentLang}
+                />
+              }
+            />
+
+            {/* 6. CERTIFICATES: Route /certificates */}
+            <Route
+              path="/certificates"
+              element={<CertificatesPage currentLang={currentLang} />}
+            />
+
+            {/* 7. BOOK: Route /book */}
+            <Route
+              path="/book"
+              element={<BookPage currentLang={currentLang} mediaAssets={mediaAssets} />}
+            />
+
+            {/* 8. CONTACT: Route /contact */}
+            <Route
+              path="/contact"
+              element={
+                <ContactPage
+                  currentLang={currentLang}
+                  mediaAssets={mediaAssets}
+                />
+              }
+            />
+
+            {/* Fallback to Home */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
+
+        {/* Global Footer (auto-hidden on desktop /journey for 100vh 1-screen rule) */}
+        <ConditionalFooter currentLang={currentLang} />
+
+        {/* GLOBAL MODALS */}
+        {/* street.life Video Modal */}
+        <VideoPlayerModal
+          isOpen={isVideoModalOpen}
           mediaAssets={mediaAssets}
+          onClose={() => setIsVideoModalOpen(false)}
           onUploadMedia={(key) => setMediaUploadModalKey(key)}
-          onExploreWorkClick={() => scrollToSection('projects')}
-          onAboutMeClick={() => scrollToSection('about')}
+          isReadOnly={isReadOnly}
         />
 
-        {/* Leitsatz: Personal Motto Banner */}
-        <PersonalMottoBanner currentLang={currentLang} />
-
-        {/* 02: Selected Work (5 Project Cards) */}
-        <SelectedWork
-          currentLang={currentLang}
+        {/* Unified Media Asset Uploader Modal */}
+        <MediaUploadModal
+          isOpen={Boolean(mediaUploadModalKey)}
+          targetKey={mediaUploadModalKey}
           mediaAssets={mediaAssets}
-          onSelectProject={(proj) => setSelectedProject(proj)}
-          onUploadMedia={(key) => setMediaUploadModalKey(key)}
-          onEditProjectLink={(proj) => setMediaUploadModalKey(getProjectLinkKey(proj.id))}
-          onOpenVideoModal={() => setIsVideoModalOpen(true)}
+          onClose={() => setMediaUploadModalKey(null)}
+          onSaveAsset={handleSaveAsset}
+          onResetAssets={handleResetAssets}
         />
 
-        {/* 03: Concentrated About & Journey Bento Grid (Matching Screenshot Layout) */}
-        <AboutSection
-          currentLang={currentLang}
-          mediaAssets={mediaAssets}
-          onSelectJourneyStation={(stationId) => setSelectedJourneyStation(stationId)}
-          onUploadMedia={(key) => setMediaUploadModalKey(key)}
-          onExploreSkillsClick={() => scrollToSection('skills')}
-        />
+        {/* Floating Ambient Audio Player */}
+        <AudioPlayerWidget currentLang={currentLang} />
 
-        {/* 04: Product Thinking 5-Stage Process */}
-        <ProductThinkingSection currentLang={currentLang} />
-
-        {/* 05: What I Bring (6 Skill Cards) */}
-        <WhatIBringSection currentLang={currentLang} />
-
-        {/* 06: Certificates & Qualifications */}
-        <CertificatesSection
-          currentLang={currentLang}
-          onViewCertificate={(cert) => setSelectedCert(cert)}
-        />
-
-        {/* 07: Academic Education */}
-        <EducationSection currentLang={currentLang} />
-
-        {/* 08: Contact & Connect */}
-        <ContactSection
-          currentLang={currentLang}
-          mediaAssets={mediaAssets}
-          onDownloadCvClick={() => setIsCvModalOpen(true)}
-        />
-      </main>
-
-      {/* Footer */}
-      <Footer currentLang={currentLang} />
-
-      {/* MODALS */}
-      {/* Project Case Study Modal */}
-      <ProjectDetailModal
-        project={selectedProject}
-        currentLang={currentLang}
-        mediaAssets={mediaAssets}
-        onClose={() => setSelectedProject(null)}
-        onUploadMedia={(key) => setMediaUploadModalKey(key)}
-        onEditProjectLink={(proj) => setMediaUploadModalKey(getProjectLinkKey(proj.id))}
-        onOpenVideoModal={() => setIsVideoModalOpen(true)}
-      />
-
-      {/* Journey Milestone Modal */}
-      <JourneyDetailModal
-        stationId={selectedJourneyStation}
-        currentLang={currentLang}
-        onClose={() => setSelectedJourneyStation(null)}
-      />
-
-      {/* Certificate Viewer Modal */}
-      <CertificateViewModal
-        cert={selectedCert}
-        currentLang={currentLang}
-        onClose={() => setSelectedCert(null)}
-      />
-
-      {/* CV Modal */}
-      <CvModal
-        isOpen={isCvModalOpen}
-        currentLang={currentLang}
-        mediaAssets={mediaAssets}
-        onClose={() => setIsCvModalOpen(false)}
-        onUploadCv={(key) => setMediaUploadModalKey(key)}
-      />
-
-      {/* street.life Video Modal */}
-      <VideoPlayerModal
-        isOpen={isVideoModalOpen}
-        mediaAssets={mediaAssets}
-        onClose={() => setIsVideoModalOpen(false)}
-        onUploadMedia={(key) => setMediaUploadModalKey(key)}
-      />
-
-      {/* Unified Media Asset Uploader Modal */}
-      <MediaUploadModal
-        isOpen={Boolean(mediaUploadModalKey)}
-        targetKey={mediaUploadModalKey}
-        mediaAssets={mediaAssets}
-        onClose={() => setMediaUploadModalKey(null)}
-        onSaveAsset={handleSaveAsset}
-        onResetAssets={handleResetAssets}
-      />
-
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }

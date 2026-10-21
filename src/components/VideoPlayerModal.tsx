@@ -7,6 +7,7 @@ interface VideoPlayerModalProps {
   mediaAssets: MediaAssets;
   onClose: () => void;
   onUploadMedia: (key: string) => void;
+  isReadOnly?: boolean;
 }
 
 export const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
@@ -14,6 +15,7 @@ export const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
   mediaAssets,
   onClose,
   onUploadMedia,
+  isReadOnly = false,
 }) => {
   if (!isOpen) return null;
 
@@ -63,17 +65,21 @@ export const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
             </div>
           ) : (
             <div
-              onClick={() => onUploadMedia('streetLifeVideoUrl')}
-              className="flex aspect-video w-full cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-[#C9A66B]/50 bg-gradient-to-b from-[#063F35]/30 to-[#080B09] p-8 text-center transition-all hover:bg-[#063F35]/40"
+              onClick={() => {
+                if (!isReadOnly) onUploadMedia('streetLifeVideoUrl');
+              }}
+              className={`flex aspect-video w-full flex-col items-center justify-center rounded-xl border border-dashed border-[#C9A66B]/50 bg-gradient-to-b from-[#063F35]/30 to-[#080B09] p-8 text-center transition-all ${
+                isReadOnly ? 'cursor-default' : 'cursor-pointer hover:bg-[#063F35]/40'
+              }`}
             >
               <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#C9A66B] bg-[#0B5A4D]/40 text-[#C9A66B] shadow-[0_0_15px_rgba(201,166,107,0.3)]">
-                <Play className="h-6 w-6 ml-0.5" />
+                <Film className="h-6 w-6 ml-0.5" />
               </div>
               <p className="font-sans text-xs font-bold tracking-widest text-[#F5F1E8] uppercase">
-                PROJEKT-VIDEO HIER HOCHLADEN ODER VERLINKEN
+                STREET.LIFE / FANPULSE KONZEPTVIDEO
               </p>
               <p className="mt-2 text-xs text-[#B9C4BD]">
-                MP4-Datei oder Video-URL für street.life / FanPulse hinterlegen
+                Interaktiver Pitch & AI-Crowd-Engagement Case Study
               </p>
             </div>
           )}
@@ -81,14 +87,18 @@ export const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
 
         {/* Actions */}
         <div className="mt-6 flex items-center justify-between border-t border-[#C9A66B]/20 pt-4">
-          <button
-            type="button"
-            onClick={() => onUploadMedia('streetLifeVideoUrl')}
-            className="flex items-center gap-1.5 text-xs text-[#C9A66B] hover:underline"
-          >
-            <Upload className="h-3.5 w-3.5" />
-            <span>{videoUrl ? 'Anderes Video hochladen' : 'Video hochladen'}</span>
-          </button>
+          {!isReadOnly ? (
+            <button
+              type="button"
+              onClick={() => onUploadMedia('streetLifeVideoUrl')}
+              className="flex items-center gap-1.5 text-xs text-[#C9A66B] hover:underline"
+            >
+              <Upload className="h-3.5 w-3.5" />
+              <span>{videoUrl ? 'Anderes Video hochladen' : 'Video hochladen'}</span>
+            </button>
+          ) : (
+            <div />
+          )}
 
           <button
             type="button"
