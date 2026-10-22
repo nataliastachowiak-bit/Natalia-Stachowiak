@@ -155,12 +155,13 @@ export const CertificatesSection: React.FC<CertificatesSectionProps> = ({
         pl: '3. Agile i Scrum',
       },
       subtitle: {
-        de: 'Professional Scrum Master I (Scrum.org), Product Owner Intensive, Applied Scrum (ENCE607.1x), Agile Innovation & Foundations',
-        en: 'Professional Scrum Master I (Scrum.org), Product Owner Intensive, Applied Scrum (ENCE607.1x), Agile Innovation & Foundations',
-        pl: 'Professional Scrum Master I (Scrum.org), Product Owner Intensive, Applied Scrum, innowacje i podstawy zwinne',
+        de: 'Professional Scrum Product Owner I (Scrum.org), Professional Scrum Master I (Scrum.org), Product Owner Intensive, Applied Scrum, Agile Innovation',
+        en: 'Professional Scrum Product Owner I (Scrum.org), Professional Scrum Master I (Scrum.org), Product Owner Intensive, Applied Scrum, Agile Innovation',
+        pl: 'Professional Scrum Product Owner I (Scrum.org), Professional Scrum Master I (Scrum.org), Product Owner Intensive, Applied Scrum, innowacje zwinne',
       },
       items: CERTIFICATES.filter((c) =>
         [
+          'cert-pspo-1',
           'cert-psm-1',
           'cert-product-owner-intensive',
           'cert-applied-scrum',

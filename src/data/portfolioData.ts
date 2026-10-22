@@ -787,6 +787,43 @@ export const CERTIFICATES: CertificateItem[] = [
 
   // 3. Agile & Scrum
   {
+    id: 'cert-pspo-1',
+    title: 'Professional Scrum Product Owner I (PSPO I)',
+    titleI18n: {
+      de: 'Professional Scrum Product Owner I (PSPO I)',
+      en: 'Professional Scrum Product Owner I (PSPO I)',
+      pl: 'Professional Scrum Product Owner I (PSPO I)',
+    },
+    issuer: 'Scrum.org',
+    issuerI18n: {
+      de: 'Scrum.org',
+      en: 'Scrum.org',
+      pl: 'Scrum.org',
+    },
+    year: '2026',
+    issueDate: '20.10.2026',
+    category: 'AGILE_SCRUM',
+    status: 'COMPLETED',
+    credentialId: '1357678',
+    verificationUrl: 'https://scrum.org/certificates/1357678',
+    pdfUrl: '/Professional Scrum Product Owner I.pdf',
+    signatory: 'Ken Schwaber, founder Scrum.org',
+    focus: 'Fundamentales Verständnis von Professional Scrum Product Ownership: Maximierung des durch ein Produkt gelieferten Werts, ROI-Optimierung und Gesamtbetriebskosten (TCO).',
+    focusI18n: {
+      de: 'Fundamentales Verständnis von Professional Scrum Product Ownership: Maximierung des durch ein Produkt gelieferten Werts, ROI-Optimierung und Gesamtbetriebskosten (TCO).',
+      en: 'Fundamental understanding of Professional Scrum Product Ownership: maximizing product value delivery, optimizing ROI, and total cost of ownership (TCO).',
+      pl: 'Fundamentalny poziom wiedzy Professional Scrum Product Ownership: maksymalizacja wartości dostarczanej przez produkt, optymalizacja ROI oraz całkowity koszt posiadania (TCO).',
+    },
+    skillsAcquired: [
+      'Scrum Framework & Definition of Done',
+      'Product Value Maximization & Return on Investment (ROI)',
+      'Total Cost of Ownership (TCO) & Value Metrics',
+      'Product Backlog Management, Ordering & Prioritization',
+      'Effektive Zusammenarbeit mit Scrum Master, Entwicklern & Stakeholdern',
+      'Empirische Produktplanung & Release Management',
+    ],
+  },
+  {
     id: 'cert-psm-1',
     title: 'Professional Scrum Master I (PSM I)',
     titleI18n: {
@@ -807,7 +844,7 @@ export const CERTIFICATES: CertificateItem[] = [
     credentialId: '1357253',
     verificationUrl: 'https://scrum.org/certificates/1357253',
     pdfUrl: '/Professional Scrum Master I.pdf',
-    signatory: 'Ken Schwaber (Founder & Chairman, Scrum.org)',
+    signatory: 'Ken Schwaber, founder Scrum.org',
     focus: 'Zertifizierung zu Scrum, agilen Prinzipien, empirischer Prozesssteuerung und der Zusammenarbeit in Scrum Teams.',
     focusI18n: {
       de: 'Zertifizierung zu Scrum, agilen Prinzipien, empirischer Prozesssteuerung und der Zusammenarbeit in Scrum Teams.',

@@ -71,7 +71,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
         `Für den Suchbegriff „${q}“ wurde kein passendes Zertifikat gefunden.`,
       clearSearch: 'Suche zurücksetzen',
       trustNotice:
-        'Alle 20 Dokumente sind originalgetreu als PDF hinterlegt und durch die jeweiligen Universitäten, Institute und Zertifizierungsstellen verifiziert.',
+        'Alle 21 Dokumente sind originalgetreu als PDF hinterlegt und durch die jeweiligen Universitäten, Institute und Zertifizierungsstellen verifiziert.',
       trustPartners:
         'Adam-Mickiewicz-Universität Posen · Scrum.org · TrainMiC · Europäischer Sozialfonds · Franklin IAS · Pioneer People · AI CHAMPIONS',
     },
@@ -96,7 +96,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
         `No certificates found matching "${q}".`,
       clearSearch: 'Clear search',
       trustNotice:
-        'All 20 qualification documents are authentically deposited as PDFs and verified by the respective universities, institutes, and accreditation boards.',
+        'All 21 qualification documents are authentically deposited as PDFs and verified by the respective universities, institutes, and accreditation boards.',
       trustPartners:
         'Adam Mickiewicz University Poznań · Scrum.org · TrainMiC · European Social Fund · Franklin IAS · Pioneer People · AI CHAMPIONS',
     },
@@ -121,7 +121,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
         `Brak wyników dla hasła „${q}”.`,
       clearSearch: 'Wyczyść wyszukiwanie',
       trustNotice:
-        'Wszystkie 20 dokumentów jest dostępnych w postaci oryginalnych plików PDF z potwierdzeniem odpowiednich instytucji.',
+        'Wszystkie 21 dokumentów jest dostępnych w postaci oryginalnych plików PDF z potwierdzeniem odpowiednich instytucji.',
       trustPartners:
         'Uniwersytet im. Adama Mickiewicza w Poznaniu · Scrum.org · TrainMiC · Europejski Fundusz Społeczny · Franklin IAS · Pioneer People · AI CHAMPIONS',
     },
@@ -194,12 +194,13 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
           pl: '3. Agile i Scrum',
         },
         subtitle: {
-          de: 'Professional Scrum Master I (Scrum.org), Product Owner Intensive, Applied Scrum (ENCE607.1x), Agile Innovation & Foundations',
-          en: 'Professional Scrum Master I (Scrum.org), Product Owner Intensive, Applied Scrum (ENCE607.1x), Agile Innovation & Foundations',
-          pl: 'Professional Scrum Master I (Scrum.org), Product Owner Intensive, Applied Scrum, innowacje i podstawy zwinne',
+          de: 'Professional Scrum Product Owner I (Scrum.org), Professional Scrum Master I (Scrum.org), Product Owner Intensive, Applied Scrum, Agile Innovation',
+          en: 'Professional Scrum Product Owner I (Scrum.org), Professional Scrum Master I (Scrum.org), Product Owner Intensive, Applied Scrum, Agile Innovation',
+          pl: 'Professional Scrum Product Owner I (Scrum.org), Professional Scrum Master I (Scrum.org), Product Owner Intensive, Applied Scrum, innowacje zwinne',
         },
         items: CERTIFICATES.filter((c) =>
           [
+            'cert-pspo-1',
             'cert-psm-1',
             'cert-product-owner-intensive',
             'cert-applied-scrum',
