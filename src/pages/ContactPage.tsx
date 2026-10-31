@@ -1,9 +1,11 @@
-import React from 'react';
-import { Mail, Linkedin, Phone, MapPin, Send, ArrowUpRight, Download, ExternalLink } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, Linkedin, Phone, MapPin, Send, ArrowUpRight, Download, ExternalLink, FileText } from 'lucide-react';
 import { Language, MediaAssets } from '../types';
 import { PageTransition } from '../components/PageTransition';
 import { BackToPortfolio } from '../components/BackToPortfolio';
 import { CV_FILE } from '../data/assetRegistry';
+import { CvPreviewModal } from '../components/CvPreviewModal';
+import { getAbsoluteAssetUrl } from '../utils/assetPath';
 
 interface ContactPageProps {
   currentLang: Language;
@@ -19,6 +21,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   const location = 'Bielefeld, Deutschland';
   const linkedinUrl = mediaAssets.linkedinUrl || 'https://www.linkedin.com/in/natalia-stachowiak-0a8449306';
   const cvUrl = CV_FILE;
+  const absoluteCvUrl = getAbsoluteAssetUrl(cvUrl);
+  const [isCvPreviewOpen, setIsCvPreviewOpen] = useState(false);
 
   return (
     <PageTransition>
@@ -46,10 +50,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
           <p className="font-sans text-sm sm:text-base text-[#A9AEA9] max-w-xl mx-auto leading-relaxed">
             {currentLang === 'de'
-              ? 'Offen für spannende Möglichkeiten im IT- & KI-Produktmanagement, innovative Initiativen und fundierten Fachaustausch.'
+              ? 'Ich freue mich über neue berufliche Herausforderungen und Kooperationen im digitalen Produktmanagement, KI-gestützten Innovationsinitiativen sowie den fundierten Austausch über nutzerzentrierte Technologien.'
               : currentLang === 'pl'
-              ? 'Otwarta na nowe możliwości w zarządzaniu produktami IT i AI, innowacyjne inicjatywy oraz wymianę doświadczeń.'
-              : 'Open for opportunities in IT & AI Product Management, innovative projects, and professional exchange.'}
+              ? 'Jestem otwarta na nowe wyzwania zawodowe i współpracę w obszarze cyfrowego zarządzania produktami, innowacji opartych na AI oraz merytoryczną wymianę doświadczeń technologicznych.'
+              : 'Open to new professional opportunities and collaborative roles in digital product management, AI-driven innovation initiatives, and meaningful exchange on user-centered technology.'}
           </p>
         </div>
 
@@ -146,46 +150,58 @@ export const ContactPage: React.FC<ContactPageProps> = ({
         </div>
 
         {/* CV Download Strip */}
-        <div className="relative z-10 rounded-2xl border border-[#C7A35A]/30 bg-[#101412] p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left shadow-xl">
-          <div className="space-y-1">
-            <span className="font-sans text-[10px] font-bold tracking-widest text-[#C7A35A] uppercase block">
-              {currentLang === 'de' ? 'TABELLARISCHER LEBENSLAUF (CV)' : currentLang === 'pl' ? 'ŻYCIORYS ZAWODOWY (CV)' : 'CURRICULUM VITAE (CV)'}
-            </span>
-            <p className="text-sm text-[#F4F1EA] font-medium font-mono">
-              Natalia_Stachowiak_CV_grafisch_FINAL_2026.pdf
-            </p>
-            <p className="text-xs text-[#A9AEA9]">
-              {currentLang === 'de'
-                ? 'Originale 2-seitige grafische PDF mit Case Studies, My Journey & Qualifikationen'
-                : currentLang === 'pl'
-                ? 'Oryginalny 2-stronicowy graficzny plik PDF z Case Studies, My Journey i kwalifikacjami'
-                : 'Original 2-page graphical PDF with Case Studies, My Journey & Qualifications'}
-            </p>
-          </div>
+        <div className="relative z-10 overflow-hidden rounded-2xl border border-[#C7A35A]/30 bg-gradient-to-br from-[#101412] via-[#0E1512] to-[#0A0D0B] p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-[#C7A35A]/50 shadow-[0_8px_32px_rgba(0,0,0,0.45)]">
+          {/* Subtle Emerald Background Glow */}
+          <div className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-[#0F5C46]/20 blur-3xl" />
 
-          <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
-            <a
-              href={cvUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-[#C7A35A]/60 bg-transparent px-5 py-2.5 font-sans text-xs font-semibold tracking-wider text-[#F4F1EA] transition-all hover:bg-[#101412] hover:text-[#C7A35A] uppercase"
-            >
-              <ExternalLink className="h-4 w-4 text-[#C7A35A]" />
-              <span>
-                {currentLang === 'de' ? 'Vorschau ↗' : currentLang === 'pl' ? 'Podgląd ↗' : 'Preview ↗'}
-              </span>
-            </a>
+          <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="flex items-start gap-4 sm:gap-5 max-w-xl">
+              <div className="hidden sm:flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#080A09] border border-[#0F5C46]/50 text-[#C7A35A] shadow-inner">
+                <FileText className="h-5 w-5" />
+              </div>
+              <div className="space-y-1.5">
+                <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#F4F1EA] tracking-wide">
+                  Lebenslauf
+                </h3>
+                <p className="text-xs sm:text-sm text-[#A9AEA9] leading-relaxed">
+                  Kompakter Überblick über meinen beruflichen Weg, Qualifikationen und ausgewählte Projekte.
+                </p>
+              </div>
+            </div>
 
-            <a
-              href={cvUrl}
-              download="Natalia_Stachowiak_CV_grafisch_FINAL_2026.pdf"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-[#C7A35A] bg-[#0F5C46] px-6 py-2.5 font-sans text-xs font-semibold tracking-wider text-white shadow-lg transition-all hover:bg-[#148B78] uppercase"
-            >
-              <Download className="h-4 w-4 text-[#C7A35A]" />
-              <span>CV herunterladen</span>
-            </a>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto shrink-0">
+              <a
+                href={cvUrl}
+                download="Natalia_Stachowiak_CV_grafisch.pdf"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[#C7A35A] bg-[#0F5C46] px-6 py-2.5 font-sans text-xs font-semibold tracking-wider text-[#F4F1EA] shadow-lg transition-all duration-200 hover:bg-[#148B78] hover:shadow-[0_0_20px_rgba(15,92,70,0.4)] uppercase cursor-pointer"
+              >
+                <Download className="h-4 w-4 text-[#C7A35A]" />
+                <span>CV herunterladen</span>
+              </a>
+
+              <a
+                href={absoluteCvUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsCvPreviewOpen(true);
+                }}
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[#C7A35A]/35 bg-transparent px-5 py-2.5 font-sans text-xs font-medium tracking-wider text-[#F4F1EA] transition-all duration-200 hover:border-[#C7A35A] hover:bg-[#101412] hover:text-[#C7A35A] uppercase cursor-pointer"
+              >
+                <ExternalLink className="h-3.5 w-3.5 text-[#C7A35A]" />
+                <span>Vorschau ansehen</span>
+              </a>
+            </div>
           </div>
         </div>
+
+        {/* In-App Full 2-Page CV Preview Modal */}
+        <CvPreviewModal
+          isOpen={isCvPreviewOpen}
+          currentLang={currentLang}
+          onClose={() => setIsCvPreviewOpen(false)}
+        />
       </div>
     </PageTransition>
   );

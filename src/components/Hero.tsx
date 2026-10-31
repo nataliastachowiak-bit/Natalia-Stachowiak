@@ -3,7 +3,7 @@ import { Sparkles, Upload } from 'lucide-react';
 import { Language, MediaAssets } from '../types';
 import { translations } from '../data/translations';
 import { BotanicalDecoration } from './BotanicalDecoration';
-import { LOCKED_ASSETS, HOME_MAIN_IMAGE } from '../data/assetRegistry';
+import { LOCKED_ASSETS, HOME_MAIN_IMAGE, NATALIA_BUSINESS_PORTRAIT } from '../data/assetRegistry';
 
 interface HeroProps {
   currentLang: Language;
@@ -25,11 +25,11 @@ export const Hero: React.FC<HeroProps> = ({
   const t = translations[currentLang].hero;
   const [portraitError, setPortraitError] = React.useState(false);
 
-  // Respect user uploaded portrait with fallback to canonical HOME_MAIN_IMAGE
+  // Respect user uploaded portrait with fallback to canonical NATALIA_BUSINESS_PORTRAIT
   const userPortrait = mediaAssets.heroPortrait || mediaAssets.profilePhoto || mediaAssets.homeMainImage;
-  const heroImageSrc = (!portraitError && userPortrait && userPortrait.trim() !== '')
+  const heroImageSrc = (!portraitError && userPortrait && userPortrait.trim() !== '' && !userPortrait.includes('hero_portrait.jpg'))
     ? userPortrait
-    : HOME_MAIN_IMAGE;
+    : NATALIA_BUSINESS_PORTRAIT;
 
   React.useEffect(() => {
     setPortraitError(false);
@@ -63,13 +63,16 @@ export const Hero: React.FC<HeroProps> = ({
               {heroImageSrc && !portraitError ? (
                 <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-[#080B09]" style={{ aspectRatio: '3 / 4' }}>
                   {/* Stable responsive configuration: object-cover with top intentional position so face & head are never cut off */}
-                  <img
-                    src={heroImageSrc}
-                    alt="Natalia Stachowiak"
-                    loading="eager"
-                    onError={() => setPortraitError(true)}
-                    className="h-full w-full object-cover object-[center_top] transition-transform duration-700 group-hover:scale-105"
-                  />
+                  <picture>
+                    <source media="(min-width: 1024px)" srcSet={heroImageSrc} />
+                    <img
+                      src={heroImageSrc}
+                      alt="Natalia Stachowiak"
+                      loading="eager"
+                      onError={() => setPortraitError(true)}
+                      className="h-full w-full object-cover object-[center_top] transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </picture>
                   {/* Subtle blend vignette */}
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080B09]/40 via-transparent to-transparent opacity-50" />
 
@@ -126,7 +129,7 @@ export const Hero: React.FC<HeroProps> = ({
             <div className="mb-3 sm:mb-4 inline-flex items-center gap-2 rounded-full border border-[#C9A66B]/30 bg-[#063F35]/25 px-3.5 py-1.5 sm:px-4 sm:py-1.5 backdrop-blur-sm max-w-full">
               <span className="h-2 w-2 shrink-0 rounded-full bg-[#C9A66B] animate-pulse" />
               <span className="font-sans text-[12px] sm:text-[13px] font-semibold tracking-[0.18em] text-[#C9A66B] uppercase truncate">
-                {t.roleLabel || 'NATALIA STACHOWIAK · DIGITAL PRODUCT MANAGEMENT'}
+                {t.roleLabel || 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · SUSTAINABILITY'}
               </span>
             </div>
 

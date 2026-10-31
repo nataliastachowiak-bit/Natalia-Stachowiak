@@ -63,7 +63,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
       expandAll: 'Alle aufklappen',
       collapseAll: 'Alle schließen',
       officialDoc: 'Originaldokument hinterlegt',
-      pendingDoc: 'Original-PDF noch nicht hinterlegt',
+      pendingDoc: 'Original-PDF erforderlich',
       searchMatches: (count: number) =>
         count === 1 ? '1 Nachweis gefunden' : `${count} Nachweise gefunden`,
       noResultsTitle: 'Keine Zertifikate gefunden',
@@ -71,7 +71,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
         `Für den Suchbegriff „${q}“ wurde kein passendes Zertifikat gefunden.`,
       clearSearch: 'Suche zurücksetzen',
       trustNotice:
-        'Alle 21 Dokumente sind originalgetreu als PDF hinterlegt und durch die jeweiligen Universitäten, Institute und Zertifizierungsstellen verifiziert.',
+        'Authentische Zertifikatsnachweise im Original-PDF-Format. Hinterlegte Dokumente sind durch die jeweiligen Prüfungs- und Zertifizierungsstellen verifiziert.',
       trustPartners:
         'Adam-Mickiewicz-Universität Posen · Scrum.org · TrainMiC · Europäischer Sozialfonds · Franklin IAS · Pioneer People · AI CHAMPIONS',
     },
@@ -88,7 +88,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
       expandAll: 'Expand All',
       collapseAll: 'Collapse All',
       officialDoc: 'Original document deposited',
-      pendingDoc: 'Original PDF pending',
+      pendingDoc: 'Original PDF required',
       searchMatches: (count: number) =>
         count === 1 ? '1 credential found' : `${count} credentials found`,
       noResultsTitle: 'No certificates found',
@@ -96,7 +96,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
         `No certificates found matching "${q}".`,
       clearSearch: 'Clear search',
       trustNotice:
-        'All 21 qualification documents are authentically deposited as PDFs and verified by the respective universities, institutes, and accreditation boards.',
+        'Authentic certificate credentials in original PDF format, directly verified by the respective accreditation bodies.',
       trustPartners:
         'Adam Mickiewicz University Poznań · Scrum.org · TrainMiC · European Social Fund · Franklin IAS · Pioneer People · AI CHAMPIONS',
     },
@@ -113,7 +113,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
       expandAll: 'Rozwiń wszystko',
       collapseAll: 'Zwiń wszystko',
       officialDoc: 'Oryginalny dokument zdeponowany',
-      pendingDoc: 'Oryginalny plik PDF oczekuje na przesłanie',
+      pendingDoc: 'Wymagany oryginalny plik PDF',
       searchMatches: (count: number) =>
         count === 1 ? 'Znaleziono 1 certyfikat' : `Znaleziono ${count} certyfikatów`,
       noResultsTitle: 'Nie znaleziono certyfikatów',
@@ -121,7 +121,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
         `Brak wyników dla hasła „${q}”.`,
       clearSearch: 'Wyczyść wyszukiwanie',
       trustNotice:
-        'Wszystkie 21 dokumentów jest dostępnych w postaci oryginalnych plików PDF z potwierdzeniem odpowiednich instytucji.',
+        'Autentyczne certyfikaty w oryginalnym formacie PDF, potwierdzone przez odpowiednie instytucje.',
       trustPartners:
         'Uniwersytet im. Adama Mickiewicza w Poznaniu · Scrum.org · TrainMiC · Europejski Fundusz Społeczny · Franklin IAS · Pioneer People · AI CHAMPIONS',
     },
@@ -177,12 +177,12 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
           pl: '2. Zarządzanie produktem i innowacjami',
         },
         subtitle: {
-          de: 'IT- & Softwareberatung, Design Thinking Zertifikatsprogramm, Product Design, Prototyping & User Testing (ENES608.3)',
-          en: 'IT & Software Advisory, Design Thinking Professional Certificate, Product Design, Prototyping & User Testing (ENES608.3)',
-          pl: 'Doradztwo IT i oprogramowania, program certyfikacyjny Design Thinking, prototypowanie i testy z użytkownikami',
+          de: 'IT- & Softwareberatung, Cloud Architecture (Google Cloud), Design Thinking Zertifikatsprogramm, Product Design, Prototyping & User Testing (ENES608.3)',
+          en: 'IT & Software Advisory, Cloud Architecture (Google Cloud), Design Thinking Professional Certificate, Product Design, Prototyping & User Testing (ENES608.3)',
+          pl: 'Doradztwo IT i oprogramowania, architektura chmurowa (Google Cloud), program certyfikacyjny Design Thinking, prototypowanie i testy',
         },
         items: CERTIFICATES.filter((c) =>
-          ['cert-pm-program', 'cert-dt', 'cert-product-design'].includes(c.id)
+          ['cert-pm-program', 'cert-dt', 'cert-product-design', 'cert-google-cloud-sap'].includes(c.id)
         ).sort((a, b) => parseDateForSorting(b) - parseDateForSorting(a)),
       },
       {
@@ -231,6 +231,17 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
     ],
     []
   );
+
+  // Key credentials highlighted for digital product management & innovation
+  const featuredCredentials = useMemo(() => {
+    const targetIds = [
+      'cert-pspo-1',
+      'cert-psm-1',
+      'cert-google-cloud-sap',
+      'cert-eu-ai-act-2026',
+    ];
+    return CERTIFICATES.filter((c) => targetIds.includes(c.id));
+  }, []);
 
   const totalCertificatesCount = useMemo(
     () => rawCategories.reduce((sum, cat) => sum + cat.items.length, 0),
@@ -416,6 +427,59 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
           </div>
         )}
 
+        {/* Curated Key Credentials for Digital Product Leadership & Innovation */}
+        {!isSearching && (
+          <div className="relative z-10 mb-8 rounded-2xl border border-[#C7A35A]/35 bg-[#101412] p-5 sm:p-6 space-y-4 shadow-md">
+            <div className="flex items-center justify-between flex-wrap gap-2 border-b border-[#0F5C46]/30 pb-3">
+              <div className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-[#10B981] animate-pulse" />
+                <span className="font-mono text-[11px] font-bold tracking-wider text-[#D6B15E] uppercase">
+                  {currentLang === 'de' ? 'KERNQUALIFIKATIONEN · DIGITAL PRODUCT & AI' : currentLang === 'pl' ? 'KLUCZOWE KWALIFIKACJE · DIGITAL PRODUCT & AI' : 'KEY CREDENTIALS · DIGITAL PRODUCT & AI'}
+                </span>
+              </div>
+              <span className="font-mono text-[10px] text-[#A9AEA9] uppercase tracking-wider">
+                {currentLang === 'de' ? 'Offiziell verifizierte Original-PDF-Nachweise' : currentLang === 'pl' ? 'Oficjalnie zweryfikowane certyfikaty PDF' : 'Officially Verified Original PDF Credentials'}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {featuredCredentials.map((cert) => (
+                <div
+                  key={cert.id}
+                  className="rounded-xl border border-[#0F5C46]/40 bg-[#080A09]/90 p-4 flex flex-col justify-between hover:border-[#C7A35A]/70 transition-all shadow-sm"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between text-[10px] font-mono text-[#C7A35A]">
+                      <span className="rounded bg-[#0F5C46]/30 border border-[#0F5C46]/60 px-1.5 py-0.5 font-bold">
+                        PDF VERIFIED
+                      </span>
+                      <span>{cert.issueDate || cert.year}</span>
+                    </div>
+                    <h4 className="font-sans text-xs sm:text-sm font-semibold text-[#F4F1EA] leading-snug line-clamp-2">
+                      {cert.titleI18n?.[currentLang] || cert.title}
+                    </h4>
+                    <p className="font-sans text-[11px] text-[#148B78] truncate">
+                      {cert.issuerI18n?.[currentLang] || cert.issuer}
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setActiveCert(cert)}
+                    className="mt-3.5 pt-2.5 border-t border-[#C7A35A]/15 inline-flex items-center justify-between text-xs font-mono font-semibold text-[#D6B15E] hover:text-[#F4F1EA] transition-colors uppercase w-full group/btn"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <Eye className="h-3 w-3 text-[#10B981]" />
+                      <span>{t.viewCert}</span>
+                    </span>
+                    <span className="text-[#C7A35A] group-hover/btn:translate-x-0.5 transition-transform">→</span>
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Die 4 Gleichwertigen Kategorie-Karten im Accordion-System */}
         <div className="relative z-10 space-y-4 sm:space-y-5">
           {categoriesWithFilteredItems.map((cat) => {
@@ -500,12 +564,27 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
                             className="group flex flex-col justify-between rounded-xl border border-[#0F5C46]/35 bg-[#101412] p-4 sm:p-5 transition-all duration-200 hover:border-[#C7A35A]/70 hover:bg-[#141A16] shadow-sm"
                           >
                             <div>
-                              {/* Top Bar: Kleines neutrales PDF-Symbol + Ausstellungsdatum/Jahr */}
-                              <div className="flex items-center justify-between gap-2 mb-2.5">
-                                <span className="inline-flex items-center gap-1 rounded border border-[#C7A35A]/35 bg-[#0F5C46]/25 px-2 py-0.5 font-sans text-[10px] font-bold text-[#C7A35A]">
-                                  <FileText className="h-3 w-3" />
-                                  PDF
-                                </span>
+                              {/* Top Bar: Kleines neutrales PDF-Symbol + Dokumententyp + Ausstellungsdatum/Jahr */}
+                              <div className="flex items-center justify-between gap-2 mb-2.5 flex-wrap">
+                                <div className="flex items-center gap-1.5 flex-wrap">
+                                  <span className="inline-flex items-center gap-1 rounded border border-[#C7A35A]/35 bg-[#0F5C46]/25 px-2 py-0.5 font-sans text-[10px] font-bold text-[#C7A35A]">
+                                    <FileText className="h-3 w-3" />
+                                    PDF
+                                  </span>
+                                  {cert.docTypeLabel && (
+                                    <span
+                                      className={`inline-flex items-center rounded border px-2 py-0.5 font-sans text-[10px] font-semibold ${
+                                        cert.documentType === 'DIPLOMA'
+                                          ? 'border-[#C7A35A]/60 bg-[#C7A35A]/15 text-[#F4F1EA]'
+                                          : cert.documentType === 'PARTICIPATION'
+                                          ? 'border-[#0F5C46]/60 bg-[#0F5C46]/20 text-[#A9AEA9]'
+                                          : 'border-[#148B78]/60 bg-[#0F5C46]/30 text-[#148B78]'
+                                      }`}
+                                    >
+                                      {cert.docTypeLabel[currentLang] || cert.docTypeLabel.de}
+                                    </span>
+                                  )}
+                                </div>
                                 <span className="font-sans text-xs font-bold text-[#C7A35A]">
                                   {cert.issueDate || cert.year}
                                 </span>

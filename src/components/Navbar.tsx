@@ -4,6 +4,7 @@ import { Menu, X, Linkedin, Download } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
 import { CV_FILE } from '../data/assetRegistry';
+import { getAbsoluteAssetUrl } from '../utils/assetPath';
 
 interface NavbarProps {
   currentLang: Language;
@@ -19,6 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const t = translations[currentLang].nav;
+  const cvAbsoluteUrl = getAbsoluteAssetUrl(CV_FILE);
 
   // Automatically close mobile menu when route changes
   useEffect(() => {
@@ -159,10 +161,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Compact Elegant Emerald/Gold CV Button */}
           <a
-            href={CV_FILE}
+            href={cvAbsoluteUrl}
             target="_blank"
             rel="noopener noreferrer"
-            download="Natalia_Stachowiak_CV_grafisch_FINAL_2026.pdf"
+            download="Natalia_Stachowiak_CV_grafisch.pdf"
             className="group flex min-h-[34px] items-center gap-1.5 rounded-full border border-[#C7A35A]/70 bg-[#0F5C46] px-3.5 py-1.5 font-sans text-xs font-semibold tracking-wider text-[#F4F1EA] transition-all duration-300 hover:border-[#C7A35A] hover:bg-[#148B78] uppercase shadow-sm shrink-0 whitespace-nowrap"
           >
             <Download className="h-3.5 w-3.5 text-[#C7A35A] transition-transform duration-200 group-hover:-translate-y-0.5" />
@@ -212,10 +214,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Tablet Only: Compact CV Button */}
           <a
-            href={CV_FILE}
+            href={cvAbsoluteUrl}
             target="_blank"
             rel="noopener noreferrer"
-            download="Natalia_Stachowiak_CV_grafisch_FINAL_2026.pdf"
+            download="Natalia_Stachowiak_CV_grafisch.pdf"
             className="hidden md:flex min-h-[32px] items-center gap-1.5 rounded-full border border-[#C7A35A]/70 bg-[#0F5C46] px-3 py-1 font-sans text-[11px] font-semibold tracking-wider text-[#F4F1EA] transition-all hover:border-[#C7A35A] hover:bg-[#148B78] uppercase shadow-sm shrink-0 whitespace-nowrap"
           >
             <Download className="h-3 w-3 text-[#C7A35A]" />
@@ -302,10 +304,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               {/* Primary Actions: Download CV + LinkedIn */}
               <div className="pt-3 flex flex-col gap-2">
                 <a
-                  href={CV_FILE}
+                  href={cvAbsoluteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  download="Natalia_Stachowiak_CV_grafisch_FINAL_2026.pdf"
+                  download="Natalia_Stachowiak_CV_grafisch.pdf"
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[#C7A35A] bg-[#0F5C46] py-3 font-sans text-xs font-semibold tracking-wider text-[#F4F1EA] shadow-md active:scale-98 uppercase transition-colors hover:bg-[#148B78]"
                 >

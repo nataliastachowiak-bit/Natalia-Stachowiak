@@ -37,10 +37,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           
           {/* LEFT SIDE: Exact Photograph (Untouched, Clean Editorial Frame) */}
           <div className="lg:col-span-5 flex justify-center lg:justify-start">
-            <div className="relative group max-w-[280px] sm:max-w-[320px] lg:max-w-[340px] xl:max-w-[360px] w-full">
+            <div className="relative group max-w-[320px] sm:max-w-[360px] lg:max-w-[400px] xl:max-w-[440px] w-full">
               <div
-                className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-[#C7A35A]/30 bg-[#101412] shadow-[0_20px_45px_rgba(0,0,0,0.85)]"
-                style={{ aspectRatio: '3 / 4' }}
+                className="relative aspect-[1008/947] w-full overflow-hidden rounded-2xl border border-[#C7A35A]/30 bg-[#101412] shadow-[0_20px_45px_rgba(0,0,0,0.85)]"
+                style={{ aspectRatio: '1008 / 947' }}
               >
                 <img
                   src={aboutImageSrc}
@@ -50,9 +50,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                   onError={(e) => {
                     (e.currentTarget as HTMLImageElement).src = ABOUT_IMAGE;
                   }}
-                  className="h-full w-full object-cover object-[center_top] transition-transform duration-700 group-hover:scale-[1.03]"
+                  className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080A09]/80 via-transparent to-transparent" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080A09]/70 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-4 right-4 text-center">
                   <p className="font-['Caveat',cursive] text-lg sm:text-xl text-[#C7A35A]">
                     „Different experiences. One direction.“
@@ -86,21 +86,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <p>
                 {currentLang === 'de' ? (
                   <>
-                    Mein Hintergrund ist interdisziplinär. Genau darin sehe ich meine Stärke:
-                    Ich verbinde analytisches Denken mit unternehmerischer Erfahrung,
-                    Kreativität und einem echten Interesse am Menschen.
+                    Mein Profil ist interdisziplinär geprägt. Genau darin liegt meine Stärke:
+                    Ich verbinde wissenschaftliche Analyse (M.Sc. Chemie), Umweltschutzmanagement
+                    und langjährige unternehmerische Praxis mit modernem digitalem Produktmanagement.
                   </>
                 ) : currentLang === 'pl' ? (
                   <>
-                    Mój profil jest interdyscyplinarny. Właśnie w tym dostrzegam swoją siłę:
-                    łączę analityczne myślenie z doświadczeniem przedsiębiorczym,
-                    kreatywnością i autentycznym zainteresowaniem człowiekiem.
+                    Mój profil jest konsekwentnie interdyscyplinarny. Właśnie w tym tkwi moja siła:
+                    łączę analizę naukową (mgr chemii), zarządzanie ochroną środowiska
+                    oraz wieloletnią praktykę przedsiębiorczą z nowoczesnym zarządzaniem produktami cyfrowymi.
                   </>
                 ) : (
                   <>
-                    My background is interdisciplinary. That is precisely where I see my strength:
-                    I connect analytical thinking with entrepreneurial experience,
-                    creativity, and a genuine interest in people.
+                    My profile is distinctly interdisciplinary. That is precisely where my strength lies:
+                    connecting empirical scientific analysis (M.Sc. Chemistry), environmental protection management,
+                    and extensive entrepreneurial experience with modern digital product leadership.
                   </>
                 )}
               </p>
@@ -108,18 +108,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <p>
                 {currentLang === 'de' ? (
                   <>
-                    Heute entwickle ich meine Expertise im digitalen Produktmanagement,
-                    in KI und digitaler Transformation weiter.
+                    Komplexe Systeme analysieren, ökologische und ökonomische Zusammenhänge verstehen
+                    und in nutzerzentrierte, datenbasierte Produktkonzepte übersetzen – von der
+                    Problemvalidierung bis zur agilen Umsetzung.
                   </>
                 ) : currentLang === 'pl' ? (
                   <>
-                    Dziś rozwijam swoje kompetencje w cyfrowym zarządzaniu produktem,
-                    sztucznej inteligencji i transformacji cyfrowej.
+                    Analizuję złożone systemy, rozumiem zależności ekologiczne i biznesowe
+                    oraz przekładam je na zorientowane na użytkownika, oparte na danych koncepcje produktów cyfrowych –
+                    od walidacji problemu po zwinne wdrożenie.
                   </>
                 ) : (
                   <>
-                    Today, I am continuously deepening my expertise in digital product management,
-                    applied AI, and digital transformation.
+                    Analyzing complex systems, understanding ecological and commercial relationships,
+                    and translating them into user-centered, data-informed product concepts –
+                    from problem validation through to agile execution.
                   </>
                 )}
               </p>
@@ -128,18 +131,18 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 {currentLang === 'de' ? (
                   <>
                     Mich interessiert nicht nur, was Technologie möglich macht,
-                    sondern vor allem, welchen Mehrwert sie für Menschen und
+                    sondern vor allem, welchen messbaren Mehrwert sie für Menschen und
                     Unternehmen schafft.
                   </>
                 ) : currentLang === 'pl' ? (
                   <>
                     Interesuje mnie nie tylko to, co umożliwia technologia,
-                    lecz przede wszystkim realna wartość, jaką wnosi dla ludzi i firm.
+                    lecz przede wszystkim wymierna wartość, jaką wnosi dla ludzi i przedsiębiorstw.
                   </>
                 ) : (
                   <>
                     I am not just driven by what technology makes possible,
-                    but above all by the tangible value it delivers for people and businesses.
+                    but above all by the measurable value and genuine progress it delivers for people and businesses.
                   </>
                 )}
               </p>

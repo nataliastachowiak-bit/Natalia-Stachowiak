@@ -42,6 +42,10 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({
     return <EcoMarginCaseStudyPage currentLang={currentLang} mediaAssets={mediaAssets} />;
   }
 
+  if (slug === 'resourceloop-ai' || slug === 'resourceloop') {
+    return <Navigate to="/projects#resourceloop" replace />;
+  }
+
   const project = slug ? getProjectBySlug(slug) : undefined;
 
   if (!project) {

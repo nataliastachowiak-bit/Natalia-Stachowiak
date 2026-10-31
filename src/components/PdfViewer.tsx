@@ -2,8 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
 import { Loader2, AlertCircle } from 'lucide-react';
 
+import { resolveAssetUrl } from '../utils/assetPath';
+
 if (typeof window !== 'undefined') {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = resolveAssetUrl('/pdf.worker.min.js');
 }
 
 interface PdfViewerProps {
@@ -26,8 +28,9 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({
   const canvasesRef = useRef<Map<number, HTMLCanvasElement>>(new Map());
   const renderTasksRef = useRef<Map<number, any>>(new Map());
 
-  // Clean URL: strip hash, decode, and encode safely
-  const cleanBaseUrl = pdfUrl.split('#')[0];
+  // Clean URL: resolve base, strip hash, decode, and encode safely
+  const resolvedUrl = resolveAssetUrl(pdfUrl);
+  const cleanBaseUrl = resolvedUrl.split('#')[0];
   const safePdfUrl = encodeURI(decodeURI(cleanBaseUrl));
 
   useEffect(() => {

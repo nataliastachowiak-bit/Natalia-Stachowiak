@@ -1,5 +1,5 @@
 import { MediaAssets } from '../types';
-import { LOCKED_ASSETS } from './assetRegistry';
+import { LOCKED_ASSETS, PROJECT_BOOK_COVER } from './assetRegistry';
 
 export const DEFAULT_MEDIA: MediaAssets = {
   heroPortrait: LOCKED_ASSETS.heroPortrait,
@@ -27,6 +27,9 @@ export const DEFAULT_MEDIA: MediaAssets = {
   circularTwinFunktionen: LOCKED_ASSETS.circularTwinFunktionen,
   circularTwinImpact: LOCKED_ASSETS.circularTwinImpact,
   circularTwinExperience: LOCKED_ASSETS.circularTwinExperience,
+  resourceLoopCover: LOCKED_ASSETS.resourceLoopCover,
+  resourceLoopImage: LOCKED_ASSETS.resourceLoopImage,
+  resourceLoopVision: LOCKED_ASSETS.resourceLoopVision,
   aiBuildingCover: LOCKED_ASSETS.aiBuildingCover,
   aiBuildingVision: LOCKED_ASSETS.aiBuildingVision,
   aiBuildingWorkflow: LOCKED_ASSETS.aiBuildingWorkflow,
@@ -142,6 +145,8 @@ export function getInitialMediaAssets(): MediaAssets {
           (merged as any)[k] = v;
         }
       }
+      // Always enforce authentic locked book cover
+      merged.bookCover = PROJECT_BOOK_COVER;
       return merged;
     }
   } catch (e) {

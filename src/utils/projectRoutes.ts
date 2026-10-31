@@ -35,6 +35,9 @@ export function getProjectSlug(idOrProject: string | ProjectData): string {
       return 'ai-building-concept';
     case 'du-bist-nicht-zu-viel':
       return 'du-bist-nicht-zu-viel';
+    case 'resourceloop-ai':
+    case 'resourceloop':
+      return 'resourceloop-ai';
     default:
       return id;
   }
@@ -78,17 +81,16 @@ export function getProjectBySlug(slug: string): ProjectData | undefined {
   return PROJECTS.find((p) => p.id === normalized);
 }
 
-// Ordered sequence for case study navigation: Previous / Next
+// Ordered sequence for case study navigation: Previous / Next (Projects 01 to 08)
 export const CASE_STUDY_SEQUENCE = [
   'environix',
   'ai-building-concept',
   'street-life',
   'circulartwin-ai',
-  'ecomargin-ai',
   'gain',
   'vinyl',
   'dine-ease',
-  'du-bist-nicht-zu-viel',
+  'ecomargin-ai',
 ];
 
 export function getPreviousProject(currentId: string): ProjectData {

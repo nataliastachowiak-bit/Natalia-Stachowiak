@@ -139,12 +139,12 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
 
   const zoomPercent = Math.round(zoom * 100);
 
-  const hasValidPdf = Boolean(cert.pdfUrl && !pdfLoadError);
+  const hasValidPdf = Boolean(cert.pdfUrl && cert.isAuthentic !== false && !pdfLoadError);
 
   const t = {
     de: {
       eyebrowAvailable: 'ORIGINAL-DOKUMENT · ZERTIFIZIERTER NACHWEIS',
-      eyebrowMissing: 'QUALIFIKATIONSDETAILS · ORIGINAL-PDF AUSSTEHEND',
+      eyebrowMissing: 'QUALIFIKATIONSDETAILS · ORIGINAL-PDF ERFORDERLICH',
       pdfView: 'PDF Ansicht',
       detailsView: 'Curriculum & Details',
       zoomIn: 'Vergrößern (+)',
@@ -152,7 +152,7 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
       zoomReset: 'Originalgröße (100%)',
       close: 'Schließen',
       verifiedNoticeAvailable: 'Offiziell hinterlegtes Dokument im Portfolio von',
-      verifiedNoticeMissing: 'Das authentische PDF liegt für dieses Dokument noch nicht vor.',
+      verifiedNoticeMissing: 'Das authentische Original-PDF liegt für dieses Dokument noch nicht vor.',
       verifyOnline: 'Online verifizieren ↗',
       idCopied: 'Kopiert!',
       copyId: 'ID kopieren',
@@ -171,7 +171,7 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
     },
     en: {
       eyebrowAvailable: 'ORIGINAL DOCUMENT · VERIFIED CREDENTIAL',
-      eyebrowMissing: 'CREDENTIAL DETAILS · ORIGINAL PDF PENDING',
+      eyebrowMissing: 'CREDENTIAL DETAILS · ORIGINAL PDF REQUIRED',
       pdfView: 'PDF View',
       detailsView: 'Curriculum & Details',
       zoomIn: 'Zoom In (+)',
@@ -198,7 +198,7 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
     },
     pl: {
       eyebrowAvailable: 'ORYGINALNY DOKUMENT · CERTYFIKAT',
-      eyebrowMissing: 'SZCZEGÓŁY KWALIFIKACJI · OCZEKIWANIE NA PDF',
+      eyebrowMissing: 'SZCZEGÓŁY KWALIFIKACJI · WYMAGANY ORYGINALNY PLIK PDF',
       pdfView: 'Podgląd PDF',
       detailsView: 'Program & Szczegóły',
       zoomIn: 'Powiększ (+)',
@@ -260,9 +260,9 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
               <Award className="h-5 w-5 sm:h-6 sm:w-6" />
             </div>
             <div className="min-w-0">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
                 <span className="font-sans text-[10px] sm:text-[11px] font-bold tracking-widest text-[#C7A35A] uppercase truncate">
-                  {hasValidPdf ? t.eyebrowAvailable : t.eyebrowMissing}
+                  {cert.docTypeLabel?.[currentLang] || cert.docTypeLabel?.de || (hasValidPdf ? t.eyebrowAvailable : t.eyebrowMissing)}
                 </span>
                 {cert.courseCode && (
                   <span className="rounded border border-[#C7A35A]/40 bg-[#101412] px-1.5 py-0.2 text-[10px] font-mono text-[#F4F1EA] shrink-0">
@@ -351,26 +351,7 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
                   </span>
                 </span>
 
-                {/* Controls: Zoom + Upload */}
                 <div className="flex items-center gap-2">
-                  {/* Upload / Replace button */}
-                  <button
-                    type="button"
-                    onClick={handleUploadClick}
-                    disabled={isUploading}
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-[#C7A35A]/40 bg-[#080A09] px-2.5 py-1 text-xs font-semibold text-[#C7A35A] hover:bg-[#0F5C46] hover:text-white transition-all uppercase tracking-wider"
-                    title={hasValidPdf ? t.replacePdf : t.uploadPdf}
-                  >
-                    {isUploading ? (
-                      <Loader2 className="h-3 w-3 animate-spin" />
-                    ) : (
-                      <Upload className="h-3 w-3 text-[#C7A35A]" />
-                    )}
-                    <span className="text-[11px]">
-                      {isUploading ? t.uploading : hasValidPdf ? t.replacePdf : t.uploadPdf}
-                    </span>
-                  </button>
-
                   {/* Zoom Controls */}
                   {hasValidPdf && (
                     <div className="flex items-center gap-1 bg-[#080A09] border border-[#C7A35A]/30 rounded-lg p-1">

@@ -10,31 +10,39 @@
  * Changing language (DE / EN / PL) never changes any image assignment.
  */
 
+import { resolveAssetUrl } from '../utils/assetPath';
+
 // Explicit, immutable single source of truth for all section images:
-export const HOME_MAIN_IMAGE = '/assets/hero_portrait.jpg';
-export const ABOUT_IMAGE = '/assets/about_portrait.jpg';
-export const CV_FILE = '/assets/Natalia_Stachowiak_CV_grafisch_FINAL_2026.pdf';
-export const PROJECT_ENVIRONIX_IMAGE = '/assets/environix_preview.jpg';
-export const PROJECT_BUILDING_AI_IMAGE = '/assets/ai_building_vision.png';
-export const PROJECT_BUILDING_AI_WORKFLOW = '/assets/ai_building_workflow.png';
-export const PROJECT_STREETLIFE_IMAGE = '/assets/streetlife_mockup.jpg';
-export const PROJECT_CIRCULAR_AI_IMAGE = '/assets/circulartwin_vision.png';
-export const CIRCULARTWIN_FUNKTIONEN = '/assets/circulartwin_funktionen.png';
-export const CIRCULARTWIN_IMPACT = '/assets/circulartwin_impact.png';
-export const PROJECT_GAIN_IMAGE = '/assets/gain_mockup.jpg';
-export const PROJECT_VINYL_IMAGE = '/assets/vinyl_mockup.jpg';
-export const PROJECT_DINEEASE_IMAGE = '/assets/dineease_mockup.jpg';
-export const PROJECT_BOOK_COVER = '/assets/book_cover.jpg';
-export const PROJECT_BOOK_INSTAGRAM_QR = '/assets/instagram_qr.jpg';
-export const JOURNEY_LANDSCAPE_IMAGE = '/assets/my_journey_landscape.jpg';
+export const NATALIA_BUSINESS_PORTRAIT = resolveAssetUrl('/images/natalia-business-portrait.png');
+export const HOME_MAIN_IMAGE = NATALIA_BUSINESS_PORTRAIT;
+export const MOBILE_HERO_IMAGE = NATALIA_BUSINESS_PORTRAIT;
+export const NATALIA_ABOUT_PORTRAIT = resolveAssetUrl('/images/natalia-about-portrait.png');
+export const ABOUT_IMAGE = NATALIA_ABOUT_PORTRAIT;
+export const CV_FILE = resolveAssetUrl('/assets/Natalia_Stachowiak_CV_grafisch.pdf');
+export const PROJECT_ENVIRONIX_IMAGE = resolveAssetUrl('/assets/environix_preview.jpg');
+export const PROJECT_BUILDING_AI_IMAGE = resolveAssetUrl('/assets/ai_building_vision.png');
+export const PROJECT_BUILDING_AI_WORKFLOW = resolveAssetUrl('/assets/ai_building_workflow.png');
+export const PROJECT_STREETLIFE_IMAGE = resolveAssetUrl('/assets/streetlife_mockup.jpg');
+export const PROJECT_CIRCULAR_AI_IMAGE = resolveAssetUrl('/assets/circulartwin_vision.png');
+export const CIRCULARTWIN_FUNKTIONEN = resolveAssetUrl('/assets/circulartwin_funktionen.png');
+export const CIRCULARTWIN_IMPACT = resolveAssetUrl('/assets/circulartwin_impact.png');
+export const PROJECT_GAIN_IMAGE = resolveAssetUrl('/assets/gain_mockup.jpg');
+export const PROJECT_VINYL_IMAGE = resolveAssetUrl('/assets/vinyl_mockup.jpg');
+export const PROJECT_DINEEASE_IMAGE = resolveAssetUrl('/assets/dineease_mockup.jpg');
+export const PROJECT_BOOK_COVER = resolveAssetUrl('/assets/book_cover.png');
+export const PROJECT_BOOK_INSTAGRAM_QR = resolveAssetUrl('/assets/instagram_qr.jpg');
+export const JOURNEY_LANDSCAPE_IMAGE = resolveAssetUrl('/assets/my_journey_landscape.jpg');
+
+// ResourceLoop AI (Industrial Material & Circular Intelligence)
+export const PROJECT_RESOURCELOOP_IMAGE = resolveAssetUrl('/assets/resourceloop_ai.png');
 
 // 09 EcoMargin AI (Dedicated namespace - completely separated from existing assets)
-export const PROJECT_ECOMARGIN_IMAGE = '/assets/ecomargin_cover.svg';
-export const ECOMARGIN_COVER = '/assets/ecomargin_cover.svg';
-export const ECOMARGIN_HERO = '/assets/ecomargin_cover.svg';
-export const ECOMARGIN_PROBLEM = '/assets/ecomargin_problem.svg';
-export const ECOMARGIN_FLOW = '/assets/ecomargin_flow.svg';
-export const ECOMARGIN_PROTOTYPE = '/assets/ecomargin_prototype.svg';
+export const PROJECT_ECOMARGIN_IMAGE = resolveAssetUrl('/assets/ecomargin_cover.svg');
+export const ECOMARGIN_COVER = resolveAssetUrl('/assets/ecomargin_cover.svg');
+export const ECOMARGIN_HERO = resolveAssetUrl('/assets/ecomargin_cover.svg');
+export const ECOMARGIN_PROBLEM = resolveAssetUrl('/assets/ecomargin_problem.svg');
+export const ECOMARGIN_FLOW = resolveAssetUrl('/assets/ecomargin_flow.svg');
+export const ECOMARGIN_PROTOTYPE = resolveAssetUrl('/assets/ecomargin_prototype.svg');
 
 export const LOCKED_ASSETS = {
   // Canonical Identifiers
@@ -47,6 +55,8 @@ export const LOCKED_ASSETS = {
   aboutPhoto: ABOUT_IMAGE,
   heroPortrait: HOME_MAIN_IMAGE,
   aboutPortrait: ABOUT_IMAGE,
+  mobileHeroImage: NATALIA_BUSINESS_PORTRAIT,
+  nataliaBusinessPortrait: NATALIA_BUSINESS_PORTRAIT,
 
   // Project Visuals & Case Studies (Permanently Assigned)
   // 01 eNvironix AI
@@ -97,6 +107,11 @@ export const LOCKED_ASSETS = {
 
   // Panoramic Journey Visual
   journeyLandscape: JOURNEY_LANDSCAPE_IMAGE,
+
+  // ResourceLoop AI (Industrial Material & Circular Intelligence)
+  resourceLoopCover: PROJECT_RESOURCELOOP_IMAGE,
+  resourceLoopImage: PROJECT_RESOURCELOOP_IMAGE,
+  resourceLoopVision: PROJECT_RESOURCELOOP_IMAGE,
 } as const;
 
 export type LockedAssetKey = keyof typeof LOCKED_ASSETS;
@@ -121,6 +136,12 @@ export function getLockedAsset(key: string): string {
     case 'homemainimage':
     case 'profilephoto':
       return HOME_MAIN_IMAGE;
+
+    case 'mobilehero':
+    case 'mobileheroimage':
+    case 'nataliabusinessportrait':
+    case 'natalia-business-portrait':
+      return NATALIA_BUSINESS_PORTRAIT;
 
     case 'about':
     case 'aboutportrait':
@@ -207,6 +228,13 @@ export function getLockedAsset(key: string): string {
     case 'bookcover':
     case 'du-bist-nicht-zu-viel':
       return PROJECT_BOOK_COVER;
+
+    case 'resourceloop':
+    case 'resourceloop-ai':
+    case 'resourceloopimage':
+    case 'resourceloopcover':
+    case 'resourceloopvision':
+      return PROJECT_RESOURCELOOP_IMAGE;
 
     case 'instagramqr':
     case 'instagram_qr':

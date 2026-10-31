@@ -83,6 +83,9 @@ export interface CertificateItem {
   skillsAcquired?: string[];
   mediaKey?: string;
   pdfUrl?: string;
+  isAuthentic?: boolean;
+  documentType?: 'CERTIFICATE' | 'PARTICIPATION' | 'DIPLOMA';
+  docTypeLabel?: { de: string; en: string; pl: string };
   titleI18n?: { de: string; en: string; pl: string };
   issuerI18n?: { de: string; en: string; pl: string };
   focusI18n?: { de: string; en: string; pl: string };

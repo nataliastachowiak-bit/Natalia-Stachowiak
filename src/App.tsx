@@ -136,6 +136,11 @@ export default function App() {
       updated.aiBuildingCover = value;
       updated.aiBuildingVision = value;
     }
+    if (key === 'resourceLoopCover' || key === 'resourceLoopImage' || key === 'resourceLoopVision') {
+      updated.resourceLoopCover = value;
+      updated.resourceLoopImage = value;
+      updated.resourceLoopVision = value;
+    }
     setMediaAssets(updated);
     saveMediaAssets(updated);
     saveMediaItemToDB(key, value);
@@ -160,7 +165,7 @@ export default function App() {
   }, [isAnyModalOpen]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <ScrollToTop />
       <AudioRouteSync />
 

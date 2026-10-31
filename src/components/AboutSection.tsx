@@ -95,12 +95,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
           <div className="lg:col-span-4 max-w-[280px] sm:max-w-sm mx-auto w-full lg:max-w-none">
             <div className="group relative overflow-hidden rounded-2xl border border-[#C7A35A]/40 bg-gradient-to-b from-[#101412]/40 via-[#080A09] to-[#080A09] p-2 shadow-[0_15px_35px_rgba(6,63,53,0.4)] transition-all duration-300 hover:border-[#C7A35A] hover:shadow-[0_0_30px_rgba(201,166,107,0.3)]">
               {aboutImageSrc && !portraitError ? (
-                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl" style={{ aspectRatio: '3 / 4' }}>
+                <div className="relative aspect-[1008/947] w-full overflow-hidden rounded-xl" style={{ aspectRatio: '1008 / 947' }}>
                   <img
                     src={aboutImageSrc}
                     alt="Natalia mit Bulldogge"
                     onError={() => setPortraitError(true)}
-                    className="h-full w-full object-cover object-[center_top] transition-transform duration-700 group-hover:scale-105"
+                    className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080A09] via-transparent to-transparent opacity-40" />
                   

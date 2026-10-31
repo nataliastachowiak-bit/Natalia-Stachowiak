@@ -50,20 +50,27 @@ async function startServer() {
     next();
   });
 
-  // Dedicated robust handler for PDF certificate requests with proper MIME & inline header
-  app.get(['*.pdf', '*/assets/certificates/*.pdf'], (req, res, next) => {
+  // Dedicated robust handler for ALL PDF requests (CV and certificates) with proper MIME, inline disposition & CORS
+  app.use((req, res, next) => {
+    if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+    const cleanPath = req.path.toLowerCase();
+    if (!cleanPath.endsWith('.pdf')) return next();
+
     try {
       const decodedUrl = decodeURIComponent(req.path);
+      const filename = path.basename(decodedUrl);
       const candidates = [
         path.join(publicDir, decodedUrl),
-        path.join(assetsDir, 'certificates', path.basename(decodedUrl)),
-        path.join(publicDir, path.basename(decodedUrl)),
+        path.join(assetsDir, filename),
+        path.join(assetsDir, 'certificates', filename),
+        path.join(publicDir, filename),
       ];
       for (const file of candidates) {
         if (fs.existsSync(file) && fs.statSync(file).isFile()) {
           res.setHeader('Content-Type', 'application/pdf');
-          res.setHeader('Content-Disposition', 'inline');
+          res.setHeader('Content-Disposition', 'inline; filename="' + encodeURIComponent(filename) + '"');
           res.setHeader('Access-Control-Allow-Origin', '*');
+          res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
           res.setHeader('Cache-Control', 'public, max-age=3600');
           return res.sendFile(file);
         }
@@ -74,7 +81,10 @@ async function startServer() {
     next();
   });
 
+  const imagesDir = path.join(publicDir, 'images');
+
   app.use('/assets', express.static(assetsDir, { maxAge: '1h' }));
+  app.use('/images', express.static(imagesDir, { maxAge: '1h' }));
   app.use('/uploads', express.static(uploadsDir, { maxAge: '1h' }));
   app.use(express.static(publicDir));
 

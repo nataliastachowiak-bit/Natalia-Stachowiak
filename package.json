@@ -1,11 +1,12 @@
 {
-  "name": "react-example",
+  "name": "natalia-stachowiak-portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
     "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
+    "build:gh": "cross-env GITHUB_PAGES=true vite build || GITHUB_PAGES=true vite build",
     "start": "node dist/server.cjs",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",

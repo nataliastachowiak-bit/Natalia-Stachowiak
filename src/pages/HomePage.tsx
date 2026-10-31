@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Upload } from 'lucide-react';
 import { Language, MediaAssets, ProjectData } from '../types';
-import { LOCKED_ASSETS, HOME_MAIN_IMAGE, getLockedAsset } from '../data/assetRegistry';
+import { LOCKED_ASSETS, HOME_MAIN_IMAGE, NATALIA_BUSINESS_PORTRAIT, getLockedAsset } from '../data/assetRegistry';
 import { PROJECTS } from '../data/portfolioData';
 import { getProjectPath } from '../utils/projectRoutes';
 import { PageTransition } from '../components/PageTransition';
@@ -23,17 +23,22 @@ export const HomePage: React.FC<HomePageProps> = ({
 }) => {
   const navigate = useNavigate();
 
-  const portraitSrc = mediaAssets.heroPortrait || mediaAssets.profilePhoto || HOME_MAIN_IMAGE;
+  // Authentic original business portrait (black hair, black blazer, white top, green background) across desktop & mobile
+  const portraitSrc = (mediaAssets.heroPortrait && !mediaAssets.heroPortrait.includes('hero_portrait.jpg'))
+    ? mediaAssets.heroPortrait
+    : NATALIA_BUSINESS_PORTRAIT;
+  const desktopPortraitSrc = portraitSrc;
+  const mobilePortraitSrc = portraitSrc;
   // Curate top 4 primary selected projects (01 eNvironix AI, 02 Building AI Concept, 03 Street.life, 04 CircularTwin AI)
   const previewProjects = PROJECTS.slice(0, 4);
 
   const t = {
     de: {
       subLocation: 'Bielefeld · Digitales Produktmanagement',
-      badge: 'ANGEHENDE IT-PRODUKTMANAGERIN',
+      badge: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · SUSTAINABILITY',
       headlinePart1: 'Turning problems',
       headlinePart2: 'into products.',
-      description: 'Ich verbinde analytische Naturwissenschaft, Prozess-Struktur und digitale Technologie für nutzerzentrierte, messbar erfolgreiche Produkte mit Substanz.',
+      description: 'Ich verbinde wissenschaftliche Analyse, unternehmerische Erfahrung und digitales Produktmanagement. Mein Fokus liegt auf nutzerzentrierten, datenbasierten und nachhaltigen Lösungen – von der Problemvalidierung bis zum Produktkonzept.',
       ctaWork: 'MEINE PROJEKTE ENTDECKEN →',
       ctaAbout: 'ÜBER MICH',
       selectedWorkBadge: 'AUSGEWÄHLTE PRODUKTE',
@@ -47,10 +52,10 @@ export const HomePage: React.FC<HomePageProps> = ({
     },
     en: {
       subLocation: 'Bielefeld · Digital Product Management',
-      badge: 'ASPIRING IT PRODUCT MANAGER',
+      badge: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · SUSTAINABILITY',
       headlinePart1: 'Turning problems',
       headlinePart2: 'into products.',
-      description: 'Connecting empirical scientific rigor, structured execution, and modern digital technology to build user-centered, measurable products that matter.',
+      description: 'I connect scientific analysis, entrepreneurial experience, and digital product management. My focus is on user-centered, data-driven, and sustainable solutions – from problem validation to product concept.',
       ctaWork: 'VIEW MY WORK →',
       ctaAbout: 'ABOUT ME',
       selectedWorkBadge: 'SELECTED PRODUCTS',
@@ -64,10 +69,10 @@ export const HomePage: React.FC<HomePageProps> = ({
     },
     pl: {
       subLocation: 'Bielefeld · Cyfrowe Zarządzanie Produktem',
-      badge: 'IT & AI PRODUCT MANAGER',
+      badge: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · SUSTAINABILITY',
       headlinePart1: 'Turning problems',
       headlinePart2: 'into products.',
-      description: 'Łączę myślenie ścisłe, strukturę procesową i technologie cyfrowe, tworząc produkty skupione na użytkowniku i realnej wartości biznesowej.',
+      description: 'Łączę analizę naukową, doświadczenie przedsiębiorcze i zarządzanie produktami cyfrowymi. Koncentruję się na rozwiązaniach zorientowanych na użytkownika, opartych na danych i zrównoważonych – od walidacji problemu po koncepcję produktu.',
       ctaWork: 'ODKRYJ MOJE PROJEKTY →',
       ctaAbout: 'O MNIE',
       selectedWorkBadge: 'WYBRANE PRODUKTY',
@@ -98,16 +103,21 @@ export const HomePage: React.FC<HomePageProps> = ({
                 className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-[#C7A35A]/40 bg-[#101412] shadow-[0_20px_50px_rgba(0,0,0,0.85)]"
                 style={{ aspectRatio: '3 / 4' }}
               >
-                <img
-                  src={portraitSrc}
-                  alt="Natalia Stachowiak"
-                  loading="eager"
-                  decoding="async"
-                  onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).src = HOME_MAIN_IMAGE;
-                  }}
-                  className="h-full w-full object-cover object-[center_top] transition-transform duration-700 group-hover:scale-105"
-                />
+                <picture>
+                  {/* Desktop viewports (min-width: 1024px): retain existing desktop portrait assignment */}
+                  <source media="(min-width: 1024px)" srcSet={desktopPortraitSrc} />
+                  {/* Mobile & tablet viewports: authentic business portrait */}
+                  <img
+                    src={mobilePortraitSrc}
+                    alt="Natalia Stachowiak"
+                    loading="eager"
+                    decoding="async"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = mobilePortraitSrc;
+                    }}
+                    className="h-full w-full object-cover object-[center_top] transition-transform duration-700 group-hover:scale-105"
+                  />
+                </picture>
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080A09]/80 via-transparent to-transparent" />
                 
                 {/* Optional change image button on hover when editable */}

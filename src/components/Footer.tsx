@@ -1,12 +1,14 @@
 import React from 'react';
 import { Language } from '../types';
 import { CV_FILE } from '../data/assetRegistry';
+import { getAbsoluteAssetUrl } from '../utils/assetPath';
 
 interface FooterProps {
   currentLang: Language;
 }
 
 export const Footer: React.FC<FooterProps> = ({ currentLang }) => {
+  const cvAbsoluteUrl = getAbsoluteAssetUrl(CV_FILE);
   return (
     <footer className="w-full border-t border-[#C7A35A]/15 bg-[#080A09] py-2.5 px-4 sm:px-6 lg:px-8 text-xs text-[#A9AEA9] shrink-0">
       <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-2">
@@ -33,10 +35,10 @@ export const Footer: React.FC<FooterProps> = ({ currentLang }) => {
             LINKEDIN ↗
           </a>
           <a
-            href={CV_FILE}
+            href={cvAbsoluteUrl}
             target="_blank"
             rel="noopener noreferrer"
-            download="Natalia_Stachowiak_CV_grafisch_FINAL_2026.pdf"
+            download="Natalia_Stachowiak_CV_grafisch.pdf"
             className="hover:text-[#C7A35A] transition-colors"
           >
             CV HERUNTERLADEN ↓

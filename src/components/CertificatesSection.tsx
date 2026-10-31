@@ -58,7 +58,7 @@ export const CertificatesSection: React.FC<CertificatesSectionProps> = ({
       expandAll: 'Alle aufklappen',
       collapseAll: 'Alle schließen',
       officialDoc: 'Originaldokument hinterlegt',
-      pendingDoc: 'Original-PDF noch nicht hinterlegt',
+      pendingDoc: 'Original-PDF erforderlich',
     },
     en: {
       label: 'CERTIFICATES & QUALIFICATIONS',
@@ -72,7 +72,7 @@ export const CertificatesSection: React.FC<CertificatesSectionProps> = ({
       expandAll: 'Expand All',
       collapseAll: 'Collapse All',
       officialDoc: 'Original document deposited',
-      pendingDoc: 'Original PDF pending',
+      pendingDoc: 'Original PDF required',
     },
     pl: {
       label: 'CERTYFIKATY I KWALIFIKACJE',
@@ -86,7 +86,7 @@ export const CertificatesSection: React.FC<CertificatesSectionProps> = ({
       expandAll: 'Rozwiń wszystko',
       collapseAll: 'Zwiń wszystko',
       officialDoc: 'Oryginalny dokument zdeponowany',
-      pendingDoc: 'Oryginalny plik PDF oczekuje na przesłanie',
+      pendingDoc: 'Wymagany oryginalny plik PDF',
     },
   }[currentLang];
 
@@ -138,12 +138,12 @@ export const CertificatesSection: React.FC<CertificatesSectionProps> = ({
         pl: '2. Zarządzanie produktem i innowacjami',
       },
       subtitle: {
-        de: 'IT- & Softwareberatung, Design Thinking Zertifikatsprogramm, Product Design, Prototyping & User Testing (ENES608.3)',
-        en: 'IT & Software Advisory, Design Thinking Professional Certificate, Product Design, Prototyping & User Testing (ENES608.3)',
-        pl: 'Doradztwo IT i oprogramowania, program certyfikacyjny Design Thinking, prototypowanie i testy z użytkownikami',
+        de: 'IT- & Softwareberatung, Cloud Architecture (Google Cloud), Design Thinking Zertifikatsprogramm, Product Design, Prototyping & User Testing (ENES608.3)',
+        en: 'IT & Software Advisory, Cloud Architecture (Google Cloud), Design Thinking Professional Certificate, Product Design, Prototyping & User Testing (ENES608.3)',
+        pl: 'Doradztwo IT i oprogramowania, architektura chmurowa (Google Cloud), program certyfikacyjny Design Thinking, prototypowanie i testy',
       },
       items: CERTIFICATES.filter((c) =>
-        ['cert-pm-program', 'cert-dt', 'cert-product-design'].includes(c.id)
+        ['cert-pm-program', 'cert-dt', 'cert-product-design', 'cert-google-cloud-sap'].includes(c.id)
       ).sort((a, b) => parseDateForSorting(b) - parseDateForSorting(a)),
     },
     {
@@ -317,12 +317,27 @@ export const CertificatesSection: React.FC<CertificatesSectionProps> = ({
                             className="group flex flex-col justify-between rounded-xl border border-[#0F5C46]/35 bg-[#101412] p-4 sm:p-5 transition-all duration-200 hover:border-[#C7A35A]/70 hover:bg-[#141A16] shadow-sm"
                           >
                             <div>
-                              {/* Top Bar: Kleines neutrales PDF-Symbol + Ausstellungsdatum/Jahr */}
-                              <div className="flex items-center justify-between gap-2 mb-2.5">
-                                <span className="inline-flex items-center gap-1 rounded border border-[#C7A35A]/35 bg-[#0F5C46]/25 px-2 py-0.5 font-sans text-[10px] font-bold text-[#C7A35A]">
-                                  <FileText className="h-3 w-3" />
-                                  PDF
-                                </span>
+                              {/* Top Bar: Kleines neutrales PDF-Symbol + Dokumententyp + Ausstellungsdatum/Jahr */}
+                              <div className="flex items-center justify-between gap-2 mb-2.5 flex-wrap">
+                                <div className="flex items-center gap-1.5 flex-wrap">
+                                  <span className="inline-flex items-center gap-1 rounded border border-[#C7A35A]/35 bg-[#0F5C46]/25 px-2 py-0.5 font-sans text-[10px] font-bold text-[#C7A35A]">
+                                    <FileText className="h-3 w-3" />
+                                    PDF
+                                  </span>
+                                  {cert.docTypeLabel && (
+                                    <span
+                                      className={`inline-flex items-center rounded border px-2 py-0.5 font-sans text-[10px] font-semibold ${
+                                        cert.documentType === 'DIPLOMA'
+                                          ? 'border-[#C7A35A]/60 bg-[#C7A35A]/15 text-[#F4F1EA]'
+                                          : cert.documentType === 'PARTICIPATION'
+                                          ? 'border-[#0F5C46]/60 bg-[#0F5C46]/20 text-[#A9AEA9]'
+                                          : 'border-[#148B78]/60 bg-[#0F5C46]/30 text-[#148B78]'
+                                      }`}
+                                    >
+                                      {cert.docTypeLabel[currentLang] || cert.docTypeLabel.de}
+                                    </span>
+                                  )}
+                                </div>
                                 <span className="font-sans text-xs font-bold text-[#C7A35A]">
                                   {cert.issueDate || cert.year}
                                 </span>

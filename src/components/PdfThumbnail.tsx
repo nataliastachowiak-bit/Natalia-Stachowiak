@@ -2,8 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
 import { FileText, Upload, AlertCircle, Loader2 } from 'lucide-react';
 
+import { resolveAssetUrl } from '../utils/assetPath';
+
 if (typeof window !== 'undefined') {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = resolveAssetUrl('/pdf.worker.min.js');
 }
 
 interface PdfThumbnailProps {
@@ -47,7 +49,8 @@ export const PdfThumbnail: React.FC<PdfThumbnailProps> = ({
     setError(false);
     setRenderSuccess(false);
 
-    const cleanBaseUrl = pdfUrl.split('#')[0];
+    const resolvedUrl = resolveAssetUrl(pdfUrl);
+    const cleanBaseUrl = resolvedUrl.split('#')[0];
     const safeUrl = encodeURI(decodeURI(cleanBaseUrl));
 
     const loadPdfPage = async () => {
@@ -203,38 +206,9 @@ export const PdfThumbnail: React.FC<PdfThumbnailProps> = ({
             )}
             <span className="inline-flex items-center gap-1 rounded border border-amber-500/40 bg-amber-950/30 px-2 py-0.5 text-[9px] font-medium text-amber-300 mt-1">
               <AlertCircle className="h-2.5 w-2.5" />
-              Original-PDF ausstehend
+              Original-PDF erforderlich
             </span>
           </div>
-
-          <button
-            type="button"
-            onClick={triggerUpload}
-            disabled={isUploading}
-            className="mt-1 inline-flex items-center gap-1.5 rounded-full border border-[#C7A35A] bg-[#0F5C46] px-3 py-1 text-[10px] font-semibold text-white uppercase tracking-wider hover:bg-[#148B78] transition-all shadow-sm"
-          >
-            {isUploading ? (
-              <Loader2 className="h-3 w-3 animate-spin" />
-            ) : (
-              <Upload className="h-3 w-3 text-[#C7A35A]" />
-            )}
-            <span>{isUploading ? 'Lädt hoch...' : 'PDF hochladen'}</span>
-          </button>
-        </div>
-      )}
-
-      {/* Subtle overlay on hover with option to replace or view */}
-      {renderSuccess && showUploadTrigger && (
-        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center justify-center gap-2 p-2">
-          <button
-            type="button"
-            onClick={triggerUpload}
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#C7A35A] bg-[#101412]/90 px-3 py-1.5 text-[10px] font-semibold text-[#F4F1EA] hover:bg-[#0F5C46] hover:text-white transition-all uppercase tracking-wider shadow-md backdrop-blur-xs"
-            title="Authentisches Original-PDF ersetzen/aktualisieren"
-          >
-            <Upload className="h-3 w-3 text-[#C7A35A]" />
-            <span>PDF aktualisieren</span>
-          </button>
         </div>
       )}
     </div>

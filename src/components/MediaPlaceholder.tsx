@@ -29,6 +29,9 @@ function getAspectConfig(ratio?: string): { className: string; style?: React.CSS
   if (ratio === 'aspect-3/4' || ratio === 'aspect-[3/4]') {
     return { className: 'aspect-[3/4]', style: { aspectRatio: '3 / 4' } };
   }
+  if (ratio === 'aspect-2/3' || ratio === 'aspect-[2/3]') {
+    return { className: 'aspect-[2/3]', style: { aspectRatio: '2 / 3' } };
+  }
   if (ratio === 'aspect-4/5' || ratio === 'aspect-[4/5]') {
     return { className: 'aspect-[4/5]', style: { aspectRatio: '4 / 5' } };
   }

@@ -843,9 +843,12 @@ export const EcoMarginCaseStudyPage: React.FC<EcoMarginCaseStudyPageProps> = ({
           <div className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 h-72 w-[450px] rounded-full bg-[#10B981]/10 blur-[140px]" />
           <div className="pointer-events-none absolute top-16 right-10 h-64 w-64 rounded-full bg-[#C7A35A]/10 blur-[130px]" />
 
-          {/* Breadcrumb Back Link */}
-          <div className="relative z-10 mb-6">
+          {/* Breadcrumb Back Link & Case Study Number */}
+          <div className="relative z-10 mb-6 flex items-center justify-between">
             <BackToPortfolio currentLang={currentLang} />
+            <span className="font-mono text-xs font-bold tracking-widest text-[#C7A35A]/80">
+              08 / CASE STUDY
+            </span>
           </div>
 
           <div className="relative z-10 space-y-6">
@@ -853,7 +856,7 @@ export const EcoMarginCaseStudyPage: React.FC<EcoMarginCaseStudyPageProps> = ({
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-[#10B981]" />
               <span className="font-mono text-xs font-bold tracking-[0.25em] text-[#C7A35A] uppercase">
-                {content.badge}
+                PROJEKT 08 · {content.badge}
               </span>
             </div>
 
