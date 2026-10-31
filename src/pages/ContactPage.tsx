@@ -6,6 +6,7 @@ import { BackToPortfolio } from '../components/BackToPortfolio';
 import { CV_FILE } from '../data/assetRegistry';
 import { CvPreviewModal } from '../components/CvPreviewModal';
 import { getAbsoluteAssetUrl } from '../utils/assetPath';
+import { downloadCvDocument } from '../utils/cvHelper';
 
 interface ContactPageProps {
   currentLang: Language;
@@ -172,6 +173,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto shrink-0">
               <a
                 href={cvUrl}
+                onClick={(e) => {
+                  e.preventDefault();
+                  downloadCvDocument();
+                }}
                 download="Natalia_Stachowiak_CV_grafisch.pdf"
                 className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[#C7A35A] bg-[#0F5C46] px-6 py-2.5 font-sans text-xs font-semibold tracking-wider text-[#F4F1EA] shadow-lg transition-all duration-200 hover:bg-[#148B78] hover:shadow-[0_0_20px_rgba(15,92,70,0.4)] uppercase cursor-pointer"
               >

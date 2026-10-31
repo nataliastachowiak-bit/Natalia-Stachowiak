@@ -719,13 +719,13 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ currentLang: initialLa
 
           {/* ============================================================ */}
           {/* 2. SIX MILESTONE CARDS                                        */}
-          {/* Desktop: 6 cards in 1 row (xl:grid-cols-6)                   */}
-          {/* Tablet: 2 or 3 columns (md:grid-cols-2 lg:grid-cols-3)      */}
+          {/* Desktop: 3 columns with 2 rows (lg:grid-cols-3)              */}
+          {/* Tablet: 2 columns (sm:grid-cols-2)                           */}
           {/* Mobile: 1 column (grid-cols-1)                               */}
-          {/* NO truncation, NO ellipsis, max 3 key strengths              */}
+          {/* Fließtext 15-16px, Title 18-20px, Full-width button, NO cutoffs */}
           {/* ============================================================ */}
-          <main className="w-full flex-grow flex flex-col justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5 xl:gap-3 items-stretch w-full">
+          <main className="w-full flex-grow py-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch w-full">
               {t.stages.map((stage) => {
                 const isNow = stage.id === 'ai';
 
@@ -734,80 +734,77 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ currentLang: initialLa
                     key={stage.id}
                     type="button"
                     onClick={() => setDetailModalStage(stage)}
-                    className={`group relative text-left w-full h-full rounded-xl p-4 sm:p-4 flex flex-col justify-between transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D6B15E] ${
+                    className={`group relative text-left w-full h-full rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C7A35A] ${
                       isNow
-                        ? 'bg-[#0E1713] border border-[#D6B15E]/40 hover:border-[#D6B15E] shadow-lg shadow-black/40'
-                        : 'bg-[#0C120F] border border-[#0F5C46]/35 hover:border-[#10B981]/50 hover:bg-[#0E1612]'
+                        ? 'bg-gradient-to-b from-[#101914] to-[#0C120F] border border-[#C7A35A]/50 hover:border-[#C7A35A] shadow-[0_8px_30px_rgba(0,0,0,0.5)]'
+                        : 'bg-[#101412] border border-[#0F5C46]/35 hover:border-[#C7A35A]/50 hover:bg-[#0E1512] shadow-md'
                     }`}
                   >
                     
                     {/* Top Meta: Stage Number, Action Verb & Icon */}
-                    <div className="space-y-3 w-full">
+                    <div className="space-y-4 w-full">
                       
-                      <div className="flex items-center justify-between gap-2 border-b border-[#0F5C46]/20 pb-2.5">
-                        <div className="flex items-center gap-2">
+                      <div className="flex items-center justify-between gap-3 border-b border-[#0F5C46]/25 pb-3.5">
+                        <div className="flex items-center gap-2.5">
                           <span
-                            className={`font-mono text-xs font-bold tracking-wider ${
-                              isNow ? 'text-[#D6B15E]' : 'text-[#10B981]'
+                            className={`font-mono text-sm sm:text-base font-bold tracking-wider ${
+                              isNow ? 'text-[#C7A35A]' : 'text-[#148B78]'
                             }`}
                           >
                             {stage.num}
                           </span>
-                          <span className="text-[#0F5C46]/40 text-xs">/</span>
-                          <span className="font-mono text-[10px] uppercase tracking-wider text-[#A9AEA9] group-hover:text-[#F4F1EA] transition-colors">
+                          <span className="text-[#0F5C46]/40 text-sm">/</span>
+                          <span className="font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#C7A35A] font-semibold">
                             {stage.actionVerb}
                           </span>
                         </div>
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-2">
                           {stage.focusBadge && (
-                            <span className="rounded bg-[#D6B15E]/20 text-[#D6B15E] border border-[#D6B15E]/40 px-1.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider">
+                            <span className="rounded bg-[#C7A35A]/15 text-[#C7A35A] border border-[#C7A35A]/40 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider">
                               {stage.focusBadge}
                             </span>
                           )}
-                          <div className="p-1 rounded bg-[#080A09] border border-[#0F5C46]/30">
+                          <div className="p-2 rounded-lg bg-[#080A09] border border-[#0F5C46]/40">
                             {getStageIcon(stage.id)}
                           </div>
                         </div>
                       </div>
 
-                      {/* Headings: Complete text, never truncated */}
-                      <div className="space-y-1">
-                        <h2 className="font-serif text-sm sm:text-base font-semibold text-[#F4F1EA] tracking-tight leading-snug">
+                      {/* Headings: 18-20px title, 13-14px label, complete text, never truncated */}
+                      <div className="space-y-1.5">
+                        <h2 className="font-serif text-[19px] sm:text-xl font-normal text-[#F4F1EA] tracking-wide leading-snug break-words">
                           {stage.headline}
                         </h2>
-                        <p className="font-sans text-xs font-medium text-[#D6B15E] leading-snug">
+                        <p className="font-sans text-[13px] sm:text-sm font-medium text-[#C7A35A] leading-normal break-words">
                           {stage.title}
                         </p>
                       </div>
 
-                      {/* Short Summary: Full text, never truncated with ellipses */}
-                      <p className="font-sans text-xs text-[#A9AEA9] leading-relaxed">
+                      {/* Short Summary: 15-16px body copy, generous line-height, high contrast */}
+                      <p className="font-sans text-[15px] sm:text-base text-[#D1D5DB] leading-relaxed break-words">
                         {stage.shortDesc}
                       </p>
 
                     </div>
 
-                    {/* Middle: Max 3 Key Strengths (Clean, zero-pill typography) */}
-                    <div className="pt-3 my-2 w-full border-t border-[#0F5C46]/20 flex-grow">
-                      <ul className="space-y-1.5 text-[11px] text-[#D1D5DB] font-sans">
+                    {/* Middle: Key Strengths (Clean, readable 14-15px typography) */}
+                    <div className="pt-4 my-4 w-full border-t border-[#0F5C46]/25 flex-grow">
+                      <ul className="space-y-2.5 text-[14px] sm:text-[15px] text-[#E5E7EB] font-sans">
                         {stage.keyStrengths.map((str) => (
-                          <li key={str} className="flex items-start gap-1.5 leading-snug">
-                            <span className="text-[#10B981] select-none text-[10px] mt-0.5">▪</span>
-                            <span>{str}</span>
+                          <li key={str} className="flex items-start gap-2.5 leading-snug break-words">
+                            <span className="text-[#148B78] select-none text-xs mt-1 shrink-0">▪</span>
+                            <span className="leading-relaxed">{str}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
-                    {/* Bottom: Dedicated Interactive Action Affordance (Aligned & Zero Overlap) */}
-                    <div className="mt-auto pt-3 border-t border-[#0F5C46]/20 flex items-center justify-between gap-2 w-full min-w-0">
-                      <span className="text-[#10B981] font-semibold text-[10px] font-mono tracking-wider uppercase truncate min-w-0">
-                        {stage.actionVerb}
-                      </span>
-                      <span className="inline-flex items-center gap-1 text-[10px] font-mono tracking-wider uppercase text-[#A9AEA9] group-hover:text-[#D6B15E] transition-colors shrink-0 whitespace-nowrap pl-1">
+                    {/* Bottom: Full-Width Prominent "Details anzeigen →" Button (No truncated labels) */}
+                    <div className="mt-auto pt-4 border-t border-[#0F5C46]/25 w-full">
+                      <div className="w-full inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-[#C7A35A]/35 bg-[#0F5C46]/20 py-2.5 px-4 font-sans text-xs sm:text-sm font-semibold tracking-wider text-[#F4F1EA] group-hover:bg-[#0F5C46] group-hover:border-[#C7A35A] group-hover:text-white group-hover:shadow-[0_0_20px_rgba(15,92,70,0.4)] transition-all uppercase cursor-pointer">
                         <span>{t.detailsButtonText}</span>
-                        <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform shrink-0" />
-                      </span>
+                        <ArrowRight className="h-4 w-4 text-[#C7A35A] group-hover:text-white group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
 
                   </button>
@@ -819,39 +816,46 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ currentLang: initialLa
           {/* ============================================================ */}
           {/* 3. PROGRESSION TIMELINE & PRESERVED CLOSING STATEMENT         */}
           {/* ============================================================ */}
-          <footer className="w-full space-y-3 pt-2">
+          <footer className="w-full space-y-4 pt-4">
             
-            {/* Chronological progression sequence */}
-            <div className="w-full flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 rounded-lg border border-[#0F5C46]/30 bg-[#0C120F] px-3 sm:px-5 py-2">
-              <span className="font-mono text-[9px] text-[#A9AEA9] uppercase tracking-wider mr-1 hidden sm:inline">
-                {t.timelineTitle}:
-              </span>
-              {t.stages.map((stage, idx) => (
-                <React.Fragment key={stage.id}>
-                  {idx > 0 && (
-                    <span className="text-[#0F5C46]/60 font-mono text-[10px]" aria-hidden="true">
-                      →
-                    </span>
-                  )}
-                  <button
-                    type="button"
-                    onClick={() => setDetailModalStage(stage)}
-                    className={`font-mono text-[10px] font-bold tracking-wider uppercase transition-colors hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D6B15E] rounded px-1 ${
-                      stage.id === 'ai' ? 'text-[#D6B15E]' : 'text-[#D1D5DB] hover:text-[#10B981]'
-                    }`}
-                  >
-                    {stage.num} {stage.actionVerb}
-                  </button>
-                </React.Fragment>
-              ))}
+            {/* Chronological progression sequence (fully legible on all devices, wraps naturally) */}
+            <div className="w-full rounded-xl border border-[#0F5C46]/35 bg-[#101412] p-4 sm:p-5 shadow-lg">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 flex-wrap text-center sm:text-left">
+                <span className="font-mono text-xs font-bold tracking-widest text-[#C7A35A] uppercase shrink-0">
+                  {t.timelineTitle}:
+                </span>
+                <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                  {t.stages.map((stage, idx) => (
+                    <React.Fragment key={stage.id}>
+                      {idx > 0 && (
+                        <span className="text-[#C7A35A]/50 font-mono text-xs select-none" aria-hidden="true">
+                          →
+                        </span>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => setDetailModalStage(stage)}
+                        className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1 font-mono text-xs sm:text-[13px] font-bold tracking-wide uppercase transition-all border ${
+                          stage.id === 'ai'
+                            ? 'border-[#C7A35A]/60 bg-[#0F5C46]/30 text-[#C7A35A] shadow-sm'
+                            : 'border-[#0F5C46]/30 bg-[#080A09] text-[#E5E7EB] hover:border-[#C7A35A] hover:text-[#C7A35A]'
+                        } focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#C7A35A]`}
+                      >
+                        <span className="text-[#C7A35A]">{stage.num}</span>
+                        <span>{stage.actionVerb}</span>
+                      </button>
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Preserved Closing Statement */}
-            <div className="text-center pt-1">
-              <p className="font-serif text-sm sm:text-base lg:text-lg text-[#F4F1EA] tracking-tight">
-                <span className="text-[#10B981] font-medium">{t.closingStatementPart1} </span>
+            <div className="text-center pt-2">
+              <p className="font-serif text-base sm:text-lg lg:text-xl text-[#F4F1EA] tracking-tight">
+                <span className="text-[#148B78] font-medium">{t.closingStatementPart1} </span>
                 <span className="text-[#F4F1EA] font-normal">{t.closingStatementPart2} </span>
-                <span className="text-[#D6B15E] font-medium">{t.closingStatementPart3}</span>
+                <span className="text-[#C7A35A] font-medium">{t.closingStatementPart3}</span>
               </p>
             </div>
 
@@ -872,7 +876,7 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ currentLang: initialLa
             aria-labelledby="modal-stage-title"
           >
             <div
-              className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-2xl border border-[#0F5C46]/50 bg-[#0C120F] p-5 sm:p-7 shadow-2xl shadow-black/80 space-y-4"
+              className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border border-[#C7A35A]/35 bg-[#101412] p-6 sm:p-8 shadow-2xl shadow-black/80 space-y-5"
               onClick={(e) => e.stopPropagation()}
             >
               
@@ -880,44 +884,44 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ currentLang: initialLa
               <button
                 type="button"
                 onClick={() => setDetailModalStage(null)}
-                className="absolute top-4 right-4 rounded-lg p-1.5 text-[#A9AEA9] hover:bg-[#080A09] hover:text-[#F4F1EA] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D6B15E]"
+                className="absolute top-4 right-4 rounded-lg p-2 text-[#A9AEA9] hover:bg-[#080A09] hover:text-[#F4F1EA] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C7A35A]"
                 aria-label={t.closeModal}
               >
                 <X className="h-5 w-5" />
               </button>
 
               {/* Stage Identity */}
-              <div className="space-y-1.5 pr-8">
-                <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-wider uppercase text-[#10B981]">
+              <div className="space-y-2 pr-8">
+                <div className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold tracking-wider uppercase text-[#148B78]">
                   <span>{detailModalStage.num}</span>
                   <span className="text-[#0F5C46]">/</span>
-                  <span>{detailModalStage.actionVerb}</span>
+                  <span className="text-[#C7A35A]">{detailModalStage.actionVerb}</span>
                   {detailModalStage.focusBadge && (
-                    <span className="rounded bg-[#D6B15E]/20 text-[#D6B15E] border border-[#D6B15E]/40 px-1.5 py-0.2 text-[9px]">
+                    <span className="rounded bg-[#C7A35A]/20 text-[#C7A35A] border border-[#C7A35A]/40 px-2 py-0.5 text-[10px] font-bold">
                       {detailModalStage.focusBadge}
                     </span>
                   )}
                 </div>
-                <h2 id="modal-stage-title" className="font-serif text-xl sm:text-2xl text-[#F4F1EA]">
+                <h2 id="modal-stage-title" className="font-serif text-2xl sm:text-3xl font-normal text-[#F4F1EA] tracking-wide">
                   {detailModalStage.headline}
                 </h2>
-                <p className="font-sans text-xs sm:text-sm font-semibold text-[#D6B15E]">
+                <p className="font-sans text-sm sm:text-base font-semibold text-[#C7A35A]">
                   {detailModalStage.title}
                 </p>
-                <p className="font-sans text-xs text-[#A9AEA9] leading-relaxed pt-1">
+                <p className="font-sans text-sm sm:text-base text-[#D1D5DB] leading-relaxed pt-1">
                   {detailModalStage.shortDesc}
                 </p>
               </div>
 
               {/* Complete Competencies & Methods */}
-              <div className="rounded-xl border border-[#0F5C46]/35 bg-[#080A09] p-4 space-y-2.5">
-                <span className="font-mono text-[10px] font-bold text-[#D6B15E] uppercase tracking-wider block">
+              <div className="rounded-xl border border-[#0F5C46]/35 bg-[#080A09] p-5 space-y-3">
+                <span className="font-mono text-xs font-bold text-[#C7A35A] uppercase tracking-wider block">
                   {t.modalCompetenciesHeader}
                 </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {detailModalStage.allCompetencies.map((skill) => (
-                    <div key={skill} className="flex items-start gap-2 text-xs text-[#D1D5DB] leading-snug">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-[#10B981] shrink-0 mt-0.5" />
+                    <div key={skill} className="flex items-start gap-2.5 text-sm text-[#E5E7EB] leading-snug">
+                      <CheckCircle2 className="h-4 w-4 text-[#148B78] shrink-0 mt-0.5" />
                       <span>{skill}</span>
                     </div>
                   ))}
@@ -926,39 +930,39 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ currentLang: initialLa
 
               {/* Extended Details / Factual Background */}
               {detailModalStage.extendedDetails && (
-                <div className="rounded-xl border border-[#0F5C46]/30 bg-[#080A09] p-4 text-xs text-[#D1D5DB] leading-relaxed space-y-1.5">
-                  <span className="font-mono text-[10px] font-bold text-[#D6B15E] uppercase tracking-wider block">
+                <div className="rounded-xl border border-[#0F5C46]/30 bg-[#080A09] p-5 text-sm text-[#D1D5DB] leading-relaxed space-y-2">
+                  <span className="font-mono text-xs font-bold text-[#C7A35A] uppercase tracking-wider block">
                     {t.modalDetailsHeader}
                   </span>
-                  <p>{detailModalStage.extendedDetails}</p>
+                  <p className="leading-relaxed">{detailModalStage.extendedDetails}</p>
                 </div>
               )}
 
               {/* Contribution to IT & AI Product Management */}
               {detailModalStage.pmTransfer && (
-                <div className="rounded-xl border border-[#10B981]/30 bg-[#0F5C46]/15 p-4 text-xs text-[#F4F1EA] leading-relaxed space-y-1">
-                  <span className="font-mono text-[10px] font-bold text-[#10B981] uppercase tracking-wider block">
+                <div className="rounded-xl border border-[#148B78]/40 bg-[#0F5C46]/20 p-5 text-sm text-[#F4F1EA] leading-relaxed space-y-2">
+                  <span className="font-mono text-xs font-bold text-[#148B78] uppercase tracking-wider block">
                     {t.modalTransferHeader}
                   </span>
-                  <p>{detailModalStage.pmTransfer}</p>
+                  <p className="leading-relaxed">{detailModalStage.pmTransfer}</p>
                 </div>
               )}
 
               {/* Modal Footer: Link to Certificates and Close button */}
-              <div className="pt-2 flex items-center justify-between border-t border-[#0F5C46]/30">
+              <div className="pt-3 flex flex-wrap items-center justify-between gap-3 border-t border-[#0F5C46]/30">
                 <Link
                   to="/certificates"
                   onClick={() => setDetailModalStage(null)}
-                  className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-[#D6B15E] hover:text-[#F4F1EA] uppercase tracking-wider transition-colors"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono font-semibold text-[#C7A35A] hover:text-[#F4F1EA] uppercase tracking-wider transition-colors"
                 >
                   <Award className="h-4 w-4" />
                   <span>{t.viewCertificatesText}</span>
-                  <ArrowUpRight className="h-3 w-3" />
+                  <ArrowUpRight className="h-3.5 w-3.5" />
                 </Link>
                 <button
                   type="button"
                   onClick={() => setDetailModalStage(null)}
-                  className="rounded-lg bg-[#0F5C46] px-4 py-1.5 font-sans text-xs font-semibold text-[#F4F1EA] hover:bg-[#10B981] transition-colors uppercase"
+                  className="rounded-lg bg-[#0F5C46] px-5 py-2 font-sans text-xs sm:text-sm font-semibold text-[#F4F1EA] hover:bg-[#148B78] transition-colors uppercase cursor-pointer"
                 >
                   {t.closeModal}
                 </button>

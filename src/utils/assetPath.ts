@@ -15,10 +15,10 @@ export function resolveAssetUrl(url: string | undefined | null): string {
 }
 
 /**
- * Returns a fully qualified absolute URL with origin protocol and host.
- * This ensures that opening links with target="_blank" from inside an iframe
- * (such as within Google AI Studio preview) will never incorrectly resolve
- * to aistudio.google.com, but rather to the actual app host or GitHub Pages domain.
+ * Returns a safe asset URL for anchor links and previews.
+ * On GitHub Pages, it returns the public absolute URL.
+ * In development and AI Studio preview, it returns the relative URL to prevent
+ * Cloud Run cross-origin IAM authentication redirects that cause connection errors.
  */
 export function getAbsoluteAssetUrl(url: string | undefined | null): string {
   const resolved = resolveAssetUrl(url);
@@ -27,10 +27,12 @@ export function getAbsoluteAssetUrl(url: string | undefined | null): string {
     return resolved;
   }
   if (typeof window !== 'undefined' && window.location) {
-    try {
-      return new URL(resolved, window.location.origin).href;
-    } catch {
-      return resolved;
+    if (window.location.hostname.includes('github.io')) {
+      try {
+        return new URL(resolved, window.location.origin).href;
+      } catch {
+        return resolved;
+      }
     }
   }
   return resolved;
