@@ -35,9 +35,7 @@ jobs:
         run: npm ci
 
       - name: Build static site for GitHub Pages
-        run: npx vite build
-        env:
-          GITHUB_PAGES: 'true'
+        run: npm run build:gh
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
