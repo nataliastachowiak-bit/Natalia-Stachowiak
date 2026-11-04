@@ -13,6 +13,7 @@ import { Language } from '../types';
 import { PdfViewer } from './PdfViewer';
 import { CV_FILE } from '../data/assetRegistry';
 import { getAbsoluteAssetUrl } from '../utils/assetPath';
+import { downloadCvDocument, openCvInNewTab } from '../utils/cvHelper';
 
 interface CvPreviewModalProps {
   isOpen: boolean;
@@ -174,12 +175,16 @@ export const CvPreviewModal: React.FC<CvPreviewModalProps> = ({
               </button>
             </div>
 
-            {/* Open in New Tab (uses absolute URL to completely avoid iframe issues) */}
+            {/* Open in New Tab (uses in-memory Blob URL or absolute URL fallback) */}
             <a
               href={absoluteCvUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[34px] items-center gap-1.5 rounded-full border border-[#C7A35A]/40 bg-transparent px-3.5 py-1.5 font-sans text-xs font-medium text-[#F4F1EA] transition-all hover:border-[#C7A35A] hover:bg-[#080A09] hover:text-[#C7A35A] uppercase"
+              onClick={(e) => {
+                e.preventDefault();
+                openCvInNewTab();
+              }}
+              className="inline-flex min-h-[34px] items-center gap-1.5 rounded-full border border-[#C7A35A]/40 bg-transparent px-3.5 py-1.5 font-sans text-xs font-medium text-[#F4F1EA] transition-all hover:border-[#C7A35A] hover:bg-[#080A09] hover:text-[#C7A35A] uppercase cursor-pointer"
               title={t.openTab}
             >
               <ExternalLink className="h-3.5 w-3.5 text-[#C7A35A]" />
@@ -189,8 +194,12 @@ export const CvPreviewModal: React.FC<CvPreviewModalProps> = ({
             {/* Direct Download */}
             <a
               href={absoluteCvUrl}
-              download="Natalia_Stachowiak_CV_grafisch.pdf"
-              className="inline-flex min-h-[34px] items-center gap-1.5 rounded-full border border-[#C7A35A] bg-[#0F5C46] px-4 py-1.5 font-sans text-xs font-semibold tracking-wider text-white shadow-md transition-all hover:bg-[#148B78] uppercase"
+              onClick={(e) => {
+                e.preventDefault();
+                downloadCvDocument();
+              }}
+              download="Natalia_Stachowiak_CV.pdf"
+              className="inline-flex min-h-[34px] items-center gap-1.5 rounded-full border border-[#C7A35A] bg-[#0F5C46] px-4 py-1.5 font-sans text-xs font-semibold tracking-wider text-white shadow-md transition-all hover:bg-[#148B78] uppercase cursor-pointer"
               title={t.download}
             >
               <Download className="h-3.5 w-3.5 text-[#C7A35A]" />

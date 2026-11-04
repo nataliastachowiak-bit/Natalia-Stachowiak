@@ -39,7 +39,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang }) => {
               e.preventDefault();
               downloadCvDocument();
             }}
-            download="Natalia_Stachowiak_CV_grafisch.pdf"
+            download="Natalia_Stachowiak_CV.pdf"
             className="hover:text-[#C7A35A] transition-colors cursor-pointer"
           >
             CV HERUNTERLADEN ↓

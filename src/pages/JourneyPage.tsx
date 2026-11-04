@@ -20,6 +20,7 @@ import { PageTransition } from '../components/PageTransition';
 import { BackToPortfolio } from '../components/BackToPortfolio';
 import { CV_FILE } from '../data/assetRegistry';
 import { getAbsoluteAssetUrl } from '../utils/assetPath';
+import { downloadCvDocument } from '../utils/cvHelper';
 
 interface JourneyPageProps {
   currentLang: Language;
@@ -678,10 +679,12 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ currentLang: initialLa
               <div className="flex items-center gap-4 text-xs font-mono tracking-wider uppercase">
                 <a
                   href={getAbsoluteAssetUrl(CV_FILE)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download="Natalia_Stachowiak_CV_grafisch.pdf"
-                  className="inline-flex items-center gap-1.5 text-[#D1D5DB] hover:text-[#D6B15E] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D6B15E]"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    downloadCvDocument();
+                  }}
+                  download="Natalia_Stachowiak_CV.pdf"
+                  className="inline-flex items-center gap-1.5 text-[#D1D5DB] hover:text-[#D6B15E] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D6B15E] cursor-pointer"
                 >
                   <Download className="h-3.5 w-3.5 text-[#D6B15E]" />
                   <span>{t.downloadCvText}</span>

@@ -1,4 +1,4 @@
-import { resolveAssetUrl } from './assetPath';
+import { resolveAssetUrl, getAbsoluteAssetUrl } from './assetPath';
 import { CV_FILE } from '../data/assetRegistry';
 
 /**
@@ -6,10 +6,10 @@ import { CV_FILE } from '../data/assetRegistry';
  * Uses fetch + Blob to guarantee that:
  * 1. The iframe never navigates
  * 2. No redirects to aistudio.google.com or Cloud Run authentication occur
- * 3. The file is cleanly saved to the user's system as Natalia_Stachowiak_CV_grafisch.pdf
+ * 3. The file is cleanly saved to the user's system as Natalia_Stachowiak_CV.pdf
  */
 export async function downloadCvDocument(
-  filename: string = 'Natalia_Stachowiak_CV_grafisch.pdf'
+  filename: string = 'Natalia_Stachowiak_CV.pdf'
 ): Promise<void> {
   const url = resolveAssetUrl(CV_FILE);
   try {
@@ -31,8 +31,9 @@ export async function downloadCvDocument(
     }, 15000);
   } catch (err) {
     console.warn('[CV] Blob download failed, falling back to direct anchor:', err);
+    const directUrl = getAbsoluteAssetUrl(CV_FILE);
     const a = document.createElement('a');
-    a.href = url;
+    a.href = directUrl;
     a.download = filename;
     a.target = '_self';
     document.body.appendChild(a);
@@ -42,9 +43,7 @@ export async function downloadCvDocument(
 }
 
 /**
- * Opens the CV PDF in a fresh browser tab using an in-memory Blob URL.
- * Because a Blob URL is generated locally within the browser, it never makes
- * network requests to aistudio.google.com and will never trigger connection errors.
+ * Opens the CV PDF in a fresh browser tab using an in-memory Blob URL or direct URL.
  */
 export async function openCvInNewTab(): Promise<void> {
   const url = resolveAssetUrl(CV_FILE);
@@ -58,6 +57,7 @@ export async function openCvInNewTab(): Promise<void> {
     window.open(blobUrl, '_blank', 'noopener,noreferrer');
   } catch (err) {
     console.warn('[CV] Blob preview failed, falling back to direct URL:', err);
-    window.open(url, '_blank', 'noopener,noreferrer');
+    const directUrl = getAbsoluteAssetUrl(CV_FILE);
+    window.open(directUrl, '_blank', 'noopener,noreferrer');
   }
 }

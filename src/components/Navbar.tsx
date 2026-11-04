@@ -167,7 +167,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               e.preventDefault();
               downloadCvDocument();
             }}
-            download="Natalia_Stachowiak_CV_grafisch.pdf"
+            download="Natalia_Stachowiak_CV.pdf"
             className="group flex min-h-[34px] items-center gap-1.5 rounded-full border border-[#C7A35A]/70 bg-[#0F5C46] px-3.5 py-1.5 font-sans text-xs font-semibold tracking-wider text-[#F4F1EA] transition-all duration-300 hover:border-[#C7A35A] hover:bg-[#148B78] uppercase shadow-sm shrink-0 whitespace-nowrap cursor-pointer"
           >
             <Download className="h-3.5 w-3.5 text-[#C7A35A] transition-transform duration-200 group-hover:-translate-y-0.5" />
@@ -222,7 +222,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               e.preventDefault();
               downloadCvDocument();
             }}
-            download="Natalia_Stachowiak_CV_grafisch.pdf"
+            download="Natalia_Stachowiak_CV.pdf"
             className="hidden md:flex min-h-[32px] items-center gap-1.5 rounded-full border border-[#C7A35A]/70 bg-[#0F5C46] px-3 py-1 font-sans text-[11px] font-semibold tracking-wider text-[#F4F1EA] transition-all hover:border-[#C7A35A] hover:bg-[#148B78] uppercase shadow-sm shrink-0 whitespace-nowrap cursor-pointer"
           >
             <Download className="h-3 w-3 text-[#C7A35A]" />
@@ -315,7 +315,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     setMobileMenuOpen(false);
                     downloadCvDocument();
                   }}
-                  download="Natalia_Stachowiak_CV_grafisch.pdf"
+                  download="Natalia_Stachowiak_CV.pdf"
                   className="flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[#C7A35A] bg-[#0F5C46] py-3 font-sans text-xs font-semibold tracking-wider text-[#F4F1EA] shadow-md active:scale-98 uppercase transition-colors hover:bg-[#148B78] cursor-pointer"
                 >
                   <Download className="h-4 w-4 text-[#C7A35A]" />
