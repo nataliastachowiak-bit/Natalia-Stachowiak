@@ -34,6 +34,13 @@ jobs:
       - name: Install dependencies
         run: npm ci || npm install --legacy-peer-deps
 
+      - name: Configure NatflixGain analytics
+        env:
+          POSTHOG_PROJECT_TOKEN: ${{ vars.POSTHOG_PROJECT_TOKEN }}
+          POSTHOG_HOST: https://eu.i.posthog.com
+        run: |
+          node -e 'const fs=require("fs");const token=process.env.POSTHOG_PROJECT_TOKEN||"";const host=process.env.POSTHOG_HOST||"";fs.writeFileSync("public/natflixgain-ab-test/config.js","window.NATFLIXGAIN_CONFIG = "+JSON.stringify({token,host})+";\\n")'
+
       - name: Build static site for GitHub Pages
         run: npm run build:gh
 
