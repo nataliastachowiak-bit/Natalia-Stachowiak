@@ -6,9 +6,9 @@ import { LOCKED_ASSETS, ABOUT_IMAGE } from '../data/assetRegistry';
 import { PageTransition } from '../components/PageTransition';
 import { BackToPortfolio } from '../components/BackToPortfolio';
 import { resolveAssetUrl } from '../utils/assetPath';
+import { PersonalStoryDialog } from '../components/PersonalStoryDialog';
 
 const personalNightImage = resolveAssetUrl('/assets/personal-evening.avif');
-const personalSeaImage = resolveAssetUrl('/assets/personal-seaside.avif');
 
 interface AboutPageProps {
   currentLang: Language;
@@ -23,6 +23,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   isReadOnly = false,
 }) => {
   const [showMore, setShowMore] = useState(false);
+  const [personalStoryOpen, setPersonalStoryOpen] = useState(false);
   const aboutImageSrc = mediaAssets.aboutPortrait || mediaAssets.aboutPhoto || mediaAssets.aboutImage || ABOUT_IMAGE;
 
   return (
@@ -217,65 +218,45 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           </div>
         </div>
 
-        {/* PERSONAL STORY: deliberately separate from the professional biography above */}
-        <section aria-labelledby="personal-story-title" className="relative z-10 mt-20 sm:mt-28 border-t border-[#C7A35A]/25 pt-12 sm:pt-16 pb-10">
-          <div className="mb-8 sm:mb-12 max-w-3xl">
-            <p className="text-[11px] font-semibold tracking-[0.25em] text-[#C7A35A] uppercase mb-3">
-              {currentLang === 'de' ? 'PERSÖNLICH' : currentLang === 'pl' ? 'OSOBIŚCIE' : 'PERSONAL'}
-            </p>
-            <h2 id="personal-story-title" className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#F4F1EA] leading-tight">
-              {currentLang === 'de' ? 'Der Mensch hinter den Projekten' : currentLang === 'pl' ? 'Człowiek stojący za projektami' : 'The person behind the projects'}
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-sm sm:text-base text-[#F4F1EA]/85 leading-[1.85] font-sans">
-              <p className="font-serif italic text-xl sm:text-2xl leading-snug text-[#C7A35A]">
-                {currentLang === 'de'
-                  ? '„Ich war nie jemand, der darauf wartet, dass sich das Leben verändert. Ich verändere es selbst.“'
-                  : currentLang === 'pl'
-                    ? '„Nigdy nie czekałam, aż życie samo się zmieni. Sama je zmieniam.”'
-                    : '“I have never been one to wait for life to change. I change it myself.”'}
-              </p>
-              {(
-                currentLang === 'de' ? [
-                  'Vor sieben Jahren habe ich meine Heimat Polen verlassen und bin nach Deutschland gekommen. Ein neues Land, eine neue Sprache, eine andere Kultur und neue Perspektiven. Ich habe mir hier ein neues Leben aufgebaut – mit Neugier, Entschlossenheit und dem Vertrauen in meine eigenen Entscheidungen.',
-                  'Ich bin Mama, Autorin, leidenschaftliche Reisende und ein Mensch, der seinen eigenen Weg geht. Zu meinem Leben gehört auch meine französische Bulldogge, die mit ihrem unverwechselbaren Charakter immer wieder für ein Lächeln sorgt.',
-                  'Reisen bedeutet für mich Freiheit und Inspiration. Mit dem Auto habe ich fast ganz Europa erkundet. Auch Dubai, die Dominikanische Republik und Sansibar gehören zu meinen Reiseerinnerungen. Doch mein Herz gehört einem Ort, an den ich immer wieder zurückkehre: Chalkidiki in Griechenland. Das kristallklare Wasser, das in der Sonne golden glitzert, die kleinen Buchten und die besondere Leichtigkeit machen diesen Ort für mich zu einem zweiten Zuhause.',
-                  'Mich fasziniert die Psychologie – warum Menschen denken, fühlen und handeln, wie sie es tun. Diese Neugier hat auch meine kreative Seite geprägt. In meinem Buch „Du bist nicht zu viel“ beschäftige ich mich mit Beziehungen, Selbstwert und der Frage, wie wir uns selbst treu bleiben.',
-                  'Eine weitere Leidenschaft ist die Fotografie. Ich liebe es, besondere Augenblicke, Stimmungen und kleine Details festzuhalten, die im Alltag oft unbemerkt bleiben. Für mich ist ein Foto nicht nur ein Bild, sondern eine Erinnerung und manchmal eine ganze Geschichte.',
-                ] : currentLang === 'pl' ? [
-                  'Siedem lat temu opuściłam Polskę i przeprowadziłam się do Niemiec. Nowy kraj, nowy język, inna kultura i nowe perspektywy. Zbudowałam tu nowe życie – z ciekawością, determinacją i zaufaniem do własnych decyzji.',
-                  'Jestem mamą, autorką książki, miłośniczką podróży i osobą, która idzie własną drogą. Towarzyszy mi też buldog francuski, którego wyjątkowy charakter nieustannie wywołuje uśmiech.',
-                  'Podróże dają mi wolność i inspirację. Samochodem przemierzyłam niemal całą Europę; odwiedziłam również Dubaj, Dominikanę i Zanzibar. Jednak moje serce należy do miejsca, do którego zawsze wracam: Chalkidiki w Grecji. Krystaliczna woda połyskująca złotem w słońcu, małe zatoki i niepowtarzalna lekkość sprawiają, że czuję się tam jak w drugim domu.',
-                  'Fascynuje mnie psychologia – to, dlaczego ludzie myślą, czują i działają w określony sposób. Ta ciekawość towarzyszyła mi także podczas pisania książki „Du bist nicht zu viel” o relacjach, poczuciu własnej wartości i pozostawaniu wierną sobie.',
-                  'Kolejną moją pasją jest fotografia. Lubię zatrzymywać w kadrach chwile, nastroje i drobne szczegóły, które łatwo przeoczyć. Zdjęcie jest dla mnie nie tylko obrazem, lecz także wspomnieniem – czasem całą opowieścią.',
-                ] : [
-                  'Seven years ago, I left my home in Poland and moved to Germany. A new country, a new language, a different culture and fresh perspectives. I built a new life here with curiosity, determination and trust in my own decisions.',
-                  'I am a mother, an author, a passionate traveller and someone who follows her own path. My French bulldog is part of that life too, with a personality that never fails to make me smile.',
-                  'Travel means freedom and inspiration to me. I have explored almost all of Europe by car, and my journeys have also taken me to Dubai, the Dominican Republic and Zanzibar. Yet my heart belongs to a place I return to again and again: Chalkidiki in Greece. Crystal-clear water sparkling gold in the sun, secluded coves and a sense of lightness make it feel like a second home.',
-                  'Psychology fascinates me – why people think, feel and act as they do. That curiosity has shaped my creative side as well. In my book “Du bist nicht zu viel”, I explore relationships, self-worth and staying true to yourself.',
-                  'Photography is another passion of mine. I love capturing fleeting moments, moods and little details that often go unnoticed. To me, a photograph is more than an image: it is a memory, and sometimes an entire story.',
-                ]
-              ).map((paragraph, index) => <p key={index} className="text-pretty">{paragraph}</p>)}
-              <p className="font-serif text-lg sm:text-xl italic leading-snug text-[#C7A35A] pt-1">
-                {currentLang === 'de'
-                  ? 'Ich glaube, dass ein erfülltes Leben aus Mut, Neugier, echten Begegnungen und Momenten besteht, die in Erinnerung bleiben.'
-                  : currentLang === 'pl'
-                    ? 'Wierzę, że spełnione życie tworzą odwaga, ciekawość, autentyczne spotkania i chwile, które pozostają w pamięci.'
-                    : 'I believe a fulfilling life is made of courage, curiosity, genuine connections and moments worth remembering.'}
-              </p>
+        {/* Compact teaser: full personal story opens in a modal card, not a long waterfall. */}
+        <div className="relative z-10 mt-8 sm:mt-12 pb-5">
+          <button
+            type="button"
+            onClick={() => setPersonalStoryOpen(true)}
+            aria-haspopup="dialog"
+            className="group w-full overflow-hidden rounded-2xl border border-[#C7A35A]/30 bg-[#101412] text-left shadow-[0_16px_45px_rgba(0,0,0,0.4)] transition-all hover:border-[#C7A35A]/75 hover:shadow-[0_16px_55px_rgba(15,92,70,0.24)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C7A35A]"
+          >
+            <div className="flex min-h-[155px] flex-col sm:flex-row sm:items-center">
+              <img
+                src={personalNightImage}
+                alt={currentLang === 'de' ? 'Persönlicher Moment mit der Familie' : currentLang === 'pl' ? 'Osobista chwila z rodziną' : 'A personal family moment'}
+                loading="lazy"
+                decoding="async"
+                className="h-36 w-full object-cover sm:h-[155px] sm:w-52 sm:shrink-0"
+              />
+              <div className="flex-1 px-5 py-5 sm:px-8">
+                <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#C7A35A]">
+                  {currentLang === 'de' ? 'PERSÖNLICH' : currentLang === 'pl' ? 'OSOBIŚCIE' : 'PERSONAL'}
+                </p>
+                <h2 className="font-serif text-2xl sm:text-3xl text-[#F4F1EA]">
+                  {currentLang === 'de' ? 'Der Mensch hinter den Projekten' : currentLang === 'pl' ? 'Człowiek stojący za projektami' : 'The person behind the projects'}
+                </h2>
+                <p className="mt-2 text-xs sm:text-sm text-[#A9AEA9]">
+                  {currentLang === 'de'
+                    ? 'Einblicke in mein Leben, meine Lieblingsorte und das, was mir wichtig ist.'
+                    : currentLang === 'pl'
+                      ? 'Kilka osobistych historii o życiu, ulubionych miejscach i tym, co ważne.'
+                      : 'A personal glimpse into my life, favourite places and what matters most.'}
+                </p>
+              </div>
+              <span className="mx-5 mb-5 inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-[#C7A35A]/45 px-5 py-2 text-xs font-semibold tracking-wide text-[#C7A35A] transition-colors group-hover:bg-[#0F5C46] group-hover:text-white sm:mx-7 sm:mb-0">
+                {currentLang === 'de' ? 'Karte öffnen' : currentLang === 'pl' ? 'Otwórz kartę' : 'Open card'}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </span>
             </div>
-            <div className="lg:col-span-5 grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-5">
-              <figure className="overflow-hidden rounded-2xl border border-[#C7A35A]/25 bg-[#101412] shadow-[0_12px_35px_rgba(0,0,0,0.32)]">
-                <img src={personalNightImage} alt={currentLang === 'de' ? 'Persönlicher Moment mit Sohn und französischer Bulldogge beim Blick über die Stadt bei Nacht' : currentLang === 'pl' ? 'Rodzinny wieczór z synem i buldogiem francuskim z widokiem na miasto' : 'A family evening overlooking the city with my son and French bulldog'} loading="lazy" decoding="async" width="640" height="473" className="w-full h-full aspect-[4/3] object-cover" />
-              </figure>
-              <figure className="overflow-hidden rounded-2xl border border-[#C7A35A]/25 bg-[#101412] shadow-[0_12px_35px_rgba(0,0,0,0.32)]">
-                <img src={personalSeaImage} alt={currentLang === 'de' ? 'Persönliche Reiseerinnerung am Meer' : currentLang === 'pl' ? 'Osobista pamiątka z podróży nad morze' : 'A personal travel memory by the sea'} loading="lazy" decoding="async" width="640" height="480" className="w-full h-full aspect-[4/3] object-cover" />
-              </figure>
-            </div>
-          </div>
-        </section>
+          </button>
+        </div>
+        <PersonalStoryDialog currentLang={currentLang} open={personalStoryOpen} onClose={() => setPersonalStoryOpen(false)} />
       </div>
     </PageTransition>
   );
