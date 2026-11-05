@@ -12,18 +12,19 @@ import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
 import { AudioPlayerWidget } from './components/AudioPlayerWidget';
 
-// Pages
+// Keep the landing page immediately available; load other routes on demand.
+// This avoids loading the large certificate/PDF and case-study modules on mobile startup.
 import { HomePage } from './pages/HomePage';
-import { AboutPage } from './pages/AboutPage';
-import { ProjectsPage } from './pages/ProjectsPage';
-import { CaseStudyPage } from './pages/CaseStudyPage';
-import { CircularTwinCaseStudyPage } from './pages/CircularTwinCaseStudyPage';
-import { AiBuildingCaseStudyPage } from './pages/AiBuildingCaseStudyPage';
-import { EcoMarginCaseStudyPage } from './pages/EcoMarginCaseStudyPage';
-import { JourneyPage } from './pages/JourneyPage';
-import { CertificatesPage } from './pages/CertificatesPage';
-import { BookPage } from './pages/BookPage';
-import { ContactPage } from './pages/ContactPage';
+const AboutPage = React.lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
+const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage').then(m => ({ default: m.ProjectsPage })));
+const CaseStudyPage = React.lazy(() => import('./pages/CaseStudyPage').then(m => ({ default: m.CaseStudyPage })));
+const CircularTwinCaseStudyPage = React.lazy(() => import('./pages/CircularTwinCaseStudyPage').then(m => ({ default: m.CircularTwinCaseStudyPage })));
+const AiBuildingCaseStudyPage = React.lazy(() => import('./pages/AiBuildingCaseStudyPage').then(m => ({ default: m.AiBuildingCaseStudyPage })));
+const EcoMarginCaseStudyPage = React.lazy(() => import('./pages/EcoMarginCaseStudyPage').then(m => ({ default: m.EcoMarginCaseStudyPage })));
+const JourneyPage = React.lazy(() => import('./pages/JourneyPage').then(m => ({ default: m.JourneyPage })));
+const CertificatesPage = React.lazy(() => import('./pages/CertificatesPage').then(m => ({ default: m.CertificatesPage })));
+const BookPage = React.lazy(() => import('./pages/BookPage').then(m => ({ default: m.BookPage })));
+const ContactPage = React.lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
 
 // Modals
 import { VideoPlayerModal } from './components/VideoPlayerModal';
@@ -190,6 +191,12 @@ export default function App() {
 
         {/* Client-Side Multi-Page Routes */}
         <main className="flex-grow flex flex-col">
+          <React.Suspense fallback={
+            <div className="flex min-h-[50vh] flex-col items-center justify-center gap-4 px-6 text-center" role="status">
+              <span className="h-8 w-8 animate-spin rounded-full border-2 border-[#C7A35A]/20 border-t-[#C7A35A]" aria-hidden="true" />
+              <p className="font-sans text-sm text-[#A9AEA9]">Seite wird geladen …</p>
+            </div>
+          }>
           <Routes>
             {/* 1. HOME: Route / */}
             <Route
@@ -324,6 +331,7 @@ export default function App() {
             {/* Fallback to Home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          </React.Suspense>
         </main>
 
         {/* Global Footer (auto-hidden on desktop /journey for 100vh 1-screen rule) */}
