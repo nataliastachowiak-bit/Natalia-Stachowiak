@@ -37,7 +37,8 @@ try {
 
   const resProjects=await open('projects#resourceloop');
   const section=page.locator('#resourceloop');
-  record('ResourceLoop direkt erreichbar',await section.count()===1,'HTTP '+resProjects?.status());
+  record('ResourceLoop direkt sichtbar',await section.count()===1,'HTTP '+resProjects?.status());
+  if(resProjects?.status()!==200) warn('Deep-Link HTTP status /projects', 'HTTP '+resProjects?.status()+' trotz gerenderter React-Seite (GitHub Pages SPA fallback)');
   if(await section.count()) {
     record('ResourceLoop richtige Ausrichtung',(await section.innerText()).includes('zirkuläre Gebäudesanierung'),'Renovation case study');
     record('Scanner-Demolink vorhanden',await section.locator('a[href="https://scan-to-sure-decision.lovable.app/"]').count()===1);
@@ -56,12 +57,14 @@ try {
   await page.getByRole('button',{name:'Deutsch'}).click();
 
   const resCert=await open('certificates');
-  record('Zertifikate-Seite',await page.getByText('Zertifikate & Qualifikationen').count()>0,'HTTP '+resCert?.status());
+  record('Zertifikate-Seite sichtbar',await page.getByText('Zertifikate & Qualifikationen').count()>0,'HTTP '+resCert?.status());
+  if(resCert?.status()!==200) warn('Deep-Link HTTP status /certificates', 'HTTP '+resCert?.status()+' trotz gerenderter React-Seite');
   record('Zertifikatsdarstellung vorhanden',await page.getByText('KERNQUALIFIKATIONEN').count()>0||((await page.locator('body').innerText()).includes('KERNQUALIFIKATIONEN')));
   await page.screenshot({path:'qa-artifacts/certificates-desktop.png',fullPage:false});
 
   const resContact=await open('contact');
-  record('Kontakt-Seite erreichbar',await page.locator('main').count()===1,'HTTP '+resContact?.status());
+  record('Kontakt-Seite sichtbar',await page.locator('main').count()===1,'HTTP '+resContact?.status());
+  if(resContact?.status()!==200) warn('Deep-Link HTTP status /contact', 'HTTP '+resContact?.status()+' trotz gerenderter React-Seite');
 
   for(const [width,height] of [[390,844],[320,700]]) {
     await page.setViewportSize({width,height});
