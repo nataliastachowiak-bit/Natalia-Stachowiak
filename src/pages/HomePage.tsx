@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, Upload } from 'lucide-react';
+import { ArrowRight, Upload, Download } from 'lucide-react';
 import { Language, MediaAssets, ProjectData } from '../types';
 import { LOCKED_ASSETS, HOME_MAIN_IMAGE, NATALIA_BUSINESS_PORTRAIT, getLockedAsset } from '../data/assetRegistry';
 import { PROJECTS } from '../data/portfolioData';
 import { getProjectPath } from '../utils/projectRoutes';
 import { PageTransition } from '../components/PageTransition';
+import { downloadCvDocument } from '../utils/cvHelper';
 
 interface HomePageProps {
   currentLang: Language;
@@ -29,16 +30,19 @@ export const HomePage: React.FC<HomePageProps> = ({
     : NATALIA_BUSINESS_PORTRAIT;
   const desktopPortraitSrc = portraitSrc;
   const mobilePortraitSrc = portraitSrc;
-  // Curate top 4 primary selected projects (01 eNvironix AI, 02 Building AI Concept, 03 Street.life, 04 CircularTwin AI)
-  const previewProjects = PROJECTS.slice(0, 4);
+  // Curate cross-industry examples: industrial B2B, consumer UX / experimentation and digital service design.
+  // ResourceLoop AI is featured separately above this list.
+  const previewProjects = ['environix', 'gain', 'ai-building-concept']
+    .map((id) => PROJECTS.find((project) => project.id === id))
+    .filter((project): project is ProjectData => Boolean(project));
 
   const t = {
     de: {
       subLocation: 'Bielefeld · Digitales Produktmanagement',
-      badge: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · SUSTAINABILITY',
+      badge: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · DIGITAL TRANSFORMATION',
       headlinePart1: 'Turning problems',
       headlinePart2: 'into products.',
-      description: 'Ich verbinde wissenschaftliche Analyse, unternehmerische Erfahrung und digitales Produktmanagement. Mein Fokus liegt auf nutzerzentrierten, datenbasierten und nachhaltigen Lösungen – von der Problemvalidierung bis zum Produktkonzept.',
+      description: 'Ich verbinde wissenschaftliche Analyse, unternehmerische Erfahrung und digitales Produktmanagement. Ich entwickle branchenübergreifend nutzerzentrierte, datenbasierte Produktkonzepte und KI-gestützte Lösungen – von der Problem Discovery bis zum überprüfbaren Prototyp.',
       ctaWork: 'MEINE PROJEKTE ENTDECKEN →',
       ctaAbout: 'ÜBER MICH',
       selectedWorkBadge: 'AUSGEWÄHLTE PRODUKTE',
@@ -47,15 +51,15 @@ export const HomePage: React.FC<HomePageProps> = ({
       viewCaseStudy: 'CASE STUDY ANSEHEN →',
       journeyEyebrow: 'MY JOURNEY',
       journeyTitle: 'Different disciplines. One direction.',
-      journeySubtitle: 'Von Naturwissenschaft und Umweltschutz zu digitalen Produkten und KI.',
+      journeySubtitle: 'Wissenschaft, Unternehmertum und operative Erfahrung – heute für digitale Produkte und KI genutzt.',
       journeyCta: 'MEINE JOURNEY ENTDECKEN →',
     },
     en: {
       subLocation: 'Bielefeld · Digital Product Management',
-      badge: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · SUSTAINABILITY',
+      badge: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · DIGITAL TRANSFORMATION',
       headlinePart1: 'Turning problems',
       headlinePart2: 'into products.',
-      description: 'I connect scientific analysis, entrepreneurial experience, and digital product management. My focus is on user-centered, data-driven, and sustainable solutions – from problem validation to product concept.',
+      description: 'I combine scientific analysis, entrepreneurial experience and digital product management to explore user-centered, data-informed products and AI-enabled solutions across industries – from problem discovery to testable prototypes.',
       ctaWork: 'VIEW MY WORK →',
       ctaAbout: 'ABOUT ME',
       selectedWorkBadge: 'SELECTED PRODUCTS',
@@ -64,15 +68,15 @@ export const HomePage: React.FC<HomePageProps> = ({
       viewCaseStudy: 'VIEW CASE STUDY →',
       journeyEyebrow: 'MY JOURNEY',
       journeyTitle: 'Different disciplines. One direction.',
-      journeySubtitle: 'From science and environmental expertise to digital products and AI.',
+      journeySubtitle: 'Science, entrepreneurship and operational experience translated into digital products and AI.',
       journeyCta: 'EXPLORE MY JOURNEY →',
     },
     pl: {
       subLocation: 'Bielefeld · Cyfrowe Zarządzanie Produktem',
-      badge: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · SUSTAINABILITY',
+      badge: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · DIGITAL TRANSFORMATION',
       headlinePart1: 'Turning problems',
       headlinePart2: 'into products.',
-      description: 'Łączę analizę naukową, doświadczenie przedsiębiorcze i zarządzanie produktami cyfrowymi. Koncentruję się na rozwiązaniach zorientowanych na użytkownika, opartych na danych i zrównoważonych – od walidacji problemu po koncepcję produktu.',
+      description: 'Łączę analizę naukową, doświadczenie przedsiębiorcze i zarządzanie produktami cyfrowymi. Tworzę koncepcje produktów i rozwiązania oparte na AI dla różnych branż – od odkrywania problemów po prototypy do testowania.',
       ctaWork: 'ODKRYJ MOJE PROJEKTY →',
       ctaAbout: 'O MNIE',
       selectedWorkBadge: 'WYBRANE PRODUKTY',
@@ -81,7 +85,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       viewCaseStudy: 'ZOBACZ CASE STUDY →',
       journeyEyebrow: 'MY JOURNEY',
       journeyTitle: 'Different disciplines. One direction.',
-      journeySubtitle: 'Od nauk ścisłych i ochrony środowiska do produktów cyfrowych i AI.',
+      journeySubtitle: 'Nauka, przedsiębiorczość i doświadczenie operacyjne w służbie produktów cyfrowych i AI.',
       journeyCta: 'POZNAJ MOJĄ DROGĘ →',
     },
   }[currentLang];
@@ -177,6 +181,14 @@ export const HomePage: React.FC<HomePageProps> = ({
               >
                 <span>{t.ctaAbout}</span>
               </Link>
+              <button
+                type="button"
+                onClick={() => void downloadCvDocument()}
+                className="inline-flex min-h-[46px] items-center gap-2 rounded-full border border-[#C7A35A]/50 bg-transparent px-6 py-3 font-sans text-xs font-semibold tracking-wider text-[#F4F1EA] hover:border-[#C7A35A] hover:bg-[#101412] uppercase transition-colors"
+              >
+                <Download className="h-4 w-4 text-[#C7A35A]" />
+                <span>{currentLang === 'de' ? 'Lebenslauf herunterladen' : currentLang === 'pl' ? 'Pobierz CV' : 'Download CV'}</span>
+              </button>
             </div>
           </div>
         </section>
@@ -222,8 +234,8 @@ export const HomePage: React.FC<HomePageProps> = ({
             </Link>
           </div>
 
-          {/* 4 Primary Selected Project Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Three cross-industry selected project cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {previewProjects.map((p) => {
               const fallbackImg = getLockedAsset(p.mediaKey);
               const imgSrc = mediaAssets[p.mediaKey as keyof MediaAssets] || fallbackImg;
