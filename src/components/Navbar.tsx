@@ -63,13 +63,13 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* ========================================================================= */}
         {/* LEFT ZONE: Brand Name (Never truncated, never wrapped, priority breathing room) */}
         {/* ========================================================================= */}
-        <div className="flex items-center shrink-0 min-w-fit pr-4 sm:pr-6 lg:pr-8">
+        <div className="flex items-center min-w-0 shrink pr-1 sm:pr-6 lg:pr-8">
           <Link
             to="/"
             className="group flex items-center py-1"
             title="Natalia Stachowiak — Home"
           >
-            <span className="font-serif text-sm sm:text-base md:text-lg xl:text-xl font-medium tracking-[0.16em] text-[#F4F1EA] transition-colors group-hover:text-[#C7A35A] whitespace-nowrap select-none">
+            <span className="font-serif text-[12px] min-[375px]:text-sm sm:text-base md:text-lg xl:text-xl font-medium tracking-[0.08em] sm:tracking-[0.16em] text-[#F4F1EA] transition-colors group-hover:text-[#C7A35A] whitespace-nowrap select-none">
               NATALIA STACHOWIAK
             </span>
           </Link>
@@ -183,7 +183,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* ========================================================================= */}
         <div className="flex items-center gap-2 sm:gap-3 xl:hidden shrink-0">
           {/* Language Switcher for Tablet & Mobile Header */}
-          <div className="flex items-center rounded-full border border-[#C7A35A]/30 bg-[#101412] px-1.5 sm:px-2 py-0.5 sm:py-1 text-[11px] sm:text-xs font-mono">
+          <div className="hidden sm:flex items-center rounded-full border border-[#C7A35A]/30 bg-[#101412] px-1.5 sm:px-2 py-0.5 sm:py-1 text-[11px] sm:text-xs font-mono">
             {(['de', 'en', 'pl'] as Language[]).map((lang, idx) => (
               <React.Fragment key={lang}>
                 {idx > 0 && <span className="text-[#C7A35A]/30 mx-0.5 sm:mx-1 select-none text-[9px] sm:text-[10px]">|</span>}
