@@ -20,15 +20,23 @@ const groups: Record<Placement, number[]> = {
   bottom: [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
 };
 
-const rotation = [-7, 5, -4, 9, -5, 3, -8, 7, -4, 6, -6, 5, -3, 8, -7, 3, 6, -5, 9, -4, 3, -8, 7, -5, 4];
-const offset = [4, -4, 2, 7, -2, 5, -5, 3, 4, -3, 6, -2, 4, -5, 3, 6, -4, 2, -5, 4, -3, 5, 2, -4, 3];
+// Small, controlled offsets preserve the scattered look without cutting off a souvenir.
+// Each magnet occupies its own responsive grid cell.
+const rotation = [-5, 4, -3, 5, -4, 3, -5, 4, -3, 5, -4, 3, -3, 5, -4, 3, 4, -3, 5, -4, 3, -5, 4, -3, 3];
+const offset = [2, -2, 1, 3, -1, 2, -2, 1, 2, -1, 3, -1, 2, -2, 1, 3, -2, 1, -2, 2, -1, 2, 1, -2, 1];
+
+const layout: Record<Placement, string> = {
+  top: 'mx-auto mb-7 max-w-[950px] grid-cols-3 min-[420px]:grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 border-y border-[#C7A35A]/10 py-5',
+  side: 'my-5 sm:my-7 grid-cols-3 gap-y-6',
+  bottom: 'mx-auto mt-9 max-w-[950px] grid-cols-3 min-[420px]:grid-cols-4 sm:grid-cols-6 lg:grid-cols-7 border-t border-[#C7A35A]/15 pt-7',
+};
 
 /** The souvenirs are decoration, never covering copy or blocking any controls. */
 export const TravelMagnets: React.FC<{ placement: Placement }> = ({ placement }) => {
   return (
     <div
       aria-hidden="true"
-      className={`pointer-events-none flex flex-wrap items-center justify-center gap-x-0.5 gap-y-1 sm:gap-x-2 sm:gap-y-2 ${placement === 'top' ? 'mx-auto mb-7 max-w-[860px] justify-around border-y border-[#C7A35A]/10 py-3' : placement === 'side' ? 'my-5 sm:my-7' : 'mx-auto mt-9 max-w-[890px] border-t border-[#C7A35A]/15 pt-6'}`}
+      className={`pointer-events-none grid w-full justify-items-center items-center gap-x-4 gap-y-6 sm:gap-x-5 sm:gap-y-7 ${layout[placement]}`}
     >
       {groups[placement].map((index) => {
         const col = index % 5;
@@ -37,7 +45,8 @@ export const TravelMagnets: React.FC<{ placement: Placement }> = ({ placement })
           <span
             key={magnets[index]}
             title={magnets[index]}
-            className="block h-[56px] w-[72px] shrink-0 bg-no-repeat drop-shadow-[0_5px_7px_rgba(0,0,0,0.65)] sm:h-[73px] sm:w-[94px]"
+            data-magnet={magnets[index]}
+            className="block h-[56px] w-[72px] shrink-0 bg-no-repeat drop-shadow-[0_5px_7px_rgba(0,0,0,0.65)] sm:h-[70px] sm:w-[90px]"
             style={{
               backgroundImage: `url("${magnetAtlas}")`,
               backgroundSize: '500% 500%',
