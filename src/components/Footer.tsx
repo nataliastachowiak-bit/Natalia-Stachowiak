@@ -15,7 +15,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang }) => {
           <span className="font-serif font-medium text-[#F4F1EA] tracking-wider">NATALIA STACHOWIAK</span>
           <span className="text-[#C7A35A]/50">·</span>
           <span className="text-[#0F5C46] font-medium">
-            {currentLang === 'de' ? 'Angehende IT-Produktmanagerin' : currentLang === 'pl' ? 'IT & AI Product Manager' : 'Aspiring IT Product Manager'}
+            {currentLang === 'de' ? 'Digital & AI Product Management' : currentLang === 'pl' ? 'Digital & AI Product Management' : 'Digital & AI Product Management'}
           </span>
           <span className="text-[#C7A35A]/50 hidden md:inline">·</span>
           <span className="hidden md:inline text-[10px] text-[#A9AEA9]">Turning problems into products</span>
@@ -23,7 +23,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang }) => {
 
         <div className="flex items-center gap-4 text-[10px] text-[#A9AEA9]">
           <span className="hidden sm:inline">
-            {currentLang === 'de' ? 'VINYL AI · Eigenständiges Konzept' : currentLang === 'pl' ? 'VINYL AI · Niezależna koncepcja' : 'VINYL AI · Standalone Concept'}
+            {currentLang === 'de' ? 'Product Discovery · AI · Innovation' : currentLang === 'pl' ? 'Product Discovery · AI · Innowacje' : 'Product Discovery · AI · Innovation'}
           </span>
           <a
             href="https://www.linkedin.com/in/natalia-stachowiak-0a8449306"
