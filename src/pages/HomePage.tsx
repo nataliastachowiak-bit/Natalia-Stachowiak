@@ -113,7 +113,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                     loading="eager"
                     decoding="async"
                     onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = mobilePortraitSrc;
+                      // Avoid an endless reload loop if the portrait is unavailable.
+                      e.currentTarget.onerror = null;
                     }}
                     className="h-full w-full object-cover object-[center_top] transition-transform duration-700 group-hover:scale-105"
                   />
