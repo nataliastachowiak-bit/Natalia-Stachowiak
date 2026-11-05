@@ -437,7 +437,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
                 </span>
               </div>
               <span className="font-mono text-[10px] text-[#A9AEA9] uppercase tracking-wider">
-                {currentLang === 'de' ? 'Offiziell verifizierte Original-PDF-Nachweise' : currentLang === 'pl' ? 'Oficjalnie zweryfikowane certyfikaty PDF' : 'Officially Verified Original PDF Credentials'}
+                {currentLang === 'de' ? 'Hinterlegte PDF-Nachweise · Verifizierung beim Aussteller' : currentLang === 'pl' ? 'Dokumenty PDF · weryfikacja u wystawcy' : 'PDF documents · issuer verification where available'}
               </span>
             </div>
 
@@ -450,7 +450,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-[10px] font-mono text-[#C7A35A]">
                       <span className="rounded bg-[#0F5C46]/30 border border-[#0F5C46]/60 px-1.5 py-0.5 font-bold">
-                        PDF VERIFIED
+                        PDF AVAILABLE
                       </span>
                       <span>{cert.issueDate || cert.year}</span>
                     </div>
