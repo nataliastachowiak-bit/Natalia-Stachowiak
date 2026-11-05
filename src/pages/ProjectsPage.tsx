@@ -110,10 +110,10 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
 
             <p className="font-sans text-xs sm:text-sm text-[#A9AEA9] max-w-md md:text-right leading-relaxed">
               {currentLang === 'de'
-                ? 'Branchenübergreifende Fallstudien aus Product Discovery, UX und KI. Konzept, Demonstrator und validierte Erkenntnisse werden ausdrücklich unterschieden.'
+                ? 'Fallstudien zu Kundennutzen, Produktstrategie, technischer Machbarkeit und digitalen Prototypen. Die Methoden sind auch auf physische Produkte übertragbar; Konzepte und validierte Ergebnisse bleiben getrennt.'
                 : currentLang === 'pl'
-                ? 'Studia przypadków z różnych branż: Product Discovery, UX i AI. Koncepcje, demonstratory i potwierdzone wyniki są wyraźnie rozróżnione.'
-                : 'Cross-industry case studies spanning product discovery, UX and AI. Concepts, demonstrators and validated findings are clearly distinguished.'}
+                ? 'Studia przypadków o strategii produktu, potrzebach klientów, wykonalności technicznej i prototypach. Metody mogą dotyczyć produktów fizycznych i cyfrowych.'
+                : 'Case studies covering customer value, product strategy, technical feasibility and digital prototypes. The methods transfer to physical products; concepts and validated findings remain distinct.'}
             </p>
           </div>
         </div>

@@ -92,20 +92,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 {currentLang === 'de' ? (
                   <>
                     Mein Profil verbindet wissenschaftliche Analyse (M.Sc. Chemie), unternehmerische
-                    Erfahrung und Projektpraxis mit digitalem Produktmanagement, KI und Innovation.
-                    Ich arbeite branchenübergreifend an komplexen Produkt- und Nutzerproblemen.
+                    Verantwortung in der Produktion und Projektpraxis mit Produktmanagement und Innovation.
+                    Ich interessiere mich für physische und technische Produkte ebenso wie für digitale Lösungen und KI.
                   </>
                 ) : currentLang === 'pl' ? (
                   <>
-                    Łączę analizę naukową (mgr chemii), doświadczenie w przedsiębiorczości
-                    i pracy projektowej z cyfrowym zarządzaniem produktami, AI oraz innowacjami.
-                    Interesują mnie wyzwania produktowe w różnych branżach.
+                    Łączę analizę naukową (mgr chemii), doświadczenie w prowadzeniu firmy produkcyjnej
+                    i pracy projektowej z zarządzaniem produktami i innowacjami.
+                    Interesują mnie produkty techniczne, fizyczne, cyfrowe i AI.
                   </>
                 ) : (
                   <>
-                    My interdisciplinary background combines scientific analysis (M.Sc. Chemistry),
-                    entrepreneurship and project experience with digital product management,
-                    AI and innovation. I approach complex product challenges across industries.
+                    My background combines scientific analysis (M.Sc. Chemistry),
+                    entrepreneurial responsibility in manufacturing and project work with product management.
+                    I am interested in technical and physical products as well as digital solutions and AI.
                   </>
                 )}
               </p>
@@ -113,21 +113,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <p>
                 {currentLang === 'de' ? (
                   <>
-                    Ich strukturiere komplexe Herausforderungen, untersuche Nutzerbedürfnisse und
-                    übersetze Erkenntnisse in nachvollziehbare Produktentscheidungen.
-                    Mein Fokus liegt auf Product Discovery, datengestützten Konzepten und testbaren Prototypen.
+                    Ich strukturiere komplexe Herausforderungen, untersuche Kunden- und Nutzerbedürfnisse
+                    und berücksichtige technische Machbarkeit und wirtschaftlichen Nutzen.
+                    Diese Perspektiven verbinde ich mit Product Discovery und testbaren Produktkonzepten.
                   </>
                 ) : currentLang === 'pl' ? (
                   <>
-                    Analizuję złożone wyzwania, badam potrzeby użytkowników i przekładam
-                    wnioski na decyzje produktowe – od odkrywania problemów po prototypy,
-                    które można testować i doskonalić.
+                    Analizuję złożone problemy, badam potrzeby klientów i użytkowników
+                    oraz biorę pod uwagę wykonalność techniczną i wartość biznesową.
+                    Łączę te perspektywy z Product Discovery i prototypami do testowania.
                   </>
                 ) : (
                   <>
-                    I structure complex challenges, explore user needs and translate evidence into
-                    transparent product decisions – from product discovery to data-informed
-                    concepts and testable prototypes.
+                    I structure complex challenges, explore customer and user needs, and consider
+                    technical feasibility and commercial value. I bring these perspectives
+                    to product discovery and testable product concepts.
                   </>
                 )}
               </p>

@@ -37,11 +37,11 @@ export const HomePage: React.FC<HomePageProps> = ({
 
   const t = {
     de: {
-      subLocation: 'Bielefeld · Digitales Produktmanagement',
-      badge: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · DIGITAL TRANSFORMATION',
+      subLocation: 'Bielefeld · Produktmanagement & Innovation',
+      badge: 'PRODUCT MANAGEMENT · DIGITAL & AI INNOVATION · DIGITAL TRANSFORMATION',
       headlinePart1: 'Turning problems',
       headlinePart2: 'into products.',
-      description: 'Ich verbinde wissenschaftliche Analyse, unternehmerische Erfahrung und digitales Produktmanagement. Ich entwickle branchenübergreifend nutzerzentrierte, datenbasierte Produktkonzepte und KI-gestützte Lösungen – von der Problem Discovery bis zum überprüfbaren Prototyp.',
+      description: 'Ich verbinde wissenschaftliche Analyse und unternehmerische Praxis mit Product Management. Mein Fokus umfasst technische und physische Produkte ebenso wie digitale Plattformen und KI-Lösungen – mit Blick auf Kundenbedürfnisse, Machbarkeit und wirtschaftlichen Nutzen.',
       ctaWork: 'MEINE PROJEKTE ENTDECKEN →',
       ctaAbout: 'ÜBER MICH',
       selectedWorkBadge: 'AUSGEWÄHLTE PRODUKTE',
@@ -50,15 +50,15 @@ export const HomePage: React.FC<HomePageProps> = ({
       viewCaseStudy: 'CASE STUDY ANSEHEN →',
       journeyEyebrow: 'MY JOURNEY',
       journeyTitle: 'Different disciplines. One direction.',
-      journeySubtitle: 'Wissenschaft, Unternehmertum und operative Erfahrung – heute für digitale Produkte und KI genutzt.',
+      journeySubtitle: 'Wissenschaft, Unternehmertum und Industrieerfahrung – heute für technische und digitale Produkte genutzt.',
       journeyCta: 'MEINE JOURNEY ENTDECKEN →',
     },
     en: {
-      subLocation: 'Bielefeld · Digital Product Management',
-      badge: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · DIGITAL TRANSFORMATION',
+      subLocation: 'Bielefeld · Product Management & Innovation',
+      badge: 'PRODUCT MANAGEMENT · DIGITAL & AI INNOVATION · DIGITAL TRANSFORMATION',
       headlinePart1: 'Turning problems',
       headlinePart2: 'into products.',
-      description: 'I combine scientific analysis, entrepreneurial experience and digital product management to explore user-centered, data-informed products and AI-enabled solutions across industries – from problem discovery to testable prototypes.',
+      description: 'I combine scientific analysis and entrepreneurial experience with product management. My focus spans physical and technical products, digital platforms and AI solutions, guided by customer needs, feasibility and commercial value.',
       ctaWork: 'VIEW MY WORK →',
       ctaAbout: 'ABOUT ME',
       selectedWorkBadge: 'SELECTED PRODUCTS',
@@ -67,15 +67,15 @@ export const HomePage: React.FC<HomePageProps> = ({
       viewCaseStudy: 'VIEW CASE STUDY →',
       journeyEyebrow: 'MY JOURNEY',
       journeyTitle: 'Different disciplines. One direction.',
-      journeySubtitle: 'Science, entrepreneurship and operational experience translated into digital products and AI.',
+      journeySubtitle: 'Science, entrepreneurship and industry experience applied to technical and digital products.',
       journeyCta: 'EXPLORE MY JOURNEY →',
     },
     pl: {
-      subLocation: 'Bielefeld · Cyfrowe Zarządzanie Produktem',
-      badge: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · DIGITAL TRANSFORMATION',
+      subLocation: 'Bielefeld · Zarządzanie Produktami i Innowacje',
+      badge: 'PRODUCT MANAGEMENT · DIGITAL & AI INNOVATION · DIGITAL TRANSFORMATION',
       headlinePart1: 'Turning problems',
       headlinePart2: 'into products.',
-      description: 'Łączę analizę naukową, doświadczenie przedsiębiorcze i zarządzanie produktami cyfrowymi. Tworzę koncepcje produktów i rozwiązania oparte na AI dla różnych branż – od odkrywania problemów po prototypy do testowania.',
+      description: 'Łączę analizę naukową i przedsiębiorczość z zarządzaniem produktami. Interesują mnie produkty techniczne i fizyczne, platformy cyfrowe oraz AI – z uwzględnieniem potrzeb klientów, wykonalności i wartości biznesowej.',
       ctaWork: 'ODKRYJ MOJE PROJEKTY →',
       ctaAbout: 'O MNIE',
       selectedWorkBadge: 'WYBRANE PRODUKTY',
@@ -84,7 +84,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       viewCaseStudy: 'ZOBACZ CASE STUDY →',
       journeyEyebrow: 'MY JOURNEY',
       journeyTitle: 'Different disciplines. One direction.',
-      journeySubtitle: 'Nauka, przedsiębiorczość i doświadczenie operacyjne w służbie produktów cyfrowych i AI.',
+      journeySubtitle: 'Nauka, przedsiębiorczość i doświadczenie przemysłowe w rozwoju produktów technicznych i cyfrowych.',
       journeyCta: 'POZNAJ MOJĄ DROGĘ →',
     },
   }[currentLang];
@@ -151,7 +151,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <div className="flex items-start gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#C7A35A]" />
                 <div className="flex min-w-0 flex-col gap-0.5 font-sans text-[11px] sm:text-xs font-semibold tracking-[0.16em] sm:tracking-[0.21em] leading-[1.4] text-[#C7A35A] uppercase" aria-label={t.badge}>
-                  <span className="block sm:whitespace-nowrap">DIGITAL PRODUCT MANAGEMENT · AI INNOVATION</span>
+                  <span className="block sm:whitespace-nowrap">PRODUCT MANAGEMENT · DIGITAL &amp; AI INNOVATION</span>
                   <span className="block whitespace-nowrap">DIGITAL TRANSFORMATION</span>
                 </div>
               </div>
@@ -202,7 +202,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             {[
               { n: '01', title: ['Wissenschaftliche Analyse', 'Scientific analysis', 'Analiza naukowa'], body: ['Hypothesen prüfen, Datenlücken erkennen und Entscheidungen nachvollziehbar machen.', 'Test hypotheses, identify evidence gaps and make decisions traceable.', 'Weryfikowanie hipotez, identyfikacja brakujących danych i uzasadnianie decyzji.'] },
               { n: '02', title: ['Unternehmerische Praxis', 'Entrepreneurial experience', 'Doświadczenie biznesowe'], body: ['Prioritäten, Qualität und Stakeholder aus der Führung eines eigenen Unternehmens verstehen.', 'Bring hands-on experience with priorities, quality and stakeholder responsibility.', 'Zrozumienie priorytetów, jakości i interesariuszy z perspektywy prowadzenia firmy.'] },
-              { n: '03', title: ['Digitales Produktdenken', 'Digital product thinking', 'Myślenie produktowe'], body: ['Nutzerbedürfnisse in MVPs, KI-Prototypen und messbare Validierungsfragen übersetzen.', 'Turn user needs into MVPs, AI prototypes and measurable validation criteria.', 'Przekładanie potrzeb użytkowników na MVP, prototypy AI i mierzalne kryteria walidacji.'] }
+              { n: '03', title: ['Produktstrategie & Innovation', 'Product strategy & innovation', 'Myślenie produktowe'], body: ['Kundenbedürfnisse, Machbarkeit und wirtschaftliche Ziele in Produktkonzepte und testbare MVPs übersetzen.', 'Connect customer needs, feasibility and business goals to product concepts and testable MVPs.', 'Łączenie potrzeb klientów, wykonalności i celów biznesowych w koncepcje produktów oraz testowalne MVP.'] }
             ].map(s => {
               const i = currentLang === 'de' ? 0 : currentLang === 'en' ? 1 : 2;
               return <div key={s.n} className="rounded-2xl border border-[#C7A35A]/20 bg-[#101412] p-5">
