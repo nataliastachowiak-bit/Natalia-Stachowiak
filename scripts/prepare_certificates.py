@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Publish only explicitly packaged, real PDF documents to GitHub Pages.
-The academic scans are excluded unless the owner deliberately uploads their separate ZIP.
+Sensitive academic and personal documents are excluded unless the owner deliberately uploads their separate ZIP files.
 """
 from pathlib import Path
 from zipfile import ZipFile
@@ -10,7 +10,7 @@ repo = Path(__file__).resolve().parents[1]
 destination = repo / "public" / "assets" / "certificates"
 destination.mkdir(parents=True, exist_ok=True)
 
-for archive_name in ("certificate-pdfs.zip",):
+for archive_name in ("certificate-pdfs.zip", "design-thinking-original-mit-geburtsdatum.zip", "akademische-nachweise-vor-veroeffentlichung-pruefen.zip"):
     archive = repo / archive_name
     if not archive.exists():
         continue
