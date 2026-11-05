@@ -58,3 +58,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # Allow extra time when GitHub Pages queues the publication behind other deployments.
+          timeout: 1200000
