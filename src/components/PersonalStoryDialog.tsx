@@ -118,11 +118,11 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
             </div>
             {/* Relaxed editorial collage; no family/child/dog photographs. */}
             <div className="lg:col-span-5 relative px-2 pt-5 pb-6 sm:px-3 lg:pt-8">
-              <div className="relative mx-auto max-w-[460px] min-h-[560px] sm:min-h-[640px] lg:min-h-[680px]">
-                <figure className="absolute left-0 top-0 z-10 w-[64%] -rotate-[5deg] overflow-hidden rounded-xl border-4 border-[#F4F1EA] bg-[#101412] shadow-[0_18px_45px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
-                  <img src={camelImage} alt={currentLang === 'de' ? 'Reiseerinnerung: auf einem Kamel in der Wüste' : currentLang === 'pl' ? 'Wspomnienie z podróży: na wielbłądzie na pustyni' : 'Travel memory: riding a camel in the desert'} loading="lazy" decoding="async" width="400" height="570" className="block aspect-[3/4] w-full object-cover" />
+              <div className="relative mx-auto max-w-[460px] min-h-[860px] sm:min-h-[1010px] lg:min-h-[1060px]">
+                <figure className="absolute left-0 top-0 z-30 w-[67%] -rotate-[4deg] overflow-hidden rounded-xl border-4 border-[#F4F1EA] bg-[#101412] shadow-[0_18px_45px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
+                  <img src={camelImage} alt={currentLang === 'de' ? 'Reiseerinnerung: auf einem Kamel in der Wüste' : currentLang === 'pl' ? 'Wspomnienie z podróży: na wielbłądzie na pustyni' : 'Travel memory: riding a camel in the desert'} loading="lazy" decoding="async" width="408" height="1200" className="block h-auto w-full object-contain" />
                 </figure>
-                <figure className="absolute right-0 top-[17%] z-20 w-[62%] rotate-[6deg] overflow-hidden rounded-xl border-4 border-[#F4F1EA] bg-[#101412] shadow-[0_18px_45px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
+                <figure className="absolute right-0 top-[15%] z-10 w-[62%] rotate-[6deg] overflow-hidden rounded-xl border-4 border-[#F4F1EA] bg-[#101412] shadow-[0_18px_45px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
                   <img src={umbrellasImage} alt={currentLang === 'de' ? 'Reisefoto in einer beleuchteten Straße mit bunten Regenschirmen' : currentLang === 'pl' ? 'Podróżnicze zdjęcie: ulica z kolorowymi parasolami' : 'Travel photograph: a street decorated with colourful umbrellas'} loading="lazy" decoding="async" width="400" height="520" className="block aspect-[4/5] w-full object-cover" />
                 </figure>
                 <figure className="absolute bottom-[1%] left-[5%] z-10 w-[72%] -rotate-[3deg] overflow-hidden rounded-xl border-4 border-[#F4F1EA] bg-[#101412] shadow-[0_18px_45px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
