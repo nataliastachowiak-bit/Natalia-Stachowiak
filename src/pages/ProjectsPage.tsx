@@ -119,211 +119,82 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
           </div>
         </div>
 
-        {/* ============================================================ */}
-        {/* PROMINENT FEATURED CASE STUDY: ResourceLoop AI               */}
-        {/* Strictly using ONLY verified project data already in project */}
-        {/* ============================================================ */}
-        <section id="resourceloop" className="scroll-mt-24 relative z-10 rounded-2xl border border-[#C7A35A]/50 bg-gradient-to-b from-[#0F5C46]/20 via-[#101412] to-[#080A09] p-6 sm:p-8 shadow-[0_15px_40px_rgba(0,0,0,0.7)] transition-all">
+        {/* FEATURED CASE STUDY: ResourceLoop AI – Circular Renovation */}
+        <section id="resourceloop" className="scroll-mt-24 relative z-10 rounded-2xl border border-[#C7A35A]/50 bg-gradient-to-b from-[#0F5C46]/20 via-[#101412] to-[#080A09] p-6 sm:p-8 shadow-[0_15px_40px_rgba(0,0,0,0.7)]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            {/* Left Content */}
-            <div className="lg:col-span-8 space-y-4">
-              <div className="flex flex-wrap items-center gap-2.5">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-[#D6B15E] bg-[#D6B15E]/15 px-3 py-1 font-mono text-[10px] font-bold text-[#D6B15E] uppercase tracking-wider">
-                  <Sparkles className="h-3 w-3 text-[#D6B15E]" />
-                  FEATURED CASE STUDY
-                </span>
-                <span className="rounded-full border border-[#0F5C46] bg-[#080A09] px-3 py-1 font-mono text-[10px] font-medium text-[#10B981] uppercase tracking-wider">
-                  {currentLang === 'de' ? 'Konzeptstudie & Systemarchitektur' : currentLang === 'pl' ? 'Studium koncepcyjne i architektura' : 'Concept Study & System Architecture'}
-                </span>
-                <span className="rounded-full border border-[#C7A35A]/30 bg-[#080A09] px-3 py-1 font-mono text-[10px] font-medium text-[#A9AEA9] uppercase tracking-wider">
-                  AI · Circular Economy · Chemistry
+            <div className="lg:col-span-8 space-y-5">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full border border-[#D6B15E] bg-[#D6B15E]/10 px-3 py-1 text-[10px] font-bold text-[#D6B15E] uppercase tracking-wider">Featured Case Study</span>
+                <span className="rounded-full border border-[#0F5C46] bg-[#080A09] px-3 py-1 text-[10px] font-medium text-[#10B981] uppercase tracking-wider">
+                  {currentLang === 'de' ? 'IHK-Projekt · Konzept & Demonstrator' : currentLang === 'pl' ? 'Projekt IHK · koncepcja i demonstrator' : 'IHK Project · Concept & Demonstrator'}
                 </span>
               </div>
-
               <div>
-                <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-[#F4F1EA] tracking-tight">
-                  ResourceLoop AI
-                </h2>
-                <p className="font-sans text-sm sm:text-base text-[#D6B15E] font-medium mt-1">
-                  {currentLang === 'de'
-                    ? 'Geschlossene Stoffkreisläufe & industrielle Ressourcen-Intelligenz'
-                    : currentLang === 'pl'
-                    ? 'Zamknięte obiegi materiałowe i inteligencja zasobów przemysłowych'
-                    : 'Closed-Loop Industrial Resource Intelligence & Circular Decision Support'}
+                <h2 className="font-serif text-3xl sm:text-4xl text-[#F4F1EA]">ResourceLoop AI</h2>
+                <p className="mt-1 text-sm sm:text-base font-medium text-[#D6B15E]">
+                  {currentLang === 'de' ? 'Scan-to-Decision für zirkuläre Gebäudesanierung' : currentLang === 'pl' ? 'Scan-to-Decision dla cyrkularnej renowacji budynków' : 'Scan-to-Decision for Circular Building Renovation'}
                 </p>
               </div>
-
-              <p className="font-sans text-xs sm:text-sm text-[#D1D5DB] leading-relaxed">
+              <p className="text-sm leading-relaxed text-[#D1D5DB]">
                 {currentLang === 'de'
-                  ? 'ResourceLoop AI verbindet naturwissenschaftliche Stoffstromanalysen (M.Sc. Chemie) und betriebliche Umweltstandards (Umweltschutzstudium & ISO 14001) mit modernen digitalen Produktmanagement-Methoden: Wie können industrielle Nebenströme und Materialverluste systematisch erfasst, bewertet und in zirkuläre Kaskaden rückgeführt werden?'
+                  ? 'Problem: Ob ein bestehendes Bauteil erhalten, repariert, wiederverwendet, aufgearbeitet oder recycelt werden sollte, ist bei unvollständigen Material-, Zustands- und Umweltdaten schwer nachvollziehbar.'
                   : currentLang === 'pl'
-                  ? 'ResourceLoop AI łączy naukową analizę przepływu materiałów (mgr chemii) i standardy środowiskowe (ochrona środowiska, ISO 14001) z metodyką Product Managementu: jak systematycznie identyfikować odpady przemysłowe i przekształcać je w wartościowe surowce cyrkularne?'
-                  : 'ResourceLoop AI bridges scientific material flow analysis (M.Sc. Chemistry) and environmental compliance standards (Environmental Protection, ISO 14001) with modern digital product management: systematically identifying industrial side-streams and redirecting them into closed-loop cascades.'}
+                  ? 'Problem: Bez pełnych danych o materiale, stanie i wpływie na środowisko trudno uzasadnić decyzję o zachowaniu, naprawie, ponownym wykorzystaniu, odnowieniu lub recyklingu elementu budynku.'
+                  : 'Problem: Decisions to retain, repair, reuse, refurbish or recycle an existing building component are difficult to justify when material, condition and environmental evidence is incomplete.'}
               </p>
-
-              {/* Verified Domain Pillars */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                <div className="rounded-xl border border-[#0F5C46]/40 bg-[#080A09]/70 p-3">
-                  <span className="font-mono text-[10px] font-bold text-[#10B981] uppercase block">01 · Science</span>
-                  <span className="text-xs text-[#F4F1EA] font-medium block mt-0.5">
-                    {currentLang === 'de' ? 'Chemische Stoffstromanalyse' : currentLang === 'pl' ? 'Analiza chemiczna surowców' : 'Chemical Stream Analysis'}
-                  </span>
-                  <p className="text-[11px] text-[#A9AEA9] mt-1 leading-snug">
-                    {currentLang === 'de' ? 'Fundiertes Verständnis von Reaktionen, Nebenprodukten und Reinheitsgraden.' : currentLang === 'pl' ? 'Zrozumienie reakcji, produktów ubocznych i czystości.' : 'Deep understanding of reactions, by-products, and purity thresholds.'}
-                  </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="rounded-xl border border-[#0F5C46]/40 bg-[#080A09]/70 p-4">
+                  <span className="font-mono text-[10px] text-[#10B981] font-bold uppercase">01 · Discovery</span>
+                  <h3 className="mt-1 text-sm font-medium text-[#F4F1EA]">{currentLang === 'de' ? 'Problem verstehen' : currentLang === 'pl' ? 'Zrozumieć problem' : 'Understand the problem'}</h3>
+                  <p className="mt-1 text-xs text-[#A9AEA9]">{currentLang === 'de' ? 'Stakeholdergespräche, Pain Points und offene Annahmen dokumentieren.' : currentLang === 'pl' ? 'Rozmowy z interesariuszami, problemy i otwarte założenia.' : 'Stakeholder conversations, pain points and explicit open assumptions.'}</p>
                 </div>
-                <div className="rounded-xl border border-[#0F5C46]/40 bg-[#080A09]/70 p-3">
-                  <span className="font-mono text-[10px] font-bold text-[#10B981] uppercase block">02 · Environment</span>
-                  <span className="text-xs text-[#F4F1EA] font-medium block mt-0.5">
-                    {currentLang === 'de' ? 'LCA & ISO 14001 Compliance' : currentLang === 'pl' ? 'LCA i zgodność ISO 14001' : 'LCA & ISO 14001 Compliance'}
-                  </span>
-                  <p className="text-[11px] text-[#A9AEA9] mt-1 leading-snug">
-                    {currentLang === 'de' ? 'Ökobilanzen, gesetzliche Berichterstattung und nachvollziehbarer Ressourcenschutz.' : currentLang === 'pl' ? 'Bilans ekologiczny, raportowanie i ochrona zasobów.' : 'Life-cycle assessments, regulatory reporting, and resource conservation.'}
-                  </p>
+                <div className="rounded-xl border border-[#0F5C46]/40 bg-[#080A09]/70 p-4">
+                  <span className="font-mono text-[10px] text-[#10B981] font-bold uppercase">02 · MVP</span>
+                  <h3 className="mt-1 text-sm font-medium text-[#F4F1EA]">{currentLang === 'de' ? 'Fassadenelement als Beispiel' : currentLang === 'pl' ? 'Przykład: element elewacji' : 'Façade component use case'}</h3>
+                  <p className="mt-1 text-xs text-[#A9AEA9]">{currentLang === 'de' ? 'Aluminium-Bauteil, Evidenzerfassung und transparenter Szenarienvergleich.' : currentLang === 'pl' ? 'Element aluminiowy, zbieranie dowodów i porównanie scenariuszy.' : 'Aluminium component, evidence capture and transparent scenario comparison.'}</p>
                 </div>
-                <div className="rounded-xl border border-[#0F5C46]/40 bg-[#080A09]/70 p-3">
-                  <span className="font-mono text-[10px] font-bold text-[#D6B15E] uppercase block">03 · Product Mindset</span>
-                  <span className="text-xs text-[#F4F1EA] font-medium block mt-0.5">
-                    {currentLang === 'de' ? 'Decision Intelligence Schicht' : currentLang === 'pl' ? 'Warstwa inteligencji decyzyjnej' : 'Decision Intelligence Layer'}
-                  </span>
-                  <p className="text-[11px] text-[#A9AEA9] mt-1 leading-snug">
-                    {currentLang === 'de' ? 'Von isolierten Datenpunkten zu umsetzbaren Empfehlungen für Betriebsleiter.' : currentLang === 'pl' ? 'Od surowych danych do konkretnych decyzji zarządczych.' : 'From raw measurements to transparent, verifiable operational decisions.'}
-                  </p>
+                <div className="rounded-xl border border-[#0F5C46]/40 bg-[#080A09]/70 p-4">
+                  <span className="font-mono text-[10px] text-[#D6B15E] font-bold uppercase">03 · Decision</span>
+                  <h3 className="mt-1 text-sm font-medium text-[#F4F1EA]">{currentLang === 'de' ? 'Entscheidung statt KI-Behauptung' : currentLang === 'pl' ? 'Decyzje oparte na dowodach' : 'Evidence-based decisions'}</h3>
+                  <p className="mt-1 text-xs text-[#A9AEA9]">{currentLang === 'de' ? 'Technische, ökologische und wirtschaftliche Kriterien; Datenlücken sichtbar.' : currentLang === 'pl' ? 'Kryteria techniczne, środowiskowe i ekonomiczne oraz luki w danych.' : 'Technical, environmental and economic criteria, with data gaps visible.'}</p>
                 </div>
               </div>
-
-              {/* Strictly Verified Data & Clear Placeholder Notice */}
-              <div className="rounded-xl border border-[#C7A35A]/30 bg-[#080A09]/90 p-4 space-y-2">
-                <div className="flex items-center gap-2">
-                  <Info className="h-4 w-4 text-[#D6B15E] shrink-0" />
-                  <span className="font-mono text-[11px] font-bold tracking-wider text-[#D6B15E] uppercase">
-                    {currentLang === 'de' ? 'Transparenzhinweis & Status' : currentLang === 'pl' ? 'Nota transparentności i status' : 'Transparency Notice & Status'}
-                  </span>
-                </div>
-                <p className="text-xs text-[#D1D5DB] leading-relaxed">
-                  {currentLang === 'de' ? (
-                    <>
-                      <strong className="text-[#F4F1EA]">Status:</strong> Konzeptionelle Systemarchitektur & Prozessentwurf auf Basis verifizierter akademischer und beruflicher Qualifikationen (M.Sc. Chemie, Umweltschutz, IHK Digital Transformation).
-                    </>
-                  ) : currentLang === 'pl' ? (
-                    <>
-                      <strong className="text-[#F4F1EA]">Status:</strong> Architektura koncepcyjna i projekt procesów oparty na zweryfikowanych kwalifikacjach akademickich i zawodowych (mgr chemii, ochrona środowiska, IHK).
-                    </>
-                  ) : (
-                    <>
-                      <strong className="text-[#F4F1EA]">Status:</strong> Conceptual systems architecture and workflow design grounded in verified academic and domain qualifications (M.Sc. Chemistry, Environmental Protection, IHK).
-                    </>
-                  )}
-                </p>
-                <div className="p-2.5 rounded-lg border border-[#0F5C46]/35 bg-[#0C120F] text-[11px] font-mono text-[#A9AEA9]">
+              <div className="rounded-xl border border-[#C7A35A]/30 bg-[#080A09]/85 p-4">
+                <p className="text-xs leading-relaxed text-[#D1D5DB]">
+                  <strong className="text-[#D6B15E]">{currentLang === 'de' ? 'Verlässlichkeit des Scanners: ' : currentLang === 'pl' ? 'Wiarygodność skanera: ' : 'Scanner reliability: '}</strong>
                   {currentLang === 'de'
-                    ? '[Verifizierte Felddaten, Laborreihen & Nutzerinterviews: In Vorbereitung / Dokumentation im Rahmen der nächsten Entwicklungsphase]'
+                    ? 'Fotos können sichtbare Merkmale dokumentieren und Rückfragen auslösen. Materialzusammensetzung, verdeckte Schäden, Schadstoffe, Einbaujahr, Tragfähigkeit und Restlebensdauer gelten ohne zusätzliche Belege ausdrücklich als unbekannt.'
                     : currentLang === 'pl'
-                    ? '[Zweryfikowane dane terenowe, próby laboratoryjne i wywiady: W przygotowaniu / dokumentacja w kolejnej fazie rozwojowej]'
-                    : '[Verified field validation, empirical test series & user interviews: Pending / In preparation as part of the next development phase]'}
-                </div>
+                    ? 'Zdjęcia dokumentują widoczne cechy i pytania uzupełniające. Skład materiału, ukryte uszkodzenia, substancje szkodliwe, wiek, nośność i żywotność wymagają dodatkowych dowodów.'
+                    : 'Photos can capture visible features and trigger follow-up questions. Composition, hidden defects, hazardous materials, age, structural safety and remaining life require independent evidence.'}
+                </p>
               </div>
-
-              {/* Expand Details Trigger */}
-              <div>
-                <button
-                  type="button"
-                  onClick={() => setResourceLoopExpanded(!resourceLoopExpanded)}
-                  className="inline-flex items-center gap-2 text-xs font-mono font-semibold tracking-wider text-[#D6B15E] hover:text-[#F4F1EA] transition-colors uppercase"
-                >
-                  <span>
-                    {resourceLoopExpanded
-                      ? (currentLang === 'de' ? 'Systemdetails schließen ↑' : currentLang === 'pl' ? 'Zwiń szczegóły systemu ↑' : 'Collapse system details ↑')
-                      : (currentLang === 'de' ? 'Systemarchitektur & 4-Stufen-Workflow ansehen ↓' : currentLang === 'pl' ? 'Zobacz architekturę systemu i 4 etapy ↓' : 'View system architecture & 4-stage workflow ↓')}
-                  </span>
+              <div className="flex flex-wrap gap-3">
+                <a href="https://scan-to-sure-decision.lovable.app/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center rounded-full bg-[#0F5C46] px-5 py-2.5 text-xs font-semibold text-[#F4F1EA] hover:bg-[#148B78]">
+                  {currentLang === 'de' ? 'Scanner-Demo öffnen ↗' : currentLang === 'pl' ? 'Otwórz demonstrator ↗' : 'Open scanner demo ↗'}
+                </a>
+                <button type="button" onClick={() => setResourceLoopExpanded(!resourceLoopExpanded)} className="min-h-[44px] rounded-full border border-[#C7A35A]/50 px-5 py-2.5 text-xs font-semibold text-[#D6B15E] hover:border-[#D6B15E]">
+                  {currentLang === 'de' ? (resourceLoopExpanded ? 'Methodik schließen' : 'Methodik & Scope ansehen') : currentLang === 'pl' ? (resourceLoopExpanded ? 'Zamknij metodę' : 'Metoda i zakres') : (resourceLoopExpanded ? 'Close methodology' : 'Methodology & scope')}
                 </button>
-
-                {resourceLoopExpanded && (
-                  <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-[#0F5C46]/30 text-xs text-[#D1D5DB] animate-fadeIn">
-                    <div className="p-3 rounded-lg border border-[#0F5C46]/30 bg-[#0C120F] space-y-1">
-                      <span className="font-mono text-[10px] text-[#10B981] font-bold uppercase">Stufe 1 · Erfassung</span>
-                      <p className="text-[11px] text-[#A9AEA9]">
-                        Strukturierte Erfassung von Rohstoffen, Frischwasser, chemischen Einsatzstoffen und Prozess-Emissionen ohne manuelle Medienbrüche.
-                      </p>
-                    </div>
-                    <div className="p-3 rounded-lg border border-[#0F5C46]/30 bg-[#0C120F] space-y-1">
-                      <span className="font-mono text-[10px] text-[#10B981] font-bold uppercase">Stufe 2 · KI-Kaskadenanalyse</span>
-                      <p className="text-[11px] text-[#A9AEA9]">
-                        Algorithmische Identifikation von Kaskadennutzungen: Welche Nebenströme können als Sekundärrohstoff in nachgelagerten Prozessen wiederverwendet werden?
-                      </p>
-                    </div>
-                    <div className="p-3 rounded-lg border border-[#0F5C46]/30 bg-[#0C120F] space-y-1">
-                      <span className="font-mono text-[10px] text-[#D6B15E] font-bold uppercase">Stufe 3 · Decision Compass</span>
-                      <p className="text-[11px] text-[#A9AEA9]">
-                        Abwägung von Wirtschaftlichkeit, CO₂-Einsparung und technischer Machbarkeit vor operativen Beschlüssen im Werk.
-                      </p>
-                    </div>
-                    <div className="p-3 rounded-lg border border-[#0F5C46]/30 bg-[#0C120F] space-y-1">
-                      <span className="font-mono text-[10px] text-[#D6B15E] font-bold uppercase">Stufe 4 · ESG & CSRD Audit-Export</span>
-                      <p className="text-[11px] text-[#A9AEA9]">
-                        Automatisierte Generierung prüffähiger Nachweise für ISO 14001 Audits und europäische Nachhaltigkeitsberichte.
-                      </p>
-                    </div>
-                  </div>
-                )}
               </div>
-
+              {resourceLoopExpanded && (
+                <div className="rounded-xl border border-[#0F5C46]/35 bg-[#0C120F] p-4 space-y-3 text-xs leading-relaxed text-[#D1D5DB]">
+                  <p><strong className="text-[#D6B15E]">Problem Discovery:</strong> {currentLang === 'de' ? 'Stakeholdergespräche und Problemhypothesen; Erkenntnisse und offene Annahmen getrennt dokumentieren.' : currentLang === 'pl' ? 'Rozmowy z interesariuszami i hipotezy; oddzielenie wniosków od założeń.' : 'Stakeholder conversations and problem hypotheses; findings are separated from assumptions.'}</p>
+                  <p><strong className="text-[#D6B15E]">Solution Discovery:</strong> {currentLang === 'de' ? 'Optionen KEEP, REPAIR/REUSE, REFURBISH, REMANUFACTURE und RECYCLE vergleichen.' : currentLang === 'pl' ? 'Porównanie KEEP, REPAIR/REUSE, REFURBISH, REMANUFACTURE i RECYCLE.' : 'Compare KEEP, REPAIR/REUSE, REFURBISH, REMANUFACTURE and RECYCLE.'}</p>
+                  <p><strong className="text-[#D6B15E]">Status:</strong> {currentLang === 'de' ? 'Konzept und interaktiver Demonstrator. Keine produktive Diagnostik und keine nachgewiesenen CO₂-Einsparungen; Validierung läuft.' : currentLang === 'pl' ? 'Koncepcja i interaktywny demonstrator; bez zweryfikowanych oszczędności CO₂. Walidacja trwa.' : 'Concept and interactive demonstrator, not production diagnostics; no verified CO₂ savings are claimed. Validation remains ongoing.'}</p>
+                </div>
+              )}
             </div>
-
-            {/* Right Meta Column */}
             <div className="lg:col-span-4 space-y-4">
-              <div
-                onClick={() => setSelectedModalImage({
-                  src: mediaAssets.resourceLoopImage || PROJECT_RESOURCELOOP_IMAGE,
-                  title: 'ResourceLoop AI — Closed-Loop Material & Industrial Resource Intelligence'
-                })}
-                className="group/img cursor-pointer relative aspect-[16/11] w-full overflow-hidden rounded-xl border border-[#C7A35A]/40 bg-[#080A09] shadow-lg transition-all hover:border-[#D6B15E]"
-                title={currentLang === 'de' ? 'Infografik im Vollbild ansehen' : currentLang === 'pl' ? 'Powiększ infografikę' : 'Click to view full infographic'}
-              >
-                <img
-                  src={mediaAssets.resourceLoopImage || PROJECT_RESOURCELOOP_IMAGE}
-                  alt="ResourceLoop AI Concept Architecture"
-                  loading="lazy"
-                  className="h-full w-full object-cover object-center transition-transform duration-500 group-hover/img:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#080A09]/80 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-2.5 left-3 right-3 text-center sm:text-left flex items-center justify-between">
-                  <div>
-                    <span className="font-mono text-[10px] text-[#D6B15E] uppercase tracking-wider block">
-                      Product Architecture Diagram
-                    </span>
-                    <span className="text-xs font-serif text-[#F4F1EA]">
-                      ResourceLoop AI · Closed Loop
-                    </span>
-                  </div>
-                  <span className="inline-flex items-center gap-1 rounded bg-[#080A09]/85 px-2 py-1 text-[10px] font-mono text-[#C7A35A] border border-[#C7A35A]/30 backdrop-blur-sm">
-                    <Eye className="h-3 w-3" />
-                  </span>
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-[#0F5C46]/40 bg-[#080A09]/80 p-3.5 space-y-2 text-xs">
-                <span className="font-mono text-[10px] font-bold text-[#A9AEA9] uppercase tracking-wider block">
-                  {currentLang === 'de' ? 'FACHLICHE ZUORDNUNG' : currentLang === 'pl' ? 'KLASYFIKACJA' : 'PROJECT TAXONOMY'}
-                </span>
-                <div className="space-y-1.5 text-[11px]">
-                  <div className="flex justify-between text-[#A9AEA9]">
-                    <span>Kategorie:</span>
-                    <span className="text-[#F4F1EA] font-medium">B2B Circular Intelligence</span>
-                  </div>
-                  <div className="flex justify-between text-[#A9AEA9]">
-                    <span>Reifegrad:</span>
-                    <span className="text-[#D6B15E] font-medium">Konzeptstudie & Systemdesign</span>
-                  </div>
-                  <div className="flex justify-between text-[#A9AEA9]">
-                    <span>Methodik:</span>
-                    <span className="text-[#10B981] font-medium">LCA · JTBD · AI Decision Logic</span>
-                  </div>
-                </div>
+              <button type="button" onClick={() => setSelectedModalImage({ src: mediaAssets.resourceLoopImage || PROJECT_RESOURCELOOP_IMAGE, title: 'ResourceLoop AI · Concept' })} className="w-full overflow-hidden rounded-xl border border-[#C7A35A]/40 bg-[#080A09] text-left">
+                <img src={mediaAssets.resourceLoopImage || PROJECT_RESOURCELOOP_IMAGE} alt="ResourceLoop AI – Konzeptgrafik" loading="lazy" className="aspect-[16/11] w-full object-cover" />
+                <span className="block px-3 py-2 text-xs text-[#D6B15E]">{currentLang === 'de' ? 'Konzeptgrafik vergrößern' : currentLang === 'pl' ? 'Powiększ grafikę' : 'Enlarge concept image'}</span>
+              </button>
+              <div className="rounded-xl border border-[#0F5C46]/40 bg-[#080A09]/80 p-4 text-xs leading-relaxed text-[#D1D5DB]">
+                <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-[#D6B15E]">Product scope</span>
+                <p className="mt-2">{currentLang === 'de' ? 'Bau & Sanierung · Aluminium-Fassadenelement · KI-gestützte Entscheidungsunterstützung' : currentLang === 'pl' ? 'Budownictwo i renowacja · element aluminiowy · wspomaganie decyzji AI' : 'Building renovation · aluminium façade component · AI-assisted decision support'}</p>
               </div>
             </div>
-
           </div>
         </section>
 

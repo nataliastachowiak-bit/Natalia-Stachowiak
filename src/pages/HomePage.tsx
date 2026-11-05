@@ -181,6 +181,23 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
         </section>
 
+        {/* Featured current product case study */}
+        <section className="relative z-10 rounded-2xl border border-[#C7A35A]/45 bg-gradient-to-r from-[#0F5C46]/25 to-[#101412] p-6 sm:p-8">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+            <div className="max-w-2xl space-y-2">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#D6B15E]">Featured Case Study · ResourceLoop AI</p>
+              <h2 className="font-serif text-2xl sm:text-3xl text-[#F4F1EA]">{currentLang === 'de' ? 'Bessere Entscheidungen für zirkuläre Sanierung' : currentLang === 'pl' ? 'Lepsze decyzje w cyrkularnej renowacji' : 'Better decisions for circular renovation'}</h2>
+              <p className="text-sm text-[#D1D5DB] leading-relaxed">
+                {currentLang === 'de' ? 'Von der Problem Discovery zum Scan-to-Decision-Demonstrator: Bauteile erfassen, Datenlücken erkennen und Sanierungsoptionen nachvollziehbar vergleichen.' : currentLang === 'pl' ? 'Od odkrywania problemu do demonstratora Scan-to-Decision: dokumentacja elementów, luk w danych i porównanie scenariuszy.' : 'From problem discovery to a Scan-to-Decision demonstrator: document components, flag missing evidence and compare renovation options.'}
+              </p>
+              <p className="text-xs text-[#A9AEA9]">{currentLang === 'de' ? 'IHK-Projekt · Konzept & Demonstrator · Validierung läuft' : currentLang === 'pl' ? 'Projekt IHK · koncepcja i demonstrator · walidacja trwa' : 'IHK project · concept and demonstrator · validation ongoing'}</p>
+            </div>
+            <Link to="/projects#resourceloop" className="inline-flex min-h-[46px] shrink-0 items-center justify-center rounded-full bg-[#0F5C46] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#F4F1EA] hover:bg-[#148B78]">
+              {currentLang === 'de' ? 'Fallstudie ansehen →' : currentLang === 'pl' ? 'Zobacz studium →' : 'View case study →'}
+            </Link>
+          </div>
+        </section>
+
         {/* 2. SELECTED WORK PREVIEW */}
         <section className="relative z-10 border-t border-[#C7A35A]/15 pt-12">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
