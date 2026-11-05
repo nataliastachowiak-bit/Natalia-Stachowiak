@@ -267,12 +267,12 @@ export const PROJECTS: ProjectData[] = [
     id: 'gain',
     number: '05',
     name: 'GAIN',
-    title: 'GAIN — Netflix Innovation',
+    title: 'GAIN / NatflixGain — Independent Movie Picker'
     subtitle: 'From Choice Overload to effortless discovery.',
     description: {
-      de: 'Ein Produktinnovationskonzept, das untersucht, wie Nutzer schneller und einfacher entscheiden können, welche Inhalte sie auf Netflix ansehen möchten.',
-      en: 'A product innovation concept examining how users can decide faster and more effortlessly what content to watch on Netflix.',
-      pl: 'Koncepcja innowacji produktowej badająca, jak użytkownicy mogą szybciej i łatwiej decydować o wyborze treści na platformie Netflix.',
+      de: 'Ein unabhängiges Produktkonzept und Web-Prototyp zur gemeinsamen Filmauswahl und zum Test von Entscheidungswegen.',
+      en: 'An independent web prototype exploring group film selection and testable decision flows.',
+      pl: 'Niezależny prototyp internetowy wspierający grupowy wybór filmów i testowanie procesu decyzyjnego.',
     },
     tags: ['Design Thinking', 'UX', 'Research', 'Prototyping'],
     mediaKey: 'gainImage',
@@ -284,9 +284,9 @@ export const PROJECTS: ProjectData[] = [
     },
     caseStudy: {
       problem: {
-        de: 'Choice Overload auf Streaming-Plattformen: Nutzer verbringen oft bis zu 25 Minuten mit dem Scrollen durch endlose Kataloge („Netflix Paralysis“), brechen frustriert ab oder wählen resigniert Wiederholungen alter Inhalte.',
-        en: 'Choice overload on video streaming platforms: Viewers spend up to 25 minutes scrolling through endless catalog carousels ("Netflix Paralysis"), often giving up frustrated or defaulting to old re-runs.',
-        pl: 'Problem przeciążenia wyborem na platformach streamingowych: Użytkownicy spędzają nawet 25 minut na przewijaniu katalogu, często rezygnując z seansu z powodu frustracji.',
+        de: 'Choice Overload auf Streaming-Plattformen: Nutzer können viel Zeit mit dem Scrollen durch umfangreiche Kataloge verbringen („Netflix Paralysis“), brechen frustriert ab oder wählen resigniert Wiederholungen alter Inhalte.',
+        en: 'Choice overload on video streaming platforms: Viewers may spend considerable time scrolling through extensive catalogues ("Netflix Paralysis"), often giving up frustrated or defaulting to old re-runs.',
+        pl: 'Problem przeciążenia wyborem na platformach streamingowych: Użytkownicy mogą długo przewijać katalog, często rezygnując z seansu z powodu frustracji.',
       },
       userNeeds: {
         de: 'Schnelle Entscheidungsfindung (< 2 Minuten), Filterung nach aktuellem Gemütszustand und verfügbarer Zeit, Entlastung von kognitiver Ermüdung.',
@@ -299,19 +299,19 @@ export const PROJECTS: ProjectData[] = [
         pl: 'Hipoteza: Ograniczenie wyboru do maks. 3 rekomendacji znacząco redukuje porzucenia. Decyzja: Suwak nastroju z jasnym uzasadnieniem dopasowania.',
       },
       successMetrics: {
-        de: 'Hypothesenbasierte Zielmetriken (Laborvalidierung): Angestrebte Reduktion der Time-to-Decision von 18 Min. auf unter 2 Min. In qualitativen Usability-Tests mit 8 Nutzern wählten alle Tester in durchschnittlich 1,8 Minuten zufriedenstellend aus.',
-        en: 'Hypothetical Target Metrics (Lab Validation): Target time-to-decision reduction from 18 min to <2 min. In qualitative tests with 8 users, all participants completed a pick in 1.8 minutes.',
-        pl: 'Docelowe wskaźniki (walidacja laboratoryjna): Skrócenie czasu decyzji z 18 min do poniżej 2 min. W testach z 8 osobami średni czas wyniósł 1,8 minuty.',
+        de: 'Geplante Testmetriken: Zeit bis zur Filmentscheidung, Abbruchrate, Vetos pro Gruppensitzung und Wiedergabestarts. Ergebnisse eines durchgeführten randomisierten Nutzertests sind hier noch nicht belegt.',
+        en: 'Proposed experiment KPIs: time-to-decision, drop-off rate, veto count per group session and playback starts. Results of a randomized user study are not yet documented here.',
+        pl: 'Planowane wskaźniki: czas wyboru filmu, odsetek porzuceń, liczba wet w sesji grupowej i rozpoczęcie odtwarzania. Wyniki randomizowanego testu nie zostały jeszcze udokumentowane.',
       },
       transparencyNote: {
-        de: 'Interaktiver High-Fidelity-Prototyp & Design-Thinking-Konzept. Die genannten Messwerte spiegeln qualitative Laborergebnisse wider (Validierungshypothese).',
-        en: 'Interactive high-fidelity prototype & Design Thinking concept. Metrics represent qualitative test outcomes (validation hypothesis).',
-        pl: 'Interaktywny prototyp i koncepcja Design Thinking. Wyniki stanowią hipotezę walidacyjną z testów jakościowych.',
+        de: 'Interaktiver High-Fidelity-Prototyp & Design-Thinking-Konzept. Die Zielmetriken sind Hypothesen, keine nachgewiesenen Testergebnisse.',
+        en: 'Interactive high-fidelity prototype & Design Thinking concept. The metrics are validation hypotheses, not verified test outcomes.',
+        pl: 'Interaktywny prototyp i koncepcja Design Thinking. Wskaźniki są hipotezami, a nie potwierdzonymi wynikami.',
       },
       research: {
-        de: 'Qualitative Nutzerinterviews und Verhaltensbeobachtungen ergaben: Das Hauptproblem ist nicht mangelnde Auswahl, sondern kognitive Überlastung und fehlender Kontext für den aktuellen Gemütszustand (Mood-Match).',
-        en: 'Qualitative user interviews and observational research revealed: The core barrier is not content shortage, but cognitive exhaustion and lack of emotional mood-matching.',
-        pl: 'Wywiady pogłębione i obserwacje zachowań użytkowników wykazały: Problem nie tkwi w małej bibliotece, lecz w przeciążeniu poznawczym i braku dopasowania do aktualnego nastroju.',
+        de: 'Discovery-Hypothese: Kognitive Belastung durch zu viele Auswahlmöglichkeiten sowie fehlender Stimmungskontext erschweren die Entscheidung. Dies soll in Nutzertests geprüft werden.',
+        en: 'Discovery hypothesis: choice overload and a lack of mood context may delay decisions. This still requires user research.',
+        pl: 'Hipoteza badawcza: nadmiar opcji i brak kontekstu nastroju mogą opóźniać decyzję. Wymaga to badań użytkowników.',
       },
       jtbd: {
         de: '„Wenn ich nach einem anstrengenden Tag auf der Couch entspannen will, möchte ich in unter 2 Minuten einen Film finden, der zu meiner aktuellen Stimmung passt, damit ich meine freie Zeit mit echtem Entertainment verbringe statt mit Suchen.“',
@@ -746,10 +746,8 @@ const BUNDLED_CERTIFICATE_PDFS: Record<string, string> = {
 function applyPublishedCertificatePdf(cert: CertificateItem): CertificateItem {
   const fileName = BUNDLED_CERTIFICATE_PDFS[cert.id];
   if (!fileName) return cert;
-  // Every mapped PDF is included in the approved archive and published during deployment.
-  // Do not depend on a generated file list: stale browser caches previously showed
-  // real, deployed certificates as missing.
-  const published = Boolean(fileName);
+  // An entry in the mapping alone is not evidence: require an actual deployed PDF.
+  const published = PUBLISHED_CERTIFICATE_PDFS.includes(fileName);
   return {
     ...cert,
     pdfUrl: published ? `/assets/certificates/${fileName}` : undefined,
@@ -1433,10 +1431,8 @@ const ACADEMIC_PDF_FILES: Record<string,string> = {
 function applyPublishedAcademicPdf(cert: CertificateItem): CertificateItem {
   const fileName = ACADEMIC_PDF_FILES[cert.id];
   if (!fileName) return cert;
-  // Every mapped PDF is included in the approved archive and published during deployment.
-  // Do not depend on a generated file list: stale browser caches previously showed
-  // real, deployed certificates as missing.
-  const published = Boolean(fileName);
+  // An entry in the mapping alone is not evidence: require an actual deployed PDF.
+  const published = PUBLISHED_CERTIFICATE_PDFS.includes(fileName);
   return {
     ...cert,
     pdfUrl: published ? `/assets/certificates/${fileName}` : undefined,

@@ -374,7 +374,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
             {/* Global Summary Badge & Expand/Collapse Toggle */}
             <div className="flex items-center gap-3 self-start lg:self-end">
               <span className="rounded-full border border-[#C7A35A]/30 bg-[#101412] px-4 py-2 font-sans text-xs font-semibold text-[#F4F1EA]">
-                {totalCertificatesCount} {t.credentialsLabel} gesamt
+                {rawCategories.reduce((count, category) => count + category.items.filter((cert) => cert.status === 'COMPLETED').length, 0)} {currentLang === 'de' ? 'abgeschlossen' : currentLang === 'pl' ? 'ukończone' : 'completed'} · {rawCategories.reduce((count, category) => count + category.items.filter((cert) => cert.status === 'IN_PROGRESS').length, 0)} {currentLang === 'de' ? 'laufend' : currentLang === 'pl' ? 'w toku' : 'in progress'}
               </span>
               <button
                 type="button"
@@ -394,6 +394,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
             <Search className="h-5 w-5 text-[#C7A35A] shrink-0 mr-3" />
             <input
               type="text"
+              aria-label={t.searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t.searchPlaceholder}
@@ -586,7 +587,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
                                 <div className="flex items-center gap-1.5 flex-wrap">
                                   <span className="inline-flex items-center gap-1 rounded border border-[#C7A35A]/35 bg-[#0F5C46]/25 px-2 py-0.5 font-sans text-[10px] font-bold text-[#C7A35A]">
                                     <FileText className="h-3 w-3" />
-                                    PDF
+                                    {cert.pdfUrl ? 'PDF' : (currentLang === 'de' ? 'Details' : currentLang === 'pl' ? 'Szczegóły' : 'Details')}
                                   </span>
                                   {cert.docTypeLabel && (
                                     <span
