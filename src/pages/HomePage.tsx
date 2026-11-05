@@ -151,8 +151,9 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#C7A35A]" />
-                <span className="font-sans text-[11px] sm:text-xs font-semibold tracking-[0.25em] text-[#C7A35A] uppercase block">
-                  {t.badge}
+                <span className="font-sans text-[11px] sm:text-xs font-semibold tracking-[0.25em] leading-[1.6] text-[#C7A35A] uppercase block">
+                  <span className="block">{t.badge.split(' · ').slice(0, -1).join(' · ')}</span>
+                  <span className="block whitespace-nowrap">{t.badge.split(' · ').slice(-1)[0]}</span>
                 </span>
               </div>
 
