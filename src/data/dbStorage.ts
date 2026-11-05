@@ -35,20 +35,25 @@ export async function loadMediaFromDB(): Promise<MediaAssets> {
   const finalAssets: MediaAssets = { ...DEFAULT_MEDIA, ...LOCKED_ASSETS };
 
   // 1. Fetch persistent assets from backend server first
-  try {
-    const res = await fetch('/api/media');
-    if (res.ok) {
-      const data = await res.json();
-      if (data?.media && typeof data.media === 'object') {
-        for (const [k, v] of Object.entries(data.media)) {
-          if (typeof v === 'string' && v.trim() !== '' && !v.startsWith('blob:')) {
-            (finalAssets as any)[k] = v;
+  // GitHub Pages is a static host and has no /api/media endpoint.
+  // Avoid an unnecessary 404 request on every mobile visit.
+  const hasBackend = typeof window !== 'undefined' && !window.location.hostname.endsWith('github.io');
+  if (hasBackend) {
+    try {
+      const res = await fetch('/api/media');
+      if (res.ok) {
+        const data = await res.json();
+        if (data?.media && typeof data.media === 'object') {
+          for (const [k, v] of Object.entries(data.media)) {
+            if (typeof v === 'string' && v.trim() !== '' && !v.startsWith('blob:')) {
+              (finalAssets as any)[k] = v;
+            }
           }
         }
       }
+    } catch (err) {
+      console.warn('Could not sync media from backend API, continuing with local storage:', err);
     }
-  } catch (err) {
-    console.warn('Could not sync media from backend API, continuing with local storage:', err);
   }
 
   // 2. Overlay with local IndexedDB if available (user's saved images)
