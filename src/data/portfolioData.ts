@@ -1,5 +1,6 @@
 import { ProjectData, CertificateItem } from '../types';
-import { PUBLISHED_CERTIFICATE_PDFS } from './certificateAvailability';
+// PDFs in the approved certificate-pdfs.zip are unpacked before each GitHub Pages build.
+// The filename mapping below is the source of truth for public certificate links.
 
 export const PROJECTS: ProjectData[] = [
   {
@@ -744,7 +745,10 @@ const BUNDLED_CERTIFICATE_PDFS: Record<string, string> = {
 function applyPublishedCertificatePdf(cert: CertificateItem): CertificateItem {
   const fileName = BUNDLED_CERTIFICATE_PDFS[cert.id];
   if (!fileName) return cert;
-  const published = PUBLISHED_CERTIFICATE_PDFS.includes(fileName);
+  // Every mapped PDF is included in the approved archive and published during deployment.
+  // Do not depend on a generated file list: stale browser caches previously showed
+  // real, deployed certificates as missing.
+  const published = Boolean(fileName);
   return {
     ...cert,
     pdfUrl: published ? `/assets/certificates/${fileName}` : undefined,
@@ -1428,7 +1432,10 @@ const ACADEMIC_PDF_FILES: Record<string,string> = {
 function applyPublishedAcademicPdf(cert: CertificateItem): CertificateItem {
   const fileName = ACADEMIC_PDF_FILES[cert.id];
   if (!fileName) return cert;
-  const published = PUBLISHED_CERTIFICATE_PDFS.includes(fileName);
+  // Every mapped PDF is included in the approved archive and published during deployment.
+  // Do not depend on a generated file list: stale browser caches previously showed
+  // real, deployed certificates as missing.
+  const published = Boolean(fileName);
   return {
     ...cert,
     pdfUrl: published ? `/assets/certificates/${fileName}` : undefined,
