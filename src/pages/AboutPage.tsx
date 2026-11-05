@@ -8,7 +8,7 @@ import { BackToPortfolio } from '../components/BackToPortfolio';
 import { resolveAssetUrl } from '../utils/assetPath';
 import { PersonalStoryDialog } from '../components/PersonalStoryDialog';
 
-const personalNightImage = resolveAssetUrl('/assets/personal-evening.avif');
+const personalTravelImage = resolveAssetUrl('/assets/travel-umbrellas.avif');
 
 interface AboutPageProps {
   currentLang: Language;
@@ -228,8 +228,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           >
             <div className="flex min-h-[155px] flex-col sm:flex-row sm:items-center">
               <img
-                src={personalNightImage}
-                alt={currentLang === 'de' ? 'Persönlicher Moment mit der Familie' : currentLang === 'pl' ? 'Osobista chwila z rodziną' : 'A personal family moment'}
+                src={personalTravelImage}
+                alt={currentLang === 'de' ? 'Reiseerinnerung in einer Straße mit bunten Regenschirmen' : currentLang === 'pl' ? 'Wspomnienie z podróży w uliczce z kolorowymi parasolami' : 'Travel memory beneath colourful umbrellas'}
                 loading="lazy"
                 decoding="async"
                 className="h-36 w-full object-cover sm:h-[155px] sm:w-52 sm:shrink-0"
