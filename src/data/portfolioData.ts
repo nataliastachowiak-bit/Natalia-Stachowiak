@@ -1,4 +1,5 @@
 import { ProjectData, CertificateItem } from '../types';
+import { PUBLISHED_CERTIFICATE_PDFS } from './certificateAvailability';
 
 export const PROJECTS: ProjectData[] = [
   {
@@ -720,7 +721,37 @@ export const PROJECTS: ProjectData[] = [
   },
 ];
 
-export const CERTIFICATES: CertificateItem[] = [
+// Only expose an original PDF when the document is actually present in the
+// GitHub Pages build. Metadata alone does not count as a published credential.
+const BUNDLED_CERTIFICATE_PDFS: Record<string, string> = {
+  "cert-pm-program": "Franklin-Weiterbildung-Teilnahmebescheinigung.pdf",
+  "cert-product-design": "edx-Product-Design-ENES608-3.pdf",
+  "cert-product-owner-intensive": "Franklin-Product-Owner-Intensive.pdf",
+  "cert-applied-scrum": "edx-Applied-Scrum-ENCE607-1x.pdf",
+  "cert-agile-inn": "edx-Agile-Innovation-ENCE607-3x.pdf",
+  "cert-agile-foundation": "edx-Agile-Methodology-PL405.pdf",
+  "cert-scrum-master": "Franklin-Scrum-Master-Intensive.pdf",
+  "cert-agile-foundation-fias": "Franklin-Agile-Foundation.pdf",
+  "cert-eu-ai-act-2026": "AI-Champions-EU-AI-Act.pdf",
+  "cert-ki-kompetenz": "SkillSprinters-KI-Kompetenz.pdf",
+  "cert-ai-grundlagen": "SkillSprinters-KI-Grundlagen.pdf",
+  "cert-ai-kompakt": "IHK-KI-Kompakt.pdf",
+  "cert-ai-for-leaders": "edx-Babson-AI-for-Leaders.pdf",
+  "cert-sustainable-ai": "edx-HP-Sustainable-AI.pdf"
+};
+
+function applyPublishedCertificatePdf(cert: CertificateItem): CertificateItem {
+  const fileName = BUNDLED_CERTIFICATE_PDFS[cert.id];
+  if (!fileName) return cert;
+  const published = PUBLISHED_CERTIFICATE_PDFS.includes(fileName);
+  return {
+    ...cert,
+    pdfUrl: published ? `/assets/certificates/${fileName}` : undefined,
+    isAuthentic: published,
+  };
+}
+
+const CERTIFICATES_SOURCE: CertificateItem[] = [
   {
     id: 'cert-google-cloud-sap',
     isAuthentic: true,
@@ -1335,7 +1366,52 @@ export const CERTIFICATES: CertificateItem[] = [
       'KI und Recht: Grundlagen zu Datenschutz und Urheberrecht',
     ],
   },
+
+  {
+    id: 'cert-ai-for-leaders',
+    isAuthentic: false,
+    courseCode: 'MIS01x',
+    title: 'AI for Leaders (MIS01x)',
+    titleI18n: {
+      de: 'AI for Leaders – KI für Führungskräfte',
+      en: 'AI for Leaders',
+      pl: 'AI dla liderów',
+    },
+    issuer: 'Babson College / edX (BabsonX)',
+    year: '2026',
+    issueDate: '05.11.2026',
+    category: 'AI',
+    status: 'COMPLETED',
+    documentType: 'CERTIFICATE',
+    credentialId: '8638352e571649ad807c7163d4e368bd',
+    verificationUrl: 'https://courses.edx.org/certificates/8638352e571649ad807c7163d4e368bd',
+    docTypeLabel: { de: 'Verifiziertes edX-Zertifikat', en: 'Verified Certificate', pl: 'Zweryfikowany certyfikat' },
+    focus: 'KI-basierte Führungs- und Managemententscheidungen.',
+  },
+  {
+    id: 'cert-sustainable-ai',
+    isAuthentic: false,
+    courseCode: 'HPAIFPL.6x.en',
+    title: 'Sustainable AI: Intelligence in Service of the Planet',
+    titleI18n: {
+      de: 'Sustainable AI: Intelligence in Service of the Planet',
+      en: 'Sustainable AI: Intelligence in Service of the Planet',
+      pl: 'Zrównoważona sztuczna inteligencja',
+    },
+    issuer: 'HP / edX',
+    year: '2026',
+    issueDate: '05.11.2026',
+    category: 'AI',
+    status: 'COMPLETED',
+    documentType: 'CERTIFICATE',
+    credentialId: 'b17f60bb40554d428d88124d65a3dc2e',
+    verificationUrl: 'https://courses.edx.org/certificates/b17f60bb40554d428d88124d65a3dc2e',
+    docTypeLabel: { de: 'Verifiziertes edX-Zertifikat', en: 'Verified Certificate', pl: 'Zweryfikowany certyfikat' },
+    focus: 'Nachhaltige künstliche Intelligenz und ihr Beitrag zu ökologischen Zielen.',
+  },
 ];
+
+export const CERTIFICATES: CertificateItem[] = CERTIFICATES_SOURCE.map(applyPublishedCertificatePdf);
 
 // ============================================================================
 // OFFIZIELLE ZERTIFIKATE & QUALIFIKATIONEN (6 DOKUMENTE)
