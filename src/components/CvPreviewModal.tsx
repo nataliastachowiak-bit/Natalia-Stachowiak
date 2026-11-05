@@ -13,7 +13,7 @@ import { Language } from '../types';
 import { PdfViewer } from './PdfViewer';
 import { CV_FILE } from '../data/assetRegistry';
 import { getAbsoluteAssetUrl } from '../utils/assetPath';
-import { downloadCvDocument, openCvInNewTab } from '../utils/cvHelper';
+import { downloadCvDocument } from '../utils/cvHelper';
 
 interface CvPreviewModalProps {
   isOpen: boolean;
@@ -175,15 +175,11 @@ export const CvPreviewModal: React.FC<CvPreviewModalProps> = ({
               </button>
             </div>
 
-            {/* Open in New Tab (uses in-memory Blob URL or absolute URL fallback) */}
+            {/* Open PDF directly in new tab to avoid browser popup blockers */}
             <a
               href={absoluteCvUrl}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={(e) => {
-                e.preventDefault();
-                openCvInNewTab();
-              }}
               className="inline-flex min-h-[34px] items-center gap-1.5 rounded-full border border-[#C7A35A]/40 bg-transparent px-3.5 py-1.5 font-sans text-xs font-medium text-[#F4F1EA] transition-all hover:border-[#C7A35A] hover:bg-[#080A09] hover:text-[#C7A35A] uppercase cursor-pointer"
               title={t.openTab}
             >
