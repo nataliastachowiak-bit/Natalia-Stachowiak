@@ -86,21 +86,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <p>
                 {currentLang === 'de' ? (
                   <>
-                    Mein Profil ist interdisziplinär geprägt. Genau darin liegt meine Stärke:
-                    Ich verbinde wissenschaftliche Analyse (M.Sc. Chemie), Umweltschutzmanagement
-                    und langjährige unternehmerische Praxis mit modernem digitalem Produktmanagement.
+                    Mein Profil verbindet wissenschaftliche Analyse (M.Sc. Chemie), unternehmerische
+                    Erfahrung und Projektpraxis mit digitalem Produktmanagement, KI und Innovation.
+                    Ich arbeite branchenübergreifend an komplexen Produkt- und Nutzerproblemen.
                   </>
                 ) : currentLang === 'pl' ? (
                   <>
-                    Mój profil jest konsekwentnie interdyscyplinarny. Właśnie w tym tkwi moja siła:
-                    łączę analizę naukową (mgr chemii), zarządzanie ochroną środowiska
-                    oraz wieloletnią praktykę przedsiębiorczą z nowoczesnym zarządzaniem produktami cyfrowymi.
+                    Łączę analizę naukową (mgr chemii), doświadczenie w przedsiębiorczości
+                    i pracy projektowej z cyfrowym zarządzaniem produktami, AI oraz innowacjami.
+                    Interesują mnie wyzwania produktowe w różnych branżach.
                   </>
                 ) : (
                   <>
-                    My profile is distinctly interdisciplinary. That is precisely where my strength lies:
-                    connecting empirical scientific analysis (M.Sc. Chemistry), environmental protection management,
-                    and extensive entrepreneurial experience with modern digital product leadership.
+                    My interdisciplinary background combines scientific analysis (M.Sc. Chemistry),
+                    entrepreneurship and project experience with digital product management,
+                    AI and innovation. I approach complex product challenges across industries.
                   </>
                 )}
               </p>
@@ -108,21 +108,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <p>
                 {currentLang === 'de' ? (
                   <>
-                    Komplexe Systeme analysieren, ökologische und ökonomische Zusammenhänge verstehen
-                    und in nutzerzentrierte, datenbasierte Produktkonzepte übersetzen – von der
-                    Problemvalidierung bis zur agilen Umsetzung.
+                    Ich strukturiere komplexe Herausforderungen, untersuche Nutzerbedürfnisse und
+                    übersetze Erkenntnisse in nachvollziehbare Produktentscheidungen.
+                    Mein Fokus liegt auf Product Discovery, datengestützten Konzepten und testbaren Prototypen.
                   </>
                 ) : currentLang === 'pl' ? (
                   <>
-                    Analizuję złożone systemy, rozumiem zależności ekologiczne i biznesowe
-                    oraz przekładam je na zorientowane na użytkownika, oparte na danych koncepcje produktów cyfrowych –
-                    od walidacji problemu po zwinne wdrożenie.
+                    Analizuję złożone wyzwania, badam potrzeby użytkowników i przekładam
+                    wnioski na decyzje produktowe – od odkrywania problemów po prototypy,
+                    które można testować i doskonalić.
                   </>
                 ) : (
                   <>
-                    Analyzing complex systems, understanding ecological and commercial relationships,
-                    and translating them into user-centered, data-informed product concepts –
-                    from problem validation through to agile execution.
+                    I structure complex challenges, explore user needs and translate evidence into
+                    transparent product decisions – from product discovery to data-informed
+                    concepts and testable prototypes.
                   </>
                 )}
               </p>
