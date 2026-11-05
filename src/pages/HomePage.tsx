@@ -149,12 +149,12 @@ export const HomePage: React.FC<HomePageProps> = ({
           {/* Right Column: Messaging & CTAs */}
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#C7A35A]" />
-                <span className="font-sans text-[11px] sm:text-xs font-semibold tracking-[0.25em] leading-[1.6] text-[#C7A35A] uppercase block">
-                  <span className="block">{t.badge.split(' · ').slice(0, -1).join(' · ')}</span>
-                  <span className="block whitespace-nowrap">{t.badge.split(' · ').slice(-1)[0]}</span>
-                </span>
+              <div className="flex items-start gap-2">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#C7A35A]" />
+                <div className="flex min-w-0 flex-col gap-0.5 font-sans text-[11px] sm:text-xs font-semibold tracking-[0.16em] sm:tracking-[0.21em] leading-[1.4] text-[#C7A35A] uppercase" aria-label={t.badge}>
+                  <span className="block sm:whitespace-nowrap">DIGITAL PRODUCT MANAGEMENT · AI INNOVATION</span>
+                  <span className="block whitespace-nowrap">DIGITAL TRANSFORMATION</span>
+                </div>
               </div>
 
               <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#F4F1EA] leading-[1.05]">
