@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Publish only explicitly packaged, real PDF documents to GitHub Pages.
-Accept only the explicitly prepared public-safe bundle; never unpack raw scans.
+Accept only the approved public-safe PDF bundles; never unpack raw scans.
 """
 from pathlib import Path
 from zipfile import ZipFile
@@ -10,7 +10,7 @@ repo = Path(__file__).resolve().parents[1]
 destination = repo / "public" / "assets" / "certificates"
 destination.mkdir(parents=True, exist_ok=True)
 
-for archive_name in ("certificate-pdfs.zip",):
+for archive_name in ("certificate-pdfs.zip", "telc-b2-portfolio.zip"):
     archive = repo / archive_name
     if not archive.exists():
         continue
