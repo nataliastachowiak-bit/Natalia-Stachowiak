@@ -1,9 +1,9 @@
-# Natalia Stachowiak | Digital Product Management · AI Innovation · Sustainability
+# Natalia Stachowiak | Digital & AI Product Management · Innovation · Digital Transformation
 
 **Turning problems into products.**  
 **Powered by Science. Inspired by People.**
 
-I connect a scientific background in chemistry, experience in environmental management and entrepreneurship with user-centered digital product development, AI and circular-economy innovation.
+I bring a background in chemistry, environmental operations and entrepreneurship to cross-industry digital product discovery, AI-enabled innovation and transformation. My domain expertise in sustainability is an additional strength, not a restriction on the industries I work in.
 
 **[Explore my portfolio website](https://nataliastachowiak-bit.github.io/Natalia-Stachowiak/)**
 
@@ -11,7 +11,7 @@ I connect a scientific background in chemistry, experience in environmental mana
 
 - **Product Discovery & Strategy:** framing problems, stakeholder interviews, hypotheses, prioritization and MVP scope
 - **AI & Digital Transformation:** translating user needs into explainable data-driven workflows
-- **Sustainability & Circular Economy:** assessing technical, environmental and economic trade-offs
+- **Cross-industry innovation:** applying structured discovery, decision-making and technical/domain expertise to different markets, with sustainability and circular economy as specialist strengths
 - **Agile Product Management:** Scrum, evidence-based decisions and iterative validation
 
 ## Featured case study — ResourceLoop AI
