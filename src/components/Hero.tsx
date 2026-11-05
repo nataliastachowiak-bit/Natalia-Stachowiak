@@ -23,6 +23,8 @@ export const Hero: React.FC<HeroProps> = ({
   isReadOnly = false,
 }) => {
   const t = translations[currentLang].hero;
+  const roleLabel = t.roleLabel || 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · DIGITAL TRANSFORMATION';
+  const roleSegments = roleLabel.split(' · ');
   const [portraitError, setPortraitError] = React.useState(false);
 
   // Respect user uploaded portrait with fallback to canonical NATALIA_BUSINESS_PORTRAIT
@@ -128,8 +130,13 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Name + Professional Role Badge */}
             <div className="mb-3 sm:mb-4 inline-flex items-center gap-2 rounded-full border border-[#C9A66B]/30 bg-[#063F35]/25 px-3.5 py-1.5 sm:px-4 sm:py-1.5 backdrop-blur-sm max-w-full">
               <span className="h-2 w-2 shrink-0 rounded-full bg-[#C9A66B] animate-pulse" />
-              <span className="font-sans text-[12px] sm:text-[13px] font-semibold tracking-[0.18em] text-[#C9A66B] uppercase truncate">
-                {t.roleLabel || 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · SUSTAINABILITY'}
+              <span className="font-sans text-[11px] sm:text-[13px] font-semibold tracking-[0.14em] sm:tracking-[0.18em] leading-relaxed text-[#C9A66B] uppercase">
+                {roleSegments.length >= 3 ? (
+                  <>
+                    <span className="block">{roleSegments.slice(0, -1).join(' · ')}</span>
+                    <span className="block whitespace-nowrap">{roleSegments[roleSegments.length - 1]}</span>
+                  </>
+                ) : roleLabel}
               </span>
             </div>
 
