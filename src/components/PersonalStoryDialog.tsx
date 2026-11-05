@@ -1,11 +1,13 @@
 import React from 'react';
-import { X } from 'lucide-react';
+import { Plane, X } from 'lucide-react';
 import { Language } from '../types';
 import { resolveAssetUrl } from '../utils/assetPath';
 
 const camelImage = resolveAssetUrl('/assets/travel-camel.avif');
 const umbrellasImage = resolveAssetUrl('/assets/travel-umbrellas.avif');
-const beachImage = resolveAssetUrl('/assets/travel-beach.avif');
+const beachDogImage = resolveAssetUrl('/assets/travel-dog-beach.avif');
+const magnetsImage = resolveAssetUrl('/assets/travel-souvenir-magnets.avif');
+const seaQuoteImage = resolveAssetUrl('/assets/travel-seaside-quote.avif');
 
 interface PersonalStoryDialogProps {
   currentLang: Language;
@@ -116,21 +118,35 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
                     : 'I believe a fulfilling life is made of courage, curiosity, genuine connections and moments worth remembering.'}
               </p>
             </div>
-            {/* Relaxed editorial collage; no family/child/dog photographs. */}
-            <div className="lg:col-span-5 relative px-2 pt-5 pb-6 sm:px-3 lg:pt-8">
-              <div className="relative mx-auto max-w-[460px] min-h-[860px] sm:min-h-[1010px] lg:min-h-[1060px]">
-                <figure className="absolute left-0 top-0 z-30 w-[67%] -rotate-[4deg] overflow-hidden rounded-xl border-4 border-[#F4F1EA] bg-[#101412] shadow-[0_18px_45px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
-                  <img src={camelImage} alt={currentLang === 'de' ? 'Reiseerinnerung: auf einem Kamel in der Wüste' : currentLang === 'pl' ? 'Wspomnienie z podróży: na wielbłądzie na pustyni' : 'Travel memory: riding a camel in the desert'} loading="lazy" decoding="async" width="408" height="1200" className="block h-auto w-full object-contain" />
+            {/* An editorial travel scrapbook with authentic photographs and no cropped camel. */}
+            <div className="lg:col-span-5 relative px-1 pt-5 pb-4 sm:px-3 lg:pt-8">
+              <div className="relative mx-auto max-w-[470px]">
+                <div className="flex items-center justify-end gap-2 pb-5 text-[#C7A35A]/75">
+                  <span className="text-[10px] font-semibold tracking-[0.2em] uppercase">
+                    {currentLang === 'de' ? 'MEINE REISEERINNERUNGEN' : currentLang === 'pl' ? 'MOJE WSPOMNIENIA' : 'TRAVEL MEMORIES'}
+                  </span>
+                  <Plane className="h-5 w-5 -rotate-[18deg]" aria-hidden="true"/>
+                </div>
+                <div className="grid grid-cols-2 items-start gap-x-3 gap-y-5 sm:gap-x-5 sm:gap-y-7">
+                  <figure className="relative z-10 -rotate-[4deg] overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
+                    <img src={camelImage} alt={currentLang === 'de' ? 'Ganzes Reisefoto auf einem Kamel in der Wüste' : currentLang === 'pl' ? 'Pełne zdjęcie z podróży na wielbłądzie' : 'Full-length travel photo on a camel in the desert'} loading="lazy" decoding="async" className="block h-auto w-full" />
+                  </figure>
+                  <figure className="relative z-20 mt-10 rotate-[5deg] overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
+                    <img src={umbrellasImage} alt={currentLang === 'de' ? 'Bunte Regenschirme auf einer abendlichen Reise' : currentLang === 'pl' ? 'Kolorowe parasole podczas wieczornego spaceru' : 'Colourful umbrellas on an evening walk'} loading="lazy" decoding="async" className="block h-auto w-full" />
+                  </figure>
+                  <figure className="relative z-20 -mt-16 rotate-[4deg] overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
+                    <img src={beachDogImage} alt={currentLang === 'de' ? 'Strandmoment am Meer mit meiner französischen Bulldogge' : currentLang === 'pl' ? 'Chwila na plaży z buldogiem francuskim' : 'A beach moment with my French bulldog'} loading="lazy" decoding="async" className="block h-auto w-full" />
+                  </figure>
+                  <figure className="relative z-10 -mt-5 -rotate-[5deg] overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
+                    <img src={seaQuoteImage} alt={currentLang === 'de' ? 'Meerblick mit einem persönlichen Gedanken über das Leben' : currentLang === 'pl' ? 'Widok na morze z osobistą refleksją' : 'Seaside reflection on life'} loading="lazy" decoding="async" className="block h-auto w-full" />
+                  </figure>
+                </div>
+                <figure className="relative z-10 mx-auto mt-7 w-[92%] rotate-[2deg] overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:rotate-0 hover:scale-[1.02]">
+                  <img src={magnetsImage} alt={currentLang === 'de' ? 'Meine gesammelten Reisemagnete als Erinnerungen an viele Orte' : currentLang === 'pl' ? 'Moja kolekcja magnesów z podróży' : 'My collection of travel souvenir magnets'} loading="lazy" decoding="async" className="block h-auto w-full" />
                 </figure>
-                <figure className="absolute right-0 top-[15%] z-10 w-[62%] rotate-[6deg] overflow-hidden rounded-xl border-4 border-[#F4F1EA] bg-[#101412] shadow-[0_18px_45px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
-                  <img src={umbrellasImage} alt={currentLang === 'de' ? 'Reisefoto in einer beleuchteten Straße mit bunten Regenschirmen' : currentLang === 'pl' ? 'Podróżnicze zdjęcie: ulica z kolorowymi parasolami' : 'Travel photograph: a street decorated with colourful umbrellas'} loading="lazy" decoding="async" width="400" height="520" className="block aspect-[4/5] w-full object-cover" />
-                </figure>
-                <figure className="absolute bottom-[1%] left-[5%] z-10 w-[72%] -rotate-[3deg] overflow-hidden rounded-xl border-4 border-[#F4F1EA] bg-[#101412] shadow-[0_18px_45px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
-                  <img src={beachImage} alt={currentLang === 'de' ? 'Reiseerinnerung am weißen Sandstrand' : currentLang === 'pl' ? 'Wspomnienie z podróży na białej plaży' : 'Travel memory on a white-sand beach'} loading="lazy" decoding="async" width="460" height="330" className="block aspect-[4/3] w-full object-cover" />
-                </figure>
-                <span className="absolute right-[2%] bottom-[-1%] z-20 -rotate-6 font-serif italic text-lg sm:text-2xl text-[#C7A35A]">
+                <p className="mt-8 -rotate-[2deg] text-right font-serif text-lg italic text-[#C7A35A] sm:text-2xl">
                   {currentLang === 'de' ? 'Momente, die bleiben.' : currentLang === 'pl' ? 'Chwile, które zostają.' : 'Moments that stay.'}
-                </span>
+                </p>
               </div>
             </div>
           </div>
