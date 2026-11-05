@@ -71,7 +71,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
         `Für den Suchbegriff „${q}“ wurde kein passendes Zertifikat gefunden.`,
       clearSearch: 'Suche zurücksetzen',
       trustNotice:
-        'Authentische Zertifikatsnachweise im Original-PDF-Format. Hinterlegte Dokumente sind durch die jeweiligen Prüfungs- und Zertifizierungsstellen verifiziert.',
+        'Original-PDFs der nachgewiesenen Qualifikationen. Die externe Echtheit ist bei Zertifikaten mit Prüf-Link über den jeweiligen Aussteller prüfbar.',
       trustPartners:
         'Adam-Mickiewicz-Universität Posen · Scrum.org · TrainMiC · Europäischer Sozialfonds · Franklin IAS · Pioneer People · AI CHAMPIONS',
     },
@@ -96,7 +96,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
         `No certificates found matching "${q}".`,
       clearSearch: 'Clear search',
       trustNotice:
-        'Authentic certificate credentials in original PDF format, directly verified by the respective accreditation bodies.',
+        'Original PDF documents for listed credentials. External verification is available where the issuer supplies an official verification link.',
       trustPartners:
         'Adam Mickiewicz University Poznań · Scrum.org · TrainMiC · European Social Fund · Franklin IAS · Pioneer People · AI CHAMPIONS',
     },
@@ -121,7 +121,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
         `Brak wyników dla hasła „${q}”.`,
       clearSearch: 'Wyczyść wyszukiwanie',
       trustNotice:
-        'Autentyczne certyfikaty w oryginalnym formacie PDF, potwierdzone przez odpowiednie instytucje.',
+        'Oryginalne pliki PDF załączonych dokumentów. Gdzie to możliwe, dostępny jest link do weryfikacji u wystawcy.',
       trustPartners:
         'Uniwersytet im. Adama Mickiewicza w Poznaniu · Scrum.org · TrainMiC · Europejski Fundusz Społeczny · Franklin IAS · Pioneer People · AI CHAMPIONS',
     },
@@ -225,7 +225,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
           pl: 'Certyfikat Aktu o AI (AI Champions GmbH), kompetencje AI w pracy, kurs podstawowy i IHK AI Kompakt',
         },
         items: CERTIFICATES.filter((c) =>
-          ['cert-eu-ai-act-2026', 'cert-ki-kompetenz', 'cert-ai-grundlagen', 'cert-ai-kompakt'].includes(c.id)
+          ['cert-ai-for-leaders', 'cert-sustainable-ai', 'cert-eu-ai-act-2026', 'cert-ki-kompetenz', 'cert-ai-grundlagen', 'cert-ai-kompakt'].includes(c.id)
         ).sort((a, b) => parseDateForSorting(b) - parseDateForSorting(a)),
       },
     ],
