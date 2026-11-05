@@ -41,6 +41,9 @@ jobs:
         run: |
           node -e 'const fs=require("fs");const token=process.env.POSTHOG_PROJECT_TOKEN||"";const host=process.env.POSTHOG_HOST||"";fs.writeFileSync("public/natflixgain-ab-test/config.js","window.NATFLIXGAIN_CONFIG = "+JSON.stringify({token,host})+";\\n")'
 
+      - name: Prepare published certificate PDFs
+        run: python3 scripts/prepare_certificates.py
+
       - name: Build static site for GitHub Pages
         run: npm run build:gh
 
