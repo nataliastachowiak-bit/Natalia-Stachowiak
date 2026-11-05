@@ -75,10 +75,13 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
             <div className="lg:col-span-7 space-y-4 sm:space-y-5 text-sm sm:text-base text-[#F4F1EA]/85 leading-[1.8] font-sans">
               <p className="font-serif italic text-xl sm:text-2xl leading-snug text-[#C7A35A]">
                 {currentLang === 'de'
-                  ? '„Ich war nie jemand, der darauf wartet, dass sich das Leben verändert. Ich verändere es selbst.“'
+                  ? '„Wege entstehen dadurch, dass man sie geht.“'
                   : currentLang === 'pl'
-                    ? '„Nigdy nie czekałam, aż życie samo się zmieni. Sama je zmieniam.”'
-                    : '“I have never been one to wait for life to change. I change it myself.”'}
+                    ? '„Drogi powstają, gdy się nimi idzie.”'
+                    : '“Paths are made by walking.”'}
+              </p>
+              <p className="mt-1 text-[11px] font-sans not-italic tracking-wide text-[#A9AEA9]">
+                {currentLang === 'de' ? 'Sinngemäß nach Antonio Machado' : currentLang === 'pl' ? 'W duchu słów Antonia Machado' : 'Inspired by Antonio Machado'}
               </p>
               {(
                 currentLang === 'de' ? [
