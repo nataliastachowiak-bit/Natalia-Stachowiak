@@ -1,4 +1,5 @@
 import { ProjectData, CertificateItem } from '../types';
+import { PUBLISHED_CERTIFICATE_PDFS } from './certificateAvailability';
 // PDFs in the approved certificate-pdfs.zip are unpacked before each GitHub Pages build.
 // The filename mapping below is the source of truth for public certificate links.
 
@@ -1687,3 +1688,42 @@ const ACADEMIC_CERTIFICATES_SOURCE: CertificateItem[] = [
 ];
 
 export const ACADEMIC_CERTIFICATES: CertificateItem[] = ACADEMIC_CERTIFICATES_SOURCE.map(applyPublishedAcademicPdf);
+
+/**
+ * Formal language qualification, distinct from academic degrees and professional courses.
+ * The public PDF contains permanent redactions of birth date and birthplace.
+ * It is activated only after the approved telc-b2-portfolio.zip has been published.
+ */
+export const LANGUAGE_CERTIFICATES: CertificateItem[] = [
+  {
+    id: 'cert-telc-deutsch-b2',
+    title: 'telc Deutsch B2',
+    titleI18n: { de: 'telc Deutsch B2', en: 'telc German B2', pl: 'telc Język niemiecki B2' },
+    issuer: 'telc Language Tests',
+    year: '2020',
+    issueDate: '30.10.2020',
+    category: 'LANGUAGE',
+    status: 'COMPLETED',
+    documentType: 'CERTIFICATE',
+    docTypeLabel: {
+      de: 'Sprachzertifikat nach GER',
+      en: 'CEFR Language Certificate',
+      pl: 'Certyfikat językowy zgodny z ESOKJ',
+    },
+    focus: 'telc Deutsch B2, 241 von 300 Punkten, Prädikat Gut. Schriftliche und mündliche Prüfung.',
+    focusI18n: {
+      de: 'telc Deutsch B2 (GER). 241 von 300 Punkten, Prädikat Gut. Schriftliche und mündliche Prüfung.',
+      en: 'telc German B2 (CEFR). 241 out of 300 points, grade Good. Written and oral examination.',
+      pl: 'telc niemiecki B2 (ESOKJ). 241 z 300 punktów, ocena dobra. Egzamin pisemny i ustny.',
+    },
+    skillsAcquired: [
+      'Deutsch B2 (Gemeinsamer Europäischer Referenzrahmen)',
+      'Lesen, Schreiben, Hören und Sprechen',
+      'Formaler Prüfungsnachweis: 241 / 300 Punkte',
+    ],
+    pdfUrl: PUBLISHED_CERTIFICATE_PDFS.includes('telc-Deutsch-B2.pdf')
+      ? '/assets/certificates/telc-Deutsch-B2.pdf'
+      : undefined,
+    isAuthentic: PUBLISHED_CERTIFICATE_PDFS.includes('telc-Deutsch-B2.pdf'),
+  },
+];
