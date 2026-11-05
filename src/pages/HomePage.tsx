@@ -166,6 +166,19 @@ export const HomePage: React.FC<HomePageProps> = ({
               {t.description}
             </p>
 
+
+            {/* Agile methods support both technical and digital product management. */}
+            <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+              <span className="rounded-lg border border-[#0F5C46]/50 bg-[#0F5C46]/15 px-3 py-2 font-medium text-[#D1D5DB]">
+                Agile Product Development · Scrum
+              </span>
+              <Link to="/certificates"
+                aria-label={currentLang === 'de' ? 'Scrum-Zertifikate PSPO I und PSM I ansehen' : currentLang === 'pl' ? 'Zobacz certyfikaty Scrum PSPO I i PSM I' : 'View Scrum credentials PSPO I and PSM I'}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-[#C7A35A]/35 px-3 py-2 font-medium text-[#C7A35A] hover:border-[#C7A35A] hover:bg-[#C7A35A]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C7A35A]">
+                <span>PSPO I · PSM I (Scrum.org)</span>
+                <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+              </Link>
+            </div>
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link

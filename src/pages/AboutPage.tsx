@@ -132,6 +132,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 )}
               </p>
 
+
+              <p className="text-[#D6B15E]">
+                {currentLang === 'de'
+                  ? 'Methodisch ergänze ich diese Perspektive mit Agile Product Development, Scrum und iterativer Validierung. Meine Zertifizierungen PSPO I und PSM I (Scrum.org) dokumentieren dieses Fundament.'
+                  : currentLang === 'pl'
+                  ? 'Uzupełniam to podejście metodami Agile Product Development, Scrum i iteracyjną walidacją. Posiadam certyfikaty Scrum.org: PSPO I i PSM I.'
+                  : 'I complement this perspective with Agile Product Development, Scrum and iterative validation. My Scrum.org certifications PSPO I and PSM I document this foundation.'}
+              </p>
               <p className="text-[#A9AEA9]">
                 {currentLang === 'de' ? (
                   <>
