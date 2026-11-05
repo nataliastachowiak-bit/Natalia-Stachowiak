@@ -72,13 +72,22 @@ export default function App() {
 
   // Language State with LocalStorage Persistence
   const [currentLang, setCurrentLang] = useState<Language>(() => {
-    const saved = localStorage.getItem('natalia_portfolio_lang');
-    return (saved === 'en' || saved === 'pl' || saved === 'de') ? (saved as Language) : 'de';
+    try {
+      const saved = window.localStorage.getItem('natalia_portfolio_lang');
+      return (saved === 'en' || saved === 'pl' || saved === 'de') ? (saved as Language) : 'de';
+    } catch {
+      // Some mobile/private browsers block storage; the portfolio must still render.
+      return 'de';
+    }
   });
 
   const handleLanguageChange = (lang: Language) => {
     setCurrentLang(lang);
-    localStorage.setItem('natalia_portfolio_lang', lang);
+    try {
+      window.localStorage.setItem('natalia_portfolio_lang', lang);
+    } catch {
+      // Keep the selected language for the current session when storage is blocked.
+    }
   };
 
   // Sync HTML lang attribute and document title with currentLang
