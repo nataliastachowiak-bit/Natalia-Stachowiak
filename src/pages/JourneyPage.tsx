@@ -720,6 +720,42 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ currentLang: initialLa
 
           </header>
 
+          {/* Chronological path before the milestone cards */}
+          <nav aria-label={activeLang === 'de' ? 'Chronologischer Weg' : activeLang === 'pl' ? 'Chronologiczna ścieżka' : 'Chronological path'} className="w-full">
+            {/* Chronological journey overview above the six cards; all stage buttons stay interactive. */}
+            <div className="w-full rounded-xl border border-[#0F5C46]/35 bg-[#101412] p-4 sm:p-5 shadow-lg">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 flex-wrap text-center sm:text-left">
+                <span className="font-mono text-xs font-bold tracking-widest text-[#C7A35A] uppercase shrink-0">
+                  {t.timelineTitle}:
+                </span>
+                <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                  {t.stages.map((stage, idx) => (
+                    <React.Fragment key={stage.id}>
+                      {idx > 0 && (
+                        <span className="text-[#C7A35A]/50 font-mono text-xs select-none" aria-hidden="true">
+                          →
+                        </span>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => setDetailModalStage(stage)}
+                        className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1 font-mono text-xs sm:text-[13px] font-bold tracking-wide uppercase transition-all border ${
+                          stage.id === 'ai'
+                            ? 'border-[#C7A35A]/60 bg-[#0F5C46]/30 text-[#C7A35A] shadow-sm'
+                            : 'border-[#0F5C46]/30 bg-[#080A09] text-[#E5E7EB] hover:border-[#C7A35A] hover:text-[#C7A35A]'
+                        } focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#C7A35A]`}
+                      >
+                        <span className="text-[#C7A35A]">{stage.num}</span>
+                        <span>{stage.actionVerb}</span>
+                      </button>
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+          </nav>
+
           {/* ============================================================ */}
           {/* 2. SIX MILESTONE CARDS                                        */}
           {/* Desktop: 3 columns with 2 rows (lg:grid-cols-3)              */}
@@ -817,41 +853,10 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ currentLang: initialLa
           </main>
 
           {/* ============================================================ */}
-          {/* 3. PROGRESSION TIMELINE & PRESERVED CLOSING STATEMENT         */}
+          {/* 3. CLOSING STATEMENT (TIMELINE NOW ABOVE CARDS)                 */}
           {/* ============================================================ */}
-          <footer className="w-full space-y-4 pt-4">
+          <footer className="w-full pt-4">
             
-            {/* Chronological progression sequence (fully legible on all devices, wraps naturally) */}
-            <div className="w-full rounded-xl border border-[#0F5C46]/35 bg-[#101412] p-4 sm:p-5 shadow-lg">
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 flex-wrap text-center sm:text-left">
-                <span className="font-mono text-xs font-bold tracking-widest text-[#C7A35A] uppercase shrink-0">
-                  {t.timelineTitle}:
-                </span>
-                <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-                  {t.stages.map((stage, idx) => (
-                    <React.Fragment key={stage.id}>
-                      {idx > 0 && (
-                        <span className="text-[#C7A35A]/50 font-mono text-xs select-none" aria-hidden="true">
-                          →
-                        </span>
-                      )}
-                      <button
-                        type="button"
-                        onClick={() => setDetailModalStage(stage)}
-                        className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1 font-mono text-xs sm:text-[13px] font-bold tracking-wide uppercase transition-all border ${
-                          stage.id === 'ai'
-                            ? 'border-[#C7A35A]/60 bg-[#0F5C46]/30 text-[#C7A35A] shadow-sm'
-                            : 'border-[#0F5C46]/30 bg-[#080A09] text-[#E5E7EB] hover:border-[#C7A35A] hover:text-[#C7A35A]'
-                        } focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#C7A35A]`}
-                      >
-                        <span className="text-[#C7A35A]">{stage.num}</span>
-                        <span>{stage.actionVerb}</span>
-                      </button>
-                    </React.Fragment>
-                  ))}
-                </div>
-              </div>
-            </div>
 
             {/* Preserved Closing Statement */}
             <div className="text-center pt-2">
