@@ -364,40 +364,47 @@ export const CertificatesSection: React.FC<CertificatesSectionProps> = ({
 
                             {/* Aktion: Erst beim Klick auf „Zertifikat ansehen“ öffnet sich das PDF */}
                             <div className="mt-4 pt-3 border-t border-[#C7A35A]/15 flex items-center justify-between gap-2">
-                              <span className="inline-flex items-center gap-1 font-sans text-[11px] text-[#148B78]">
-                                <ShieldCheck className="h-3.5 w-3.5 text-[#C7A35A]" />
-                                <span className="truncate">
-                                  {cert.pdfUrl ? t.officialDoc : t.pendingDoc}
-                                </span>
-                              </span>
+                              {(() => {
+                                const hasPdf = Boolean(cert.pdfUrl && cert.isAuthentic !== false);
+                                return (
+                                  <>
+                                    <span className="inline-flex items-center gap-1 font-sans text-[11px] text-[#148B78]">
+                                      <ShieldCheck className="h-3.5 w-3.5 text-[#C7A35A]" />
+                                      <span className="truncate">
+                                        {hasPdf ? t.officialDoc : t.pendingDoc}
+                                      </span>
+                                    </span>
 
-                              <div className="flex items-center gap-2 shrink-0">
-                                <button
-                                  type="button"
-                                  onClick={() => onViewCertificate(cert)}
-                                  className="inline-flex items-center gap-1.5 rounded-full border border-[#0F5C46] bg-[#0F5C46]/30 px-3.5 py-1.5 font-sans text-xs font-semibold text-[#F4F1EA] hover:border-[#C7A35A] hover:bg-[#0F5C46] hover:text-white transition-all uppercase tracking-wider group/view shadow-sm"
-                                  title={t.viewCert}
-                                >
-                                  <Eye className="h-3.5 w-3.5 text-[#C7A35A] shrink-0" />
-                                  <span>{t.viewCert}</span>
-                                  <span className="text-[#C7A35A] group-hover/view:translate-x-0.5 transition-transform">
-                                    →
-                                  </span>
-                                </button>
+                                    <div className="flex items-center gap-2 shrink-0">
+                                      <button
+                                        type="button"
+                                        onClick={() => onViewCertificate(cert)}
+                                        className="inline-flex items-center gap-1.5 rounded-full border border-[#0F5C46] bg-[#0F5C46]/30 px-3.5 py-1.5 font-sans text-xs font-semibold text-[#F4F1EA] hover:border-[#C7A35A] hover:bg-[#0F5C46] hover:text-white transition-all uppercase tracking-wider group/view shadow-sm"
+                                        title={hasPdf ? t.viewCert : (currentLang === 'de' ? 'Details ansehen' : 'View details')}
+                                      >
+                                        <Eye className="h-3.5 w-3.5 text-[#C7A35A] shrink-0" />
+                                        <span>{hasPdf ? t.viewCert : (currentLang === 'de' ? 'Details ansehen' : 'View details')}</span>
+                                        <span className="text-[#C7A35A] group-hover/view:translate-x-0.5 transition-transform">
+                                          →
+                                        </span>
+                                      </button>
 
-                                {cert.verificationUrl && (
-                                  <a
-                                    href={cert.verificationUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 rounded-full border border-[#C7A35A]/40 bg-[#101412] px-2.5 py-1.5 font-sans text-xs font-semibold text-[#C7A35A] hover:border-[#C7A35A] hover:bg-[#C7A35A]/15 hover:text-white transition-all uppercase tracking-wider"
-                                    title="Verify Credential"
-                                  >
-                                    <span className="text-[10px]">Verify</span>
-                                    <ExternalLink className="h-3 w-3" />
-                                  </a>
-                                )}
-                              </div>
+                                      {cert.verificationUrl && (
+                                        <a
+                                          href={cert.verificationUrl}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="inline-flex items-center gap-1 rounded-full border border-[#C7A35A]/40 bg-[#101412] px-2.5 py-1.5 font-sans text-xs font-semibold text-[#C7A35A] hover:border-[#C7A35A] hover:bg-[#C7A35A]/15 hover:text-white transition-all uppercase tracking-wider"
+                                          title="Verify Credential"
+                                        >
+                                          <span className="text-[10px]">Verify</span>
+                                          <ExternalLink className="h-3 w-3" />
+                                        </a>
+                                      )}
+                                    </div>
+                                  </>
+                                );
+                              })()}
                             </div>
                           </div>
                         );

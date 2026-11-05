@@ -749,7 +749,7 @@ export const CERTIFICATES: CertificateItem[] = [
     },
     credentialId: '08f14734662649d9a91e00c10c2cb682',
     verificationUrl: 'https://courses.edx.org/certificates/08f14734662649d9a91e00c10c2cb682',
-    pdfUrl: '/assets/certificates/google-cloud-depsapgc1x-edx.pdf',
+    pdfUrl: '/certificates/google-cloud-depsapgc1x-edx.pdf',
     signatory: 'Google Cloud Training Course Team',
     focus: 'Verifiziertes edX-Zertifikat der Google Cloud: Architekturen, Bereitstellung, Hochverfügbarkeit und Betrieb von SAP NetWeaver und SAP HANA auf der Google Cloud Platform.',
     focusI18n: {
@@ -768,7 +768,7 @@ export const CERTIFICATES: CertificateItem[] = [
   // 1. Digital Product Management
   {
     id: 'cert-pm-program',
-    isAuthentic: true,
+    isAuthentic: false,
     title: 'IT- & Software Berater für digitales Produktmanagement',
     titleI18n: {
       de: 'IT- & Software Berater für digitales Produktmanagement',
@@ -791,7 +791,6 @@ export const CERTIFICATES: CertificateItem[] = [
       en: 'Confirmation of Participation (Full-Time)',
       pl: 'Potwierdzenie uczestnictwa (Pełny etat)',
     },
-    pdfUrl: '/assets/certificates/cert-pm-program.pdf',
     signatory: 'Selina Heubisch (CS & Operations Manager)',
     focus: 'Berufliche Weiterbildungsmaßnahme in Vollzeit: IT-Produktmanagement, Softwareberatung, agile Transformation, Problem Discovery, User Research, Roadmaps und moderne IT-Produktentwicklung.',
     skillsAcquired: [
@@ -805,7 +804,7 @@ export const CERTIFICATES: CertificateItem[] = [
   // 2. Product Design & Innovation
   {
     id: 'cert-dt',
-    isAuthentic: true,
+    isAuthentic: false,
     title: 'Professional Certificate Program in Design Thinking',
     titleI18n: {
       de: 'Professional Certificate Program in Design Thinking',
@@ -829,7 +828,6 @@ export const CERTIFICATES: CertificateItem[] = [
       pl: 'Oficjalny certyfikat',
     },
     credentialId: 'Forward Education Pioneer People GmbH',
-    pdfUrl: '/assets/certificates/cert-dt.pdf',
     signatory: 'Johannes Burzin (Geschäftsführung)',
     focus: 'Strukturierter Innovationsprozess (Empathize, Define, Ideate, Prototype, Test), Nutzerforschung, Ideenentwicklung, Prototyping mit Figma und Usability-Tests.',
     skillsAcquired: [
@@ -843,7 +841,7 @@ export const CERTIFICATES: CertificateItem[] = [
   },
   {
     id: 'cert-product-design',
-    isAuthentic: true,
+    isAuthentic: false,
     courseCode: 'ENES608.3',
     title: 'Product Design, Prototyping, and Testing (ENES608.3)',
     titleI18n: {
@@ -869,7 +867,6 @@ export const CERTIFICATES: CertificateItem[] = [
     },
     credentialId: '35d42d2907fa4677aadf3820f4baf23c',
     verificationUrl: 'https://courses.edx.org/certificates/35d42d2907fa4677aadf3820f4baf23c',
-    pdfUrl: '/assets/certificates/cert-product-design.pdf',
     signatory: 'Cait von Schnetlage (Lecturer, University of Maryland)',
     focus: 'User Experience Design, Wireframing, interaktives Prototyping, qualitative Nutzertests und empirische Feedback-Zyklen zur Produktoptimierung.',
     skillsAcquired: [
@@ -908,7 +905,7 @@ export const CERTIFICATES: CertificateItem[] = [
     },
     credentialId: '1357678',
     verificationUrl: 'https://scrum.org/certificates/1357678',
-    pdfUrl: '/Professional Scrum Product Owner I.pdf',
+    pdfUrl: '/certificates/Professional-Scrum-Product-Owner-I.pdf',
     signatory: 'Ken Schwaber, founder Scrum.org',
     focus: 'Fundamentales Verständnis von Professional Scrum Product Ownership: Maximierung des durch ein Produkt gelieferten Werts, ROI-Optimierung und Gesamtbetriebskosten (TCO).',
     focusI18n: {
@@ -952,7 +949,7 @@ export const CERTIFICATES: CertificateItem[] = [
     },
     credentialId: '1357253',
     verificationUrl: 'https://scrum.org/certificates/1357253',
-    pdfUrl: '/Professional Scrum Master I.pdf',
+    pdfUrl: '/certificates/Professional-Scrum-Master-I.pdf',
     signatory: 'Ken Schwaber, founder Scrum.org',
     focus: 'Zertifizierung zu Scrum, agilen Prinzipien, empirischer Prozesssteuerung und der Zusammenarbeit in Scrum Teams.',
     focusI18n: {
@@ -971,7 +968,7 @@ export const CERTIFICATES: CertificateItem[] = [
   },
   {
     id: 'cert-product-owner-intensive',
-    isAuthentic: true,
+    isAuthentic: false,
     title: 'Product Owner Intensive',
     titleI18n: {
       de: 'Product Owner Intensive',
@@ -995,7 +992,6 @@ export const CERTIFICATES: CertificateItem[] = [
       pl: 'Oficjalny certyfikat',
     },
     credentialId: 'FI-POI-2026-1005',
-    pdfUrl: '/assets/certificates/cert-product-owner-intensive.pdf',
     signatory: 'Johannes Burzin (Geschäftsführung)',
     focus: 'Wertorientiertes Product Ownership, Stakeholder-Management und Zielkonflikte, Scrum Events aus Product-Owner-Perspektive, Product Goal und Product Backlog sowie agile Produktentwicklung.',
     skillsAcquired: [
@@ -1008,7 +1004,7 @@ export const CERTIFICATES: CertificateItem[] = [
   },
   {
     id: 'cert-applied-scrum',
-    isAuthentic: true,
+    isAuthentic: false,
     courseCode: 'ENCE607.1x',
     title: 'Applied Scrum for Agile Project Management (ENCE607.1x)',
     titleI18n: {
@@ -1034,7 +1030,6 @@ export const CERTIFICATES: CertificateItem[] = [
     },
     credentialId: '2f0aa1073872458dbd6f746fe7daaf96',
     verificationUrl: 'https://courses.edx.org/certificates/2f0aa1073872458dbd6f746fe7daaf96',
-    pdfUrl: '/assets/certificates/cert-applied-scrum.pdf',
     signatory: 'John H. Cable, R.A., PMP & John Johnson, PMP CSM SPC (University of Maryland)',
     focus: 'Praxisnahe Anwendung von Scrum im Projektmanagement, Sprint Planning, Backlog Refinement, Servant Leadership und Team-Retrospektiven.',
     skillsAcquired: [
@@ -1046,7 +1041,7 @@ export const CERTIFICATES: CertificateItem[] = [
   },
   {
     id: 'cert-agile-inn',
-    isAuthentic: true,
+    isAuthentic: false,
     courseCode: 'ENCE607.3x',
     title: 'Agile Innovation and Problem Solving Skills (ENCE607.3x)',
     titleI18n: {
@@ -1072,7 +1067,6 @@ export const CERTIFICATES: CertificateItem[] = [
     },
     credentialId: '07a73974a7994ac3bc4d67b3ee9abb91',
     verificationUrl: 'https://courses.edx.org/certificates/07a73974a7994ac3bc4d67b3ee9abb91',
-    pdfUrl: '/assets/certificates/cert-agile-inn.pdf',
     signatory: 'John H. Cable, R.A., PMP & John Johnson, PMP CSM SPC (University of Maryland)',
     focus: 'Agile Innovationsprozesse, Problem Framing, strukturierte Problemlösung in hochdynamischen Märkten und Value Proposition Design.',
     skillsAcquired: [
@@ -1084,7 +1078,7 @@ export const CERTIFICATES: CertificateItem[] = [
   },
   {
     id: 'cert-agile-foundation',
-    isAuthentic: true,
+    isAuthentic: false,
     courseCode: 'PL405',
     title: 'Agile Methodology Foundation (PL405)',
     titleI18n: {
@@ -1110,7 +1104,6 @@ export const CERTIFICATES: CertificateItem[] = [
     },
     credentialId: '90f7ac65567247d9ab2f813b3bdf6c58',
     verificationUrl: 'https://courses.edx.org/certificates/90f7ac65567247d9ab2f813b3bdf6c58',
-    pdfUrl: '/assets/certificates/cert-agile-foundation.pdf',
     signatory: 'SaiSatish Vedam (Director of Programs, Institute of Product Leadership)',
     focus: 'Fundamente agiler Methodik, iterative Produktentwicklung, Team-Kollaborationsmodelle und kundenorientierte Wertoptimierung.',
     skillsAcquired: [
@@ -1122,7 +1115,7 @@ export const CERTIFICATES: CertificateItem[] = [
   },
   {
     id: 'cert-scrum-master',
-    isAuthentic: true,
+    isAuthentic: false,
     title: 'FI Scrum Master Intensive',
     titleI18n: {
       de: 'FI Scrum Master Intensive',
@@ -1147,7 +1140,6 @@ export const CERTIFICATES: CertificateItem[] = [
     },
     credentialId: '9224617055593518',
     verificationUrl: 'https://learning.franklin-partners.de/redirect/api/certification/9224617055593518',
-    pdfUrl: '/assets/certificates/cert-scrum-master.pdf',
     signatory: 'Johannes Burzin (Geschäftsführung)',
     focus: 'Scrum (inklusive Events, Artefakte und Rollen) situationsgerecht anwenden, Kanban-Praktiken einbinden, Design-Thinking-Ansätze nutzen und Lean-Prinzipien reflektiert weiterentwickeln.',
     skillsAcquired: [
@@ -1159,7 +1151,7 @@ export const CERTIFICATES: CertificateItem[] = [
   },
   {
     id: 'cert-agile-foundation-fias',
-    isAuthentic: true,
+    isAuthentic: false,
     title: 'FIAS Agile Foundation',
     titleI18n: {
       de: 'FIAS Agile Foundation',
@@ -1184,7 +1176,6 @@ export const CERTIFICATES: CertificateItem[] = [
     },
     credentialId: '2837029020248735',
     verificationUrl: 'https://learning.franklin-partners.de/redirect/api/certification/2837029020248735',
-    pdfUrl: '/assets/certificates/cert-agile-foundation-fias.pdf',
     signatory: 'Johannes Burzin (Geschäftsführung)',
     focus: 'Sichere Anwendung agiler Prinzipien im Arbeitsalltag: Methoden wie Scrum, Kanban, Design Thinking und Lean situationsgerecht einsetzen und weiterentwickeln.',
     skillsAcquired: [
@@ -1197,7 +1188,7 @@ export const CERTIFICATES: CertificateItem[] = [
   // 4. Artificial Intelligence
   {
     id: 'cert-eu-ai-act-2026',
-    isAuthentic: true,
+    isAuthentic: false,
     title: 'EU AI Act – Grundlagen und Anforderungen der KI-Verordnung',
     titleI18n: {
       de: 'EU AI Act – Grundlagen und Anforderungen der KI-Verordnung',
@@ -1221,7 +1212,6 @@ export const CERTIFICATES: CertificateItem[] = [
       pl: 'Certyfikat uczestnictwa',
     },
     credentialId: 'AIC-AIACT-2026-1016',
-    pdfUrl: '/assets/certificates/cert-eu-ai-act.pdf',
     signatory: 'Eike Jan Diestelkamp (CEO) & Tim Lochmüller (Head of AI & CTO)',
     focus: 'Teilnahmezertifikat Online-Schulung: Risikobasierter Ansatz der EU-KI-Verordnung (EU 2024/1689), Einstufung von KI-Systemen in Risikoklassen, Pflichten von Anbietern und Betreibern sowie KI-Kompetenz gemäß Artikel 4 der KI-Verordnung.',
     focusI18n: {
@@ -1239,7 +1229,7 @@ export const CERTIFICATES: CertificateItem[] = [
   },
   {
     id: 'cert-ki-kompetenz',
-    isAuthentic: true,
+    isAuthentic: false,
     title: 'KI-Kompetenznachweis – KI im Berufsalltag',
     titleI18n: {
       de: 'KI-Kompetenznachweis – KI im Berufsalltag',
@@ -1264,7 +1254,6 @@ export const CERTIFICATES: CertificateItem[] = [
     },
     credentialId: 'SK-KI-2026-6806CF',
     verificationUrl: 'https://moodle.skill-sprinters.de',
-    pdfUrl: '/assets/certificates/cert-ki-kompetenz.pdf',
     signatory: 'Dr. Jens Aichinger (DEKRA-zertifizierter Bildungsträger AZAV 31T0922097)',
     focus: 'Grundlegende KI-Kompetenz im Sinne von Artikel 4 der EU-KI-Verordnung (EU 2024/1689), Prompting-Methoden, Datenschutz und verantwortungsvoller Einsatz im Berufsalltag.',
     skillsAcquired: [
@@ -1277,7 +1266,7 @@ export const CERTIFICATES: CertificateItem[] = [
   },
   {
     id: 'cert-ai-grundlagen',
-    isAuthentic: true,
+    isAuthentic: false,
     title: 'KI-Grundlagen-Zertifikat – Online-Grundlagenkurs Künstliche Intelligenz',
     titleI18n: {
       de: 'KI-Grundlagen-Zertifikat – Online-Grundlagenkurs Künstliche Intelligenz',
@@ -1302,7 +1291,6 @@ export const CERTIFICATES: CertificateItem[] = [
     },
     credentialId: 'haRfyWH3DZ',
     verificationUrl: 'https://moodle.skill-sprinters.de',
-    pdfUrl: '/assets/certificates/cert-ai-grundlagen.pdf',
     signatory: 'Dr. Jens Aichinger',
     focus: 'Online-Grundlagenkurs Künstliche Intelligenz: 5 Lektionen mit je einem bestandenen Wissenstest (mindestens 60 Prozent). Baustein zum Aufbau von KI-Kompetenz gemäß Art. 4 EU-KI-VO.',
     skillsAcquired: [
@@ -1314,7 +1302,7 @@ export const CERTIFICATES: CertificateItem[] = [
   },
   {
     id: 'cert-ai-kompakt',
-    isAuthentic: true,
+    isAuthentic: false,
     title: 'KI Kompakt – Grundlagen und Anwendungen',
     titleI18n: {
       de: 'KI Kompakt – Grundlagen und Anwendungen',
@@ -1338,7 +1326,6 @@ export const CERTIFICATES: CertificateItem[] = [
       pl: 'Zaświadczenie o uczestnictwie',
     },
     verificationUrl: 'https://lernwelt.ihk-akademie-digital.de/#',
-    pdfUrl: '/assets/certificates/cert-ai-kompakt.pdf',
     signatory: 'IHK Akademie Digital gGmbH',
     focus: 'Teilnahmebescheinigung: Einführung in die Künstliche Intelligenz, Anwendungsbereiche der KI, KI-Tools und rechtliche Rahmenbedingungen (KI und Recht).',
     skillsAcquired: [
@@ -1356,7 +1343,7 @@ export const CERTIFICATES: CertificateItem[] = [
 export const ACADEMIC_CERTIFICATES: CertificateItem[] = [
   {
     id: 'cert-diplom-chemie-2007',
-    isAuthentic: true,
+    isAuthentic: false,
     title: 'Diplom – Chemie',
     issuer: 'Adam-Mickiewicz-Universität Poznań',
     year: '2007',
@@ -1370,7 +1357,6 @@ export const ACADEMIC_CERTIFICATES: CertificateItem[] = [
       pl: 'Dyplom ukończenia studiów (Magister)',
     },
     credentialId: 'Diplom-Nr.: 42065',
-    pdfUrl: '/assets/certificates/diplom-chemie-uam-2007.pdf',
     signatory: 'Prof. dr. hab. Hanna Gulińska & Rektor UAM',
     focus: 'Abschluss des einheitlichen 5-jährigen Magisterstudiums der Chemie mit der Note „gut plus“. Fachbereich Chemie der Adam-Mickiewicz-Universität Posen.',
     skillsAcquired: [
@@ -1397,7 +1383,7 @@ export const ACADEMIC_CERTIFICATES: CertificateItem[] = [
   },
   {
     id: 'cert-postgraduales-umweltschutz-2012',
-    isAuthentic: true,
+    isAuthentic: false,
     title: 'Postgraduales Studium – Umweltschutz',
     issuer: 'Adam-Mickiewicz-Universität Poznań',
     year: '2012',
@@ -1411,7 +1397,6 @@ export const ACADEMIC_CERTIFICATES: CertificateItem[] = [
       pl: 'Świadectwo studiów podyplomowych',
     },
     credentialId: 'Abschlusszeugnis Postgraduales Studium',
-    pdfUrl: '/assets/certificates/postgraduales-studium-umweltschutz-uam-2012.pdf',
     signatory: 'Leitung Fakultät für Biologie & Rektorat UAM',
     focus: '2-semestriges postgraduales Aufbaustudium der Fakultät für Biologie im Studiengang Umweltschutz. Abschlussnote: Sehr gut.',
     skillsAcquired: [
@@ -1438,7 +1423,7 @@ export const ACADEMIC_CERTIFICATES: CertificateItem[] = [
   },
   {
     id: 'cert-interner-auditor-iso14001-2012',
-    isAuthentic: true,
+    isAuthentic: false,
     title: 'Interner Auditor – Umweltmanagementsystem ISO 14001',
     issuer: 'Adam-Mickiewicz-Universität Poznań',
     year: '2012',
@@ -1452,7 +1437,6 @@ export const ACADEMIC_CERTIFICATES: CertificateItem[] = [
       pl: 'Certyfikat audytora',
     },
     credentialId: 'Zertifikat Nr.: 020/AW/2012',
-    pdfUrl: '/assets/certificates/interner-auditor-iso-14001-2012.pdf',
     signatory: 'prof. dr hab. Jerzy Błoszyk & dr Daria Bajerlein',
     focus: '30 Stunden theoretische und praktische Qualifizierung für Audits von Qualitäts- und Umweltmanagementsystemen nach ISO 19011:2002 und Norm ISO 14001:2004.',
     skillsAcquired: [
@@ -1479,7 +1463,7 @@ export const ACADEMIC_CERTIFICATES: CertificateItem[] = [
   },
   {
     id: 'cert-expertin-umweltkompensation-2012',
-    isAuthentic: true,
+    isAuthentic: false,
     title: 'Expertin im Bereich Umweltkompensation',
     issuer: 'Adam-Mickiewicz-Universität Poznań',
     year: '2012',
@@ -1493,7 +1477,6 @@ export const ACADEMIC_CERTIFICATES: CertificateItem[] = [
       pl: 'Certyfikat eksperta',
     },
     credentialId: 'Zertifikat Nr.: 020/KP/2012',
-    pdfUrl: '/assets/certificates/expertin-umweltkompensation-2012.pdf',
     signatory: 'prof. dr hab. Jerzy Błoszyk, prof. dr hab. Maria Wojterska, dr Daria Bajerlein',
     focus: 'Spezialisierte Fachqualifikation im Bereich Umweltkompensation und Eingriffsregelung im postgradualen Studiengang Umweltschutz.',
     skillsAcquired: [
@@ -1520,7 +1503,7 @@ export const ACADEMIC_CERTIFICATES: CertificateItem[] = [
   },
   {
     id: 'cert-geoinformationssysteme-gis-2012',
-    isAuthentic: true,
+    isAuthentic: false,
     title: 'Geoinformationssysteme (GIS)',
     issuer: 'Räumliche Datenanalyse und Umweltbewertung',
     year: '2012',
@@ -1534,7 +1517,6 @@ export const ACADEMIC_CERTIFICATES: CertificateItem[] = [
       pl: 'Zaświadczenie ukończenia kursu',
     },
     credentialId: 'Bescheinigung GIS 2012',
-    pdfUrl: '/assets/certificates/geoinformationssysteme-gis-2012.pdf',
     signatory: 'prof. dr hab. Bogdan Jackowiak, dr Maciej Nowak, dr Daria Bajerlein',
     focus: 'Bedienungsgrundlagen von MapInfo Professional 11.0: Vektorebenen, Geodaten-Bereitstellung, WMS-Dienste, Raumanalysen und Geodatenbanken.',
     skillsAcquired: [
@@ -1561,7 +1543,7 @@ export const ACADEMIC_CERTIFICATES: CertificateItem[] = [
   },
   {
     id: 'cert-chemische-messtechnik-trainmic-2007',
-    isAuthentic: true,
+    isAuthentic: false,
     title: 'Chemische Messtechnik',
     issuer: 'TrainMiC',
     year: '2007',
@@ -1575,7 +1557,6 @@ export const ACADEMIC_CERTIFICATES: CertificateItem[] = [
       pl: 'Zaświadczenie / Certyfikat',
     },
     credentialId: 'TrainMiC Kurszertifikat 2007',
-    pdfUrl: '/assets/certificates/chemische-messtechnik-trainmic-2007.pdf',
     signatory: 'Prof. Ewa Bulska (Univ. Warschau) & Prof. Danuta Barałkiewicz (UAM Posen)',
     focus: 'Europäisches Trainingsprogramm TrainMiC (Training in Metrology in Chemistry) der Europäischen Kommission / JRC.',
     skillsAcquired: [

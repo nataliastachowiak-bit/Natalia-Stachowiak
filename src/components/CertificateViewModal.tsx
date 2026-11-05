@@ -16,9 +16,11 @@ import {
   Upload,
   AlertCircle,
   Loader2,
+  Download,
 } from 'lucide-react';
 import { CertificateItem, Language } from '../types';
 import { PdfViewer } from './PdfViewer';
+import { getAbsoluteAssetUrl } from '../utils/assetPath';
 
 interface CertificateViewModalProps {
   cert: CertificateItem | null;
@@ -35,7 +37,9 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
 }) => {
   const [cert, setCert] = useState<CertificateItem | null>(initialCert);
   const [copiedId, setCopiedId] = useState(false);
-  const [displayMode, setDisplayMode] = useState<'pdf' | 'details'>('pdf');
+  const [displayMode, setDisplayMode] = useState<'pdf' | 'details'>(() => {
+    return initialCert?.pdfUrl && initialCert?.isAuthentic !== false ? 'pdf' : 'details';
+  });
   const [zoom, setZoom] = useState<number>(1);
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [pdfLoadError, setPdfLoadError] = useState<boolean>(false);
@@ -46,6 +50,9 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
     setCert(initialCert);
     setPdfLoadError(false);
     setZoom(1);
+    setDisplayMode(
+      initialCert?.pdfUrl && initialCert?.isAuthentic !== false ? 'pdf' : 'details'
+    );
   }, [initialCert]);
 
   // Keyboard navigation: Escape to close, + / - to zoom, 0 to reset zoom
@@ -168,6 +175,7 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
       uploadPdf: 'Original-PDF hochladen',
       uploading: 'Lädt hoch...',
       replacePdf: 'PDF ersetzen / aktualisieren',
+      downloadPdf: 'PDF herunterladen',
     },
     en: {
       eyebrowAvailable: 'ORIGINAL DOCUMENT · VERIFIED CREDENTIAL',
@@ -195,6 +203,7 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
       uploadPdf: 'Upload Original PDF',
       uploading: 'Uploading...',
       replacePdf: 'Replace / Update PDF',
+      downloadPdf: 'Download PDF',
     },
     pl: {
       eyebrowAvailable: 'ORYGINALNY DOKUMENT · CERTYFIKAT',
@@ -222,6 +231,7 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
       uploadPdf: 'Wgraj oryginalny PDF',
       uploading: 'Wgrywanie...',
       replacePdf: 'Zaktualizuj PDF',
+      downloadPdf: 'Pobierz PDF',
     },
   }[currentLang];
 
@@ -319,6 +329,19 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
               >
                 <span>{cert.verificationUrl.includes('scrum.org') ? 'Verify Credential' : t.verifyOnline}</span>
                 <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            )}
+
+            {/* Direct Download of Authentic Original PDF */}
+            {hasValidPdf && cert?.pdfUrl && (
+              <a
+                href={getAbsoluteAssetUrl(cert.pdfUrl)}
+                download={`${cert.title.replace(/[/\\?%*:|"<>]/g, '_')}.pdf`}
+                className="hidden xs:inline-flex items-center gap-1.5 rounded-xl border border-[#C7A35A]/50 bg-[#0F5C46] px-3 py-1.5 text-xs font-semibold text-[#F4F1EA] hover:bg-[#148B78] hover:text-white transition-all uppercase tracking-wider shadow-sm cursor-pointer"
+                title="Original-PDF herunterladen"
+              >
+                <Download className="h-3.5 w-3.5 text-[#C7A35A]" />
+                <span className="hidden md:inline">Original herunterladen</span>
               </a>
             )}
 
@@ -584,6 +607,16 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
           </span>
 
           <div className="flex items-center gap-2">
+            {hasValidPdf && cert.pdfUrl && (
+              <a
+                href={getAbsoluteAssetUrl(cert.pdfUrl)}
+                download
+                className="min-h-[38px] inline-flex items-center gap-1.5 rounded-full border border-[#C7A35A]/50 bg-[#141A16] px-4 py-2 text-xs font-semibold tracking-wider text-[#F4F1EA] hover:border-[#C7A35A] hover:bg-[#1E2620] uppercase transition-all shadow-sm"
+              >
+                <Download className="h-3.5 w-3.5 text-[#C7A35A]" />
+                <span>{t.downloadPdf}</span>
+              </a>
+            )}
             <button
               type="button"
               onClick={onClose}

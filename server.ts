@@ -60,6 +60,7 @@ async function startServer() {
       const decodedUrl = decodeURIComponent(req.path);
       const filename = path.basename(decodedUrl);
       const candidates = [
+        path.join(publicDir, 'certificates', filename),
         path.join(publicDir, decodedUrl),
         path.join(assetsDir, filename),
         path.join(assetsDir, 'certificates', filename),
@@ -221,21 +222,31 @@ async function startServer() {
         return res.status(400).json({ error: 'Invalid file format. File must be an authentic PDF document starting with %PDF-.' });
       }
 
-      // Save to public/assets/certificates/<certId>.pdf
+      // Save to public/assets/certificates/<certId>.pdf and public/certificates/<certId>.pdf
+      const publicCertsDir = path.join(publicDir, 'certificates');
+      if (!fs.existsSync(publicCertsDir)) {
+        fs.mkdirSync(publicCertsDir, { recursive: true });
+      }
       const targetFilePath = path.join(certsDir, `${certId}.pdf`);
       fs.writeFileSync(targetFilePath, buffer);
-      console.log(`[Certificates] Stored authentic PDF for ${certId} (${buffer.length} bytes) at ${targetFilePath}`);
+      fs.writeFileSync(path.join(publicCertsDir, `${certId}.pdf`), buffer);
+      console.log(`[Certificates] Stored authentic PDF for ${certId} (${buffer.length} bytes) at ${targetFilePath} and ${publicCertsDir}`);
 
       // Also copy to dist if dist exists
-      const distCertsDir = path.join(process.cwd(), 'dist', 'assets', 'certificates');
+      const distCertsDir = path.join(process.cwd(), 'dist', 'certificates');
+      const distAssetsCertsDir = path.join(process.cwd(), 'dist', 'assets', 'certificates');
       if (fs.existsSync(distCertsDir)) {
         fs.writeFileSync(path.join(distCertsDir, `${certId}.pdf`), buffer);
+      }
+      if (fs.existsSync(distAssetsCertsDir)) {
+        fs.writeFileSync(path.join(distAssetsCertsDir, `${certId}.pdf`), buffer);
       }
 
       // Also copy with original fileName if available
       if (fileName && fileName.endsWith('.pdf')) {
         const cleanName = path.basename(fileName);
         fs.writeFileSync(path.join(certsDir, cleanName), buffer);
+        fs.writeFileSync(path.join(publicCertsDir, cleanName), buffer);
         fs.writeFileSync(path.join(publicDir, cleanName), buffer);
       }
 
