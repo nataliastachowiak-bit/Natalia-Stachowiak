@@ -267,7 +267,7 @@ export const PROJECTS: ProjectData[] = [
     id: 'gain',
     number: '05',
     name: 'GAIN',
-    title: 'GAIN / NatflixGain — Independent Movie Picker'
+    title: 'GAIN / NatflixGain — Independent Movie Picker',
     subtitle: 'From Choice Overload to effortless discovery.',
     description: {
       de: 'Ein unabhängiges Produktkonzept und Web-Prototyp zur gemeinsamen Filmauswahl und zum Test von Entscheidungswegen.',
