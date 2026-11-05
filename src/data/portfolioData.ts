@@ -749,7 +749,7 @@ export const CERTIFICATES: CertificateItem[] = [
     },
     credentialId: '08f14734662649d9a91e00c10c2cb682',
     verificationUrl: 'https://courses.edx.org/certificates/08f14734662649d9a91e00c10c2cb682',
-    pdfUrl: '/certificates/google-cloud-depsapgc1x-edx.pdf',
+    pdfUrl: '/assets/certificates/google-cloud-depsapgc1x-edx.pdf',
     signatory: 'Google Cloud Training Course Team',
     focus: 'Verifiziertes edX-Zertifikat der Google Cloud: Architekturen, Bereitstellung, Hochverfügbarkeit und Betrieb von SAP NetWeaver und SAP HANA auf der Google Cloud Platform.',
     focusI18n: {
@@ -905,7 +905,7 @@ export const CERTIFICATES: CertificateItem[] = [
     },
     credentialId: '1357678',
     verificationUrl: 'https://scrum.org/certificates/1357678',
-    pdfUrl: '/certificates/Professional-Scrum-Product-Owner-I.pdf',
+    pdfUrl: '/assets/certificates/Professional-Scrum-Product-Owner-I.pdf',
     signatory: 'Ken Schwaber, founder Scrum.org',
     focus: 'Fundamentales Verständnis von Professional Scrum Product Ownership: Maximierung des durch ein Produkt gelieferten Werts, ROI-Optimierung und Gesamtbetriebskosten (TCO).',
     focusI18n: {
@@ -949,7 +949,7 @@ export const CERTIFICATES: CertificateItem[] = [
     },
     credentialId: '1357253',
     verificationUrl: 'https://scrum.org/certificates/1357253',
-    pdfUrl: '/certificates/Professional-Scrum-Master-I.pdf',
+    pdfUrl: '/assets/certificates/Professional-Scrum-Master-I.pdf',
     signatory: 'Ken Schwaber, founder Scrum.org',
     focus: 'Zertifizierung zu Scrum, agilen Prinzipien, empirischer Prozesssteuerung und der Zusammenarbeit in Scrum Teams.',
     focusI18n: {

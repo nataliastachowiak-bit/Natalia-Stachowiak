@@ -26,6 +26,17 @@ async function startServer() {
   const app = express();
   app.use(express.json({ limit: '25mb' }));
 
+  // CORS middleware for API and iframe previews
+  app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, HEAD');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    if (req.method === 'OPTIONS') {
+      return res.sendStatus(204);
+    }
+    next();
+  });
+
   // Ensure public and static uploads/assets folders exist
   const publicDir = path.join(process.cwd(), 'public');
   const assetsDir = path.join(publicDir, 'assets');

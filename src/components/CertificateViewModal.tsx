@@ -43,12 +43,14 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
   const [zoom, setZoom] = useState<number>(1);
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [pdfLoadError, setPdfLoadError] = useState<boolean>(false);
+  const [uploadFeedback, setUploadFeedback] = useState<{ type: 'success' | 'error' | 'info'; message: string } | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setCert(initialCert);
     setPdfLoadError(false);
+    setUploadFeedback(null);
     setZoom(1);
     setDisplayMode(
       initialCert?.pdfUrl && initialCert?.isAuthentic !== false ? 'pdf' : 'details'
@@ -101,46 +103,64 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
     if (!file) return;
 
     if (file.type !== 'application/pdf' && !file.name.endsWith('.pdf')) {
-      alert('Bitte wählen Sie ein authentisches PDF-Dokument aus (.pdf).');
+      setUploadFeedback({
+        type: 'error',
+        message: 'Bitte wählen Sie ein authentisches PDF-Dokument aus (.pdf).',
+      });
       return;
     }
 
+    // 1. Immediately create a local Blob URL for instant, high-fidelity in-browser preview & download
+    const localBlobUrl = URL.createObjectURL(file);
+    setCert((prev) => (prev ? { ...prev, pdfUrl: localBlobUrl, isAuthentic: true } : prev));
+    setDisplayMode('pdf');
+    setPdfLoadError(false);
+    setUploadFeedback({
+      type: 'success',
+      message: `Original-PDF „${file.name}“ erfolgreich geladen.`,
+    });
+
+    // 2. Persist to server if available (e.g. dev environment)
     setIsUploading(true);
     try {
       const reader = new FileReader();
       reader.onload = async () => {
-        const base64Data = reader.result as string;
-        const res = await fetch('/api/certificates/upload', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            certId: cert.id,
-            pdfBase64: base64Data,
-            fileName: file.name,
-          }),
-        });
-
-        const data = await res.json();
-        if (data.success && data.pdfUrl) {
-          setIsUploading(false);
-          setCert({
-            ...cert,
-            pdfUrl: data.pdfUrl,
+        try {
+          const base64Data = reader.result as string;
+          const res = await fetch('/api/certificates/upload', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              certId: cert.id,
+              pdfBase64: base64Data,
+              fileName: file.name,
+            }),
           });
-          setPdfLoadError(false);
-          if (onCertUpdated) {
-            onCertUpdated(cert.id, data.pdfUrl);
+
+          if (res.ok) {
+            const data = await res.json();
+            if (data.success && data.pdfUrl) {
+              setUploadFeedback({
+                type: 'success',
+                message: `Original-PDF dauerhaft im Projektordner gespeichert (${(file.size / 1024).toFixed(1)} KB).`,
+              });
+              if (onCertUpdated) {
+                onCertUpdated(cert.id, data.pdfUrl);
+              }
+            }
+          } else {
+            console.info('[Certificate] Backend upload endpoint not reachable (static GitHub Pages). Local preview remains active.');
           }
-        } else {
+        } catch (fetchErr) {
+          console.info('[Certificate] Static host without backend upload API. In-browser preview remains fully active.', fetchErr);
+        } finally {
           setIsUploading(false);
-          alert(data.error || 'Fehler beim Hochladen des Zertifikats');
         }
       };
       reader.readAsDataURL(file);
     } catch (uploadErr) {
-      console.error('Upload error:', uploadErr);
+      console.error('File read error:', uploadErr);
       setIsUploading(false);
-      alert('Fehler bei der Dateiübertragung.');
     }
   };
 
@@ -357,6 +377,28 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
             </button>
           </div>
         </div>
+
+        {/* Upload feedback banner if triggered */}
+        {uploadFeedback && (
+          <div
+            className={`mt-3 flex items-center justify-between gap-2 rounded-xl border px-3.5 py-2 text-xs font-medium animate-fadeIn ${
+              uploadFeedback.type === 'success'
+                ? 'border-[#148B78]/60 bg-[#0F5C46]/25 text-[#148B78]'
+                : uploadFeedback.type === 'error'
+                ? 'border-red-500/50 bg-red-950/30 text-red-300'
+                : 'border-[#C7A35A]/50 bg-[#101412] text-[#C7A35A]'
+            }`}
+          >
+            <span>{uploadFeedback.message}</span>
+            <button
+              type="button"
+              onClick={() => setUploadFeedback(null)}
+              className="text-[#A9AEA9] hover:text-white"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          </div>
+        )}
 
         {/* 2. Modal Body */}
         <div className="mt-4 flex-1 overflow-y-auto pr-1 text-sm text-[#A9AEA9] space-y-4">
