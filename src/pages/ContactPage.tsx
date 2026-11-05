@@ -51,10 +51,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
           <p className="font-sans text-sm sm:text-base text-[#A9AEA9] max-w-xl mx-auto leading-relaxed">
             {currentLang === 'de'
-              ? 'Ich freue mich über neue berufliche Herausforderungen und Kooperationen im digitalen Produktmanagement, KI-gestützten Innovationsinitiativen sowie den fundierten Austausch über nutzerzentrierte Technologien.'
+              ? 'Ich interessiere mich branchenübergreifend für Positionen und Kooperationen im Digital & AI Product Management, Innovation Management und in der digitalen Transformation.'
               : currentLang === 'pl'
-              ? 'Jestem otwarta na nowe wyzwania zawodowe i współpracę w obszarze cyfrowego zarządzania produktami, innowacji opartych na AI oraz merytoryczną wymianę doświadczeń technologicznych.'
-              : 'Open to new professional opportunities and collaborative roles in digital product management, AI-driven innovation initiatives, and meaningful exchange on user-centered technology.'}
+              ? 'Jestem otwarta na możliwości zawodowe w różnych branżach – w zarządzaniu produktami cyfrowymi i AI, innowacjach oraz transformacji cyfrowej.'
+              : 'Open to cross-industry opportunities in Digital & AI Product Management, Innovation Management and Digital Transformation.'}
           </p>
         </div>
 
