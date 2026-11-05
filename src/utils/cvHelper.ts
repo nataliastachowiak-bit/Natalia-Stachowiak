@@ -1,63 +1,33 @@
-import { resolveAssetUrl, getAbsoluteAssetUrl } from './assetPath';
+import { getAbsoluteAssetUrl } from './assetPath';
 import { CV_FILE } from '../data/assetRegistry';
 
 /**
- * Trigger direct, clean download of the authentic 2-page CV PDF.
- * Uses fetch + Blob to guarantee that:
- * 1. The iframe never navigates
- * 2. No redirects to aistudio.google.com or Cloud Run authentication occur
- * 3. The file is cleanly saved to the user's system as Natalia_Stachowiak_CV.pdf
+ * Download the original approved graphical CV.
+ * Use a native same-origin anchor rather than async fetch/Blob:
+ * this avoids returning an HTML error page disguised as a PDF,
+ * popup blockers and Blob URL timing problems.
  */
-export async function downloadCvDocument(
+export function downloadCvDocument(
   filename: string = 'Natalia_Stachowiak_CV.pdf'
-): Promise<void> {
-  const url = resolveAssetUrl(CV_FILE);
-  try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const blob = await res.blob();
-    const blobUrl = URL.createObjectURL(blob);
-
-    const a = document.createElement('a');
-    a.href = blobUrl;
-    a.download = filename;
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-
-    setTimeout(() => {
-      URL.revokeObjectURL(blobUrl);
-    }, 15000);
-  } catch (err) {
-    console.warn('[CV] Blob download failed, falling back to direct anchor:', err);
-    const directUrl = getAbsoluteAssetUrl(CV_FILE);
-    const a = document.createElement('a');
-    a.href = directUrl;
-    a.download = filename;
-    a.target = '_self';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  }
+): void {
+  const url = getAbsoluteAssetUrl(CV_FILE);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.rel = 'noopener';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 }
 
-/**
- * Opens the CV PDF in a fresh browser tab using an in-memory Blob URL or direct URL.
- */
-export async function openCvInNewTab(): Promise<void> {
-  const url = resolveAssetUrl(CV_FILE);
-  try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const blob = await res.blob();
-    const blobUrl = URL.createObjectURL(
-      new Blob([blob], { type: 'application/pdf' })
-    );
-    window.open(blobUrl, '_blank', 'noopener,noreferrer');
-  } catch (err) {
-    console.warn('[CV] Blob preview failed, falling back to direct URL:', err);
-    const directUrl = getAbsoluteAssetUrl(CV_FILE);
-    window.open(directUrl, '_blank', 'noopener,noreferrer');
-  }
+/** Open the original PDF in a new tab using its canonical public URL. */
+export function openCvInNewTab(): void {
+  const url = getAbsoluteAssetUrl(CV_FILE);
+  const a = document.createElement('a');
+  a.href = url;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 }
