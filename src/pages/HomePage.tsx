@@ -179,6 +179,11 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
               </Link>
             </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center rounded-lg border border-[#C7A35A]/30 bg-[#C7A35A]/10 px-3 py-2 text-xs sm:text-sm font-medium tracking-wide text-[#C7A35A]">
+                Sustainability · Circular Economy
+              </span>
+            </div>
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
