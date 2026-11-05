@@ -17,14 +17,14 @@ export const translations: Record<Language, Record<string, any>> = {
       manageAssets: 'Medien verwalten',
     },
     hero: {
-      roleLabel: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · DIGITAL TRANSFORMATION',
-      subRole: 'Digital & AI Product Management · Innovation · Digital Transformation',
+      roleLabel: 'PRODUCT MANAGEMENT · DIGITAL & AI INNOVATION · DIGITAL TRANSFORMATION',
+      subRole: 'Product Management · Digital & AI Innovation · Transformation',
       headlinePart1: 'Turning problems',
       headlinePart2: 'into products.',
       headline: 'Turning problems\ninto products.',
-      focus: 'Digital Products · AI · Innovation',
+      focus: 'Physical & Digital Products · AI · Innovation',
       description:
-        'Ich verbinde wissenschaftliche Analyse, unternehmerische Erfahrung und digitales Produktmanagement. Ich entwickle branchenübergreifend nutzerzentrierte, datenbasierte Produktkonzepte und KI-gestützte Lösungen – von der Problem Discovery bis zum überprüfbaren Prototyp.',
+        'Ich verbinde wissenschaftliche Analyse, Unternehmertum und Produktmanagement. Meine Perspektive umfasst technische und physische Produkte ebenso wie digitale Plattformen und KI – mit Blick auf Kundenbedürfnisse, Machbarkeit und Wirtschaftlichkeit.',
       exploreWork: 'MEINE PROJEKTE ENTDECKEN →',
       aboutMe: 'ÜBER MICH →',
       portraitPlaceholder: 'NATALIAS PORTRÄT HIER HOCHLADEN',
@@ -57,7 +57,7 @@ export const translations: Record<Language, Record<string, any>> = {
       headline: 'Wissenschaftlich denken. Menschlich verstehen. Digital gestalten.',
       readMore: 'Mehr über mich lesen ↓',
       readLess: 'Weniger anzeigen ↑',
-      p1: 'Ich bin Natalia Stachowiak – ich verbinde wissenschaftliche Expertise (M.Sc. Chemie), Umweltschutzmanagement und langjährige unternehmerische Erfahrung mit modernem digitalem Produktmanagement.',
+      p1: 'Ich verbinde wissenschaftliche Expertise (M.Sc. Chemie), Umwelttechnik und unternehmerische Erfahrung mit Produktmanagement für technische, physische und digitale Produkte.',
       p2: 'Mein beruflicher Weg ist interdisziplinär. Genau darin liegt meine Stärke: Ich verbinde wissenschaftliche Präzision und empirische Systematik mit unternehmerischem Handeln, technologischem Gestaltungswillen und einem echten Interesse an Menschen.',
       p3: 'Heute entwickle ich meine Expertise im digitalen Produktmanagement, in künstlicher Intelligenz und digitaler Transformation kontinuierlich weiter.',
       accordionP1: 'Mich begeistert die Frage, wie wir komplexe Herausforderungen verstehen und daraus intelligente, nutzerzentrierte Produkte entwickeln können.',
@@ -369,7 +369,7 @@ export const translations: Record<Language, Record<string, any>> = {
     contact: {
       label: 'CONTACT',
       headline: 'Lass uns gemeinsam etwas bewegen.',
-      body: 'Ich freue mich über neue berufliche Herausforderungen und Kooperationen im digitalen Produktmanagement, KI-gestützten Innovationsinitiativen sowie den Austausch über nutzerzentrierte Technologien.',
+      body: 'Ich freue mich über Rollen im Produktmanagement für technische, physische und digitale Produkte sowie Innovations- und Transformationsprojekte.',
       emailBtn: 'E-MAIL SCHREIBEN →',
       emailAddress: 'wsb.natalia@gmail.com',
       linkedin: 'LinkedIn Profil',
@@ -377,7 +377,7 @@ export const translations: Record<Language, Record<string, any>> = {
     },
     footer: {
       copyright: '© 2026 Natalia Stachowiak. Alle Rechte vorbehalten.',
-      role: 'Digital & AI Product Management · Innovation · Digital Transformation',
+      role: 'Product Management · Digital & AI Innovation · Transformation',
       standaloneNotice: 'VINYL ist ein eigenständiges Produktkonzept. Alle Marken und Logos gehören ihren jeweiligen Inhabern.',
     },
     modal: {
@@ -411,14 +411,14 @@ export const translations: Record<Language, Record<string, any>> = {
       manageAssets: 'Manage Media',
     },
     hero: {
-      roleLabel: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · DIGITAL TRANSFORMATION',
-      subRole: 'Digital & AI Product Management · Innovation · Digital Transformation',
+      roleLabel: 'PRODUCT MANAGEMENT · DIGITAL & AI INNOVATION · DIGITAL TRANSFORMATION',
+      subRole: 'Product Management · Digital & AI Innovation · Transformation',
       headlinePart1: 'Turning problems',
       headlinePart2: 'into products.',
       headline: 'Turning problems\ninto products.',
-      focus: 'Digital Products · AI · Innovation',
+      focus: 'Physical & Digital Products · AI · Innovation',
       description:
-        'I combine scientific analysis, entrepreneurial experience and digital product management to explore user-centered, data-informed products and AI-enabled solutions across industries – from problem discovery to testable prototypes.',
+        'I combine scientific analysis, entrepreneurship and product management. My interests span technical and physical products, digital platforms and AI – with a focus on customer needs, feasibility and commercial value.',
       exploreWork: 'EXPLORE MY PROJECTS →',
       aboutMe: 'ABOUT ME →',
       portraitPlaceholder: 'UPLOAD NATALIA’S PORTRAIT HERE',
@@ -451,7 +451,7 @@ export const translations: Record<Language, Record<string, any>> = {
       headline: 'Think scientifically. Understand humanly. Design digitally.',
       readMore: 'Read more about me ↓',
       readLess: 'Show less ↑',
-      p1: 'I am Natalia Stachowiak – combining scientific expertise (M.Sc. Chemistry), environmental protection management, and extensive entrepreneurial experience with modern digital product management.',
+      p1: 'I combine scientific expertise (M.Sc. Chemistry), environmental engineering and entrepreneurial experience with product management for technical, physical and digital products.',
       p2: 'My background is consistently interdisciplinary. That is precisely where my strength lies: connecting scientific precision and empirical methods with entrepreneurial initiative, technological curiosity, and a genuine interest in people.',
       p3: 'Today, I am advancing my competencies in digital product management, applied artificial intelligence, and digital transformation.',
       accordionP1: 'I am driven by the question of how to understand complex challenges and turn them into intelligent, human-centered products.',
@@ -763,7 +763,7 @@ export const translations: Record<Language, Record<string, any>> = {
     contact: {
       label: 'CONTACT',
       headline: "Let's connect.",
-      body: 'Open to new professional opportunities and collaborative roles in digital product management, AI-driven innovation initiatives, and meaningful exchange on user-centered technology.',
+      body: 'Open to product management roles for technical, physical and digital products, as well as AI innovation and transformation initiatives.',
       emailBtn: 'WRITE EMAIL →',
       emailAddress: 'wsb.natalia@gmail.com',
       linkedin: 'LinkedIn Profile',
@@ -771,7 +771,7 @@ export const translations: Record<Language, Record<string, any>> = {
     },
     footer: {
       copyright: '© 2026 Natalia Stachowiak. All rights reserved.',
-      role: 'Digital & AI Product Management · Innovation · Digital Transformation',
+      role: 'Product Management · Digital & AI Innovation · Transformation',
       standaloneNotice: 'VINYL is an independent product concept. All trademarks and logos belong to their respective owners.',
     },
     modal: {
@@ -805,14 +805,14 @@ export const translations: Record<Language, Record<string, any>> = {
       manageAssets: 'Zarządzaj mediami',
     },
     hero: {
-      roleLabel: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · DIGITAL TRANSFORMATION',
-      subRole: 'Digital & AI Product Management · Innovation · Digital Transformation',
+      roleLabel: 'PRODUCT MANAGEMENT · DIGITAL & AI INNOVATION · DIGITAL TRANSFORMATION',
+      subRole: 'Product Management · Digital & AI Innovation · Transformation',
       headlinePart1: 'Turning problems',
       headlinePart2: 'into products.',
       headline: 'Turning problems\ninto products.',
-      focus: 'Digital Products · AI · Innovation',
+      focus: 'Physical & Digital Products · AI · Innovation',
       description:
-        'Łączę analizę naukową, doświadczenie przedsiębiorcze i zarządzanie produktami cyfrowymi. Koncentruję się na rozwiązaniach zorientowanych na użytkownika, opartych na danych i zrównoważonych – od walidacji problemu po koncepcję produktu.',
+        'Łączę analizę naukową, przedsiębiorczość i zarządzanie produktami. Interesują mnie produkty techniczne i fizyczne, platformy cyfrowe i AI – z naciskiem na potrzeby klientów i wartość biznesową.',
       exploreWork: 'ODKRYJ MOJE PROJEKTY →',
       aboutMe: 'O MNIE →',
       portraitPlaceholder: 'TUTAJ PRZEŚLIJ PORTRET NATALII',
@@ -1157,7 +1157,7 @@ export const translations: Record<Language, Record<string, any>> = {
     contact: {
       label: 'KONTAKT',
       headline: "Let's connect.",
-      body: 'Jestem otwarta na nowe wyzwania zawodowe i współpracę w obszarze cyfrowego zarządzania produktami, innowacji opartych na AI oraz wymianę doświadczeń technologicznych.',
+      body: 'Jestem otwarta na role w zarządzaniu produktami technicznymi, fizycznymi i cyfrowymi oraz projekty AI, innowacji i transformacji.',
       emailBtn: 'NAPISZ E-MAIL →',
       emailAddress: 'wsb.natalia@gmail.com',
       linkedin: 'Profil LinkedIn',
@@ -1165,7 +1165,7 @@ export const translations: Record<Language, Record<string, any>> = {
     },
     footer: {
       copyright: '© 2026 Natalia Stachowiak. Wszelkie prawa zastrzeżone.',
-      role: 'Digital & AI Product Management · Innovation · Digital Transformation',
+      role: 'Product Management · Digital & AI Innovation · Transformation',
       standaloneNotice: 'VINYL jest niezależną koncepcją produktową. Wszelkie znaki towarowe należą do ich właścicieli.',
     },
     modal: {

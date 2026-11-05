@@ -16,7 +16,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang }) => {
           <span className="font-serif font-medium text-[#F4F1EA] tracking-wider">NATALIA STACHOWIAK</span>
           <span className="text-[#C7A35A]/50">·</span>
           <span className="text-[#0F5C46] font-medium">
-            {currentLang === 'de' ? 'Digital & AI Product Management' : currentLang === 'pl' ? 'Digital & AI Product Management' : 'Digital & AI Product Management'}
+            {currentLang === 'de' ? 'Product Management · Digital & AI Innovation' : currentLang === 'pl' ? 'Product Management · Digital & AI Innovation' : 'Product Management · Digital & AI Innovation'}
           </span>
           <span className="text-[#C7A35A]/50 hidden md:inline">·</span>
           <span className="hidden md:inline text-[10px] text-[#A9AEA9]">Turning problems into products</span>

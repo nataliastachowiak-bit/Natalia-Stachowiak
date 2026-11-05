@@ -96,11 +96,11 @@ export default function App() {
   useEffect(() => {
     document.documentElement.lang = currentLang;
     if (currentLang === 'de') {
-      document.title = 'Natalia Stachowiak — Digital Product Management · AI · Digital Transformation';
+      document.title = 'Natalia Stachowiak — Product Management · Digital & AI Innovation';
     } else if (currentLang === 'pl') {
-      document.title = 'Natalia Stachowiak — Cyfrowe Zarządzanie Produktem · AI · Transformacja Cyfrowa';
+      document.title = 'Natalia Stachowiak — Zarządzanie Produktami · Innowacje Cyfrowe i AI';
     } else {
-      document.title = 'Natalia Stachowiak — Digital Product Management · AI · Digital Transformation';
+      document.title = 'Natalia Stachowiak — Product Management · Digital & AI Innovation';
     }
   }, [currentLang]);
 
