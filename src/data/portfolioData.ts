@@ -725,6 +725,7 @@ export const PROJECTS: ProjectData[] = [
 // GitHub Pages build. Metadata alone does not count as a published credential.
 const BUNDLED_CERTIFICATE_PDFS: Record<string, string> = {
   "cert-pm-program": "Franklin-Weiterbildung-Teilnahmebescheinigung.pdf",
+  "cert-dt": "Forward-Design-Thinking.pdf",
   "cert-product-design": "edx-Product-Design-ENES608-3.pdf",
   "cert-product-owner-intensive": "Franklin-Product-Owner-Intensive.pdf",
   "cert-applied-scrum": "edx-Applied-Scrum-ENCE607-1x.pdf",
@@ -1416,7 +1417,26 @@ export const CERTIFICATES: CertificateItem[] = CERTIFICATES_SOURCE.map(applyPubl
 // ============================================================================
 // OFFIZIELLE ZERTIFIKATE & QUALIFIKATIONEN (6 DOKUMENTE)
 // ============================================================================
-export const ACADEMIC_CERTIFICATES: CertificateItem[] = [
+const ACADEMIC_PDF_FILES: Record<string,string> = {
+  'cert-diplom-chemie-2007': 'Diplom-Chemie.pdf',
+  'cert-postgraduales-umweltschutz-2012': 'Postgraduales-Umweltschutz.pdf',
+  'cert-interner-auditor-iso14001-2012': 'ISO14001-Interner-Auditor.pdf',
+  'cert-expertin-umweltkompensation-2012': 'Umweltkompensation.pdf',
+  'cert-geoinformationssysteme-gis-2012': 'GIS.pdf',
+  'cert-chemische-messtechnik-trainmic-2007': 'Chemische-Messtechnik.pdf',
+};
+function applyPublishedAcademicPdf(cert: CertificateItem): CertificateItem {
+  const fileName = ACADEMIC_PDF_FILES[cert.id];
+  if (!fileName) return cert;
+  const published = PUBLISHED_CERTIFICATE_PDFS.includes(fileName);
+  return {
+    ...cert,
+    pdfUrl: published ? `/assets/certificates/${fileName}` : undefined,
+    isAuthentic: published,
+  };
+}
+
+const ACADEMIC_CERTIFICATES_SOURCE: CertificateItem[] = [
   {
     id: 'cert-diplom-chemie-2007',
     isAuthentic: false,
@@ -1659,3 +1679,4 @@ export const ACADEMIC_CERTIFICATES: CertificateItem[] = [
   },
 ];
 
+export const ACADEMIC_CERTIFICATES: CertificateItem[] = ACADEMIC_CERTIFICATES_SOURCE.map(applyPublishedAcademicPdf);
