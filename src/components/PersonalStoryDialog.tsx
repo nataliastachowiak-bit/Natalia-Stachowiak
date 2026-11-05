@@ -5,6 +5,7 @@ import { resolveAssetUrl } from '../utils/assetPath';
 
 const camelImage = resolveAssetUrl('/assets/travel-camel.avif');
 const umbrellasImage = resolveAssetUrl('/assets/travel-umbrellas.avif');
+const whiteSandImage = resolveAssetUrl('/assets/travel-beach.avif');
 const beachDogImage = resolveAssetUrl('/assets/travel-dog-beach.avif');
 const magnetsImage = resolveAssetUrl('/assets/travel-souvenir-magnets.avif');
 const seaQuoteImage = resolveAssetUrl('/assets/travel-seaside-quote.avif');
@@ -132,9 +133,16 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
                   <figure className="relative z-10 -rotate-[4deg] overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
                     <img src={camelImage} alt={currentLang === 'de' ? 'Ganzes Reisefoto auf einem Kamel in der Wüste' : currentLang === 'pl' ? 'Pełne zdjęcie z podróży na wielbłądzie' : 'Full-length travel photo on a camel in the desert'} loading="lazy" decoding="async" className="block h-auto w-full" />
                   </figure>
-                  <figure className="relative z-20 mt-10 rotate-[5deg] overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
-                    <img src={umbrellasImage} alt={currentLang === 'de' ? 'Bunte Regenschirme auf einer abendlichen Reise' : currentLang === 'pl' ? 'Kolorowe parasole podczas wieczornego spaceru' : 'Colourful umbrellas on an evening walk'} loading="lazy" decoding="async" className="block h-auto w-full" />
-                  </figure>
+                  {/* The sandy-beach portrait fills the space below the umbrella photo,
+                      alongside the tall camel portrait, without adding another long row. */}
+                  <div className="relative z-20 flex min-w-0 flex-col gap-5 pt-8 sm:gap-7 sm:pt-10">
+                    <figure className="relative rotate-[5deg] overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
+                      <img src={umbrellasImage} alt={currentLang === 'de' ? 'Bunte Regenschirme auf einer abendlichen Reise' : currentLang === 'pl' ? 'Kolorowe parasole podczas wieczornego spaceru' : 'Colourful umbrellas on an evening walk'} loading="lazy" decoding="async" className="block h-auto w-full" />
+                    </figure>
+                    <figure className="relative -ml-2 w-[102%] -rotate-[4deg] overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
+                      <img src={whiteSandImage} alt={currentLang === 'de' ? 'Meine Reiseerinnerung auf hellem Sand am Meer' : currentLang === 'pl' ? 'Wspomnienie z podróży na jasnej piaszczystej plaży' : 'A travel memory on a bright white-sand beach'} loading="lazy" decoding="async" className="block h-auto w-full" />
+                    </figure>
+                  </div>
                   {/* Centered gold map fills the space between the upper and lower travel photos. */}
                   <div className="col-span-2 relative z-0 mx-auto -my-1 flex w-[90%] items-center justify-center py-1 sm:w-[86%]" aria-hidden="true">
                     <img src={worldMapGoldImage} alt="" loading="lazy" decoding="async" className="block w-full h-auto opacity-80 drop-shadow-[0_0_9px_rgba(199,163,90,0.18)]" />
