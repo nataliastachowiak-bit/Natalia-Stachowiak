@@ -98,11 +98,17 @@ class AudioEngine {
   constructor() {
     // Initial check from localStorage if user previously enabled sound
     if (typeof window !== 'undefined') {
-      const storedMuted = localStorage.getItem('natalia_portfolio_audio_enabled');
-      this.isEnabled = storedMuted === 'true';
-      const storedVol = localStorage.getItem('natalia_portfolio_audio_volume');
-      if (storedVol) {
-        this.volume = parseFloat(storedVol) || 0.25;
+      try {
+        const storedMuted = window.localStorage.getItem('natalia_portfolio_audio_enabled');
+        this.isEnabled = storedMuted === 'true';
+        const storedVol = window.localStorage.getItem('natalia_portfolio_audio_volume');
+        if (storedVol) {
+          this.volume = parseFloat(storedVol) || 0.25;
+        }
+      } catch {
+        // Restricted/private mobile browsers may throw for localStorage at module load.
+        // Audio is optional and must never prevent the entire portfolio from rendering.
+        this.isEnabled = false;
       }
     }
   }
@@ -159,7 +165,7 @@ class AudioEngine {
   public async toggleAudio(force?: boolean) {
     const newState = force !== undefined ? force : !this.isEnabled;
     this.isEnabled = newState;
-    localStorage.setItem('natalia_portfolio_audio_enabled', String(this.isEnabled));
+    try { window.localStorage.setItem('natalia_portfolio_audio_enabled', String(this.isEnabled)); } catch { /* storage is optional */ }
 
     this.initContext();
 
@@ -201,7 +207,7 @@ class AudioEngine {
   public setVolume(vol: number) {
     const clamped = Math.max(0, Math.min(1, vol));
     this.volume = clamped;
-    localStorage.setItem('natalia_portfolio_audio_volume', String(clamped));
+    try { window.localStorage.setItem('natalia_portfolio_audio_volume', String(clamped)); } catch { /* storage is optional */ }
 
     if (this.masterGain && this.ctx && this.isEnabled) {
       const now = this.ctx.currentTime;
