@@ -1,5 +1,6 @@
 import React from 'react';
 import { Plane, X } from 'lucide-react';
+import { TravelMagnets } from './TravelMagnets';
 import { Language } from '../types';
 import { resolveAssetUrl } from '../utils/assetPath';
 
@@ -7,7 +8,6 @@ const camelImage = resolveAssetUrl('/assets/travel-camel.avif');
 const umbrellasImage = resolveAssetUrl('/assets/travel-umbrellas.avif');
 const whiteSandImage = resolveAssetUrl('/assets/travel-beach.avif');
 const beachDogImage = resolveAssetUrl('/assets/travel-dog-beach.avif');
-const magnetsImage = resolveAssetUrl('/assets/travel-souvenir-magnets.avif');
 const seaQuoteImage = resolveAssetUrl('/assets/travel-seaside-quote.avif');
 const worldMapGoldImage = resolveAssetUrl('/assets/world-map-gold.svg');
 
@@ -76,6 +76,9 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
             </h2>
           </div>
 
+          {/* Loose souvenirs above the story; keeps all paragraphs unobstructed. */}
+          <TravelMagnets placement="top" />
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-10 items-start">
             <div className="lg:col-span-7 space-y-4 sm:space-y-5 text-sm sm:text-base text-[#F4F1EA]/85 leading-[1.8] font-sans text-left sm:text-justify [hyphens:auto]">
               <p className="font-serif italic text-xl sm:text-2xl leading-snug text-[#C7A35A]">
@@ -143,6 +146,10 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
                       <img src={whiteSandImage} alt={currentLang === 'de' ? 'Meine Reiseerinnerung auf hellem Sand am Meer' : currentLang === 'pl' ? 'Wspomnienie z podróży na jasnej piaszczystej plaży' : 'A travel memory on a bright white-sand beach'} loading="lazy" decoding="async" className="block h-auto w-full" />
                     </figure>
                   </div>
+                  {/* Small souvenir cutouts float among the photos, not on top of text. */}
+                  <div className="col-span-2">
+                    <TravelMagnets placement="side" />
+                  </div>
                   {/* Centered gold map fills the space between the upper and lower travel photos. */}
                   <div className="col-span-2 relative z-0 mx-auto -my-1 flex w-[90%] items-center justify-center py-1 sm:w-[86%]" aria-hidden="true">
                     <img src={worldMapGoldImage} alt="" loading="lazy" decoding="async" className="block w-full h-auto opacity-80 drop-shadow-[0_0_9px_rgba(199,163,90,0.18)]" />
@@ -154,15 +161,14 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
                     <img src={seaQuoteImage} alt={currentLang === 'de' ? 'Meerblick mit einem persönlichen Gedanken über das Leben' : currentLang === 'pl' ? 'Widok na morze z osobistą refleksją' : 'Seaside reflection on life'} loading="lazy" decoding="async" className="block h-auto w-full" />
                   </figure>
                 </div>
-                <figure className="relative z-20 mx-auto -mt-5 w-[92%] rotate-[2deg] sm:-mt-6 overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:rotate-0 hover:scale-[1.02]">
-                  <img src={magnetsImage} alt={currentLang === 'de' ? 'Meine gesammelten Reisemagnete als Erinnerungen an viele Orte' : currentLang === 'pl' ? 'Moja kolekcja magnesów z podróży' : 'My collection of travel souvenir magnets'} loading="lazy" decoding="async" className="block h-auto w-full" />
-                </figure>
                 <p className="mt-8 -rotate-[2deg] text-right font-serif text-lg italic text-[#C7A35A] sm:text-2xl">
                   {currentLang === 'de' ? 'Momente, die bleiben.' : currentLang === 'pl' ? 'Chwile, które zostają.' : 'Moments that stay.'}
                 </p>
               </div>
             </div>
           </div>
+          {/* Additional individually cut-out magnets scattered below the story and photo collage. */}
+          <TravelMagnets placement="bottom" />
         </section>
     </dialog>
   );
