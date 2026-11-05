@@ -17,14 +17,14 @@ export const translations: Record<Language, Record<string, any>> = {
       manageAssets: 'Medien verwalten',
     },
     hero: {
-      roleLabel: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · SUSTAINABILITY',
-      subRole: 'Digital Product Management · AI Innovation · Sustainability',
+      roleLabel: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · DIGITAL TRANSFORMATION',
+      subRole: 'Digital & AI Product Management · Innovation · Digital Transformation',
       headlinePart1: 'Turning problems',
       headlinePart2: 'into products.',
       headline: 'Turning problems\ninto products.',
       focus: 'Digital Products · AI · Innovation',
       description:
-        'Ich verbinde wissenschaftliche Analyse, unternehmerische Erfahrung und digitales Produktmanagement. Mein Fokus liegt auf nutzerzentrierten, datenbasierten und nachhaltigen Lösungen – von der Problemvalidierung bis zum Produktkonzept.',
+        'Ich verbinde wissenschaftliche Analyse, unternehmerische Erfahrung und digitales Produktmanagement. Ich entwickle branchenübergreifend nutzerzentrierte, datenbasierte Produktkonzepte und KI-gestützte Lösungen – von der Problem Discovery bis zum überprüfbaren Prototyp.',
       exploreWork: 'MEINE PROJEKTE ENTDECKEN →',
       aboutMe: 'ÜBER MICH →',
       portraitPlaceholder: 'NATALIAS PORTRÄT HIER HOCHLADEN',
@@ -377,7 +377,7 @@ export const translations: Record<Language, Record<string, any>> = {
     },
     footer: {
       copyright: '© 2026 Natalia Stachowiak. Alle Rechte vorbehalten.',
-      role: 'Digital Product Management · AI Innovation · Sustainability',
+      role: 'Digital & AI Product Management · Innovation · Digital Transformation',
       standaloneNotice: 'VINYL ist ein eigenständiges Produktkonzept. Alle Marken und Logos gehören ihren jeweiligen Inhabern.',
     },
     modal: {
@@ -411,14 +411,14 @@ export const translations: Record<Language, Record<string, any>> = {
       manageAssets: 'Manage Media',
     },
     hero: {
-      roleLabel: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · SUSTAINABILITY',
-      subRole: 'Digital Product Management · AI Innovation · Sustainability',
+      roleLabel: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · DIGITAL TRANSFORMATION',
+      subRole: 'Digital & AI Product Management · Innovation · Digital Transformation',
       headlinePart1: 'Turning problems',
       headlinePart2: 'into products.',
       headline: 'Turning problems\ninto products.',
       focus: 'Digital Products · AI · Innovation',
       description:
-        'I connect scientific analysis, entrepreneurial experience, and digital product management. My focus is on user-centered, data-driven, and sustainable solutions – from problem validation to product concept.',
+        'I combine scientific analysis, entrepreneurial experience and digital product management to explore user-centered, data-informed products and AI-enabled solutions across industries – from problem discovery to testable prototypes.',
       exploreWork: 'EXPLORE MY PROJECTS →',
       aboutMe: 'ABOUT ME →',
       portraitPlaceholder: 'UPLOAD NATALIA’S PORTRAIT HERE',
@@ -771,7 +771,7 @@ export const translations: Record<Language, Record<string, any>> = {
     },
     footer: {
       copyright: '© 2026 Natalia Stachowiak. All rights reserved.',
-      role: 'Digital Product Management · AI Innovation · Sustainability',
+      role: 'Digital & AI Product Management · Innovation · Digital Transformation',
       standaloneNotice: 'VINYL is an independent product concept. All trademarks and logos belong to their respective owners.',
     },
     modal: {
@@ -805,8 +805,8 @@ export const translations: Record<Language, Record<string, any>> = {
       manageAssets: 'Zarządzaj mediami',
     },
     hero: {
-      roleLabel: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · SUSTAINABILITY',
-      subRole: 'Digital Product Management · AI Innovation · Sustainability',
+      roleLabel: 'DIGITAL PRODUCT MANAGEMENT · AI INNOVATION · DIGITAL TRANSFORMATION',
+      subRole: 'Digital & AI Product Management · Innovation · Digital Transformation',
       headlinePart1: 'Turning problems',
       headlinePart2: 'into products.',
       headline: 'Turning problems\ninto products.',
@@ -1165,7 +1165,7 @@ export const translations: Record<Language, Record<string, any>> = {
     },
     footer: {
       copyright: '© 2026 Natalia Stachowiak. Wszelkie prawa zastrzeżone.',
-      role: 'Digital Product Management · AI Innovation · Sustainability',
+      role: 'Digital & AI Product Management · Innovation · Digital Transformation',
       standaloneNotice: 'VINYL jest niezależną koncepcją produktową. Wszelkie znaki towarowe należą do ich właścicieli.',
     },
     modal: {
