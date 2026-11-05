@@ -75,7 +75,7 @@ export const CvPreviewModal: React.FC<CvPreviewModalProps> = ({
       zoomIn: 'Vergrößern (+)',
       zoomOut: 'Verkleinern (-)',
       zoomReset: 'Zoom zurücksetzen (0)',
-      footerNote: 'Authentischer 2-seitiger grafischer Lebenslauf · Alle Qualifikationen & Case Studies vollständig enthalten',
+      footerNote: 'Aktueller 2-seitiger Lebenslauf · Digital Product Management, KI und Innovation',
     },
     en: {
       title: 'Curriculum Vitae — Natalia Stachowiak',
@@ -86,7 +86,7 @@ export const CvPreviewModal: React.FC<CvPreviewModalProps> = ({
       zoomIn: 'Zoom in (+)',
       zoomOut: 'Zoom out (-)',
       zoomReset: 'Reset zoom (0)',
-      footerNote: 'Authentic 2-page graphical CV · All qualifications & case studies fully included',
+      footerNote: 'Current 2-page CV · Digital Product Management, AI and Innovation',
     },
     pl: {
       title: 'Życiorys — Natalia Stachowiak',
@@ -97,7 +97,7 @@ export const CvPreviewModal: React.FC<CvPreviewModalProps> = ({
       zoomIn: 'Powiększ (+)',
       zoomOut: 'Pomniejsz (-)',
       zoomReset: 'Resetuj powiększenie (0)',
-      footerNote: 'Autentyczny 2-stronicowy życiorys graficzny · Wszystkie kwalifikacje i studia przypadków zachowane',
+      footerNote: 'Aktualne 2-stronicowe CV · Produkty cyfrowe, AI i innowacje',
     },
   }[currentLang];
 
@@ -232,7 +232,7 @@ export const CvPreviewModal: React.FC<CvPreviewModalProps> = ({
         {/* Footer info strip */}
         <div className="border-t border-[#C7A35A]/20 bg-[#080A09] px-4 sm:px-6 py-2.5 flex items-center justify-between text-[11px] text-[#A9AEA9]">
           <span className="truncate">{t.footerNote}</span>
-          <span className="text-[#C7A35A] shrink-0 ml-2 font-mono">PDF · 3.5 MB</span>
+          <span className="text-[#C7A35A] shrink-0 ml-2 font-mono">PDF · ca. 0,5 MB</span>
         </div>
       </div>
     </div>

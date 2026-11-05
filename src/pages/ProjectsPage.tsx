@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles, Layers, ShieldCheck, Compass, Info, CheckCircle2, Eye, X } from 'lucide-react';
 import { Language, MediaAssets, ProjectData } from '../types';
 import { PROJECTS } from '../data/portfolioData';
@@ -23,7 +23,6 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
   mediaAssets,
   isReadOnly = false,
 }) => {
-  const navigate = useNavigate();
   const [selectedFilter, setSelectedFilter] = useState<ProjectFilter>('all');
   const [resourceLoopExpanded, setResourceLoopExpanded] = useState<boolean>(false);
   const [selectedModalImage, setSelectedModalImage] = useState<{ src: string; title: string } | null>(null);
@@ -124,8 +123,8 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-8 space-y-5">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full border border-[#D6B15E] bg-[#D6B15E]/10 px-3 py-1 text-[10px] font-bold text-[#D6B15E] uppercase tracking-wider">Featured Case Study</span>
-                <span className="rounded-full border border-[#0F5C46] bg-[#080A09] px-3 py-1 text-[10px] font-medium text-[#10B981] uppercase tracking-wider">
+                <span className="rounded-full border border-[#D6B15E] bg-[#D6B15E]/10 px-3 py-1 text-[11px] font-bold text-[#D6B15E] uppercase tracking-wider">Featured Case Study</span>
+                <span className="rounded-full border border-[#0F5C46] bg-[#080A09] px-3 py-1 text-[11px] font-medium text-[#10B981] uppercase tracking-wider">
                   {currentLang === 'de' ? 'IHK-Projekt · Konzept & Demonstrator' : currentLang === 'pl' ? 'Projekt IHK · koncepcja i demonstrator' : 'IHK Project · Concept & Demonstrator'}
                 </span>
               </div>
@@ -144,17 +143,17 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="rounded-xl border border-[#0F5C46]/40 bg-[#080A09]/70 p-4">
-                  <span className="font-mono text-[10px] text-[#10B981] font-bold uppercase">01 · Discovery</span>
+                  <span className="font-mono text-[11px] text-[#10B981] font-bold uppercase">01 · Discovery</span>
                   <h3 className="mt-1 text-sm font-medium text-[#F4F1EA]">{currentLang === 'de' ? 'Problem verstehen' : currentLang === 'pl' ? 'Zrozumieć problem' : 'Understand the problem'}</h3>
                   <p className="mt-1 text-xs text-[#A9AEA9]">{currentLang === 'de' ? 'Stakeholdergespräche, Pain Points und offene Annahmen dokumentieren.' : currentLang === 'pl' ? 'Rozmowy z interesariuszami, problemy i otwarte założenia.' : 'Stakeholder conversations, pain points and explicit open assumptions.'}</p>
                 </div>
                 <div className="rounded-xl border border-[#0F5C46]/40 bg-[#080A09]/70 p-4">
-                  <span className="font-mono text-[10px] text-[#10B981] font-bold uppercase">02 · MVP</span>
+                  <span className="font-mono text-[11px] text-[#10B981] font-bold uppercase">02 · MVP</span>
                   <h3 className="mt-1 text-sm font-medium text-[#F4F1EA]">{currentLang === 'de' ? 'Fassadenelement als Beispiel' : currentLang === 'pl' ? 'Przykład: element elewacji' : 'Façade component use case'}</h3>
                   <p className="mt-1 text-xs text-[#A9AEA9]">{currentLang === 'de' ? 'Aluminium-Bauteil, Evidenzerfassung und transparenter Szenarienvergleich.' : currentLang === 'pl' ? 'Element aluminiowy, zbieranie dowodów i porównanie scenariuszy.' : 'Aluminium component, evidence capture and transparent scenario comparison.'}</p>
                 </div>
                 <div className="rounded-xl border border-[#0F5C46]/40 bg-[#080A09]/70 p-4">
-                  <span className="font-mono text-[10px] text-[#D6B15E] font-bold uppercase">03 · Decision</span>
+                  <span className="font-mono text-[11px] text-[#D6B15E] font-bold uppercase">03 · Decision</span>
                   <h3 className="mt-1 text-sm font-medium text-[#F4F1EA]">{currentLang === 'de' ? 'Entscheidung statt KI-Behauptung' : currentLang === 'pl' ? 'Decyzje oparte na dowodach' : 'Evidence-based decisions'}</h3>
                   <p className="mt-1 text-xs text-[#A9AEA9]">{currentLang === 'de' ? 'Technische, ökologische und wirtschaftliche Kriterien; Datenlücken sichtbar.' : currentLang === 'pl' ? 'Kryteria techniczne, środowiskowe i ekonomiczne oraz luki w danych.' : 'Technical, environmental and economic criteria, with data gaps visible.'}</p>
                 </div>
@@ -191,7 +190,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                 <span className="block px-3 py-2 text-xs text-[#D6B15E]">{currentLang === 'de' ? 'Konzeptgrafik vergrößern' : currentLang === 'pl' ? 'Powiększ grafikę' : 'Enlarge concept image'}</span>
               </button>
               <div className="rounded-xl border border-[#0F5C46]/40 bg-[#080A09]/80 p-4 text-xs leading-relaxed text-[#D1D5DB]">
-                <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-[#D6B15E]">Product scope</span>
+                <span className="block font-mono text-[11px] font-bold uppercase tracking-wider text-[#D6B15E]">Product scope</span>
                 <p className="mt-2">{currentLang === 'de' ? 'Bau & Sanierung · Aluminium-Fassadenelement · KI-gestützte Entscheidungsunterstützung' : currentLang === 'pl' ? 'Budownictwo i renowacja · element aluminiowy · wspomaganie decyzji AI' : 'Building renovation · aluminium façade component · AI-assisted decision support'}</p>
               </div>
             </div>
@@ -253,10 +252,11 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
             const stage = getProjectStage(p.id);
 
             return (
-              <div
+              <Link
                 key={p.id}
-                onClick={() => navigate(getProjectPath(p))}
-                className="group cursor-pointer rounded-2xl border border-[#0F5C46]/30 bg-[#101412] p-4 transition-all duration-300 hover:border-[#C7A35A] hover:bg-[#141A16] flex flex-col justify-between shadow-[0_8px_30px_rgba(0,0,0,0.6)]"
+                to={getProjectPath(p)}
+                aria-label={currentLang === 'de' ? 'Fallstudie ' + p.name : currentLang === 'pl' ? 'Studium ' + p.name : 'Case study ' + p.name}
+                className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C7A35A] rounded-2xl border border-[#0F5C46]/30 bg-[#101412] p-4 transition-all duration-300 hover:border-[#C7A35A] hover:bg-[#141A16] flex flex-col justify-between shadow-[0_8px_30px_rgba(0,0,0,0.6)]"
               >
                 <div>
                   {/* Image with uniform aspect ratio */}
@@ -277,7 +277,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                       {p.number.startsWith('0') ? p.number : `0${p.number}`}
                     </div>
                     {/* Project Maturity Badge */}
-                    <div className={`absolute top-2.5 right-2.5 rounded px-2 py-0.5 text-[9px] font-mono font-semibold backdrop-blur-sm border uppercase tracking-wider ${stage.color}`}>
+                    <div className={`absolute top-2.5 right-2.5 rounded px-2 py-0.5 text-[11px] font-mono font-semibold backdrop-blur-sm border uppercase tracking-wider ${stage.color}`}>
                       {stage.label[currentLang]}
                     </div>
                   </div>
@@ -285,7 +285,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                   {/* Title & Subtitle */}
                   <div className="mt-4">
                     {p.category && (
-                      <span className="font-sans text-[9px] font-bold tracking-widest text-[#C7A35A] uppercase block mb-1 truncate">
+                      <span className="font-sans text-[11px] font-bold tracking-widest text-[#C7A35A] uppercase block mb-1 truncate">
                         {p.category}
                       </span>
                     )}
@@ -308,7 +308,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                   </p>
 
                   {/* 2-4 Small Tags */}
-                  <div className="mt-3.5 flex flex-wrap gap-1.5 text-[10px]">
+                  <div className="mt-3.5 flex flex-wrap gap-1.5 text-[11px]">
                     {p.tags.slice(0, 4).map((tag, idx) => (
                       <span
                         key={idx}
@@ -327,7 +327,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                   </span>
                   <ArrowRight className="h-4 w-4 text-[#C7A35A] transition-transform duration-200 group-hover:translate-x-1" />
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

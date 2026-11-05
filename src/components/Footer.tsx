@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Language } from '../types';
 import { CV_FILE } from '../data/assetRegistry';
 import { downloadCvDocument } from '../utils/cvHelper';
@@ -21,7 +22,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang }) => {
           <span className="hidden md:inline text-[10px] text-[#A9AEA9]">Turning problems into products</span>
         </div>
 
-        <div className="flex items-center gap-4 text-[10px] text-[#A9AEA9]">
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] text-[#A9AEA9]">
           <span className="hidden sm:inline">
             {currentLang === 'de' ? 'Product Discovery · AI · Innovation' : currentLang === 'pl' ? 'Product Discovery · AI · Innowacje' : 'Product Discovery · AI · Innovation'}
           </span>
@@ -44,6 +45,8 @@ export const Footer: React.FC<FooterProps> = ({ currentLang }) => {
           >
             CV HERUNTERLADEN ↓
           </a>
+          <Link to="/privacy" className="hover:text-[#C7A35A]">{currentLang === 'de' ? 'Datenschutz' : currentLang === 'pl' ? 'Prywatność' : 'Privacy'}</Link>
+          <Link to="/contact" className="hover:text-[#C7A35A]">{currentLang === 'de' ? 'Kontakt' : currentLang === 'pl' ? 'Kontakt' : 'Contact'}</Link>
           <span>© {new Date().getFullYear()} {currentLang === 'de' ? 'Alle Rechte vorbehalten.' : currentLang === 'pl' ? 'Wszelkie prawa zastrzeżone.' : 'All rights reserved.'}</span>
         </div>
       </div>

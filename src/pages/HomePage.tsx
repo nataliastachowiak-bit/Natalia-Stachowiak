@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Upload, Download } from 'lucide-react';
 import { Language, MediaAssets, ProjectData } from '../types';
 import { LOCKED_ASSETS, HOME_MAIN_IMAGE, NATALIA_BUSINESS_PORTRAIT, getLockedAsset } from '../data/assetRegistry';
@@ -22,7 +22,6 @@ export const HomePage: React.FC<HomePageProps> = ({
   onUploadMedia,
   isReadOnly = false,
 }) => {
-  const navigate = useNavigate();
 
   // Authentic original business portrait (black hair, black blazer, white top, green background) across desktop & mobile
   const portraitSrc = (mediaAssets.heroPortrait && !mediaAssets.heroPortrait.includes('hero_portrait.jpg'))
@@ -194,6 +193,27 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
         </section>
 
+
+        <section aria-label={currentLang === 'de' ? 'Mein Kompetenzprofil' : currentLang === 'pl' ? 'Moje kompetencje' : 'My strengths'} className="relative z-10">
+          <h2 className="font-serif text-2xl sm:text-3xl text-[#F4F1EA] mb-5">
+            {currentLang === 'de' ? 'Drei Perspektiven. Ein Produktfokus.' : currentLang === 'pl' ? 'Trzy perspektywy. Jeden kierunek.' : 'Three perspectives. One product focus.'}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {[
+              { n: '01', title: ['Wissenschaftliche Analyse', 'Scientific analysis', 'Analiza naukowa'], body: ['Hypothesen prüfen, Datenlücken erkennen und Entscheidungen nachvollziehbar machen.', 'Test hypotheses, identify evidence gaps and make decisions traceable.', 'Weryfikowanie hipotez, identyfikacja brakujących danych i uzasadnianie decyzji.'] },
+              { n: '02', title: ['Unternehmerische Praxis', 'Entrepreneurial experience', 'Doświadczenie biznesowe'], body: ['Prioritäten, Qualität und Stakeholder aus der Führung eines eigenen Unternehmens verstehen.', 'Bring hands-on experience with priorities, quality and stakeholder responsibility.', 'Zrozumienie priorytetów, jakości i interesariuszy z perspektywy prowadzenia firmy.'] },
+              { n: '03', title: ['Digitales Produktdenken', 'Digital product thinking', 'Myślenie produktowe'], body: ['Nutzerbedürfnisse in MVPs, KI-Prototypen und messbare Validierungsfragen übersetzen.', 'Turn user needs into MVPs, AI prototypes and measurable validation criteria.', 'Przekładanie potrzeb użytkowników na MVP, prototypy AI i mierzalne kryteria walidacji.'] }
+            ].map(s => {
+              const i = currentLang === 'de' ? 0 : currentLang === 'en' ? 1 : 2;
+              return <div key={s.n} className="rounded-2xl border border-[#C7A35A]/20 bg-[#101412] p-5">
+                <span className="text-xs font-semibold tracking-wider text-[#C7A35A]">{s.n}</span>
+                <h3 className="font-serif text-xl text-[#F4F1EA] mt-2 mb-2">{s.title[i]}</h3>
+                <p className="text-sm leading-relaxed text-[#B9C4BD]">{s.body[i]}</p>
+              </div>;
+            })}
+          </div>
+        </section>
+
         {/* Featured current product case study */}
         <section className="relative z-10 rounded-2xl border border-[#C7A35A]/45 bg-gradient-to-r from-[#0F5C46]/25 to-[#101412] p-6 sm:p-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
@@ -242,10 +262,11 @@ export const HomePage: React.FC<HomePageProps> = ({
               const imgSrc = mediaAssets[p.mediaKey as keyof MediaAssets] || fallbackImg;
 
               return (
-                <div
+                <Link
                   key={p.id}
-                  onClick={() => navigate(getProjectPath(p))}
-                  className="group cursor-pointer rounded-2xl border border-[#0F5C46]/30 bg-[#101412] p-4 transition-all duration-300 hover:border-[#C7A35A] hover:bg-[#141A16] flex flex-col justify-between shadow-[0_6px_25px_rgba(0,0,0,0.5)]"
+                  to={getProjectPath(p)}
+                  aria-label={currentLang === 'de' ? 'Fallstudie ' + p.name : currentLang === 'pl' ? 'Studium ' + p.name : 'Case study ' + p.name}
+                  className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C7A35A] rounded-2xl border border-[#0F5C46]/30 bg-[#101412] p-4 transition-all duration-300 hover:border-[#C7A35A] hover:bg-[#141A16] flex flex-col justify-between shadow-[0_6px_25px_rgba(0,0,0,0.5)]"
                 >
                   <div>
                     <div
@@ -279,14 +300,14 @@ export const HomePage: React.FC<HomePageProps> = ({
                         {p.tags.slice(0, 4).map((tag, idx) => (
                           <span
                             key={idx}
-                            className="rounded border border-[#0F5C46]/50 bg-[#063F35]/30 px-1.5 py-0.5 text-[9px] font-mono font-medium text-[#B9C4BD]"
+                            className="rounded border border-[#0F5C46]/50 bg-[#063F35]/30 px-1.5 py-0.5 text-[11px] font-mono font-medium text-[#B9C4BD]"
                           >
                             {tag}
                           </span>
                         ))}
                       </div>
 
-                      <p className="mt-2 text-xs text-[#A9AEA9] line-clamp-2 leading-relaxed">
+                      <p className="mt-2 text-sm text-[#A9AEA9] line-clamp-2 leading-relaxed">
                         {p.description[currentLang] || p.description.de}
                       </p>
                     </div>
@@ -296,7 +317,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     <span>{t.viewCaseStudy}</span>
                     <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>

@@ -25,6 +25,7 @@ const JourneyPage = React.lazy(() => import('./pages/JourneyPage').then(m => ({ 
 const CertificatesPage = React.lazy(() => import('./pages/CertificatesPage').then(m => ({ default: m.CertificatesPage })));
 const BookPage = React.lazy(() => import('./pages/BookPage').then(m => ({ default: m.BookPage })));
 const ContactPage = React.lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
+const PrivacyPage = React.lazy(() => import('./pages/PrivacyPage').then(m => ({ default: m.PrivacyPage })));
 
 // Modals
 import { VideoPlayerModal } from './components/VideoPlayerModal';
@@ -328,6 +329,7 @@ export default function App() {
               }
             />
 
+            <Route path="/privacy" element={<PrivacyPage currentLang={currentLang} />} />
             {/* Fallback to Home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
