@@ -45,11 +45,11 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
     switch (id) {
       case 'environix':
         return {
-          type: 'implemented',
+          type: 'prototype',
           label: {
-            de: 'Implementierte Lösung · Live-App',
-            en: 'Implemented Solution · Live App',
-            pl: 'Wdrożone rozwiązanie · Aplikacja live',
+            de: 'Interaktive Demo · Konzept',
+            en: 'Interactive Demo · Concept',
+            pl: 'Interaktywne demo · Koncepcja',
           },
           color: 'text-[#10B981] border-[#10B981]/40 bg-[#063F35]/30',
         };
@@ -111,10 +111,10 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
 
             <p className="font-sans text-xs sm:text-sm text-[#A9AEA9] max-w-md md:text-right leading-relaxed">
               {currentLang === 'de'
-                ? 'Ausgewählte Fallstudien von der Problem-Discovery bis zum validierten Prototyp. Jedes Projekt demonstriert nutzerzentrierte Methoden und datengestützte Entscheidungen.'
+                ? 'Branchenübergreifende Fallstudien aus Product Discovery, UX und KI. Konzept, Demonstrator und validierte Erkenntnisse werden ausdrücklich unterschieden.'
                 : currentLang === 'pl'
-                ? 'Wybrane studia przypadków od odkrycia problemu po zwalidowany prototyp. Każdy projekt prezentuje metodykę zorientowaną na użytkownika i decyzje oparte na danych.'
-                : 'Selected case studies from problem discovery to validated prototype, showcasing user-centered methodologies and data-driven decisions.'}
+                ? 'Studia przypadków z różnych branż: Product Discovery, UX i AI. Koncepcje, demonstratory i potwierdzone wyniki są wyraźnie rozróżnione.'
+                : 'Cross-industry case studies spanning product discovery, UX and AI. Concepts, demonstrators and validated findings are clearly distinguished.'}
             </p>
           </div>
         </div>
