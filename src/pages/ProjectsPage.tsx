@@ -16,7 +16,7 @@ interface ProjectsPageProps {
   isReadOnly?: boolean;
 }
 
-type ProjectFilter = 'all' | 'implemented' | 'prototype' | 'concept';
+type ProjectFilter = 'all' | 'prototype' | 'concept';
 
 export const ProjectsPage: React.FC<ProjectsPageProps> = ({
   currentLang,
@@ -41,7 +41,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
   const caseStudies = PROJECTS.filter((p) => p.id !== 'du-bist-nicht-zu-viel');
 
   // Classification helper to clearly distinguish concept work, prototypes, and implemented solutions
-  const getProjectStage = (id: string): { type: 'implemented' | 'prototype' | 'concept'; label: { de: string; en: string; pl: string }; color: string } => {
+  const getProjectStage = (id: string): { type: 'prototype' | 'concept'; label: { de: string; en: string; pl: string }; color: string } => {
     switch (id) {
       case 'environix':
         return {
@@ -199,7 +199,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
         </section>
 
         {/* ============================================================ */}
-        {/* FILTER BAR: Clearly distinguish Implemented / Prototypes / Concepts */}
+        {/* FILTER BAR: Distinguish demonstrated prototypes from concepts; no production deployments claimed */}
         {/* ============================================================ */}
         <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-[#C7A35A]/15">
           <div className="flex items-center gap-2">
@@ -219,17 +219,6 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
               }`}
             >
               {currentLang === 'de' ? 'Alle Projekte' : currentLang === 'pl' ? 'Wszystkie projekty' : 'All Projects'} ({caseStudies.length})
-            </button>
-            <button
-              type="button"
-              onClick={() => setSelectedFilter('implemented')}
-              className={`rounded-full px-3.5 py-1.5 font-sans text-xs font-medium transition-all ${
-                selectedFilter === 'implemented'
-                  ? 'bg-[#0F5C46] text-[#F4F1EA] border border-[#10B981] shadow-sm'
-                  : 'bg-[#101412] text-[#A9AEA9] border border-[#0F5C46]/30 hover:text-[#10B981]'
-              }`}
-            >
-              ● {currentLang === 'de' ? 'Implementierte Lösungen' : currentLang === 'pl' ? 'Wdrożone rozwiązania' : 'Implemented Solutions'}
             </button>
             <button
               type="button"
