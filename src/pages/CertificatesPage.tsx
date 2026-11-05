@@ -4,6 +4,7 @@ import {
   Compass,
   Workflow,
   Cpu,
+  Languages,
   FileText,
   Eye,
   ShieldCheck,
@@ -16,7 +17,7 @@ import {
   SearchX,
 } from 'lucide-react';
 import { CertificateItem, Language } from '../types';
-import { CERTIFICATES, ACADEMIC_CERTIFICATES } from '../data/portfolioData';
+import { CERTIFICATES, ACADEMIC_CERTIFICATES, LANGUAGE_CERTIFICATES } from '../data/portfolioData';
 import { CertificateViewModal } from '../components/CertificateViewModal';
 import { PageTransition } from '../components/PageTransition';
 import { BackToPortfolio } from '../components/BackToPortfolio';
@@ -25,7 +26,7 @@ interface CertificatesPageProps {
   currentLang: Language;
 }
 
-type CategoryId = 'academic' | 'product' | 'agile' | 'ai';
+type CategoryId = 'academic' | 'product' | 'agile' | 'ai' | 'language';
 
 interface CategoryDefinition {
   id: CategoryId;
@@ -45,6 +46,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
     product: false,
     agile: false,
     ai: false,
+    language: false,
   });
 
   const [activeCert, setActiveCert] = useState<CertificateItem | null>(null);
@@ -54,9 +56,9 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
       eyebrow: 'OFFIZIELLE NACHWEISE & QUALIFIKATIONEN',
       title: 'Zertifikate & Qualifikationen',
       subtitle:
-        'Vier gleichwertige Kompetenzbereiche: Akademische Abschlüsse, digitales Produktmanagement, agile Methoden und moderne KI-Technologien.',
+        'Fünf Bereiche: Akademische Abschlüsse, Produktmanagement, Agile & Scrum, KI-Technologien sowie Sprachkenntnisse.',
       searchPlaceholder:
-        'Zertifikate durchsuchen (z. B. Scrum, AI Act, ISO, Chemie, edX, Product)...',
+        'Zertifikate durchsuchen (z. B. Scrum, KI, ISO, telc, Deutsch B2)...',
       credentialsLabel: 'Nachweise',
       viewCert: 'Zertifikat ansehen',
       verifyOnline: 'Verify Credential',
@@ -79,9 +81,9 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
       eyebrow: 'OFFICIAL CREDENTIALS & QUALIFICATIONS',
       title: 'Certificates & Qualifications',
       subtitle:
-        'Four core pillars: Academic university degrees, digital product leadership, agile frameworks, and artificial intelligence.',
+        'Five areas: Academic qualifications, product management, agile and Scrum, AI technologies, and language certificates.',
       searchPlaceholder:
-        'Search certificates (e.g. Scrum, AI Act, ISO, Chemistry, edX, Product)...',
+        'Search certificates (e.g. Scrum, AI, ISO, telc, German B2)...',
       credentialsLabel: 'Credentials',
       viewCert: 'View Certificate',
       verifyOnline: 'Verify Credential',
@@ -104,9 +106,9 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
       eyebrow: 'OFICJALNE DOKUMENTY I KWALIFIKACJE',
       title: 'Certyfikaty i kwalifikacje',
       subtitle:
-        'Cztery filary kompetencji: Dyplomy akademickie, zarządzanie produktami cyfrowymi, metody zwinne oraz technologie AI.',
+        'Pięć obszarów: wykształcenie akademickie, zarządzanie produktem, metody zwinne, technologie AI i certyfikaty językowe.',
       searchPlaceholder:
-        'Szukaj certyfikatów (np. Scrum, AI Act, ISO, Chemia, edX, Product)...',
+        'Szukaj certyfikatów (np. Scrum, AI, ISO, telc, niemiecki B2)...',
       credentialsLabel: 'Certyfikaty',
       viewCert: 'Zobacz certyfikat',
       verifyOnline: 'Verify Credential',
@@ -150,7 +152,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
     return parseInt(cert.year) ? new Date(parseInt(cert.year), 0, 1).getTime() : 0;
   };
 
-  // 4 Gleichwertige Kategorien
+  // Five distinct qualification categories, including formal language credentials.
   const rawCategories: CategoryDefinition[] = useMemo(
     () => [
       {
@@ -227,6 +229,21 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
         items: CERTIFICATES.filter((c) =>
           ['cert-ai-for-leaders', 'cert-sustainable-ai', 'cert-eu-ai-act-2026', 'cert-ki-kompetenz', 'cert-ai-grundlagen', 'cert-ai-kompakt'].includes(c.id)
         ).sort((a, b) => parseDateForSorting(b) - parseDateForSorting(a)),
+      },
+      {
+        id: 'language',
+        icon: Languages,
+        title: {
+          de: '5. Sprachkenntnisse & Sprachzertifikate',
+          en: '5. Language Skills & Certificates',
+          pl: '5. Języki i certyfikaty językowe',
+        },
+        subtitle: {
+          de: 'Deutsch B2 (telc) – formaler Nachweis; darüber hinausgehende Kenntnisse ohne gesondertes C1-Zertifikat',
+          en: 'German B2 (telc) – formal proof; higher proficiency is not presented as C1-certified',
+          pl: 'Niemiecki B2 (telc) – oficjalne potwierdzenie; wyższy poziom nie jest przedstawiany jako certyfikowany C1',
+        },
+        items: [...LANGUAGE_CERTIFICATES],
       },
     ],
     []
@@ -316,6 +333,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
       product: nextState,
       agile: nextState,
       ai: nextState,
+      language: nextState,
     });
   };
 
