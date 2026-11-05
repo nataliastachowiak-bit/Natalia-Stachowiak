@@ -65,7 +65,7 @@ export interface SkillCategory {
   skills: string[];
 }
 
-export type CertificateCategory = 'PRODUCT_MANAGEMENT' | 'AGILE_SCRUM' | 'DESIGN_THINKING' | 'AI' | 'ACADEMIC_ENVIRONMENT';
+export type CertificateCategory = 'PRODUCT_MANAGEMENT' | 'AGILE_SCRUM' | 'DESIGN_THINKING' | 'AI' | 'ACADEMIC_ENVIRONMENT' | 'LANGUAGE';
 
 export interface CertificateItem {
   id: string;
