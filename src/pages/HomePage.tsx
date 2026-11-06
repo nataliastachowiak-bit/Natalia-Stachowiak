@@ -7,6 +7,7 @@ import { PROJECTS } from '../data/portfolioData';
 import { getProjectPath } from '../utils/projectRoutes';
 import { PageTransition } from '../components/PageTransition';
 import { downloadCvDocument } from '../utils/cvHelper';
+import { resolveAssetUrl } from '../utils/assetPath';
 
 interface HomePageProps {
   currentLang: Language;
@@ -29,6 +30,9 @@ export const HomePage: React.FC<HomePageProps> = ({
     : NATALIA_BUSINESS_PORTRAIT;
   const desktopPortraitSrc = portraitSrc;
   const mobilePortraitSrc = portraitSrc;
+  const optimizedMobilePortrait480 = resolveAssetUrl('/images/natalia-business-portrait-480.webp');
+  const optimizedMobilePortrait960 = resolveAssetUrl('/images/natalia-business-portrait-960.webp');
+  const useOptimizedPortrait = portraitSrc === NATALIA_BUSINESS_PORTRAIT;
   // Curate cross-industry examples: industrial B2B, consumer UX / experimentation and digital service design.
   // ResourceLoop AI is featured separately above this list.
   const previewProjects = ['environix', 'gain', 'ai-building-concept']
@@ -109,11 +113,16 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <picture>
                   {/* Desktop viewports (min-width: 1024px): retain existing desktop portrait assignment */}
                   <source media="(min-width: 1024px)" srcSet={desktopPortraitSrc} />
+                  {/* Smaller compressed photos for mobile Safari; retain full original on desktop. */}
+                  {useOptimizedPortrait && (
+                    <source media="(max-width: 1023px)" type="image/webp" srcSet={`${optimizedMobilePortrait480} 480w, ${optimizedMobilePortrait960} 960w`} sizes="(max-width: 640px) 280px, 320px" />
+                  )}
                   {/* Mobile & tablet viewports: authentic business portrait */}
                   <img
                     src={mobilePortraitSrc}
                     alt="Natalia Stachowiak"
                     loading="eager"
+                    fetchPriority="high"
                     decoding="async"
                     onError={(e) => {
                       // Avoid an endless reload loop if the portrait is unavailable.
