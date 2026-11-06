@@ -122,6 +122,9 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
                     ? 'Wierzę, że spełnione życie tworzą odwaga, ciekawość, autentyczne spotkania i chwile, które pozostają w pamięci.'
                     : 'I believe a fulfilling life is made of courage, curiosity, genuine connections and moments worth remembering.'}
               </p>
+              {/* Small souvenir accents occupy the natural space below the story,
+                  without floating over its paragraphs. */}
+              <TravelMagnets placement="textEnd" />
             </div>
             {/* An editorial travel scrapbook with authentic photographs and no cropped camel. */}
             <div className="lg:col-span-5 relative px-1 pt-5 pb-4 sm:px-3 lg:pt-8">
