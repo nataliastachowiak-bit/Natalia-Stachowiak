@@ -30,7 +30,7 @@ export const PROJECT_GAIN_IMAGE = resolveAssetUrl('/assets/gain_mockup.jpg');
 export const PROJECT_VINYL_IMAGE = resolveAssetUrl('/assets/vinyl_mockup.jpg');
 export const PROJECT_DINEEASE_IMAGE = resolveAssetUrl('/assets/dineease_mockup.jpg');
 export const PROJECT_BOOK_COVER = resolveAssetUrl('/assets/book_cover.png');
-export const PROJECT_BOOK_INSTAGRAM_QR = resolveAssetUrl('/assets/instagram_qr.jpg');
+export const PROJECT_BOOK_INSTAGRAM_QR = resolveAssetUrl('/assets/instagram_qr_scannable.svg');
 export const JOURNEY_LANDSCAPE_IMAGE = resolveAssetUrl('/assets/my_journey_landscape.jpg');
 
 // ResourceLoop AI (Industrial Material & Circular Intelligence)
