@@ -110,7 +110,7 @@ check('Kanonen-Code für QR ist scanbar als SVG', fs.existsSync(path.join(root, 
 // synchronous media localStorage reads on a public read-only page.
 const pageHtml = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const mediaConfig = fs.readFileSync(path.join(root, 'src/data/mediaConfig.ts'), 'utf8');
-check('Safari: Google Fonts do not block initial stylesheet rendering', !/<link[^>]+fonts\\.googleapis\\.com[^>]+rel="stylesheet"/.test(pageHtml) && pageHtml.includes('as="style"') && pageHtml.includes("this.rel='stylesheet'"));
+check('Safari: Google Fonts do not block initial stylesheet rendering', !/<link[^>]+href="https:\/\/fonts\.googleapis\.com[^>]*rel="stylesheet"/.test(pageHtml.replace(/<noscript>[\s\S]*?<\/noscript>/g, '')) && pageHtml.includes('as="style"') && pageHtml.includes("this.rel='stylesheet'"));
 check('Safari: Public homepage skips synchronous media localStorage reads', mediaConfig.includes("!isEditModeActive()") && mediaConfig.includes("return { ...DEFAULT_MEDIA, ...LOCKED_ASSETS }"));
 fs.mkdirSync('qa-artifacts', {recursive:true});
 fs.writeFileSync('qa-artifacts/static-audit.json', JSON.stringify({results,failures}, null, 2));
