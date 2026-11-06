@@ -91,6 +91,21 @@ for (const route of directRoutes) {
     html.includes('rel="canonical" href="' + canonical + '"');
   check('Echte Direktlink-Seite /' + route, routeIsPresent, isFile ? 'HTML mit Route-Canonical' : 'Fehlt');
 }
+// Editorial credibility check: the book is still a project, not a
+// published commercial product. Avoid asserting unverified sales or followers.
+const projectData = fs.readFileSync(path.join(root, 'src/data/portfolioData.ts'), 'utf8');
+const translations = fs.readFileSync(path.join(root, 'src/data/translations.ts'), 'utf8');
+const bookPage = fs.readFileSync(path.join(root, 'src/pages/BookPage.tsx'), 'utf8');
+const bookStart = projectData.indexOf("id: 'du-bist-nicht-zu-viel'");
+const bookEnd = projectData.indexOf("id: 'ecomargin-ai'", bookStart);
+const bookProject = projectData.slice(bookStart, bookEnd);
+const forbiddenClaims = /1[., ]?000\s*\+?\s*(?:followers|follower|obserwuj\w*)|über 1[., ]?000|kommerziell publiziert|realen Verkäufen|Real Market Results|Successfully published book|final market publication|Wydana książka/i;
+check('Buchfallstudie ohne unbelegte Veröffentlichung oder Verkaufszahlen', bookStart > 0 && bookEnd > bookStart && !forbiddenClaims.test(bookProject));
+check('Buchseite und Fallstudie verwenden unveröffentlichten Status', bookPage.includes('noch nicht veröffentlicht') && bookProject.includes('Veröffentlichung, Verkaufszahlen') && !/From idea to published product/.test(bookProject));
+check('Buch-Autorenprofil DE/EN/PL ohne behauptete Veröffentlichung', !/Publiziertes Buchwerk|Published non-fiction book|Wydana publikacja książkowa|Published & Community/.test(translations));
+check('Instagram-QR auf Buchseite verlinkt korrekt', bookPage.includes('PROJECT_BOOK_INSTAGRAM_QR') && bookPage.includes('https://www.instagram.com/frau_en_power2026/'));
+check('Kanonen-Code für QR ist scanbar als SVG', fs.existsSync(path.join(root, 'public/assets/instagram_qr_scannable.svg')));
+
 fs.mkdirSync('qa-artifacts', {recursive:true});
 fs.writeFileSync('qa-artifacts/static-audit.json', JSON.stringify({results,failures}, null, 2));
 console.log('\nRESULT: ' + (results.length - failures.length) + '/' + results.length + ' checks passed');
