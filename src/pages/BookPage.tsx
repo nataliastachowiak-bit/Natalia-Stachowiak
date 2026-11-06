@@ -4,10 +4,10 @@ import { Language, MediaAssets } from '../types';
 import {
   LOCKED_ASSETS,
   PROJECT_BOOK_COVER,
+  PROJECT_BOOK_INSTAGRAM_QR,
 } from '../data/assetRegistry';
 import { PageTransition } from '../components/PageTransition';
 import { BackToPortfolio } from '../components/BackToPortfolio';
-import { resolveAssetUrl } from '../utils/assetPath';
 
 interface BookPageProps {
   currentLang: Language;
@@ -16,7 +16,7 @@ interface BookPageProps {
 
 export const BookPage: React.FC<BookPageProps> = ({ currentLang, mediaAssets }) => {
   const bookCoverSrc = mediaAssets.bookCover || PROJECT_BOOK_COVER;
-  const qrSrc = resolveAssetUrl('/assets/instagram_qr_scannable.svg');
+  const qrSrc = PROJECT_BOOK_INSTAGRAM_QR;
   const instagramUrl = 'https://www.instagram.com/frau_en_power2026/';
 
   return (
