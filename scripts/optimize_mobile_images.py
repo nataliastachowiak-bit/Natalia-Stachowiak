@@ -9,8 +9,8 @@ from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = [
-    ("public/images/natalia-business-portrait.png", "public/images/natalia-business-portrait", (480, 960)),
-    ("public/images/natalia-about-portrait.png", "public/images/natalia-about-portrait", (480, 960)),
+    ("public/images/natalia-business-portrait.png", "public/images/natalia-business-portrait"),
+    ("public/images/natalia-about-portrait.png", "public/images/natalia-about-portrait"),
 ]
 for source_name, prefix in SOURCES:
     source = ROOT / source_name
