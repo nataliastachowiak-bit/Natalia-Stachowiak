@@ -154,6 +154,10 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
                   <div className="col-span-2 relative z-0 mx-auto -my-1 flex w-[90%] items-center justify-center py-1 sm:w-[86%]" aria-hidden="true">
                     <img src={worldMapGoldImage} alt="" loading="lazy" decoding="async" className="block w-full h-auto opacity-80 drop-shadow-[0_0_9px_rgba(199,163,90,0.18)]" />
                   </div>
+                  {/* A handful of small magnets between the map and the lower pictures. */}
+                  <div className="col-span-2 relative z-10">
+                    <TravelMagnets placement="between" />
+                  </div>
                   <figure className="relative z-20 -mt-10 rotate-[4deg] sm:-mt-14 overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
                     <img src={beachDogImage} alt={currentLang === 'de' ? 'Strandmoment am Meer mit meiner französischen Bulldogge' : currentLang === 'pl' ? 'Chwila na plaży z buldogiem francuskim' : 'A beach moment with my French bulldog'} loading="lazy" decoding="async" className="block h-auto w-full" />
                   </figure>
@@ -167,7 +171,7 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
               </div>
             </div>
           </div>
-          {/* Additional individually cut-out magnets scattered below the story and photo collage. */}
+          {/* Remaining individual travel magnets, not two uniform rows. */}
           <TravelMagnets placement="bottom" />
         </section>
     </dialog>
