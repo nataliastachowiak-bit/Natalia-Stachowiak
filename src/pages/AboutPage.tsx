@@ -25,6 +25,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   const [showMore, setShowMore] = useState(false);
   const [personalStoryOpen, setPersonalStoryOpen] = useState(false);
   const aboutImageSrc = mediaAssets.aboutPortrait || mediaAssets.aboutPhoto || mediaAssets.aboutImage || ABOUT_IMAGE;
+  const useOptimizedPortrait = aboutImageSrc === ABOUT_IMAGE;
+  const mobileAbout480 = resolveAssetUrl('/images/natalia-about-portrait-480.webp');
+  const mobileAbout960 = resolveAssetUrl('/images/natalia-about-portrait-960.webp');
 
   return (
     <PageTransition>
@@ -47,7 +50,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 className="relative aspect-[1008/947] w-full overflow-hidden rounded-2xl border border-[#C7A35A]/30 bg-[#101412] shadow-[0_20px_45px_rgba(0,0,0,0.85)]"
                 style={{ aspectRatio: '1008 / 947' }}
               >
-                <img
+                <picture>
+                  <source media="(min-width: 1024px)" srcSet={aboutImageSrc} />
+                  {useOptimizedPortrait && (
+                    <source media="(max-width: 1023px)" type="image/webp" srcSet={`${mobileAbout480} 480w, ${mobileAbout960} 960w`} sizes="(max-width: 640px) 320px, 360px" />
+                  )}
+                  <img
                   src={aboutImageSrc}
                   alt="Natalia Stachowiak"
                   loading="eager"
@@ -56,7 +64,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                     (e.currentTarget as HTMLImageElement).src = ABOUT_IMAGE;
                   }}
                   className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+                  fetchPriority="high"
                 />
+                </picture>
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080A09]/70 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-4 right-4 text-center">
                   <p className="font-['Caveat',cursive] text-lg sm:text-xl text-[#C7A35A]">

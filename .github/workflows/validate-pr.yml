@@ -21,6 +21,11 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
+      - name: Optimize mobile photos for Safari
+        run: |
+          python3 -m pip install --quiet Pillow
+          python3 scripts/optimize_mobile_images.py
+
       - name: Prepare certificate availability
         run: python3 scripts/prepare_certificates.py
       - name: Validate types

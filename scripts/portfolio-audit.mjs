@@ -46,6 +46,20 @@ for (const file of pdfs) {
   }
   check('Echtes PDF ' + file, valid, size + ' bytes');
 }
+// Keep mobile Safari images small, valid and available in the production dist.
+for (const portrait of ['natalia-business-portrait', 'natalia-about-portrait']) {
+  const originalPath = path.join(root, 'public', 'images', portrait + '.png');
+  const originalSize = fs.statSync(originalPath).size;
+  for (const width of [480, 960]) {
+    const asset = 'images/' + portrait + '-' + width + '.webp';
+    const target = path.join(root, 'public', asset);
+    const built = path.join(root, 'dist', asset);
+    const exists = fs.existsSync(target) && fs.existsSync(built);
+    const imageSize = exists ? fs.statSync(target).size : 0;
+    const header = exists ? fs.readFileSync(target).subarray(0, 4).toString() : '';
+    check('Mobile Safari Foto ' + asset, exists && header === 'RIFF' && imageSize < originalSize && imageSize < 300000, imageSize + ' bytes; original ' + originalSize);
+  }
+}
 const dialog = fs.readFileSync(path.join(root, 'src/components/PersonalStoryDialog.tsx'), 'utf8');
 const magnets = fs.readFileSync(path.join(root, 'src/components/TravelMagnets.tsx'), 'utf8');
 check('Persönliche Karte ist modaler Dialog', dialog.includes('<dialog') && dialog.includes('</dialog>'));
