@@ -99,7 +99,7 @@ const bookPage = fs.readFileSync(path.join(root, 'src/pages/BookPage.tsx'), 'utf
 const bookStart = projectData.indexOf("id: 'du-bist-nicht-zu-viel'");
 const bookEnd = projectData.indexOf("id: 'ecomargin-ai'", bookStart);
 const bookProject = projectData.slice(bookStart, bookEnd);
-const forbiddenClaims = /1[., ]?000\\s*\\+?\\s*(?:followers|follower|obserwuj\\w*)|über 1[., ]?000|kommerziell publiziert|realen Verkäufen|Real Market Results|Successfully published book|final market publication|Wydana książka/i;
+const forbiddenClaims = /1[., ]?000\s*\+?\s*(?:followers|follower|obserwuj\w*)|über 1[., ]?000|kommerziell publiziert|realen Verkäufen|Real Market Results|Successfully published book|final market publication|Wydana książka/i;
 check('Buchfallstudie ohne unbelegte Veröffentlichung oder Verkaufszahlen', bookStart > 0 && bookEnd > bookStart && !forbiddenClaims.test(bookProject));
 check('Buchseite und Fallstudie verwenden unveröffentlichten Status', bookPage.includes('noch nicht veröffentlicht') && bookProject.includes('Veröffentlichung, Verkaufszahlen') && !/From idea to published product/.test(bookProject));
 check('Buch-Autorenprofil DE/EN/PL ohne behauptete Veröffentlichung', !/Publiziertes Buchwerk|Published non-fiction book|Wydana publikacja książkowa|Published & Community/.test(translations));
