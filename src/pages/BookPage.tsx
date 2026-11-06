@@ -7,6 +7,7 @@ import {
 } from '../data/assetRegistry';
 import { PageTransition } from '../components/PageTransition';
 import { BackToPortfolio } from '../components/BackToPortfolio';
+import { resolveAssetUrl } from '../utils/assetPath';
 
 interface BookPageProps {
   currentLang: Language;
@@ -15,7 +16,7 @@ interface BookPageProps {
 
 export const BookPage: React.FC<BookPageProps> = ({ currentLang, mediaAssets }) => {
   const bookCoverSrc = mediaAssets.bookCover || PROJECT_BOOK_COVER;
-  const qrSrc = '/Natalia-Stachowiak/assets/instagram_qr_scannable.svg';
+  const qrSrc = resolveAssetUrl('/assets/instagram_qr_scannable.svg');
   const instagramUrl = 'https://www.instagram.com/frau_en_power2026/';
 
   return (
