@@ -249,16 +249,20 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
     []
   );
 
-  // Key credentials highlighted for digital product management & innovation
+  // Six role-relevant credentials, ordered deliberately for Digital Product & AI.
+  // Google Cloud remains visible in its specialist category, not as a key credential.
   const featuredCredentials = useMemo(() => {
     const targetIds = [
       'cert-pspo-1',
       'cert-psm-1',
-      'cert-google-cloud-sap',
       'cert-hp-ai-strategy',
       'cert-microsoft-ai-foundations',
+      'cert-product-design',
+      'cert-agile-inn',
     ];
-    return CERTIFICATES.filter((c) => targetIds.includes(c.id));
+    return targetIds
+      .map((id) => CERTIFICATES.find((cert) => cert.id === id))
+      .filter((cert): cert is CertificateItem => Boolean(cert));
   }, []);
 
   const totalCertificatesCount = useMemo(
@@ -458,11 +462,11 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
                 </span>
               </div>
               <span className="font-mono text-[10px] text-[#A9AEA9] uppercase tracking-wider">
-                {currentLang === 'de' ? 'Hinterlegte PDF-Nachweise · Verifizierung beim Aussteller' : currentLang === 'pl' ? 'Dokumenty PDF · weryfikacja u wystawcy' : 'PDF documents · issuer verification where available'}
+                {currentLang === 'de' ? 'Original-PDF oder Online-Verifizierung beim Aussteller' : currentLang === 'pl' ? 'Oryginalny PDF lub weryfikacja u wystawcy' : 'Original PDF or issuer verification'}
               </span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {featuredCredentials.map((cert) => (
                 <div
                   key={cert.id}
@@ -471,7 +475,11 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-[10px] font-mono text-[#C7A35A]">
                       <span className="rounded bg-[#0F5C46]/30 border border-[#0F5C46]/60 px-1.5 py-0.5 font-bold">
-                        PDF AVAILABLE
+                        {cert.pdfUrl && cert.isAuthentic !== false
+                          ? (currentLang === 'de' ? 'PDF HINTERLEGT' : currentLang === 'pl' ? 'PDF DOSTĘPNY' : 'PDF AVAILABLE')
+                          : cert.verificationUrl
+                            ? (currentLang === 'de' ? 'ONLINE VERIFIZIERBAR' : currentLang === 'pl' ? 'WERYFIKACJA ONLINE' : 'VERIFY ONLINE')
+                            : (currentLang === 'de' ? 'NACHWEISDETAILS' : currentLang === 'pl' ? 'SZCZEGÓŁY' : 'CREDENTIAL DETAILS')}
                       </span>
                       <span>{cert.issueDate || cert.year}</span>
                     </div>
@@ -483,17 +491,44 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
                     </p>
                   </div>
 
-                  <button
-                    type="button"
-                    onClick={() => setActiveCert(cert)}
-                    className="mt-3.5 pt-2.5 border-t border-[#C7A35A]/15 inline-flex items-center justify-between text-xs font-mono font-semibold text-[#D6B15E] hover:text-[#F4F1EA] transition-colors uppercase w-full group/btn"
-                  >
-                    <span className="flex items-center gap-1.5">
-                      <Eye className="h-3 w-3 text-[#10B981]" />
-                      <span>{t.viewCert}</span>
-                    </span>
-                    <span className="text-[#C7A35A] group-hover/btn:translate-x-0.5 transition-transform">→</span>
-                  </button>
+                  {cert.pdfUrl && cert.isAuthentic !== false ? (
+                    <button
+                      type="button"
+                      onClick={() => setActiveCert(cert)}
+                      className="mt-3.5 pt-2.5 border-t border-[#C7A35A]/15 inline-flex items-center justify-between text-xs font-mono font-semibold text-[#D6B15E] hover:text-[#F4F1EA] transition-colors uppercase w-full group/btn"
+                    >
+                      <span className="flex items-center gap-1.5">
+                        <Eye className="h-3 w-3 text-[#10B981]" />
+                        <span>{t.viewCert}</span>
+                      </span>
+                      <span className="text-[#C7A35A] group-hover/btn:translate-x-0.5 transition-transform">→</span>
+                    </button>
+                  ) : cert.verificationUrl ? (
+                    <a
+                      href={cert.verificationUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3.5 pt-2.5 border-t border-[#C7A35A]/15 inline-flex items-center justify-between text-xs font-mono font-semibold text-[#D6B15E] hover:text-[#F4F1EA] transition-colors uppercase w-full group/btn"
+                    >
+                      <span className="flex items-center gap-1.5">
+                        <Eye className="h-3 w-3 text-[#10B981]" />
+                        <span>{currentLang === 'de' ? 'ONLINE VERIFIZIEREN' : currentLang === 'pl' ? 'ZWERYFIKUJ ONLINE' : 'VERIFY ONLINE'}</span>
+                      </span>
+                      <span className="text-[#C7A35A] group-hover/btn:translate-x-0.5 transition-transform">↗</span>
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setActiveCert(cert)}
+                      className="mt-3.5 pt-2.5 border-t border-[#C7A35A]/15 inline-flex items-center justify-between text-xs font-mono font-semibold text-[#D6B15E] hover:text-[#F4F1EA] transition-colors uppercase w-full group/btn"
+                    >
+                      <span className="flex items-center gap-1.5">
+                        <Eye className="h-3 w-3 text-[#10B981]" />
+                        <span>{currentLang === 'de' ? 'DETAILS ANSEHEN' : currentLang === 'pl' ? 'ZOBACZ SZCZEGÓŁY' : 'VIEW DETAILS'}</span>
+                      </span>
+                      <span className="text-[#C7A35A] group-hover/btn:translate-x-0.5 transition-transform">→</span>
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
