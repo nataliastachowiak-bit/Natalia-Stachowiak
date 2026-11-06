@@ -1,0 +1,65 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root = process.cwd();
+const relevant = [
+  'src/data/assetRegistry.ts',
+  'src/data/portfolioData.ts',
+  'src/components/PersonalStoryDialog.tsx',
+  'src/pages/HomePage.tsx',
+  'src/pages/AboutPage.tsx',
+  'src/pages/ProjectsPage.tsx',
+  'src/pages/CertificatesPage.tsx',
+  'src/pages/JourneyPage.tsx',
+  'src/pages/ContactPage.tsx',
+];
+const failures = [];
+const results = [];
+function check(label, condition, detail = '') {
+  results.push({label, pass: Boolean(condition), detail});
+  console.log((condition ? 'PASS' : 'FAIL') + ' | ' + label + (detail ? ' | ' + detail : ''));
+  if (!condition) failures.push(label + ': ' + detail);
+}
+for (const source of relevant) {
+  const s = fs.readFileSync(path.join(root, source), 'utf8');
+  const assets = [...new Set([...s.matchAll(/['"`](\/(?:assets|images)\/[^'"`\n$]+)['"`]/g)].map(m => m[1]))];
+  const missing = assets.filter(asset => !fs.existsSync(path.join(root, 'public', asset)));
+  check('Assets ' + source, !missing.length, missing.length ? missing.join(', ') : assets.length + ' Referenzen');
+}
+const pdfs = [
+  'assets/Natalia_Stachowiak_CV.pdf',
+  'assets/certificates/Professional-Scrum-Master-I.pdf',
+  'assets/certificates/Professional-Scrum-Product-Owner-I.pdf',
+  'assets/certificates/google-cloud-depsapgc1x-edx.pdf',
+];
+for (const file of pdfs) {
+  const full = path.join(root, 'public', file);
+  let valid = false;
+  let size = 0;
+  if (fs.existsSync(full)) {
+    const fd = fs.openSync(full, 'r');
+    const magic = Buffer.alloc(5);
+    fs.readSync(fd, magic, 0, 5, 0);
+    fs.closeSync(fd);
+    size = fs.statSync(full).size;
+    valid = size > 1000 && magic.toString() === '%PDF-';
+  }
+  check('Echtes PDF ' + file, valid, size + ' bytes');
+}
+const dialog = fs.readFileSync(path.join(root, 'src/components/PersonalStoryDialog.tsx'), 'utf8');
+const magnets = fs.readFileSync(path.join(root, 'src/components/TravelMagnets.tsx'), 'utf8');
+check('Persönliche Karte ist modaler Dialog', dialog.includes('<dialog') && dialog.includes('</dialog>'));
+for (const section of ['top', 'side', 'between', 'textEnd', 'bottom']) {
+  check('Magnetgruppe ' + section, dialog.includes('placement="' + section + '"'));
+}
+check('Karte ohne Kühlschrankfoto', !dialog.includes('magnetsImage'));
+check('Goldene Weltkarte und Foto-Galerie erhalten', dialog.includes('worldMapGoldImage') && dialog.includes('beachDogImage') && dialog.includes('seaQuoteImage'));
+check('Alle 25 Reisemagnete im Komponenten-Code', [...magnets.matchAll(/'[^']+'/g)].some(m => m[0] === "'Santa Maria di Leuca'") && magnets.includes("'Halkidiki'") && magnets.includes("'Étretat'"));
+const app = fs.readFileSync(path.join(root, 'src/App.tsx'), 'utf8');
+for (const route of ['/', '/about', '/projects', '/journey', '/certificates', '/book', '/contact', '/privacy']) {
+  check('Route ' + route, app.includes('path="' + route + '"'));
+}
+fs.mkdirSync('qa-artifacts', {recursive:true});
+fs.writeFileSync('qa-artifacts/static-audit.json', JSON.stringify({results,failures}, null, 2));
+console.log('\nRESULT: ' + (results.length - failures.length) + '/' + results.length + ' checks passed');
+if (failures.length) process.exitCode = 1;
