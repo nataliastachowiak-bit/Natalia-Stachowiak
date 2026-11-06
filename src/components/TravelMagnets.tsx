@@ -31,7 +31,7 @@ const offsetX = [-2, 4, -4, 3, -3, 2, -3, 4, 4, -3, 3, -4, 2, -3, 4, -2, 3, -2, 
 const layouts: Record<Placement, string> = {
   top: 'mx-auto mb-8 max-w-[980px] grid-cols-3 min-[420px]:grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-x-1 gap-y-5 border-y border-[#C7A35A]/10 px-1 py-6 sm:gap-y-7 lg:gap-x-1',
   side: 'my-4 grid-cols-2 min-[390px]:grid-cols-3 gap-x-2 gap-y-5 sm:my-6 sm:gap-x-2 sm:gap-y-7',
-  between: 'my-1 grid-cols-2 sm:grid-cols-4 gap-x-1 gap-y-5 px-1 sm:my-3',
+  between: 'my-1 grid-cols-2 gap-x-2 gap-y-5 px-1 sm:my-3 sm:gap-y-7',
   bottom: 'mx-auto mt-5 max-w-[900px] grid-cols-2 min-[420px]:grid-cols-3 sm:grid-cols-5 gap-x-3 gap-y-6 border-t border-[#C7A35A]/15 px-2 pt-7 sm:gap-x-4',
 };
 
