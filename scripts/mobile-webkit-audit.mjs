@@ -9,6 +9,9 @@ const context = await browser.newContext({
 });
 await fs.mkdir('qa-artifacts',{recursive:true});
 const page = await context.newPage();
+page.on('pageerror', error => console.log('WEBKIT PAGE ERROR | '+error.message));
+page.on('console', message => {if(message.type()==='error')console.log('WEBKIT CONSOLE ERROR | '+message.text().slice(0,300));});
+page.on('response', response => {if(response.status()>=400)console.log('WEBKIT HTTP '+response.status()+' | '+response.url());});
 const failures=[];
 function check(name,ok,details='') {
   console.log((ok?'PASS':'FAIL')+' | '+name+(details?' | '+details:''));
@@ -17,6 +20,10 @@ function check(name,ok,details='') {
 for(const [route,portrait] of [['','natalia-business-portrait'],['about','natalia-about-portrait']]) {
   const response=await page.goto(root+route,{waitUntil:'domcontentloaded',timeout:45000});
   check('iPhone WebKit route '+(route||'home'),response?.status()===200,'HTTP '+response?.status());
+  await page.waitForTimeout(1500);
+  console.log('WEBKIT BODY | '+(await page.locator('body').innerText()).slice(0,500));
+  console.log('WEBKIT IMAGE COUNT | '+await page.locator('img').count());
+  await page.screenshot({path:'qa-artifacts/webkit-debug-'+(route||'home')+'.png'});
   const img=page.locator('img[alt="Natalia Stachowiak"]').first();
   await img.waitFor({state:'visible',timeout:20000});
   await img.evaluate(async image => {if(!image.complete) await new Promise(resolve => image.addEventListener('load',resolve,{once:true}));});
