@@ -28,13 +28,14 @@ export const Navbar: React.FC<NavbarProps> = ({
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
-  // Primary Desktop Navigation: Home, About, My Journey, Projects, Certificates, Contact (Book removed from top bar)
+  // Keep the full destination set consistent across desktop and mobile, including the book.
   const desktopNavLinks = [
     { path: '/', label: t.home || 'Home', id: 'home' },
     { path: '/about', label: t.about || 'About', id: 'about' },
     { path: '/journey', label: t.journey || 'My Journey', id: 'journey' },
     { path: '/projects', label: t.projects || 'Projects', id: 'projects' },
     { path: '/certificates', label: t.certificates || 'Certificates', id: 'certificates' },
+    { path: '/book', label: t.book || 'Book', id: 'book' },
     { path: '/contact', label: t.contact || 'Contact', id: 'contact' },
   ];
 
@@ -79,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* CENTER ZONE: Primary Main Navigation (Desktop >= 1280px)                 */}
         {/* Clean, balanced, centered: Home | About | My Journey | Projects | Certificates | Contact */}
         {/* ========================================================================= */}
-        <nav className="hidden xl:flex items-center justify-center gap-5 2xl:gap-7 flex-1 mx-2">
+        <nav className="hidden xl:flex items-center justify-center gap-3 2xl:gap-5 flex-1 mx-1">
           {desktopNavLinks.map((link) => {
             const active = isLinkActive(link.path);
             return (
