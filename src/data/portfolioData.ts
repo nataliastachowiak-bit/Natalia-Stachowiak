@@ -1221,6 +1221,66 @@ const CERTIFICATES_SOURCE: CertificateItem[] = [
   },
 
   // 4. Artificial Intelligence
+
+  {
+    id: 'cert-hp-ai-strategy',
+    isAuthentic: true,
+    courseCode: 'HPAIFPL.5x.en',
+    title: 'AI Strategy: Leading the AI-enabled enterprise',
+    titleI18n: {
+      de: 'AI Strategy: Leading the AI-enabled Enterprise',
+      en: 'AI Strategy: Leading the AI-enabled Enterprise',
+      pl: 'Strategia AI: zarządzanie organizacją wykorzystującą sztuczną inteligencję',
+    },
+    issuer: 'HP / edX',
+    year: '2026',
+    issueDate: '06.11.2026',
+    category: 'AI',
+    status: 'COMPLETED',
+    documentType: 'CERTIFICATE',
+    docTypeLabel: {
+      de: 'Verifiziertes edX-Zertifikat',
+      en: 'Verified Certificate',
+      pl: 'Zweryfikowany certyfikat',
+    },
+    credentialId: '28e1b495409c418bbaa03d65555a5e95',
+    verificationUrl: 'https://courses.edx.org/certificates/28e1b495409c418bbaa03d65555a5e95',
+    signatory: 'Mayank Dhingra & David McQuarrie (HP)',
+    focusI18n: {
+      de: 'KI-Strategie und Führung in einem KI-gestützten Unternehmensumfeld.',
+      en: 'AI strategy and leadership in an AI-enabled enterprise.',
+      pl: 'Strategia AI i przywództwo w organizacji wykorzystującej sztuczną inteligencję.',
+    },
+  },
+  {
+    id: 'cert-microsoft-ai-foundations',
+    isAuthentic: true,
+    courseCode: 'ITAIFBU',
+    title: 'AI Foundations for Business Leaders',
+    titleI18n: {
+      de: 'AI Foundations for Business Leaders',
+      en: 'AI Foundations for Business Leaders',
+      pl: 'Podstawy AI dla liderów biznesu',
+    },
+    issuer: 'Microsoft / edX',
+    year: '2026',
+    issueDate: '06.11.2026',
+    category: 'AI',
+    status: 'COMPLETED',
+    documentType: 'CERTIFICATE',
+    docTypeLabel: {
+      de: 'Verifiziertes edX-Zertifikat',
+      en: 'Verified Certificate',
+      pl: 'Zweryfikowany certyfikat',
+    },
+    credentialId: '5f07886f34e64b33bf325a9a49fd16d4',
+    verificationUrl: 'https://courses.edx.org/certificates/5f07886f34e64b33bf325a9a49fd16d4',
+    focusI18n: {
+      de: 'Grundlagen künstlicher Intelligenz für Führungskräfte und Unternehmensentscheidungen.',
+      en: 'Foundations of artificial intelligence for business leaders and decision-making.',
+      pl: 'Podstawy sztucznej inteligencji dla liderów biznesu i podejmowania decyzji.',
+    },
+  },
   {
     id: 'cert-eu-ai-act-2026',
     isAuthentic: false,
