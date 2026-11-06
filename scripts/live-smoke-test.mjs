@@ -38,7 +38,7 @@ try {
   const resProjects=await open('projects#resourceloop');
   const section=page.locator('#resourceloop');
   record('ResourceLoop direkt sichtbar',await section.count()===1,'HTTP '+resProjects?.status());
-  if(resProjects?.status()!==200) warn('Deep-Link HTTP status /projects', 'HTTP '+resProjects?.status()+' trotz gerenderter React-Seite (GitHub Pages SPA fallback)');
+  record('Direktaufruf HTTP 200 /projects',resProjects?.status()===200,'HTTP '+resProjects?.status());
   if(await section.count()) {
     record('ResourceLoop richtige Ausrichtung',(await section.innerText()).includes('zirkuläre Gebäudesanierung'),'Renovation case study');
     record('Scanner-Demolink vorhanden',await section.locator('a[href="https://scan-to-sure-decision.lovable.app/"]').count()===1);
@@ -58,13 +58,13 @@ try {
 
   const resCert=await open('certificates');
   record('Zertifikate-Seite sichtbar',await page.getByText('Zertifikate & Qualifikationen').count()>0,'HTTP '+resCert?.status());
-  if(resCert?.status()!==200) warn('Deep-Link HTTP status /certificates', 'HTTP '+resCert?.status()+' trotz gerenderter React-Seite');
+  record('Direktaufruf HTTP 200 /certificates',resCert?.status()===200,'HTTP '+resCert?.status());
   record('Zertifikatsdarstellung vorhanden',await page.getByText('KERNQUALIFIKATIONEN').count()>0||((await page.locator('body').innerText()).includes('KERNQUALIFIKATIONEN')));
   await page.screenshot({path:'qa-artifacts/certificates-desktop.png',fullPage:false});
 
   const resContact=await open('contact');
   record('Kontakt-Seite sichtbar',await page.locator('main').count()===1,'HTTP '+resContact?.status());
-  if(resContact?.status()!==200) warn('Deep-Link HTTP status /contact', 'HTTP '+resContact?.status()+' trotz gerenderter React-Seite');
+  record('Direktaufruf HTTP 200 /contact',resContact?.status()===200,'HTTP '+resContact?.status());
 
   for(const [width,height] of [[390,844],[320,700]]) {
     await page.setViewportSize({width,height});
@@ -93,7 +93,7 @@ try {
     const response = await open(pathname);
     const bodyText = (await page.locator('body').innerText()).slice(0, 1000);
     record('Seite rendert /' + pathname, Boolean(bodyText.trim().length > 80), 'HTTP ' + response?.status());
-    if(response?.status() !== 200) warn('SPA fallback /' + pathname, 'HTTP ' + response?.status() + ' bei direkter Navigation');
+    record('Direktaufruf HTTP 200 /' + pathname, response?.status() === 200, 'HTTP ' + response?.status());
     const brokenVisibleImages = await page.locator('img').evaluateAll(images => images.filter(img => {
       const r = img.getBoundingClientRect();
       return r.width > 0 && r.height > 0 && r.top < innerHeight && r.bottom > 0 && img.complete && img.naturalWidth === 0;
