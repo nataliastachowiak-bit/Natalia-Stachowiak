@@ -30,11 +30,11 @@ const dx = [-4, 5, -2, 4, 3, -4, 5, -2, 4, -4, 3, -5, 4, 5, -3, 4, -5, 2, -3, 4,
 const dy = [4, -2, 3, -3, 5, -4, 2, -3, 4, 5, -3, 2, -4, 2, -5, 4, -2, 3, -4, 5, -2, 3, -4, 4, -2];
 
 const layouts: Record<Placement, string> = {
-  top: 'mx-auto mb-6 max-w-[820px] grid-cols-2 min-[420px]:grid-cols-4 gap-x-5 gap-y-5 border-y border-[#C7A35A]/10 py-4 sm:py-5',
-  side: 'my-3 grid-cols-2 min-[390px]:grid-cols-3 gap-x-3 gap-y-4 sm:my-5',
-  between: 'my-1 grid-cols-2 gap-x-4 gap-y-4 sm:my-2',
-  textEnd: 'mt-7 max-w-[560px] grid-cols-2 min-[420px]:grid-cols-3 sm:grid-cols-4 gap-x-4 gap-y-5 border-t border-[#C7A35A]/15 pt-5',
-  bottom: 'mx-auto mt-4 max-w-[800px] grid-cols-2 min-[420px]:grid-cols-4 gap-x-4 gap-y-5 border-t border-[#C7A35A]/10 px-2 pt-5',
+  top: 'mx-auto mb-4 max-w-[820px] grid-cols-2 min-[420px]:grid-cols-4 gap-x-4 gap-y-2 border-y border-[#C7A35A]/10 py-2 sm:py-3',
+  side: 'my-1 grid-cols-2 min-[390px]:grid-cols-3 gap-x-2 gap-y-2 sm:my-2',
+  between: 'my-0 grid-cols-2 gap-x-3 gap-y-2 sm:my-1',
+  textEnd: 'mt-4 max-w-[560px] grid-cols-2 min-[420px]:grid-cols-3 sm:grid-cols-4 gap-x-3 gap-y-2 border-t border-[#C7A35A]/15 pt-3',
+  bottom: 'mx-auto mt-2 max-w-[800px] grid-cols-2 min-[420px]:grid-cols-4 gap-x-3 gap-y-2 border-t border-[#C7A35A]/10 px-2 pt-3',
 };
 
 /** Presentational magnets never overlap paragraph content or active controls. */
@@ -51,7 +51,7 @@ export const TravelMagnets: React.FC<{ placement: Placement }> = ({ placement })
           key={magnets[index]}
           title={magnets[index]}
           data-magnet={magnets[index]}
-          className="block h-[67px] w-[86px] shrink-0 bg-no-repeat drop-shadow-[0_5px_8px_rgba(0,0,0,0.65)] sm:h-[80px] sm:w-[103px]"
+          className="block h-[60px] w-[78px] shrink-0 bg-no-repeat drop-shadow-[0_5px_8px_rgba(0,0,0,0.65)] sm:h-[72px] sm:w-[92px]"
           style={{
             backgroundImage: `url("${magnetAtlas}")`,
             backgroundSize: '500% 500%',

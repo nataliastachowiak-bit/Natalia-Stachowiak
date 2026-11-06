@@ -27,6 +27,8 @@ jobs:
         run: npm run lint
       - name: Compile GitHub Pages build
         run: npm run build:gh
+      - name: Audit pages, public assets, PDFs and personal card
+        run: node scripts/portfolio-audit.mjs
       - name: Validate built assets
         run: |
           python3 - <<'PY'

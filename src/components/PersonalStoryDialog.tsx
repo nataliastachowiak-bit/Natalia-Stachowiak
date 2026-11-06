@@ -50,7 +50,7 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
         const rect = event.currentTarget.getBoundingClientRect();
         if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) onClose();
       }}
-      className="fixed left-1/2 top-1/2 m-0 w-[calc(100vw-1.5rem)] max-w-[1050px] max-h-[90dvh] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl sm:rounded-3xl border border-[#C7A35A]/50 bg-[#080A09] p-0 text-[#F4F1EA] shadow-[0_24px_90px_rgba(0,0,0,0.9)] backdrop:bg-black/80 backdrop:backdrop-blur-sm"
+      className="fixed left-1/2 top-1/2 m-0 w-[calc(100vw-1.5rem)] max-w-[980px] max-h-[90dvh] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl sm:rounded-3xl border border-[#C7A35A]/50 bg-[#080A09] p-0 text-[#F4F1EA] shadow-[0_24px_90px_rgba(0,0,0,0.9)] backdrop:bg-black/80 backdrop:backdrop-blur-sm"
     >
       <div className="sticky top-0 z-20 flex min-h-14 items-center justify-between border-b border-[#C7A35A]/20 bg-[#080A09]/95 px-5 py-3 backdrop-blur-md sm:px-9">
         <span className="text-[10px] font-semibold tracking-[0.24em] text-[#C7A35A] uppercase">
@@ -66,8 +66,8 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
         </button>
       </div>
         {/* PERSONAL STORY: deliberately separate from the professional biography above */}
-        <section aria-labelledby="personal-story-title" className="px-5 pb-8 pt-6 sm:px-9 sm:pb-10 sm:pt-8">
-          <div className="mb-7 sm:mb-10 max-w-3xl">
+        <section aria-labelledby="personal-story-title" className="px-5 pb-5 pt-5 sm:px-8 sm:pb-7 sm:pt-6">
+          <div className="mb-5 sm:mb-6 max-w-3xl">
             <p className="text-[11px] font-semibold tracking-[0.25em] text-[#C7A35A] uppercase mb-3">
               {currentLang === 'de' ? 'PERSÖNLICH' : currentLang === 'pl' ? 'OSOBIŚCIE' : 'PERSONAL'}
             </p>
@@ -79,8 +79,8 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
           {/* Loose souvenirs above the story; keeps all paragraphs unobstructed. */}
           <TravelMagnets placement="top" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-10 items-start">
-            <div className="lg:col-span-7 space-y-4 sm:space-y-5 text-sm sm:text-base text-[#F4F1EA]/85 leading-[1.8] font-sans text-left sm:text-justify [hyphens:auto]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-7 items-start">
+            <div className="lg:col-span-7 space-y-3 sm:space-y-4 text-sm sm:text-base text-[#F4F1EA]/85 leading-[1.7] font-sans text-left sm:text-justify [hyphens:auto]">
               <p className="font-serif italic text-xl sm:text-2xl leading-snug text-[#C7A35A]">
                 {currentLang === 'de'
                   ? '„Wege entstehen dadurch, dass man sie geht.“'
@@ -127,21 +127,21 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
               <TravelMagnets placement="textEnd" />
             </div>
             {/* An editorial travel scrapbook with authentic photographs and no cropped camel. */}
-            <div className="lg:col-span-5 relative px-1 pt-5 pb-4 sm:px-3 lg:pt-8">
-              <div className="relative mx-auto max-w-[470px]">
-                <div className="flex items-center justify-end gap-2 pb-5 text-[#C7A35A]/75">
+            <div className="lg:col-span-5 relative px-1 pt-2 pb-2 sm:px-2 lg:pt-3">
+              <div className="relative mx-auto max-w-[420px]">
+                <div className="flex items-center justify-end gap-2 pb-3 text-[#C7A35A]/75">
                   <span className="text-[10px] font-semibold tracking-[0.2em] uppercase">
                     {currentLang === 'de' ? 'MEINE REISEERINNERUNGEN' : currentLang === 'pl' ? 'MOJE WSPOMNIENIA' : 'TRAVEL MEMORIES'}
                   </span>
                   <Plane className="h-5 w-5 -rotate-[18deg]" aria-hidden="true"/>
                 </div>
-                <div className="grid grid-cols-2 items-start gap-x-3 gap-y-5 sm:gap-x-5 sm:gap-y-7">
+                <div className="grid grid-cols-2 items-start gap-x-3 gap-y-3 sm:gap-x-4 sm:gap-y-4">
                   <figure className="relative z-10 -rotate-[4deg] overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
                     <img src={camelImage} alt={currentLang === 'de' ? 'Ganzes Reisefoto auf einem Kamel in der Wüste' : currentLang === 'pl' ? 'Pełne zdjęcie z podróży na wielbłądzie' : 'Full-length travel photo on a camel in the desert'} loading="lazy" decoding="async" className="block h-auto w-full" />
                   </figure>
                   {/* The sandy-beach portrait fills the space below the umbrella photo,
                       alongside the tall camel portrait, without adding another long row. */}
-                  <div className="relative z-20 flex min-w-0 flex-col gap-5 pt-8 sm:gap-7 sm:pt-10">
+                  <div className="relative z-20 flex min-w-0 flex-col gap-3 pt-5 sm:gap-4 sm:pt-6">
                     <figure className="relative rotate-[5deg] overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
                       <img src={umbrellasImage} alt={currentLang === 'de' ? 'Bunte Regenschirme auf einer abendlichen Reise' : currentLang === 'pl' ? 'Kolorowe parasole podczas wieczornego spaceru' : 'Colourful umbrellas on an evening walk'} loading="lazy" decoding="async" className="block h-auto w-full" />
                     </figure>
@@ -154,7 +154,7 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
                     <TravelMagnets placement="side" />
                   </div>
                   {/* Centered gold map fills the space between the upper and lower travel photos. */}
-                  <div className="col-span-2 relative z-0 mx-auto -my-1 flex w-[90%] items-center justify-center py-1 sm:w-[86%]" aria-hidden="true">
+                  <div className="col-span-2 relative z-0 mx-auto -my-1 flex w-[78%] items-center justify-center py-1 sm:w-[78%]" aria-hidden="true">
                     <img src={worldMapGoldImage} alt="" loading="lazy" decoding="async" className="block w-full h-auto opacity-80 drop-shadow-[0_0_9px_rgba(199,163,90,0.18)]" />
                   </div>
                   {/* Lift the two bottom travel photographs directly under the gold map. */}
@@ -169,7 +169,7 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
                     <TravelMagnets placement="between" />
                   </div>
                 </div>
-                <p className="mt-8 -rotate-[2deg] text-right font-serif text-lg italic text-[#C7A35A] sm:text-2xl">
+                <p className="mt-4 -rotate-[2deg] text-right font-serif text-lg italic text-[#C7A35A] sm:text-2xl">
                   {currentLang === 'de' ? 'Momente, die bleiben.' : currentLang === 'pl' ? 'Chwile, które zostają.' : 'Moments that stay.'}
                 </p>
               </div>
