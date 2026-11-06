@@ -37,6 +37,21 @@ check('Personal story modal in iPhone WebKit',await page.locator('dialog[open]')
 const geom=await page.locator('dialog[open]').evaluate(el=>({scrollWidth:el.scrollWidth,clientWidth:el.clientWidth}));
 check('Personal story no horizontal overflow',geom.scrollWidth<=geom.clientWidth+5,JSON.stringify(geom));
 await page.screenshot({path:'qa-artifacts/iphone-webkit-dialog.png'});
+// Verify the published book's Instagram QR image and target in iPhone WebKit.
+const bookResponse = await page.goto(root+'book',{waitUntil:'domcontentloaded',timeout:45000});
+check('Book page loads in WebKit',bookResponse?.status()===200,'HTTP '+bookResponse?.status());
+const qr = page.locator('img[src*="instagram_qr_scannable.svg"]');
+await qr.waitFor({state:'visible',timeout:20000});
+const qrInfo = await qr.evaluate(async img => {
+  if(!img.complete) await new Promise(resolve=>img.addEventListener('load',resolve,{once:true}));
+  return {src:img.currentSrc,naturalWidth:img.naturalWidth,complete:img.complete};
+});
+check('QR rendered as SVG in Safari',qrInfo.complete&&qrInfo.naturalWidth>0&&qrInfo.src.includes('instagram_qr_scannable.svg'),JSON.stringify(qrInfo));
+check('QR links to correct Instagram account',await page.locator('a[href="https://www.instagram.com/frau_en_power2026/"]:has(img[src*="instagram_qr_scannable.svg"])').count()===1);
+const bookText=await page.locator('body').innerText();
+check('No invented 1,000 Instagram followers',!/(1[., ]?000\s*\+?\s*(followers|follower|obserwujących)|über 1[., ]?000)/i.test(bookText));
+await page.screenshot({path:'qa-artifacts/iphone-webkit-book-qr.png'});
+
 await browser.close();
 console.log('RESULT: '+(failures.length?'FAIL '+failures.length: 'PASS')+' Safari/WebKit mobile tests');
 if(failures.length)process.exitCode=1;
