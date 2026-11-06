@@ -18,9 +18,10 @@ import {
 } from 'lucide-react';
 import { CertificateItem, Language } from '../types';
 import { CERTIFICATES, ACADEMIC_CERTIFICATES, LANGUAGE_CERTIFICATES } from '../data/portfolioData';
-import { CertificateViewModal } from '../components/CertificateViewModal';
 import { PageTransition } from '../components/PageTransition';
 import { BackToPortfolio } from '../components/BackToPortfolio';
+
+const CertificateViewModal = React.lazy(() => import('../components/CertificateViewModal').then((m) => ({ default: m.CertificateViewModal })));
 
 interface CertificatesPageProps {
   currentLang: Language;
@@ -732,11 +733,13 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
 
         {/* Certificate Viewer Modal: Öffnet das unveränderte Original-PDF erst nach Klick */}
         {activeCert && (
-          <CertificateViewModal
-            cert={activeCert}
-            currentLang={currentLang}
-            onClose={() => setActiveCert(null)}
-          />
+          <React.Suspense fallback={null}>
+            <CertificateViewModal
+              cert={activeCert}
+              currentLang={currentLang}
+              onClose={() => setActiveCert(null)}
+            />
+          </React.Suspense>
         )}
       </div>
     </PageTransition>

@@ -19,8 +19,9 @@ import {
   Download,
 } from 'lucide-react';
 import { CertificateItem, Language } from '../types';
-import { PdfViewer } from './PdfViewer';
 import { getAbsoluteAssetUrl } from '../utils/assetPath';
+
+const PdfViewer = React.lazy(() => import('./PdfViewer').then((m) => ({ default: m.PdfViewer })));
 
 interface CertificateViewModalProps {
   cert: CertificateItem | null;
@@ -474,12 +475,27 @@ export const CertificateViewModal: React.FC<CertificateViewModalProps> = ({
               >
                 {hasValidPdf ? (
                   <div className="mx-auto flex justify-center py-2">
-                    <PdfViewer
-                      pdfUrl={cert.pdfUrl!}
-                      zoom={zoom}
-                      title={titleText}
-                      onError={() => setPdfLoadError(true)}
-                    />
+                    <React.Suspense
+                      fallback={
+                        <div className="flex flex-col items-center justify-center p-12 text-[#C7A35A]">
+                          <Loader2 className="h-8 w-8 animate-spin mb-3 text-[#148B78]" />
+                          <span className="text-xs uppercase tracking-wider text-[#A9AEA9]">
+                            {currentLang === 'en'
+                              ? 'Loading original document…'
+                              : currentLang === 'pl'
+                              ? 'Ładowanie oryginalnego dokumentu…'
+                              : 'Lade Original-Dokument…'}
+                          </span>
+                        </div>
+                      }
+                    >
+                      <PdfViewer
+                        pdfUrl={cert.pdfUrl!}
+                        zoom={zoom}
+                        title={titleText}
+                        onError={() => setPdfLoadError(true)}
+                      />
+                    </React.Suspense>
                   </div>
                 ) : (
                   <div className="p-8 sm:p-14 text-center bg-[#0d120f] text-[#F4F1EA] rounded-xl border border-[#C7A35A]/30 my-4 max-w-2xl mx-auto space-y-4">

@@ -8,12 +8,14 @@ import {
   RotateCcw,
   FileText,
   ShieldCheck,
+  Loader2,
 } from 'lucide-react';
 import { Language } from '../types';
-import { PdfViewer } from './PdfViewer';
 import { CV_FILE } from '../data/assetRegistry';
 import { getAbsoluteAssetUrl } from '../utils/assetPath';
 import { downloadCvDocument } from '../utils/cvHelper';
+
+const PdfViewer = React.lazy(() => import('./PdfViewer').then((m) => ({ default: m.PdfViewer })));
 
 interface CvPreviewModalProps {
   isOpen: boolean;
@@ -221,11 +223,26 @@ export const CvPreviewModal: React.FC<CvPreviewModalProps> = ({
           className="flex-1 overflow-y-auto bg-[#080A09]/95 p-4 sm:p-6 flex flex-col items-center"
         >
           <div className="w-full flex flex-col items-center justify-center">
-            <PdfViewer
-              pdfUrl={CV_FILE}
-              zoom={zoom}
-              title={t.title}
-            />
+            <React.Suspense
+              fallback={
+                <div className="flex flex-col items-center justify-center p-12 text-[#C7A35A]">
+                  <Loader2 className="h-8 w-8 animate-spin mb-3 text-[#148B78]" />
+                  <span className="text-xs uppercase tracking-wider text-[#A9AEA9]">
+                    {currentLang === 'en'
+                      ? 'Loading CV…'
+                      : currentLang === 'pl'
+                      ? 'Ładowanie CV…'
+                      : 'Lade Lebenslauf…'}
+                  </span>
+                </div>
+              }
+            >
+              <PdfViewer
+                pdfUrl={CV_FILE}
+                zoom={zoom}
+                title={t.title}
+              />
+            </React.Suspense>
           </div>
         </div>
 

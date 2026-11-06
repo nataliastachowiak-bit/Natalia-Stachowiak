@@ -4,9 +4,10 @@ import { Language, MediaAssets } from '../types';
 import { PageTransition } from '../components/PageTransition';
 import { BackToPortfolio } from '../components/BackToPortfolio';
 import { CV_FILE } from '../data/assetRegistry';
-import { CvPreviewModal } from '../components/CvPreviewModal';
 import { getAbsoluteAssetUrl } from '../utils/assetPath';
 import { downloadCvDocument } from '../utils/cvHelper';
+
+const CvPreviewModal = React.lazy(() => import('../components/CvPreviewModal').then((m) => ({ default: m.CvPreviewModal })));
 
 interface ContactPageProps {
   currentLang: Language;
@@ -202,11 +203,15 @@ export const ContactPage: React.FC<ContactPageProps> = ({
         </div>
 
         {/* In-App Full 2-Page CV Preview Modal */}
-        <CvPreviewModal
-          isOpen={isCvPreviewOpen}
-          currentLang={currentLang}
-          onClose={() => setIsCvPreviewOpen(false)}
-        />
+        {isCvPreviewOpen && (
+          <React.Suspense fallback={null}>
+            <CvPreviewModal
+              isOpen={isCvPreviewOpen}
+              currentLang={currentLang}
+              onClose={() => setIsCvPreviewOpen(false)}
+            />
+          </React.Suspense>
+        )}
       </div>
     </PageTransition>
   );

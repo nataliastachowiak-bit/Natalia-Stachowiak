@@ -6,7 +6,8 @@ import { LOCKED_ASSETS, ABOUT_IMAGE } from '../data/assetRegistry';
 import { PageTransition } from '../components/PageTransition';
 import { BackToPortfolio } from '../components/BackToPortfolio';
 import { resolveAssetUrl } from '../utils/assetPath';
-import { PersonalStoryDialog } from '../components/PersonalStoryDialog';
+
+const PersonalStoryDialog = React.lazy(() => import('../components/PersonalStoryDialog').then((m) => ({ default: m.PersonalStoryDialog })));
 
 const personalNightImage = resolveAssetUrl('/assets/personal-evening.avif');
 
@@ -274,7 +275,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </div>
           </button>
         </div>
-        <PersonalStoryDialog currentLang={currentLang} open={personalStoryOpen} onClose={() => setPersonalStoryOpen(false)} />
+        {personalStoryOpen && (
+          <React.Suspense fallback={null}>
+            <PersonalStoryDialog currentLang={currentLang} open={personalStoryOpen} onClose={() => setPersonalStoryOpen(false)} />
+          </React.Suspense>
+        )}
       </div>
     </PageTransition>
   );

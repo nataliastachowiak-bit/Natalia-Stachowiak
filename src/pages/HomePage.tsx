@@ -304,6 +304,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                         src={imgSrc}
                         alt={p.name}
                         loading="lazy"
+                        decoding="async"
                         onError={(e) => {
                           (e.currentTarget as HTMLImageElement).src = fallbackImg;
                         }}
