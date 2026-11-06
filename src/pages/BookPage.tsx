@@ -16,7 +16,7 @@ interface BookPageProps {
 
 export const BookPage: React.FC<BookPageProps> = ({ currentLang, mediaAssets }) => {
   const bookCoverSrc = mediaAssets.bookCover || PROJECT_BOOK_COVER;
-  const qrSrc = mediaAssets.instagramQr || PROJECT_BOOK_INSTAGRAM_QR;
+  const qrSrc = PROJECT_BOOK_INSTAGRAM_QR;
   const instagramUrl = 'https://www.instagram.com/frau_en_power2026/';
 
   return (
@@ -63,7 +63,7 @@ export const BookPage: React.FC<BookPageProps> = ({ currentLang, mediaAssets }) 
               <div className="aspect-[2/3] w-full overflow-hidden rounded-xl bg-[#080A09] flex items-center justify-center" style={{ aspectRatio: '2 / 3' }}>
                 <img
                   src={bookCoverSrc}
-                  alt="Du bist nicht zu viel, die sind einfach scheiße — Original Buchcover"
+                  alt="Du bist nicht zu viel — Original Buchcover"
                   loading="eager"
                   onError={(e) => {
                     (e.currentTarget as HTMLImageElement).src = PROJECT_BOOK_COVER;
@@ -74,15 +74,13 @@ export const BookPage: React.FC<BookPageProps> = ({ currentLang, mediaAssets }) 
             </div>
 
             {/* Instagram QR Code */}
-            <div className="rounded-2xl border border-[#0F5C46]/40 bg-[#101412] p-4 text-center flex flex-col items-center max-w-[170px] shadow-lg">
-              <div className="h-24 w-24 overflow-hidden rounded-xl bg-white p-1.5 border border-[#C7A35A]/30">
+            <a href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram-Profil öffnen: frau_en_power2026" className="rounded-2xl border border-[#0F5C46]/40 bg-[#101412] p-4 text-center flex flex-col items-center max-w-[190px] shadow-lg hover:border-[#C7A35A]/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C7A35A]">
+              <div className="h-36 w-36 rounded-xl bg-white p-2 border border-[#C7A35A]/30">
                 <img
                   src={qrSrc}
-                  alt="Instagram QR-Code"
-                  loading="eager"
-                  onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).src = PROJECT_BOOK_INSTAGRAM_QR;
-                  }}
+                  alt="QR-Code: Instagram-Profil frau_en_power2026"
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-contain"
                 />
               </div>
@@ -92,7 +90,7 @@ export const BookPage: React.FC<BookPageProps> = ({ currentLang, mediaAssets }) 
               <span className="text-[10px] text-[#A9AEA9] mt-0.5">
                 {currentLang === 'de' ? 'Direkt zu Instagram' : currentLang === 'pl' ? 'Przejdź do Instagrama' : 'Directly to Instagram'}
               </span>
-            </div>
+            </a>
           </div>
 
           {/* Right: Editorial Narrative & Community Link */}
@@ -116,10 +114,10 @@ export const BookPage: React.FC<BookPageProps> = ({ currentLang, mediaAssets }) 
 
             <p className="font-sans text-sm sm:text-base leading-relaxed text-[#A9AEA9]">
               {currentLang === 'de'
-                ? '„Du bist nicht zu viel“ ist ein eigenständiges Buch- und Entwicklungsprojekt für persönliche Stärke, Selbstwert und emotionale Klarheit. Von der ersten Konzeptidee über die Manuskriptentwicklung bis zur visuellen Covergestaltung entstand das Vorhaben aus reiner Eigeninitiative. Das Projekt verbindet psychologische Reflexion mit kreativem Storytelling und wird von einer wachsenden, organischen Instagram-Community begleitet, die schon im Entstehungsprozess als aktiver Raum für echten Austausch dient.'
+                ? '„Du bist nicht zu viel“ ist mein Buchprojekt über Dating, Situationships, Red Flags, Selbstwert und die Frage, was Frauen in Beziehungen wirklich wollen und nicht länger akzeptieren möchten. Mit Humor, Alltagsbeobachtungen und Selbstironie geht es nicht um Tricks, um einen Mann zu gewinnen, sondern um Klarheit über die eigenen Bedürfnisse und Grenzen.'
                 : currentLang === 'pl'
-                ? '„Du bist nicht zu viel” to autorski projekt książkowy dedykowany sile osobistej, poczuciu własnej wartości i emocjonalnej jasności. Od wstępnej koncepcji, przez rozwój manuskryptu, aż po projekt okładki, praca powstała z pełnej własnej inicjatywy. Projekt łączy psychologiczną refleksję z zaangażowanym storytellingiem oraz rosnącą społecznością na Instagramie.'
-                : '“Du bist nicht zu viel” is an independent book and creative project focused on personal strength, self-worth, and emotional clarity. Conceived and driven entirely independently from initial outline and manuscript drafting to cover design, it combines psychological insight with relatable storytelling and an active organic Instagram community.'}
+                ? '„Du bist nicht zu viel” to mój autorski projekt książkowy o randkowaniu, situationships, czerwonych flagach, poczuciu własnej wartości i granicach w relacjach. Z humorem i autoironią pokazuje codzienne sytuacje, nie oferując sztuczek na zdobycie mężczyzny, lecz zachęcając do zrozumienia własnych potrzeb.'
+                : '“Du bist nicht zu viel” is my independent book project about dating, situationships, red flags, self-worth and personal boundaries. With humour, candid everyday stories and self-irony, it explores what women want and need in relationships—not tricks for winning someone over.'}
             </p>
 
             <div className="rounded-2xl border border-[#0F5C46]/30 bg-[#101412] p-5 space-y-2">
@@ -132,10 +130,10 @@ export const BookPage: React.FC<BookPageProps> = ({ currentLang, mediaAssets }) 
               </span>
               <p className="text-xs sm:text-sm text-[#A9AEA9] leading-relaxed">
                 {currentLang === 'de'
-                  ? 'Ganzheitliche Konzeption, strukturierte Manuskriptentwicklung, Covergestaltung und der organische Aufbau einer engagierten Instagram-Community mit über 1.000 Followern – eigeninitiativ umgesetzt von der Problemvalidierung bis zum fertigen Buchkonzept.'
+                  ? 'Eigenständige Buchkonzeption, Manuskriptentwicklung und Covergestaltung. Begleitend entsteht auf Instagram (@frau_en_power2026) ein Raum für Gedanken über Dating, Red Flags, Selbstwert, Humor und persönliche Grenzen – ohne unbelegte Reichweitenangaben.'
                   : currentLang === 'pl'
-                  ? 'Kompleksowa koncepcja, rozwój manuskryptu, projekt okładki oraz organiczny rozwój społeczności na Instagramie (ponad 1000 obserwujących) – zrealizowane samodzielnie od pierwszej idei do dojrzałego konceptu książki.'
-                  : 'Holistic conceptualization, structured manuscript drafting, visual cover design, and organic growth of an engaged Instagram community with 1,000+ followers – independently executed from validation to finished book concept.'}
+                  ? 'Autorska koncepcja książki, rozwój manuskryptu i projekt okładki. Na Instagramie (@frau_en_power2026) publikuję treści o randkowaniu, czerwonych flagach, poczuciu własnej wartości, humorze i osobistych granicach – bez niepotwierdzonych danych o liczbie obserwujących.'
+                  : 'Independent book concept, manuscript development and cover design. On Instagram (@frau_en_power2026), I share reflections on dating, red flags, self-worth, humour and personal boundaries – without unverified audience figures.'}
               </p>
             </div>
 
