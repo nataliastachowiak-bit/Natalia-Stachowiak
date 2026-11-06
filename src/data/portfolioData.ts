@@ -536,19 +536,19 @@ export const PROJECTS: ProjectData[] = [
     number: 'BUCH',
     name: 'Du bist nicht zu viel',
     title: 'Du bist nicht zu viel',
-    subtitle: 'From idea to published product.',
+    subtitle: 'From idea to an independent book project.',
     description: {
       de: 'Ein persönliches Buchprojekt, das Schreiben, Produktentwicklung, Markenaufbau, Content Creation und Community verbindet.',
-      en: 'A personal published book project combining writing, product development, brand identity, content creation, and community building.',
+      en: 'A personal book project combining writing, product development, brand identity, content creation, and community building.',
       pl: 'Autorski projekt książkowy łączący pisarstwo, rozwój produktu, budowę marki, tworzenie treści i społeczność.',
     },
     tags: ['Creation', 'Branding', 'Content', 'Community'],
     mediaKey: 'bookCover',
     instagramUrl: 'https://www.instagram.com/frau_en_power2026/',
     projectTypeBadge: {
-      de: 'Reales Produkt · Veröffentlichtes Buch & Community',
-      en: 'Live Product · Published Book & Community',
-      pl: 'Wydany produkt · Książka i społeczność',
+      de: 'Eigenständiges Buchprojekt · Cover & Community',
+      en: 'Independent Book Project · Cover & Community',
+      pl: 'Autorski projekt książkowy · Okładka i społeczność',
     },
     caseStudy: {
       problem: {
@@ -562,22 +562,22 @@ export const PROJECTS: ProjectData[] = [
         pl: 'Szczera, psychologicznie oparta refleksja o relacjach i poczuciu własnej wartości oraz poczucie zrozumienia i wspólnoty.',
       },
       hypothesesAndDecisions: {
-        de: 'Hypothese: Ein Buch entfaltet die stärkste Wirkung, wenn es mit einem kontinuierlichen digitalen Community-Dialog verschmilzt. Produktentscheidung: Verknüpfung des gedruckten Werks mit einer dedizierten Instagram-Plattform (@frau_en_power2026) für tägliche Inspiration und Leser-Austausch.',
-        en: 'Hypothesis: A book exerts maximum resonance when coupled with an ongoing social dialogue. Product decision: Link the print work to a dedicated Instagram platform (@frau_en_power2026) for daily reader connection.',
-        pl: 'Hipoteza: Książka osiąga największą siłę, gdy łączy się z ciągłym dialogiem w mediach społecznościowych. Decyzja: Połączenie książki z profilem na Instagramie (@frau_en_power2026).',
+        de: 'Hypothese: Ein Buch entfaltet die stärkste Wirkung, wenn es mit einem kontinuierlichen digitalen Community-Dialog verschmilzt. Produktentscheidung: Begleitung des Buchprojekts durch thematische Beiträge auf Instagram (@frau_en_power2026).',
+        en: 'Hypothesis: A book exerts maximum resonance when coupled with an ongoing social dialogue. Product decision: Connect the book project with related content on Instagram (@frau_en_power2026).',
+        pl: 'Hipoteza: Książka osiąga największą siłę, gdy łączy się z ciągłym dialogiem w mediach społecznościowych. Decyzja: Powiązanie projektu książkowego z profilem na Instagramie (@frau_en_power2026).',
       },
       solution: {
-        de: 'Ein ganzheitliches Produkt: Ein pointiert geschriebenes Buch über Dating, Red Flags und Selbstwert, begleitet von einer interaktiven Instagram-Community (@frau_en_power2026), die Identifikation und Mut stiftet.',
-        en: 'A comprehensive product execution: A sharply observed book dissecting dating patterns, red flags, and self-esteem, anchored by an authentic Instagram community (@frau_en_power2026).',
-        pl: 'Kompleksowy produkt: Książka o randkowaniu, red flagach i poczuciu własnej wartości oraz zaangażowana społeczność na Instagramie (@frau_en_power2026).',
+        de: 'Eigenständiges Buchkonzept über Dating, Red Flags, Selbstwert und persönliche Grenzen, ergänzt durch eine thematische Instagram-Präsenz (@frau_en_power2026).',
+        en: 'An independent book project exploring dating patterns, red flags, self-worth and personal boundaries, with related Instagram content (@frau_en_power2026).',
+        pl: 'Autorski projekt książkowy o randkowaniu, czerwonych flagach, samoocenie i granicach osobistych, z towarzyszącą obecnością na Instagramie (@frau_en_power2026).',
       },
       coreFeatures: [
         {
           title: '01 BOOK PRODUCT LIFECYCLE',
           desc: {
-            de: 'Von der ersten Manuskript-Hypothese über Lektorat und Cover-Design bis zur fertigen Publikation.',
-            en: 'From initial hypothesis and outline through editing, cover typography, and final market publication.',
-            pl: 'Od pierwszej koncepcji tekstu, przez redakcję i projekt okładki, aż po publikację.',
+            de: 'Von der Konzeptidee über Manuskriptentwicklung bis zur Covergestaltung; die Veröffentlichung steht noch aus.',
+            en: 'From initial concept and manuscript development to cover design; publication has not yet taken place.',
+            pl: 'Od koncepcji i opracowania manuskryptu do projektu okładki; publikacja jeszcze nie nastąpiła.',
           },
         },
         {
@@ -591,9 +591,9 @@ export const PROJECTS: ProjectData[] = [
         {
           title: '03 COMMUNITY & DIALOGUE',
           desc: {
-            de: 'Instagram-Präsenz (@frau_en_power2026) mit täglichem Austausch, Umfragen und echtem Feedback.',
-            en: 'Active Instagram presence (@frau_en_power2026) engaging daily in polling, conversation, and feedback.',
-            pl: 'Społeczność Instagram (@frau_en_power2026) z codziennymi ankietami i dyskusją.',
+            de: 'Thematisch passende Instagram-Präsenz (@frau_en_power2026) als Begleitung des Buchprojekts.',
+            en: 'Related Instagram presence (@frau_en_power2026) accompanying the book project.',
+            pl: 'Obecność na Instagramie (@frau_en_power2026) towarzysząca projektowi książkowemu.',
           },
         },
       ],
@@ -603,14 +603,14 @@ export const PROJECTS: ProjectData[] = [
         pl: 'Książka to pełnoprawny produkt z własną ścieżką użytkownika. Autentyczny storytelling buduje najtrwalszą relację.',
       },
       successMetrics: {
-        de: 'Reale Marktergebnisse: Erfolgreich publiziertes Buch mit aktiver Leserschaft, kontinuierlich wachsende Community auf Instagram (@frau_en_power2026), hohe Interaktionsrate und direktes, emotionales Leserinnen-Feedback.',
-        en: 'Real Market Results: Successfully published book in circulation, active reader community on Instagram (@frau_en_power2026), strong interaction rates and direct reader testimonials.',
-        pl: 'Rzeczywiste wyniki rynkowe: Wydana książka, rosnąca społeczność na Instagramie (@frau_en_power2026) oraz bezpośrednie, zaangażowane opinie czytelniczek.',
+        de: 'Projektstand: Buchkonzept, Manuskriptentwicklung, Covergestaltung und ergänzender Instagram-Auftritt. Veröffentlichung, Verkaufszahlen und unabhängige Wirkungsmessung stehen noch aus.',
+        en: 'Project progress: book concept, manuscript development, cover design and related Instagram presence. Publication, sales figures and independent impact measurements are still pending.',
+        pl: 'Postęp projektu: koncepcja książki, opracowanie manuskryptu, projekt okładki i profil na Instagramie. Publikacja i dane o sprzedaży nie są jeszcze dostępne.',
       },
       transparencyNote: {
-        de: 'Reales, kommerziell publiziertes Buchprodukt mit lebendiger Community. Ergebnisse basieren auf realen Verkäufen und echtem Leser-Engagement.',
-        en: 'Real, commercially published book product with an active community. Outcomes reflect real market circulation and genuine engagement.',
-        pl: 'Rzeczywisty, wydany produkt książkowy z aktywną społecznością czytelników.',
+        de: 'Eigenständiges, noch unveröffentlichtes Buchprojekt. Keine Verkaufs-, Reichweiten- oder Leserinnenzahlen als nachgewiesene Ergebnisse ausgewiesen.',
+        en: 'Independent book project, not yet published. No unverified sales, audience size or reader engagement figures are presented as established results.',
+        pl: 'Autorski projekt książkowy, jeszcze niewydany. Nie podajemy niezweryfikowanych wyników sprzedaży ani liczby obserwujących.',
       },
     },
   },
