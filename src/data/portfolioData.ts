@@ -740,7 +740,9 @@ const BUNDLED_CERTIFICATE_PDFS: Record<string, string> = {
   "cert-ai-grundlagen": "SkillSprinters-KI-Grundlagen.pdf",
   "cert-ai-kompakt": "IHK-KI-Kompakt.pdf",
   "cert-ai-for-leaders": "edx-Babson-AI-for-Leaders.pdf",
-  "cert-sustainable-ai": "edx-HP-Sustainable-AI.pdf"
+  "cert-sustainable-ai": "edx-HP-Sustainable-AI.pdf",
+  "cert-hp-ai-strategy": "edx-HP-AI-Strategy.pdf",
+  "cert-microsoft-ai-foundations": "edx-Microsoft-AI-Foundations.pdf"
 };
 
 function applyPublishedCertificatePdf(cert: CertificateItem): CertificateItem {
