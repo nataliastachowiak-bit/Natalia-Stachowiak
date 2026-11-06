@@ -1,0 +1,40 @@
+name: Mobile Safari WebKit Preview Test
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  iphone-webkit:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies and Playwright
+        run: |
+          npm ci
+          npm install --no-save --package-lock=false playwright@1.56.1
+      - name: Generate mobile portraits
+        run: |
+          python3 -m pip install --quiet Pillow
+          python3 scripts/optimize_mobile_images.py
+      - name: Build optimized GitHub Pages
+        run: npm run build:gh
+      - name: Start preview and test in WebKit
+        run: |
+          npm run preview -- --host 0.0.0.0 > /tmp/portfolio-preview.log 2>&1 &
+          node scripts/mobile-webkit-audit.mjs
+      - name: Save Safari screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-webkit-previews
+          path: qa-artifacts/
+          retention-days: 7
