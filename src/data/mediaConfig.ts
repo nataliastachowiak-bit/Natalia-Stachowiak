@@ -1,5 +1,6 @@
 import { MediaAssets } from '../types';
 import { LOCKED_ASSETS, PROJECT_BOOK_COVER } from './assetRegistry';
+import { isEditModeActive } from './config';
 
 export const DEFAULT_MEDIA: MediaAssets = {
   heroPortrait: LOCKED_ASSETS.heroPortrait,
@@ -129,7 +130,10 @@ const STORAGE_KEY = 'natalia_portfolio_media_meta_v3';
 const LEGACY_STORAGE_KEY = 'natalia_portfolio_media_assets_v2';
 
 export function getInitialMediaAssets(): MediaAssets {
-  if (typeof window === 'undefined') return { ...DEFAULT_MEDIA, ...LOCKED_ASSETS };
+  // A public read-only visitor should not synchronously parse historical media
+  // from localStorage on the critical render path (particularly slow in Safari).
+  // Static site assets are canonical, and edit mode is disabled in production.
+  if (typeof window === 'undefined' || !isEditModeActive()) return { ...DEFAULT_MEDIA, ...LOCKED_ASSETS };
   try {
     // Clean up legacy oversized storage key if present
     if (localStorage.getItem(LEGACY_STORAGE_KEY)) {
