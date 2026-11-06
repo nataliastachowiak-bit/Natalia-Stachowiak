@@ -108,6 +108,9 @@ export default function App() {
   const [mediaAssets, setMediaAssets] = useState<MediaAssets>(getInitialMediaAssets);
 
   useEffect(() => {
+    // Public GitHub Pages never edits media. Do not open IndexedDB on Safari
+    // for every visitor; use the canonical media assets already in state.
+    if (isReadOnly) return;
     loadMediaFromDB().then((dbAssets) => {
       setMediaAssets((prev) => {
         const merged = { ...prev };
@@ -119,7 +122,7 @@ export default function App() {
         return merged;
       });
     });
-  }, []);
+  }, [isReadOnly]);
 
   const handleSaveAsset = (key: string, value: string) => {
     const updated = { ...mediaAssets, [key]: value };
