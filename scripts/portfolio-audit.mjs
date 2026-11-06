@@ -106,6 +106,12 @@ check('Buch-Autorenprofil DE/EN/PL ohne behauptete Veröffentlichung', !/Publizi
 check('Instagram-QR auf Buchseite verlinkt korrekt', bookPage.includes('PROJECT_BOOK_INSTAGRAM_QR') && bookPage.includes('https://www.instagram.com/frau_en_power2026/'));
 check('Kanonen-Code für QR ist scanbar als SVG', fs.existsSync(path.join(root, 'public/assets/instagram_qr_scannable.svg')));
 
+// Safari cold-start safeguards: avoid a blocking external font stylesheet and
+// synchronous media localStorage reads on a public read-only page.
+const pageHtml = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const mediaConfig = fs.readFileSync(path.join(root, 'src/data/mediaConfig.ts'), 'utf8');
+check('Safari: Google Fonts do not block initial stylesheet rendering', !/<link[^>]+fonts\\.googleapis\\.com[^>]+rel="stylesheet"/.test(pageHtml) && pageHtml.includes('as="style"') && pageHtml.includes("this.rel='stylesheet'"));
+check('Safari: Public homepage skips synchronous media localStorage reads', mediaConfig.includes("!isEditModeActive()") && mediaConfig.includes("return { ...DEFAULT_MEDIA, ...LOCKED_ASSETS }"));
 fs.mkdirSync('qa-artifacts', {recursive:true});
 fs.writeFileSync('qa-artifacts/static-audit.json', JSON.stringify({results,failures}, null, 2));
 console.log('\nRESULT: ' + (results.length - failures.length) + '/' + results.length + ' checks passed');
