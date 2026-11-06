@@ -85,6 +85,44 @@ try {
   record('Browserlauf abgeschlossen',false,String(e?.stack||e).slice(0,900));
 }
 
+
+// Full route and interactive personal-story audit against the published site.
+try {
+  await page.setViewportSize({width: 1440, height: 900});
+  for (const pathname of ['about','journey','projects','certificates','contact','book','privacy','projects/circulartwin-ai','projects/ai-building-concept','projects/ecomargin-ai']) {
+    const response = await open(pathname);
+    const bodyText = (await page.locator('body').innerText()).slice(0, 1000);
+    record('Seite rendert /' + pathname, Boolean(bodyText.trim().length > 80), 'HTTP ' + response?.status());
+    if(response?.status() !== 200) warn('SPA fallback /' + pathname, 'HTTP ' + response?.status() + ' bei direkter Navigation');
+    const brokenVisibleImages = await page.locator('img').evaluateAll(images => images.filter(img => {
+      const r = img.getBoundingClientRect();
+      return r.width > 0 && r.height > 0 && r.top < innerHeight && r.bottom > 0 && img.complete && img.naturalWidth === 0;
+    }).map(img => img.getAttribute('src')));
+    record('Sichtbare Bilder /' + pathname, brokenVisibleImages.length === 0, brokenVisibleImages.join(' | ').slice(0, 300));
+  }
+  await open('about');
+  const card = page.getByRole('button', {name:'Karte öffnen'});
+  record('Persönliche Karte: Öffnen verfügbar', await card.count() === 1);
+  if (await card.count() === 1) {
+    await card.click();
+    const dlg = page.locator('dialog[open]');
+    record('Persönliche Karte öffnet sich', await dlg.count() === 1);
+    if (await dlg.count() === 1) {
+      record('Alle 25 Souvenir-Magnete', await dlg.locator('[data-magnet]').count() === 25);
+      record('Goldene Weltkarte', await dlg.locator('img[src*="world-map-gold.svg"]').count() === 1);
+      record('Strandfoto mit Hund', await dlg.locator('img[src*="travel-dog-beach.avif"]').count() === 1);
+      record('Persönlicher Text', (await dlg.innerText()).includes('Der Mensch hinter den Projekten'));
+      await dlg.screenshot({path:'qa-artifacts/personal-dialog-desktop.png'});
+      await page.setViewportSize({width:390,height:844});
+      await dlg.screenshot({path:'qa-artifacts/personal-dialog-mobile.png'});
+      const modalGeometry = await dlg.evaluate(d => ({width:d.getBoundingClientRect().width,window:innerWidth,scrollWidth:d.scrollWidth,clientWidth:d.clientWidth}));
+      record('Persönliche Karte passt mobil', modalGeometry.width <= modalGeometry.window && modalGeometry.scrollWidth <= modalGeometry.clientWidth + 5, JSON.stringify(modalGeometry));
+      await page.keyboard.press('Escape');
+      record('Persönliche Karte mit Escape schließbar', await page.locator('dialog[open]').count() === 0);
+    }
+  }
+} catch(e) {record('Erweiterte Browserprüfung',false,String(e?.stack||e).slice(0,850));}
+
 for(const path of ['assets/Natalia_Stachowiak_CV.pdf','assets/certificates/Professional-Scrum-Product-Owner-I.pdf','assets/certificates/Professional-Scrum-Master-I.pdf','assets/certificates/google-cloud-depsapgc1x-edx.pdf']) await checkPdf(path);
 
 try {
