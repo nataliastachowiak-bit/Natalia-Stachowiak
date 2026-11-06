@@ -59,6 +59,24 @@ const app = fs.readFileSync(path.join(root, 'src/App.tsx'), 'utf8');
 for (const route of ['/', '/about', '/projects', '/journey', '/certificates', '/book', '/contact', '/privacy']) {
   check('Route ' + route, app.includes('path="' + route + '"'));
 }
+// Verify that direct GitHub Pages URLs have real static entry files with
+// route-specific canonical metadata, rather than falling back to HTTP 404.
+const directRoutes = [
+  'about', 'journey', 'projects', 'certificates', 'contact', 'book', 'privacy',
+  'projects/circulartwin-ai', 'projects/ai-building-concept',
+  'projects/ecomargin-ai', 'projects/environix', 'projects/gain',
+  'projects/streetlife', 'projects/vinyl-ai', 'projects/dine-ease',
+  'projects/du-bist-nicht-zu-viel', 'projects/resourceloop-ai',
+];
+for (const route of directRoutes) {
+  const entry = path.join(root, 'dist', route, 'index.html');
+  const isFile = fs.existsSync(entry);
+  const html = isFile ? fs.readFileSync(entry, 'utf8') : '';
+  const canonical = 'https://nataliastachowiak-bit.github.io/Natalia-Stachowiak/' + route;
+  const routeIsPresent = isFile && html.includes('<div id="root"></div>') &&
+    html.includes('rel="canonical" href="' + canonical + '"');
+  check('Echte Direktlink-Seite /' + route, routeIsPresent, isFile ? 'HTML mit Route-Canonical' : 'Fehlt');
+}
 fs.mkdirSync('qa-artifacts', {recursive:true});
 fs.writeFileSync('qa-artifacts/static-audit.json', JSON.stringify({results,failures}, null, 2));
 console.log('\nRESULT: ' + (results.length - failures.length) + '/' + results.length + ' checks passed');
