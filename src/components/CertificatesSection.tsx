@@ -181,12 +181,12 @@ export const CertificatesSection: React.FC<CertificatesSectionProps> = ({
         pl: '4. Sztuczna inteligencja i technologie cyfrowe',
       },
       subtitle: {
-        de: 'EU AI Act Zertifikat (AI CHAMPIONS GmbH), KI-Kompetenz im Berufsalltag, KI-Grundlagenkurs & IHK Akademie Digital',
-        en: 'EU AI Act Certificate (AI Champions GmbH), AI Professional Literacy, AI Fundamentals & IHK AI Compact',
-        pl: 'Certyfikat Aktu o AI (AI Champions GmbH), kompetencje AI w pracy, kurs podstawowy i IHK AI Kompakt',
+        de: 'HP AI Strategy, Microsoft AI Foundations, AI for Leaders, Sustainable AI, EU AI Act und weitere KI-Kompetenznachweise',
+        en: 'HP AI Strategy, Microsoft AI Foundations, AI for Leaders, Sustainable AI, EU AI Act and further AI credentials',
+        pl: 'HP AI Strategy, Microsoft AI Foundations, AI for Leaders, Sustainable AI, EU AI Act oraz dodatkowe certyfikaty AI',
       },
       items: CERTIFICATES.filter((c) =>
-        ['cert-eu-ai-act-2026', 'cert-ki-kompetenz', 'cert-ai-grundlagen', 'cert-ai-kompakt'].includes(c.id)
+        ['cert-hp-ai-strategy', 'cert-microsoft-ai-foundations', 'cert-ai-for-leaders', 'cert-sustainable-ai', 'cert-eu-ai-act-2026', 'cert-ki-kompetenz', 'cert-ai-grundlagen', 'cert-ai-kompakt'].includes(c.id)
       ).sort((a, b) => parseDateForSorting(b) - parseDateForSorting(a)),
     },
   ];
