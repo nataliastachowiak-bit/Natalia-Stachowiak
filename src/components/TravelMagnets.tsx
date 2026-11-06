@@ -26,9 +26,9 @@ const rotation = [-5, 4, -3, 5, -4, 3, -5, 4, -3, 5, -4, 3, -3, 5, -4, 3, 4, -3,
 const offset = [2, -2, 1, 3, -1, 2, -2, 1, 2, -1, 3, -1, 2, -2, 1, 3, -2, 1, -2, 2, -1, 2, 1, -2, 1];
 
 const layout: Record<Placement, string> = {
-  top: 'mx-auto mb-7 max-w-[950px] grid-cols-3 min-[420px]:grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 border-y border-[#C7A35A]/10 py-5',
+  top: 'mx-auto mb-8 max-w-[980px] grid-cols-3 min-[420px]:grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 border-y border-[#C7A35A]/10 py-7 sm:py-8',
   side: 'my-5 sm:my-7 grid-cols-3 gap-y-6',
-  bottom: 'mx-auto mt-9 max-w-[950px] grid-cols-3 min-[420px]:grid-cols-4 sm:grid-cols-6 lg:grid-cols-7 border-t border-[#C7A35A]/15 pt-7',
+  bottom: 'mx-auto mt-4 max-w-[950px] grid-cols-3 min-[420px]:grid-cols-4 sm:grid-cols-6 lg:grid-cols-7 border-t border-[#C7A35A]/15 pt-5',
 };
 
 /** The souvenirs are decoration, never covering copy or blocking any controls. */
@@ -36,7 +36,7 @@ export const TravelMagnets: React.FC<{ placement: Placement }> = ({ placement })
   return (
     <div
       aria-hidden="true"
-      className={`pointer-events-none grid w-full justify-items-center items-center gap-x-4 gap-y-6 sm:gap-x-5 sm:gap-y-7 ${layout[placement]}`}
+      className={`pointer-events-none grid w-full justify-items-center items-center gap-x-5 gap-y-7 sm:gap-x-6 sm:gap-y-8 ${layout[placement]}`}
     >
       {groups[placement].map((index) => {
         const col = index % 5;
