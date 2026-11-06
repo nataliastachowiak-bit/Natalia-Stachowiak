@@ -41,6 +41,11 @@ jobs:
         run: |
           node -e 'const fs=require("fs");const token=process.env.POSTHOG_PROJECT_TOKEN||"";const host=process.env.POSTHOG_HOST||"";fs.writeFileSync("public/natflixgain-ab-test/config.js","window.NATFLIXGAIN_CONFIG = "+JSON.stringify({token,host})+";\\n")'
 
+      - name: Optimize mobile photos for Safari
+        run: |
+          python3 -m pip install --quiet Pillow
+          python3 scripts/optimize_mobile_images.py
+
       - name: Prepare published certificate PDFs
         run: python3 scripts/prepare_certificates.py
 
