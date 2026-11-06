@@ -157,16 +157,17 @@ export const PersonalStoryDialog: React.FC<PersonalStoryDialogProps> = ({ curren
                   <div className="col-span-2 relative z-0 mx-auto -my-1 flex w-[90%] items-center justify-center py-1 sm:w-[86%]" aria-hidden="true">
                     <img src={worldMapGoldImage} alt="" loading="lazy" decoding="async" className="block w-full h-auto opacity-80 drop-shadow-[0_0_9px_rgba(199,163,90,0.18)]" />
                   </div>
-                  {/* A handful of small magnets between the map and the lower pictures. */}
+                  {/* Lift the two bottom travel photographs directly under the gold map. */}
+                  <figure className="relative z-20 mt-0 rotate-[4deg] overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
+                    <img src={beachDogImage} alt={currentLang === 'de' ? 'Strandmoment am Meer mit meiner französischen Bulldogge' : currentLang === 'pl' ? 'Chwila na plaży z buldogiem francuskim' : 'A beach moment with my French bulldog'} loading="lazy" decoding="async" className="block h-auto w-full" />
+                  </figure>
+                  <figure className="relative z-10 mt-0 -rotate-[5deg] overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
+                    <img src={seaQuoteImage} alt={currentLang === 'de' ? 'Meerblick mit einem persönlichen Gedanken über das Leben' : currentLang === 'pl' ? 'Widok na morze z osobistą refleksją' : 'Seaside reflection on life'} loading="lazy" decoding="async" className="block h-auto w-full" />
+                  </figure>
+                  {/* Four souvenir magnets now sit below the two raised travel pictures. */}
                   <div className="col-span-2 relative z-10">
                     <TravelMagnets placement="between" />
                   </div>
-                  <figure className="relative z-20 -mt-10 rotate-[4deg] sm:-mt-14 overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
-                    <img src={beachDogImage} alt={currentLang === 'de' ? 'Strandmoment am Meer mit meiner französischen Bulldogge' : currentLang === 'pl' ? 'Chwila na plaży z buldogiem francuskim' : 'A beach moment with my French bulldog'} loading="lazy" decoding="async" className="block h-auto w-full" />
-                  </figure>
-                  <figure className="relative z-10 -mt-9 -rotate-[5deg] sm:-mt-12 overflow-hidden rounded-xl border-[3px] border-[#F4F1EA] bg-[#101412] shadow-[0_18px_40px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:z-30 hover:rotate-0 hover:scale-[1.03]">
-                    <img src={seaQuoteImage} alt={currentLang === 'de' ? 'Meerblick mit einem persönlichen Gedanken über das Leben' : currentLang === 'pl' ? 'Widok na morze z osobistą refleksją' : 'Seaside reflection on life'} loading="lazy" decoding="async" className="block h-auto w-full" />
-                  </figure>
                 </div>
                 <p className="mt-8 -rotate-[2deg] text-right font-serif text-lg italic text-[#C7A35A] sm:text-2xl">
                   {currentLang === 'de' ? 'Momente, die bleiben.' : currentLang === 'pl' ? 'Chwile, które zostają.' : 'Moments that stay.'}
