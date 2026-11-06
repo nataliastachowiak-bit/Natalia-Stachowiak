@@ -116,7 +116,7 @@ export function getProjectActionLabel(projectId: string, lang: 'de' | 'en' | 'pl
     case 'du-bist-nicht-zu-viel':
       return lang === 'pl' ? 'INSTAGRAM / PROJEKT' : lang === 'en' ? 'INSTAGRAM / PROJECT' : 'INSTAGRAM / PROJEKT';
     case 'environix':
-      return lang === 'pl' ? 'OTWÓRZ ENVIRONIX AI' : lang === 'en' ? 'OPEN ENVIRONIX AI' : 'ENVIRONIX AI ÖFFNEN';
+      return lang === 'pl' ? 'ENVIRONIX AI · LOGOWANIE GOOGLE' : lang === 'en' ? 'ENVIRONIX AI · GOOGLE SIGN-IN' : 'ENVIRONIX AI · GOOGLE-ANMELDUNG';
     case 'ai-building-concept':
     case 'ai-building':
       return lang === 'pl' ? 'LIVE PROTOTYP' : lang === 'en' ? 'EXPLORE PROTOTYPE' : 'LIVE-PROTOTYP ÖFFNEN';
