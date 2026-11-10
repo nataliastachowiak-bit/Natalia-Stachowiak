@@ -45,7 +45,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         <div className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           
           {/* LEFT SIDE: Exact Photograph (Untouched, Clean Editorial Frame) */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-start">
+          <div className="lg:col-span-5 flex flex-col items-center gap-4 lg:items-start">
             <div className="relative group max-w-[320px] sm:max-w-[360px] lg:max-w-[400px] xl:max-w-[440px] w-full">
               <div
                 className="relative aspect-[1008/947] w-full overflow-hidden rounded-2xl border border-[#C7A35A]/30 bg-[#101412] shadow-[0_20px_45px_rgba(0,0,0,0.85)]"
@@ -76,6 +76,34 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 </div>
               </div>
             </div>
+            {/* Compact personal card immediately beneath portrait, fully clickable. */}
+            <button
+              type="button"
+              onClick={() => setPersonalStoryOpen(true)}
+              aria-haspopup="dialog"
+              className="group flex w-full max-w-[320px] items-center overflow-hidden rounded-2xl border border-[#C7A35A]/30 bg-[#101412] text-left shadow-[0_12px_32px_rgba(0,0,0,0.38)] transition-all hover:border-[#C7A35A]/75 hover:bg-[#161B17] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C7A35A] sm:max-w-[360px] lg:max-w-[400px] xl:max-w-[440px]"
+            >
+              <img
+                src={personalNightImage}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+                className="h-[105px] w-[100px] shrink-0 object-cover sm:w-[116px]"
+              />
+              <span className="min-w-0 flex-1 px-4 py-3">
+                <span className="block text-[10px] font-semibold uppercase tracking-[0.20em] text-[#C7A35A]">
+                  {currentLang === 'de' ? 'PERSÖNLICH' : currentLang === 'pl' ? 'OSOBIŚCIE' : 'PERSONAL'}
+                </span>
+                <span className="mt-1 block font-serif text-lg leading-tight text-[#F4F1EA] sm:text-xl">
+                  {currentLang === 'de' ? 'Der Mensch hinter den Projekten' : currentLang === 'pl' ? 'Człowiek stojący za projektami' : 'The person behind the projects'}
+                </span>
+                <span className="mt-1.5 inline-flex items-center gap-1.5 text-[11px] font-medium text-[#C7A35A]">
+                  {currentLang === 'de' ? 'Karte öffnen' : currentLang === 'pl' ? 'Otwórz kartę' : 'Open card'}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                </span>
+              </span>
+            </button>
           </div>
 
           {/* RIGHT SIDE: Clean Editorial Persona & Biography */}
@@ -237,44 +265,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           </div>
         </div>
 
-        {/* Compact teaser: full personal story opens in a modal card, not a long waterfall. */}
-        <div className="relative z-10 mt-8 sm:mt-12 pb-5">
-          <button
-            type="button"
-            onClick={() => setPersonalStoryOpen(true)}
-            aria-haspopup="dialog"
-            className="group w-full overflow-hidden rounded-2xl border border-[#C7A35A]/30 bg-[#101412] text-left shadow-[0_16px_45px_rgba(0,0,0,0.4)] transition-all hover:border-[#C7A35A]/75 hover:shadow-[0_16px_55px_rgba(15,92,70,0.24)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C7A35A]"
-          >
-            <div className="flex min-h-[155px] flex-col sm:flex-row sm:items-center">
-              <img
-                src={personalNightImage}
-                alt={currentLang === 'de' ? 'Persönlicher Abend mit der Familie und französischer Bulldogge über den Lichtern der Stadt' : currentLang === 'pl' ? 'Rodzinny wieczór z buldogiem francuskim z widokiem na światła miasta' : 'A family evening with a French bulldog overlooking city lights'}
-                loading="lazy"
-                decoding="async"
-                className="h-36 w-full object-cover sm:h-[155px] sm:w-52 sm:shrink-0"
-              />
-              <div className="flex-1 px-5 py-5 sm:px-8">
-                <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#C7A35A]">
-                  {currentLang === 'de' ? 'PERSÖNLICH' : currentLang === 'pl' ? 'OSOBIŚCIE' : 'PERSONAL'}
-                </p>
-                <h2 className="font-serif text-2xl sm:text-3xl text-[#F4F1EA]">
-                  {currentLang === 'de' ? 'Der Mensch hinter den Projekten' : currentLang === 'pl' ? 'Człowiek stojący za projektami' : 'The person behind the projects'}
-                </h2>
-                <p className="mt-2 text-xs sm:text-sm text-[#A9AEA9]">
-                  {currentLang === 'de'
-                    ? 'Einblicke in mein Leben, meine Lieblingsorte und das, was mir wichtig ist.'
-                    : currentLang === 'pl'
-                      ? 'Kilka osobistych historii o życiu, ulubionych miejscach i tym, co ważne.'
-                      : 'A personal glimpse into my life, favourite places and what matters most.'}
-                </p>
-              </div>
-              <span className="mx-5 mb-5 inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-[#C7A35A]/45 px-5 py-2 text-xs font-semibold tracking-wide text-[#C7A35A] transition-colors group-hover:bg-[#0F5C46] group-hover:text-white sm:mx-7 sm:mb-0">
-                {currentLang === 'de' ? 'Karte öffnen' : currentLang === 'pl' ? 'Otwórz kartę' : 'Open card'}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </span>
-            </div>
-          </button>
-        </div>
         {personalStoryOpen && (
           <React.Suspense fallback={null}>
             <PersonalStoryDialog currentLang={currentLang} open={personalStoryOpen} onClose={() => setPersonalStoryOpen(false)} />
