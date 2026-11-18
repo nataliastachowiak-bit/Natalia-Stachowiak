@@ -21,8 +21,8 @@
 .edition-collection-hint {display:inline-flex;align-items:center;gap:8px;color:var(--edition-gold);font-size:11px;white-space:nowrap;}
 .edition-display {position:relative;min-width:0;isolation:isolate;background:linear-gradient(180deg,rgba(6,61,47,.1),transparent 86%);border-radius:16px 16px 0 0;}
 .edition-shelf-scroll {position:relative;z-index:1;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scroll-padding-inline:14px;scrollbar-width:thin;scrollbar-color:#856D43 #101714;overscroll-behavior-x:contain;padding:16px 10px 25px;}
-.edition-shelf-albums {display:flex;align-items:flex-start;justify-content:flex-start;gap:clamp(10px,1.2vw,22px);width:100%;min-width:max-content;}
-.edition-album {width:clamp(148px,calc((100vw - 130px)/6),194px);flex:none;scroll-snap-align:start;min-width:0;}
+.edition-shelf-albums {display:grid;grid-template-columns:repeat(6,minmax(0,1fr));align-items:start;gap:clamp(8px,1vw,16px);width:100%;min-width:0;}
+.edition-album {width:100%;min-width:0;scroll-snap-align:start;}
 .edition-album-button {border:0;padding:0;width:100%;color:inherit;text-align:left;background:transparent;cursor:pointer;display:block;}
 .edition-album-button:focus-visible {outline:2px solid #DCC27F;outline-offset:5px;}
 .edition-album-art {display:flex;flex-direction:column;justify-content:space-between;position:relative;isolation:isolate;overflow:hidden;aspect-ratio:1 / 1;width:100%;padding:clamp(10px,1.05vw,16px);color:#F7F0DE;border:1px solid rgba(238,219,170,.35);box-shadow:0 13px 24px rgba(0,0,0,.47),inset 0 0 0 1px rgba(255,255,255,.12);background:#0C3F32;transition:transform .25s ease,box-shadow .25s ease;will-change:transform;}
@@ -77,12 +77,16 @@
 .edition-cert-actions a:hover,.edition-cert-actions a:focus-visible {background:#0F5C46;}
 .edition-collection-footnote {display:flex;align-items:center;gap:8px;font-size:11px;line-height:1.5;color:#9FB1A5;margin-top:20px;}
 .edition-collection-footnote svg {flex:none;color:#C7A35A;}
-@media (min-width:1450px) {
- .edition-album {width:194px;}
- .edition-shelf-albums {justify-content:space-between;}
+/* Desktop: all six covers fit the actual shelf width, not viewport width.
+   Mobile and narrower layouts keep exactly one horizontally scrollable shelf. */
+@media (min-width:1101px) {
+ .edition-shelf-controls>div {display:none;}
+}
+@media (max-width:1100px) {
+ .edition-shelf-albums {display:flex;align-items:start;gap:16px;width:max-content;min-width:100%;}
+ .edition-album {width:176px;flex:0 0 176px;}
 }
 @media (max-width:850px) {
- .edition-album {width:174px;}
  .edition-details-grid {grid-template-columns:repeat(2,minmax(0,1fr));}
 }
 @media (max-width:520px) {
