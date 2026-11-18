@@ -21,9 +21,9 @@
 .journey-route-halo {fill:rgba(247,202,107,.15);stroke:rgba(247,202,107,.58);stroke-width:1.5;}
 .journey-waypoint {position:relative;min-width:0;min-height:185px;display:flex;flex-direction:column;align-items:stretch;text-align:left;padding:19px 18px 17px;background:linear-gradient(145deg,rgba(19,43,32,.95),rgba(8,17,13,.96));border:1px solid rgba(199,163,90,.25);border-radius:15px;color:#F4F1EA;cursor:pointer;box-shadow:0 9px 22px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.04);transition:border-color .22s ease,transform .22s ease,box-shadow .22s ease;}
 .journey-waypoint:hover,.journey-waypoint:focus-visible {transform:translateY(-5px);border-color:#C7A35A;box-shadow:0 17px 30px rgba(0,0,0,.4),0 0 0 1px rgba(199,163,90,.22);outline:none;}
-.journey-waypoint:nth-child(4) {grid-row:2;grid-column:3;}
-.journey-waypoint:nth-child(5) {grid-row:2;grid-column:2;}
-.journey-waypoint:nth-child(6) {grid-row:2;grid-column:1;}
+.journey-waypoint--digital {grid-row:2;grid-column:3;}
+.journey-waypoint--product {grid-row:2;grid-column:2;}
+.journey-waypoint--ai {grid-row:2;grid-column:1;}
 .journey-waypoint--ai {background:radial-gradient(circle at 92% 8%,rgba(199,163,90,.20),transparent 54%),linear-gradient(135deg,#143D2E,#092018 80%);border-color:rgba(199,163,90,.75);}
 .journey-waypoint-top {display:flex;align-items:center;justify-content:space-between;gap:12px;}
 .journey-waypoint-marker {height:32px;width:32px;flex:none;border-radius:50%;display:grid;place-items:center;background:#0C1A13;border:1px solid #C7A35A;color:#E4C57D;box-shadow:0 0 0 4px rgba(199,163,90,.07);font:700 11px ui-monospace,monospace;}
@@ -42,7 +42,7 @@
 @media (max-width:980px) {
   .journey-map-route {display:none;}
    .journey-map-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
-  .journey-waypoint:nth-child(n) {grid-column:auto;grid-row:auto;}
+  .journey-waypoint {grid-column:auto;grid-row:auto;}
   .journey-waypoint {min-height:183px;}
 }
 @media (max-width:610px) {
