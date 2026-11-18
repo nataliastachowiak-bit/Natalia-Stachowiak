@@ -1,30 +1,30 @@
 /* My Journey — interactive, lightweight career atlas. Six stations on a winding route. */
 .journey-atlas-main {min-width:0;width:100%;margin:0;position:relative;}
 .journey-atlas {--atlas-gold:#C7A35A;--atlas-green:#0F5C46;position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 87% 9%,rgba(45,125,93,.20),transparent 46%),linear-gradient(145deg,#101A15 0%,#0A100D 65%,#11170F 100%);border:1px solid rgba(199,163,90,.33);border-radius:23px;padding:18px clamp(14px,2.5vw,29px) 23px;box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 20px 44px rgba(0,0,0,.2);}
-.journey-atlas::before {content:'';pointer-events:none;z-index:0;position:absolute;inset:-120px -30px;background:repeating-radial-gradient(ellipse at 78% 36%,transparent 0 29px,rgba(199,163,90,.075) 30px 31px,transparent 32px 55px);transform:rotate(-13deg);opacity:.5;}
+.journey-atlas::before {content:'';pointer-events:none;z-index:0;position:absolute;inset:-120px -30px;background:repeating-radial-gradient(ellipse at 78% 36%,transparent 0 29px,rgba(199,163,90,.045) 30px 31px,transparent 32px 55px);transform:rotate(-13deg);opacity:.32;}
 .journey-atlas-top {position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(199,163,90,.24);padding:0 2px 16px;margin-bottom:19px;}
 .journey-atlas-eyebrow {font:700 10px ui-monospace,monospace;letter-spacing:.24em;color:#C7A35A;text-transform:uppercase;}
 .journey-atlas-title {margin-top:6px;font-family:Georgia,'Times New Roman',serif;font-size:clamp(20px,2.4vw,31px);line-height:1.18;font-weight:normal;letter-spacing:-.025em;color:#F4F1EA;}
 .journey-atlas-description {font-size:12px;line-height:1.6;color:#A9B5A9;margin-top:5px;}
 .journey-atlas-stamp {color:#C7A35A;display:flex;align-items:center;gap:7px;font:700 11px ui-monospace,monospace;letter-spacing:.1em;white-space:nowrap;border:1px solid rgba(199,163,90,.35);border-radius:999px;padding:8px 12px;background:rgba(7,20,15,.7);}
 .journey-map-stage {position:relative;z-index:1;}
-.journey-map-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:26px;row-gap:110px;position:relative;z-index:1;}
+.journey-map-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:26px;row-gap:96px;position:relative;z-index:1;}
 /* Gold route lives entirely in the central corridor between rows.
-   Strong solid line + soft halo, not under the opaque cards. */
-.journey-map-route {position:absolute;pointer-events:none;z-index:2;left:0;top:calc(50% - 55px);width:100%;height:110px;overflow:visible;opacity:1;filter:drop-shadow(0 0 2px rgba(255,211,123,.65));}
+   Refined thin solid line + very soft halo, not under the opaque cards. */
+.journey-map-route {position:absolute;pointer-events:none;z-index:2;left:0;top:calc(50% - 48px);width:100%;height:96px;overflow:visible;opacity:.96;filter:drop-shadow(0 0 1px rgba(255,211,123,.28));}
 .journey-map-route path {fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;}
-.journey-map-route .journey-route-underlay {stroke:rgba(227,183,95,.2);stroke-width:19;stroke-dasharray:none;}
-.journey-map-route .journey-route-glow {stroke:rgba(253,211,125,.48);stroke-width:8;stroke-dasharray:none;}
-.journey-map-route .journey-route-main {stroke:#F1CE80;stroke-width:3.6;stroke-dasharray:none;}
-.journey-map-route .journey-route-branches {stroke:#F1CE80;stroke-width:2.6;stroke-dasharray:none;}
-.journey-route-pin {fill:#FFDC8C;stroke:#19281F;stroke-width:2;}
-.journey-route-halo {fill:rgba(247,202,107,.15);stroke:rgba(247,202,107,.58);stroke-width:1.5;}
-.journey-waypoint {position:relative;min-width:0;min-height:185px;display:flex;flex-direction:column;align-items:stretch;text-align:left;padding:19px 18px 17px;background:linear-gradient(145deg,rgba(19,43,32,.95),rgba(8,17,13,.96));border:1px solid rgba(199,163,90,.25);border-radius:15px;color:#F4F1EA;cursor:pointer;box-shadow:0 9px 22px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.04);transition:border-color .22s ease,transform .22s ease,box-shadow .22s ease;}
-.journey-waypoint:hover,.journey-waypoint:focus-visible {transform:translateY(-5px);border-color:#C7A35A;box-shadow:0 17px 30px rgba(0,0,0,.4),0 0 0 1px rgba(199,163,90,.22);outline:none;}
+.journey-map-route .journey-route-underlay {stroke:rgba(227,183,95,.08);stroke-width:10;stroke-dasharray:none;}
+.journey-map-route .journey-route-glow {stroke:rgba(253,211,125,.22);stroke-width:4.5;stroke-dasharray:none;}
+.journey-map-route .journey-route-main {stroke:#E7C06D;stroke-width:2.2;stroke-dasharray:none;}
+.journey-map-route .journey-route-branches {stroke:#E7C06D;stroke-width:1.8;stroke-dasharray:none;}
+.journey-route-pin {fill:#F3CD7A;stroke:#132018;stroke-width:1.5;}
+.journey-route-halo {fill:rgba(247,202,107,.08);stroke:rgba(247,202,107,.35);stroke-width:1;}
+.journey-waypoint {position:relative;min-width:0;min-height:185px;display:flex;flex-direction:column;align-items:stretch;text-align:left;padding:20px 20px 18px;background:linear-gradient(145deg,rgba(16,38,29,.96),rgba(7,14,11,.98));border:1px solid rgba(199,163,90,.22);border-radius:18px;color:#F4F1EA;cursor:pointer;box-shadow:0 10px 24px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.03);transition:border-color .22s ease,transform .22s ease,box-shadow .22s ease;}
+.journey-waypoint:hover,.journey-waypoint:focus-visible {transform:translateY(-4px);border-color:rgba(199,163,90,.45);box-shadow:0 16px 28px rgba(0,0,0,.28),0 0 0 1px rgba(199,163,90,.10);outline:none;}
 .journey-waypoint--digital {grid-row:2;grid-column:3;}
 .journey-waypoint--product {grid-row:2;grid-column:2;}
 .journey-waypoint--ai {grid-row:2;grid-column:1;}
-.journey-waypoint--ai {background:radial-gradient(circle at 92% 8%,rgba(199,163,90,.20),transparent 54%),linear-gradient(135deg,#143D2E,#092018 80%);border-color:rgba(199,163,90,.75);}
+.journey-waypoint--ai {background:radial-gradient(circle at 92% 8%,rgba(199,163,90,.14),transparent 54%),linear-gradient(135deg,#163D2F,#0A1C15 80%);border-color:rgba(199,163,90,.60);box-shadow:0 12px 28px rgba(0,0,0,.24),0 0 0 1px rgba(199,163,90,.12),inset 0 1px 0 rgba(255,255,255,.03);}
 .journey-waypoint-top {display:flex;align-items:center;justify-content:space-between;gap:12px;}
 .journey-waypoint-marker {height:32px;width:32px;flex:none;border-radius:50%;display:grid;place-items:center;background:#0C1A13;border:1px solid #C7A35A;color:#E4C57D;box-shadow:0 0 0 4px rgba(199,163,90,.07);font:700 11px ui-monospace,monospace;}
 .journey-waypoint-icon {display:grid;place-items:center;width:32px;height:32px;border:1px solid rgba(199,163,90,.28);border-radius:11px;color:#C7A35A;background:rgba(199,163,90,.08);}
