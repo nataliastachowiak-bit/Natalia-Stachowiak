@@ -744,16 +744,26 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ currentLang: initialLa
                 </span>
               </div>
               <div className="journey-map-stage">
-                <svg className="journey-map-route" viewBox="0 0 920 390" preserveAspectRatio="none" aria-hidden="true">
-                  <path className="journey-route-underlay" d="M80 90 C180 20 280 40 440 88 S725 35 840 95 C950 170 875 225 810 290 S585 365 440 294 S185 245 80 300" />
-                  <path d="M80 90 C180 20 280 40 440 88 S725 35 840 95 C950 170 875 225 810 290 S585 365 440 294 S185 245 80 300" />
-                </svg>
                 <div className="journey-map-grid">
+                  {/* Dedicated connecting lane between the two rows. The route
+                      stays fully visible instead of being hidden behind cards. */}
+                  <svg className="journey-map-route" viewBox="0 0 920 110" preserveAspectRatio="none" aria-hidden="true">
+                    <path className="journey-route-underlay" d="M145 0 V28 C230 40 325 14 460 32 S675 41 770 30 Q892 55 770 82 C635 100 550 74 460 83 S242 100 145 83 V110" />
+                    <path className="journey-route-glow" d="M145 0 V28 C230 40 325 14 460 32 S675 41 770 30 Q892 55 770 82 C635 100 550 74 460 83 S242 100 145 83 V110" />
+                    <path className="journey-route-main" d="M145 0 V28 C230 40 325 14 460 32 S675 41 770 30 Q892 55 770 82 C635 100 550 74 460 83 S242 100 145 83 V110" />
+                    <path className="journey-route-branches" d="M460 0 V32 M770 0 V30 M770 82 V110 M460 83 V110" />
+                    {[[145,28],[460,32],[770,30],[770,82],[460,83],[145,83]].map(([cx,cy],index) => (
+                      <g key={index}>
+                        <circle cx={cx} cy={cy} r="10" className="journey-route-halo" />
+                        <circle cx={cx} cy={cy} r="5" className="journey-route-pin" />
+                      </g>
+                    ))}
+                  </svg>
                   {t.stages.map((stage) => (
                     <button
                       key={stage.id}
                       type="button"
-                      className={`journey-waypoint ${stage.id === 'ai' ? 'journey-waypoint--ai' : ''}`}
+                      className={`journey-waypoint journey-waypoint--${stage.id}`}
                       onClick={() => setDetailModalStage(stage)}
                       aria-label={`${stage.num}: ${stage.headline} – ${t.detailsButtonText}`}
                     >
