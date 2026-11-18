@@ -10,8 +10,6 @@ import {
   ShieldCheck,
   Award,
   ExternalLink,
-  ChevronDown,
-  ChevronsUpDown,
   Search,
   X,
   SearchX,
@@ -41,15 +39,6 @@ interface CategoryDefinition {
 export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang }) => {
   // Search query state
   const [searchQuery, setSearchQuery] = useState<string>('');
-
-  // Track accordion expand/collapse per category
-  const [expandedCategories, setExpandedCategories] = useState<Record<CategoryId, boolean>>({
-    academic: false,
-    product: false,
-    agile: false,
-    ai: false,
-    language: false,
-  });
 
   const [activeCert, setActiveCert] = useState<CertificateItem | null>(null);
 
@@ -251,27 +240,6 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
     []
   );
 
-  // Six role-relevant credentials, ordered deliberately for Digital Product & AI.
-  // Google Cloud remains visible in its specialist category, not as a key credential.
-  const featuredCredentials = useMemo(() => {
-    const targetIds = [
-      'cert-pspo-1',
-      'cert-psm-1',
-      'cert-hp-ai-strategy',
-      'cert-microsoft-ai-foundations',
-      'cert-product-design',
-      'cert-agile-inn',
-    ];
-    return targetIds
-      .map((id) => CERTIFICATES.find((cert) => cert.id === id))
-      .filter((cert): cert is CertificateItem => Boolean(cert));
-  }, []);
-
-  const totalCertificatesCount = useMemo(
-    () => rawCategories.reduce((sum, cat) => sum + cat.items.length, 0),
-    [rawCategories]
-  );
-
   // Search filter logic across all categories
   const isSearching = searchQuery.trim().length > 0;
   const normalizedQuery = searchQuery.trim().toLowerCase();
@@ -325,26 +293,6 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
     return categoriesWithFilteredItems.reduce((sum, cat) => sum + cat.matchCount, 0);
   }, [categoriesWithFilteredItems]);
 
-  const toggleCategory = (id: CategoryId) => {
-    setExpandedCategories((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
-  const areAllExpanded = Object.values(expandedCategories).every(Boolean);
-
-  const toggleAll = () => {
-    const nextState = !areAllExpanded;
-    setExpandedCategories({
-      academic: nextState,
-      product: nextState,
-      agile: nextState,
-      ai: nextState,
-      language: nextState,
-    });
-  };
-
   const handleClearSearch = () => {
     setSearchQuery('');
   };
@@ -379,19 +327,12 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({ currentLang 
               </p>
             </div>
 
-            {/* Global Summary Badge & Expand/Collapse Toggle */}
+            {/* Global summary */}
             <div className="flex items-center gap-3 self-start lg:self-end">
               <span className="rounded-full border border-[#C7A35A]/30 bg-[#101412] px-4 py-2 font-sans text-xs font-semibold text-[#F4F1EA]">
                 {rawCategories.reduce((count, category) => count + category.items.filter((cert) => cert.status === 'COMPLETED').length, 0)} {currentLang === 'de' ? 'abgeschlossen' : currentLang === 'pl' ? 'ukończone' : 'completed'} · {rawCategories.reduce((count, category) => count + category.items.filter((cert) => cert.status === 'IN_PROGRESS').length, 0)} {currentLang === 'de' ? 'laufend' : currentLang === 'pl' ? 'w toku' : 'in progress'}
               </span>
-              <button
-                type="button"
-                onClick={toggleAll}
-                className="inline-flex items-center gap-1.5 rounded-full border border-[#0F5C46] bg-[#0F5C46]/25 px-4 py-2 font-sans text-xs font-semibold text-[#F4F1EA] hover:border-[#C7A35A] hover:bg-[#0F5C46] hover:text-white transition-all uppercase tracking-wider"
-              >
-                <ChevronsUpDown className="h-3.5 w-3.5 text-[#C7A35A]" />
-                <span>{areAllExpanded ? t.collapseAll : t.expandAll}</span>
-              </button>
+
             </div>
           </div>
         </div>
