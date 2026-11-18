@@ -21,6 +21,7 @@ import { BackToPortfolio } from '../components/BackToPortfolio';
 import { CV_FILE } from '../data/assetRegistry';
 import { getAbsoluteAssetUrl } from '../utils/assetPath';
 import { downloadCvDocument } from '../utils/cvHelper';
+import './JourneyAtlas.css';
 
 interface JourneyPageProps {
   currentLang: Language;
@@ -720,136 +721,70 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ currentLang: initialLa
 
           </header>
 
-          {/* Chronological path before the milestone cards */}
-          <nav aria-label={activeLang === 'de' ? 'Chronologischer Weg' : activeLang === 'pl' ? 'Chronologiczna ścieżka' : 'Chronological path'} className="w-full">
-            {/* Chronological journey overview above the six cards; all stage buttons stay interactive. */}
-            <div className="w-full rounded-xl border border-[#0F5C46]/35 bg-[#101412] p-4 sm:p-5 shadow-lg">
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 flex-wrap text-center sm:text-left">
-                <span className="font-mono text-xs font-bold tracking-widest text-[#C7A35A] uppercase shrink-0">
-                  {t.timelineTitle}:
+          {/* Six chapters plotted along a winding career route.
+              The existing comprehensive detail dialog remains unchanged. */}
+          <main className="journey-atlas-main">
+            <section className="journey-atlas" aria-label={t.timelineTitle}>
+              <div className="journey-atlas-top">
+                <div>
+                  <p className="journey-atlas-eyebrow">{t.eyebrow} / 01—06</p>
+                  <h2 className="journey-atlas-title">
+                    {activeLang === 'de' ? 'Meine Karriere ist eine Entdeckungsreise.'
+                      : activeLang === 'pl' ? 'Moja kariera to podróż pełna odkryć.'
+                      : 'My career is a journey of discovery.'}
+                  </h2>
+                  <p className="journey-atlas-description">
+                    {activeLang === 'de' ? 'Sechs Kapitel. Ein roter Faden. Wähle eine Station und entdecke die Geschichte dahinter.'
+                      : activeLang === 'pl' ? 'Sześć rozdziałów. Jedna droga. Wybierz etap, by poznać jego historię.'
+                      : 'Six chapters. One continuous story. Choose a stop to discover what shaped my path.'}
+                  </p>
+                </div>
+                <span className="journey-atlas-stamp" aria-label="6 chapters">
+                  <Layers className="h-4 w-4" /> 06
                 </span>
-                <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-                  {t.stages.map((stage, idx) => (
-                    <React.Fragment key={stage.id}>
-                      {idx > 0 && (
-                        <span className="text-[#C7A35A]/50 font-mono text-xs select-none" aria-hidden="true">
-                          →
-                        </span>
-                      )}
-                      <button
-                        type="button"
-                        onClick={() => setDetailModalStage(stage)}
-                        className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1 font-mono text-xs sm:text-[13px] font-bold tracking-wide uppercase transition-all border ${
-                          stage.id === 'ai'
-                            ? 'border-[#C7A35A]/60 bg-[#0F5C46]/30 text-[#C7A35A] shadow-sm'
-                            : 'border-[#0F5C46]/30 bg-[#080A09] text-[#E5E7EB] hover:border-[#C7A35A] hover:text-[#C7A35A]'
-                        } focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#C7A35A]`}
-                      >
-                        <span className="text-[#C7A35A]">{stage.num}</span>
-                        <span>{stage.actionVerb}</span>
-                      </button>
-                    </React.Fragment>
+              </div>
+              <div className="journey-map-stage">
+                <svg className="journey-map-route" viewBox="0 0 920 390" preserveAspectRatio="none" aria-hidden="true">
+                  <path className="journey-route-underlay" d="M80 90 C180 20 280 40 440 88 S725 35 840 95 C950 170 875 225 810 290 S585 365 440 294 S185 245 80 300" />
+                  <path d="M80 90 C180 20 280 40 440 88 S725 35 840 95 C950 170 875 225 810 290 S585 365 440 294 S185 245 80 300" />
+                </svg>
+                <div className="journey-map-grid">
+                  {t.stages.map((stage) => (
+                    <button
+                      key={stage.id}
+                      type="button"
+                      className={`journey-waypoint ${stage.id === 'ai' ? 'journey-waypoint--ai' : ''}`}
+                      onClick={() => setDetailModalStage(stage)}
+                      aria-label={`${stage.num}: ${stage.headline} – ${t.detailsButtonText}`}
+                    >
+                      <span className="journey-waypoint-top">
+                        <span className="journey-waypoint-marker">{stage.num}</span>
+                        <span className="journey-waypoint-icon" aria-hidden="true">{getStageIcon(stage.id)}</span>
+                      </span>
+                      <span className="journey-waypoint-action">{stage.actionVerb}</span>
+                      <span className="journey-waypoint-heading">{stage.headline}</span>
+                      <span className="journey-waypoint-subtitle">{stage.title}</span>
+                      <span className="journey-waypoint-bottom">
+                        <span>{t.detailsButtonText}</span>
+                        <ArrowRight aria-hidden="true" />
+                      </span>
+                    </button>
                   ))}
                 </div>
               </div>
-            </div>
-
-          </nav>
-
-          {/* ============================================================ */}
-          {/* 2. SIX MILESTONE CARDS                                        */}
-          {/* Desktop: 3 columns with 2 rows (lg:grid-cols-3)              */}
-          {/* Tablet: 2 columns (sm:grid-cols-2)                           */}
-          {/* Mobile: 1 column (grid-cols-1)                               */}
-          {/* Fließtext 15-16px, Title 18-20px, Full-width button, NO cutoffs */}
-          {/* ============================================================ */}
-          <main className="w-full flex-grow py-2">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch w-full">
-              {t.stages.map((stage) => {
-                const isNow = stage.id === 'ai';
-
-                return (
-                  <button
-                    key={stage.id}
-                    type="button"
-                    onClick={() => setDetailModalStage(stage)}
-                    className={`group relative text-left w-full h-full rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C7A35A] ${
-                      isNow
-                        ? 'bg-gradient-to-b from-[#101914] to-[#0C120F] border border-[#C7A35A]/50 hover:border-[#C7A35A] shadow-[0_8px_30px_rgba(0,0,0,0.5)]'
-                        : 'bg-[#101412] border border-[#0F5C46]/35 hover:border-[#C7A35A]/50 hover:bg-[#0E1512] shadow-md'
-                    }`}
-                  >
-                    
-                    {/* Top Meta: Stage Number, Action Verb & Icon */}
-                    <div className="space-y-4 w-full">
-                      
-                      <div className="flex items-center justify-between gap-3 border-b border-[#0F5C46]/25 pb-3.5">
-                        <div className="flex items-center gap-2.5">
-                          <span
-                            className={`font-mono text-sm sm:text-base font-bold tracking-wider ${
-                              isNow ? 'text-[#C7A35A]' : 'text-[#148B78]'
-                            }`}
-                          >
-                            {stage.num}
-                          </span>
-                          <span className="text-[#0F5C46]/40 text-sm">/</span>
-                          <span className="font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#C7A35A] font-semibold">
-                            {stage.actionVerb}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          {stage.focusBadge && (
-                            <span className="rounded bg-[#C7A35A]/15 text-[#C7A35A] border border-[#C7A35A]/40 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider">
-                              {stage.focusBadge}
-                            </span>
-                          )}
-                          <div className="p-2 rounded-lg bg-[#080A09] border border-[#0F5C46]/40">
-                            {getStageIcon(stage.id)}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Headings: 18-20px title, 13-14px label, complete text, never truncated */}
-                      <div className="space-y-1.5">
-                        <h2 className="font-serif text-[19px] sm:text-xl font-normal text-[#F4F1EA] tracking-wide leading-snug break-words">
-                          {stage.headline}
-                        </h2>
-                        <p className="font-sans text-[13px] sm:text-sm font-medium text-[#C7A35A] leading-normal break-words">
-                          {stage.title}
-                        </p>
-                      </div>
-
-                      {/* Short Summary: 15-16px body copy, generous line-height, high contrast */}
-                      <p className="font-sans text-[15px] sm:text-base text-[#D1D5DB] leading-relaxed break-words">
-                        {stage.shortDesc}
-                      </p>
-
-                    </div>
-
-                    {/* Middle: Key Strengths (Clean, readable 14-15px typography) */}
-                    <div className="pt-4 my-4 w-full border-t border-[#0F5C46]/25 flex-grow">
-                      <ul className="space-y-2.5 text-[14px] sm:text-[15px] text-[#E5E7EB] font-sans">
-                        {stage.keyStrengths.map((str) => (
-                          <li key={str} className="flex items-start gap-2.5 leading-snug break-words">
-                            <span className="text-[#148B78] select-none text-xs mt-1 shrink-0">▪</span>
-                            <span className="leading-relaxed">{str}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Bottom: Full-Width Prominent "Details anzeigen →" Button (No truncated labels) */}
-                    <div className="mt-auto pt-4 border-t border-[#0F5C46]/25 w-full">
-                      <div className="w-full inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-[#C7A35A]/35 bg-[#0F5C46]/20 py-2.5 px-4 font-sans text-xs sm:text-sm font-semibold tracking-wider text-[#F4F1EA] group-hover:bg-[#0F5C46] group-hover:border-[#C7A35A] group-hover:text-white group-hover:shadow-[0_0_20px_rgba(15,92,70,0.4)] transition-all uppercase cursor-pointer">
-                        <span>{t.detailsButtonText}</span>
-                        <ArrowRight className="h-4 w-4 text-[#C7A35A] group-hover:text-white group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-
-                  </button>
-                );
-              })}
-            </div>
+              <div className="journey-atlas-footer">
+                <span className="journey-atlas-legend">
+                  {activeLang === 'de' ? 'Station auswählen, um das Kapitel zu öffnen'
+                    : activeLang === 'pl' ? 'Wybierz etap, aby otworzyć rozdział'
+                    : 'Select a stop to open its chapter'}
+                </span>
+                <strong>
+                  {activeLang === 'de' ? 'SCIENCE → INNOVATION'
+                    : activeLang === 'pl' ? 'NAUKA → INNOWACJA'
+                    : 'SCIENCE → INNOVATION'}
+                </strong>
+              </div>
+            </section>
           </main>
 
           {/* ============================================================ */}
