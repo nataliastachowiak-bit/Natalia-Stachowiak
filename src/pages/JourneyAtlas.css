@@ -1,0 +1,58 @@
+/* My Journey — interactive, lightweight career atlas. Six stations on a winding route. */
+.journey-atlas-main {min-width:0;width:100%;margin:0;position:relative;}
+.journey-atlas {--atlas-gold:#C7A35A;--atlas-green:#0F5C46;position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 87% 9%,rgba(45,125,93,.20),transparent 46%),linear-gradient(145deg,#101A15 0%,#0A100D 65%,#11170F 100%);border:1px solid rgba(199,163,90,.33);border-radius:23px;padding:18px clamp(14px,2.5vw,29px) 23px;box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 20px 44px rgba(0,0,0,.2);}
+.journey-atlas::before {content:'';pointer-events:none;z-index:0;position:absolute;inset:-120px -30px;background:repeating-radial-gradient(ellipse at 78% 36%,transparent 0 29px,rgba(199,163,90,.075) 30px 31px,transparent 32px 55px);transform:rotate(-13deg);opacity:.5;}
+.journey-atlas-top {position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(199,163,90,.24);padding:0 2px 16px;margin-bottom:19px;}
+.journey-atlas-eyebrow {font:700 10px ui-monospace,monospace;letter-spacing:.24em;color:#C7A35A;text-transform:uppercase;}
+.journey-atlas-title {margin-top:6px;font-family:Georgia,'Times New Roman',serif;font-size:clamp(20px,2.4vw,31px);line-height:1.18;font-weight:normal;letter-spacing:-.025em;color:#F4F1EA;}
+.journey-atlas-description {font-size:12px;line-height:1.6;color:#A9B5A9;margin-top:5px;}
+.journey-atlas-stamp {color:#C7A35A;display:flex;align-items:center;gap:7px;font:700 11px ui-monospace,monospace;letter-spacing:.1em;white-space:nowrap;border:1px solid rgba(199,163,90,.35);border-radius:999px;padding:8px 12px;background:rgba(7,20,15,.7);}
+.journey-map-stage {position:relative;z-index:1;}
+.journey-map-route {position:absolute;pointer-events:none;z-index:0;left:7%;top:20px;width:86%;height:calc(100% - 37px);overflow:visible;opacity:.76;}
+.journey-map-route path {stroke:#BEA365;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:2 11;fill:none;vector-effect:non-scaling-stroke;}
+.journey-map-route .journey-route-underlay {stroke:rgba(199,163,90,.1);stroke-width:18;stroke-dasharray:none;}
+.journey-map-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:25px 26px;position:relative;z-index:1;}
+.journey-waypoint {position:relative;min-width:0;min-height:185px;display:flex;flex-direction:column;align-items:stretch;text-align:left;padding:19px 18px 17px;background:linear-gradient(145deg,rgba(19,43,32,.95),rgba(8,17,13,.96));border:1px solid rgba(199,163,90,.25);border-radius:15px;color:#F4F1EA;cursor:pointer;box-shadow:0 9px 22px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.04);transition:border-color .22s ease,transform .22s ease,box-shadow .22s ease;}
+.journey-waypoint:hover,.journey-waypoint:focus-visible {transform:translateY(-5px);border-color:#C7A35A;box-shadow:0 17px 30px rgba(0,0,0,.4),0 0 0 1px rgba(199,163,90,.22);outline:none;}
+.journey-waypoint:nth-child(4) {grid-row:2;grid-column:3;}
+.journey-waypoint:nth-child(5) {grid-row:2;grid-column:2;}
+.journey-waypoint:nth-child(6) {grid-row:2;grid-column:1;}
+.journey-waypoint--ai {background:radial-gradient(circle at 92% 8%,rgba(199,163,90,.20),transparent 54%),linear-gradient(135deg,#143D2E,#092018 80%);border-color:rgba(199,163,90,.75);}
+.journey-waypoint-top {display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.journey-waypoint-marker {height:32px;width:32px;flex:none;border-radius:50%;display:grid;place-items:center;background:#0C1A13;border:1px solid #C7A35A;color:#E4C57D;box-shadow:0 0 0 4px rgba(199,163,90,.07);font:700 11px ui-monospace,monospace;}
+.journey-waypoint-icon {display:grid;place-items:center;width:32px;height:32px;border:1px solid rgba(199,163,90,.28);border-radius:11px;color:#C7A35A;background:rgba(199,163,90,.08);}
+.journey-waypoint-icon svg {height:18px;width:18px;stroke:#C7A35A;}
+.journey-waypoint-action {font-size:10px;font-weight:800;letter-spacing:.18em;color:#C7A35A;text-transform:uppercase;margin-top:13px;}
+.journey-waypoint-heading {font-family:Georgia,'Times New Roman',serif;font-size:clamp(17px,1.65vw,23px);font-weight:normal;line-height:1.1;letter-spacing:-.012em;margin-top:5px;overflow-wrap:anywhere;}
+.journey-waypoint-subtitle {color:#C9D5C9;font-size:11px;margin-top:7px;line-height:1.4;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;}
+.journey-waypoint-bottom {border-top:1px solid rgba(199,163,90,.2);margin-top:auto;padding-top:11px;display:flex;align-items:center;justify-content:space-between;gap:8px;font:700 10px ui-monospace,monospace;letter-spacing:.1em;color:#D7B976;text-transform:uppercase;}
+.journey-waypoint-bottom svg {width:15px;height:15px;transition:transform .22s;}
+.journey-waypoint:hover .journey-waypoint-bottom svg,.journey-waypoint:focus-visible .journey-waypoint-bottom svg {transform:translateX(4px);}
+.journey-atlas-footer {position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:19px;padding:0 2px;color:#91A79A;font-size:11px;line-height:1.4;}
+.journey-atlas-footer strong {font-weight:700;color:#C7A35A;}
+.journey-atlas-legend {display:flex;align-items:center;gap:8px;}
+.journey-atlas-legend::before {content:'';display:block;width:24px;border-top:2px dotted #C7A35A;}
+@media (max-width:980px) {
+  .journey-map-route {display:none;}
+  .journey-map-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;}
+  .journey-waypoint:nth-child(n) {grid-column:auto;grid-row:auto;}
+  .journey-waypoint {min-height:183px;}
+}
+@media (max-width:610px) {
+  .journey-atlas {padding:16px 13px 20px;border-radius:17px;}
+  .journey-atlas-top {align-items:flex-start;}
+  .journey-atlas-stamp {font-size:10px;padding:7px 9px;}
+  .journey-atlas-description {font-size:11px;}
+  .journey-map-grid {grid-template-columns:minmax(0,1fr);gap:14px;padding-left:14px;}
+  .journey-map-grid::before {content:'';position:absolute;top:21px;bottom:24px;left:0;border-left:2px dashed rgba(199,163,90,.6);}
+  .journey-waypoint {min-height:165px;padding:17px 16px;}
+  .journey-waypoint::before {content:'';position:absolute;left:-20px;top:28px;height:9px;width:9px;border-radius:50%;background:#C7A35A;border:2px solid #10281D;}
+  .journey-waypoint-heading {font-size:22px;}
+  .journey-waypoint-subtitle {font-size:12px;}
+  .journey-atlas-footer {align-items:flex-start;flex-direction:column;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .journey-waypoint,.journey-waypoint-bottom svg {transition:none;}
+  .journey-waypoint:hover,.journey-waypoint:focus-visible {transform:none;}
+  .journey-waypoint:hover .journey-waypoint-bottom svg {transform:none;}
+}
