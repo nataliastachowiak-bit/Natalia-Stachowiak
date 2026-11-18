@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Award, Check, ChevronDown, Disc3, ExternalLink, Eye, FileText, ShieldCheck } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { Award, ChevronDown, ChevronLeft, ChevronRight, Disc3, ExternalLink, Eye, FileText, ShieldCheck } from 'lucide-react';
 import type { CertificateItem, Language } from '../types';
 import './CertificateVinylShelf.css';
 
@@ -23,7 +23,7 @@ interface CertificateVinylShelfProps {
 const ui = {
   de: {
     heading: 'THE CREDENTIAL COLLECTION',
-    intro: 'Fünf Themen. Eine Sammlung. Wähle ein Cover, um die Qualifikationen und ihre Nachweise zu entdecken.',
+    intro: 'Sechs Bereiche. Ein einziges Vinyl-Regal. Wähle ein Cover, um die Qualifikationen und ihre Nachweise zu entdecken.',
     edition: 'COLLECTION / 2026',
     select: 'Sammlung öffnen',
     close: 'Sammlung schließen',
@@ -37,10 +37,12 @@ const ui = {
     progress: 'In Weiterbildung',
     results: 'Suchtreffer',
     hint: 'Cover auswählen',
+    scrollPrev: 'Regal nach links bewegen',
+    scrollNext: 'Regal nach rechts bewegen',
   },
   en: {
     heading: 'THE CREDENTIAL COLLECTION',
-    intro: 'Five disciplines. One collection. Select a cover to explore credentials and evidence.',
+    intro: 'Six categories. One vinyl shelf. Select a cover to explore credentials and evidence.',
     edition: 'COLLECTION / 2026',
     select: 'Open collection',
     close: 'Close collection',
@@ -54,10 +56,12 @@ const ui = {
     progress: 'In progress',
     results: 'Search matches',
     hint: 'Select a cover',
+    scrollPrev: 'Scroll shelf left',
+    scrollNext: 'Scroll shelf right',
   },
   pl: {
     heading: 'THE CREDENTIAL COLLECTION',
-    intro: 'Pięć dziedzin. Jedna kolekcja. Wybierz okładkę, aby zobaczyć kwalifikacje i dokumenty.',
+    intro: 'Sześć obszarów. Jedna półka z płytami. Wybierz okładkę, aby zobaczyć kwalifikacje i dokumenty.',
     edition: 'COLLECTION / 2026',
     select: 'Otwórz kolekcję',
     close: 'Zamknij kolekcję',
@@ -71,10 +75,24 @@ const ui = {
     progress: 'W trakcie',
     results: 'Wyniki wyszukiwania',
     hint: 'Wybierz okładkę',
+    scrollPrev: 'Przewiń półkę w lewo',
+    scrollNext: 'Przewiń półkę w prawo',
   },
 };
 
+// The featured selection deliberately reuses the same original certificate objects.
+// It is an editorial overview, not a seventh qualification category.
+const featuredIds = [
+  'cert-pspo-1',
+  'cert-psm-1',
+  'cert-hp-ai-strategy',
+  'cert-microsoft-ai-foundations',
+  'cert-product-design',
+  'cert-agile-inn',
+] as const;
+
 const coverWords: Record<string, Record<Language, [string, string]>> = {
+  featured: { de: ['CORE', 'CREDENTIALS'], en: ['CORE', 'CREDENTIALS'], pl: ['KLUCZOWE', 'KWALIFIKACJE'] },
   academic: { de: ['SCIENCE', '& EXPERTISE'], en: ['SCIENCE', '& EXPERTISE'], pl: ['NAUKA', '& WIEDZA'] },
   product: { de: ['PRODUCT', '& INNOVATION'], en: ['PRODUCT', '& INNOVATION'], pl: ['PRODUKT', '& INNOWACJE'] },
   agile: { de: ['AGILE', '& SCRUM'], en: ['AGILE', '& SCRUM'], pl: ['AGILE', '& SCRUM'] },
@@ -107,9 +125,10 @@ const Cover: React.FC<{
       >
         <span className={'edition-album-art edition-album-art--' + category.id}>
           <span className="edition-album-paper" aria-hidden="true" />
+          <span className="edition-album-vinyl" aria-hidden="true"><span /></span>
           <span className="edition-album-topline">
             <span>NATALIA STACHOWIAK</span>
-            <span>{String(number).padStart(2, '0')}/05</span>
+            <span>{String(number).padStart(2, '0')}/06</span>
           </span>
           <span className="edition-album-decoration" aria-hidden="true">
             <span className="edition-album-decoration-ring" />
@@ -140,13 +159,33 @@ export const CertificateVinylShelf: React.FC<CertificateVinylShelfProps> = ({
   categories, currentLang, isSearching, onSelect,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const shelfRef = useRef<HTMLDivElement>(null);
   const t = ui[currentLang];
-  const visibleCategories = categories.filter(category => !isSearching || category.matchCount > 0);
-  const selected = isSearching
-    ? visibleCategories
+  // Search across all five source groups; keep six covers visible even when searching.
+  const selectedFeatured = featuredIds
+    .map(id => categories.flatMap(category => category.filteredItems).find(cert => cert.id === id))
+    .filter((cert): cert is CertificateItem => Boolean(cert));
+  const featured: VinylCategory = {
+    id: 'featured',
+    title: { de: 'Kernqualifikationen', en: 'Key Credentials', pl: 'Kluczowe kwalifikacje' },
+    subtitle: {
+      de: 'Ausgewählte Nachweise für Digital Product, Agile, KI & Innovation',
+      en: 'Selected credentials for Digital Product, Agile, AI & Innovation',
+      pl: 'Wybrane kwalifikacje: Digital Product, Agile, AI i innowacje',
+    },
+    icon: Award,
+    filteredItems: selectedFeatured,
+    totalCount: featuredIds.length,
+    matchCount: selectedFeatured.length,
+  };
+  const visibleCategories: VinylCategory[] = [featured, ...categories];
+  const activeCategories = isSearching && !selectedCategory
+    ? visibleCategories.filter(category => category.matchCount > 0)
     : visibleCategories.filter(category => category.id === selectedCategory);
-  const topShelf = visibleCategories.slice(0, 3);
-  const bottomShelf = visibleCategories.slice(3);
+  const scrollShelf = (direction: number) => {
+    const el = shelfRef.current;
+    if (el) el.scrollBy({ left: el.clientWidth * 0.7 * direction, behavior: 'smooth' });
+  };
 
   const toggleCategory = (id: string) => {
     setSelectedCategory(previous => previous === id ? null : id);
@@ -157,8 +196,8 @@ export const CertificateVinylShelf: React.FC<CertificateVinylShelfProps> = ({
       key={category.id}
       category={category}
       currentLang={currentLang}
-      number={categories.findIndex(item => item.id === category.id) + 1}
-      selected={isSearching || selectedCategory === category.id}
+      number={visibleCategories.findIndex(item => item.id === category.id) + 1}
+      selected={selectedCategory === category.id}
       onClick={() => toggleCategory(category.id)}
       isSearching={isSearching}
     />
@@ -174,24 +213,31 @@ export const CertificateVinylShelf: React.FC<CertificateVinylShelfProps> = ({
         <span className="edition-collection-hint"><Disc3 size={16} aria-hidden="true" /> {t.hint}</span>
       </div>
 
+      {/* Exactly one physical shelf with six category covers. On narrow screens
+          the same shelf scrolls horizontally; it never becomes a second shelf. */}
       <div className="edition-display" aria-label={t.heading}>
-        {topShelf.length > 0 && (
-          <div className="edition-shelf-row">
-            <div className="edition-shelf-albums">{topShelf.map(renderCover)}</div>
-            <div className="edition-shelf-plank" aria-hidden="true" />
+        <div className="edition-shelf-scroll" ref={shelfRef} role="region" tabIndex={0} aria-label={t.heading}>
+          <div className="edition-shelf-albums">
+            {visibleCategories.map(renderCover)}
           </div>
-        )}
-        {bottomShelf.length > 0 && (
-          <div className="edition-shelf-row edition-shelf-row--bottom">
-            <div className="edition-shelf-albums">{bottomShelf.map(renderCover)}</div>
-            <div className="edition-shelf-plank" aria-hidden="true" />
-          </div>
-        )}
+        </div>
+        <div className="edition-shelf-plank" aria-hidden="true" />
+      </div>
+      <div className="edition-shelf-controls">
+        <span>01 — 06</span>
+        <div>
+          <button type="button" onClick={() => scrollShelf(-1)} aria-label={t.scrollPrev} title={t.scrollPrev}>
+            <ChevronLeft size={17} />
+          </button>
+          <button type="button" onClick={() => scrollShelf(1)} aria-label={t.scrollNext} title={t.scrollNext}>
+            <ChevronRight size={17} />
+          </button>
+        </div>
       </div>
 
-      {selected.length > 0 && (
+      {activeCategories.length > 0 && (
         <div id="edition-collection-details" className="edition-details" role="region" aria-live="polite">
-          {selected.map(category => {
+          {activeCategories.map(category => {
             const Icon = category.icon;
             return (
               <div key={category.id} className="edition-detail-section">
@@ -201,7 +247,7 @@ export const CertificateVinylShelf: React.FC<CertificateVinylShelfProps> = ({
                     <p className="edition-details-kicker">{isSearching ? t.results : t.all}</p>
                     <h3>{category.title[currentLang].replace(/^\d+\.\s*/, '')}</h3>
                   </div>
-                  {!isSearching && (
+                  {selectedCategory && (
                     <button
                       type="button"
                       className="edition-details-close"
@@ -228,7 +274,7 @@ export const CertificateVinylShelf: React.FC<CertificateVinylShelfProps> = ({
                         <p className="edition-cert-issuer">{issuer}</p>
                         <div className="edition-cert-footer">
                           <span className="edition-cert-status">
-                            {isInProgress ? t.progress : hasPdf ? t.complete : t.pending}
+                            {isInProgress ? t.progress : t.complete}
                           </span>
                           <div className="edition-cert-actions">
                             <button type="button" onClick={() => onSelect(cert)}>
