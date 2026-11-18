@@ -15,6 +15,8 @@
 .edition-collection-eyebrow {
   font-size:11px;font-weight:800;letter-spacing:.24em;color:var(--edition-gold);
 }
+.edition-collection-quote {margin-top:13px;font-family:Georgia,serif;font-size:clamp(28px,4vw,48px);font-weight:500;line-height:1.12;letter-spacing:-.025em;color:#F4F1EA;}
+.edition-collection-quote-subtitle {margin-top:8px;font-size:clamp(13px,1.4vw,17px);line-height:1.45;color:#C7A35A;font-weight:600;}
 .edition-collection-intro {font-size:13px;line-height:1.65;color:#B2BBB1;margin-top:8px;max-width:750px;}
 .edition-collection-hint {display:inline-flex;align-items:center;gap:8px;color:var(--edition-gold);font-size:11px;white-space:nowrap;}
 .edition-display {position:relative;min-width:0;isolation:isolate;background:linear-gradient(180deg,rgba(6,61,47,.1),transparent 86%);border-radius:16px 16px 0 0;}
