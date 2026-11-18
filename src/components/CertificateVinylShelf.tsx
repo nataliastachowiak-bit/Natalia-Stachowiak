@@ -208,6 +208,20 @@ export const CertificateVinylShelf: React.FC<CertificateVinylShelfProps> = ({
       <div className="edition-collection-header">
         <div>
           <p className="edition-collection-eyebrow">{t.heading}</p>
+          <h2 className="edition-collection-quote">
+            {currentLang === 'de'
+              ? 'Hier spielt die Musik.'
+              : currentLang === 'pl'
+                ? 'Tutaj gra muzyka.'
+                : 'This is where the music plays.'}
+          </h2>
+          <p className="edition-collection-quote-subtitle">
+            {currentLang === 'de'
+              ? 'Und jede Qualifikation bringt ihren eigenen Sound mit.'
+              : currentLang === 'pl'
+                ? 'A każda kwalifikacja wnosi własne brzmienie.'
+                : 'And every qualification brings its own sound.'}
+          </p>
           <p className="edition-collection-intro">{t.intro}</p>
         </div>
         <span className="edition-collection-hint"><Disc3 size={16} aria-hidden="true" /> {t.hint}</span>
